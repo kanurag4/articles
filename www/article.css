@@ -19,6 +19,8 @@ html:not(.dark) {
   --kv-text:   #0f172a;
   --kv-muted:  #64748b;
   --kv-border: #e2e8f0;
+  --kv-accent: #0369a1;
+  --kv-warn:   #d97706;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
