@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>How to Use the KashVector Stock Evaluator as a Screener — KashVector</title>
+  <meta name="description" content="The Stock Evaluator runs Buffett, Dalio, and Graham frameworks simultaneously against live data. Here's what each framework measures, why they often disagree, and what the tool can't tell you.">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Use the Stock Evaluator as a Screener: Buffett, Dalio, and Graham Explained",
+    "datePublished": "2026-05-22",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/stock-evaluator-guide/",
+    "description": "The Stock Evaluator runs Buffett, Dalio, and Graham frameworks simultaneously against live data. What each framework measures, why they often disagree, and what the tool can't tell you."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the Stock Evaluator free to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Stock Evaluator is completely free — no sign-up, no account, no subscription. Enter a ticker symbol and the tool fetches live data from Yahoo Finance and scores it against all three frameworks instantly." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which stock markets does the Stock Evaluator support?",
+        "acceptedAnswer": { "@type": "Answer", "text": "US stocks work by default (e.g. AAPL, MSFT). For ASX stocks, tick the ASX checkbox or use the .AX suffix (e.g. BHP.AX). For Indian NSE/BSE stocks, use the .NS or .BO suffix (e.g. RELIANCE.NS). Other markets — Hong Kong (.HK), Germany (.DE), London (.L), Korea (.KS) — work via their Yahoo Finance ticker suffixes." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the tool give buy or sell recommendations?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The tool produces verdict labels (Strong Buy, Buy, Hold, Avoid) based on how many criteria a stock passes within each framework. These are framework scores derived from historical financial data — not personalised financial advice. Use them as a shortlisting filter to identify candidates worth researching further, not as trading signals." }
+      },
+      {
+        "@type": "Question",
+        "name": "How current is the data in the Stock Evaluator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Data is sourced from Yahoo Finance and is approximately 15 minutes delayed. This makes the tool suitable for fundamental screening and research, but not for intraday price decisions or time-sensitive trading. Some fields — particularly earnings growth and forward PE estimates — may be absent for smaller or less-covered companies; when data is missing, the criterion is skipped rather than failed, and the score adjusts accordingly." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <h1>KashVector</h1>
+      <p>Australian financial calculators</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">How to Use the Stock Evaluator as a Screener: Buffett, Dalio, and Graham Explained</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 22 May 2026 &nbsp;·&nbsp; 6 min read</div>
+
+      <p>Take a high-quality technology business — strong earnings growth, dominant market position, margins most companies can only dream of. Run it through the Buffett framework and you'll likely get a Buy. Run the same stock through Graham and you'll probably get Avoid. Dalio might land somewhere in between.</p>
+
+      <p>This isn't a bug. It's the most honest thing the tool can tell you.</p>
+
+      <p>Buffett, Dalio, and Graham each built their frameworks around fundamentally different definitions of a good investment. Same company, same balance sheet — three different verdicts. Understanding why they disagree is what turns a score into useful signal. The Stock Evaluator runs all three simultaneously so you can see the tension at once, rather than picking a single lens and missing what the others would catch.</p>
+
+      <div class="article-summary">
+        <p>What to know before you use the tool:</p>
+        <ul>
+          <li>The three frameworks measure <strong>quality</strong>, <strong>resilience</strong>, and <strong>value</strong> — not the same thing</li>
+          <li>A stock that passes all three is rare and worth looking at hard; a stock that fails all three probably deserves to stay on the shelf</li>
+          <li>The scores are a shortlist filter, not a buy recommendation</li>
+          <li>The tool cannot assess competitive moat, management quality, or industry disruption</li>
+        </ul>
+      </div>
+
+      <h2>Warren Buffett: quality at a fair price</h2>
+
+      <p>Buffett looks for wonderful businesses at fair prices — quality-first, with the patience to hold for decades and let compounding do the work. His framework pushes you toward businesses that generate strong returns on capital, grow their earnings consistently, and aren't reliant on debt to sustain that performance.</p>
+
+      <p><strong>Return on Equity &gt; 15%</strong> is his central quality measure. ROE shows how efficiently the business converts shareholders' capital into profit. A persistently high ROE — across years, not just one strong quarter — typically signals a competitive advantage: the kind of pricing power or structural efficiency that keeps compounding in shareholders' favour. A business can fake strong earnings for a year; faking a sustained ROE above 15% is much harder.</p>
+
+      <p><strong>Earnings Growth &gt; 5%</strong> is a floor, not a ceiling. A flat-earnings business is slowly losing ground to inflation. Buffett wants management that's genuinely growing the underlying earnings, not just holding ground. Five percent isn't demanding — it filters out stagnation without requiring hypergrowth.</p>
+
+      <p><strong>Debt/Equity &lt; 0.5</strong> is a survival test. Buffett has said repeatedly that he'd rather own a business that doesn't need debt to earn good returns. Low-leverage companies don't need to be rescued when rates rise or credit tightens — they survive downturns on their own terms rather than depending on cooperative lenders.</p>
+
+      <p>The remaining criteria — PE below 20, a dividend yield above 1%, positive profit margin, and a forward PE below trailing — round out the picture. They are checkpoints rather than differentiators; the three above tend to do the heavy lifting. One structural note: Debt/Equity is skipped (not failed) for financial sector companies, where high leverage is a structural feature of the business model, not a warning sign.</p>
+
+      <p><strong>Verdicts:</strong> Strong Buy / Buy / Hold / Avoid — scaled to the proportion of available criteria passed, so a missing data point doesn't artificially deflate the score.</p>
+
+      <a class="article-cta" href="/stock/">
+        <span class="article-cta-label">Try the free tool</span>
+        <span class="article-cta-text">Run a stock through the Buffett framework → Stock Evaluator</span>
+      </a>
+
+      <h2>Ray Dalio: all-weather resilience</h2>
+
+      <p>Dalio designs for all economic seasons. Where Buffett selects great businesses, Dalio builds portfolios that survive any environment — inflation, deflation, growth, contraction. This changes what his criteria are optimising for. They don't ask "is this a great business?" — they ask "will this business hold up when everything else is under stress?"</p>
+
+      <p><strong>Beta &lt; 1.0</strong> is the most distinctive Dalio criterion. A stock that moves less than the market is a portfolio diversifier. Dalio's all-weather philosophy is built on uncorrelated assets — holdings that don't all fall simultaneously. A low-beta stock may not outperform in a bull run, but it doesn't amplify losses when markets panic, which is where most investors destroy long-term returns.</p>
+
+      <p><strong>Current Ratio &gt; 1.5</strong> reflects Dalio's deep study of debt cycles. His career was shaped by understanding how liquidity crises unfold: businesses that appear solvent on paper fail because they can't meet short-term obligations when credit dries up. A current ratio above 1.5 says the company has adequate short-term coverage — it won't be the first to go in a credit crunch.</p>
+
+      <p><strong>Profit Margin &gt; 5%</strong> is an inflation resilience test. A company that maintains margins above 5% has enough pricing power or cost discipline to pass inflation through rather than absorb it. In Dalio's all-weather framework, this matters most during inflationary environments, where margin-thin businesses get squeezed from both sides.</p>
+
+      <p>The other criteria — positive revenue growth, Debt/Equity below 1.0, and ROE above 10% — reflect Dalio's broader preference for productive, financially sound businesses. Note that his D/E threshold (below 1.0) is deliberately more lenient than Buffett's (below 0.5): he is looking for resilience under stress, not zero-debt purity.</p>
+
+      <p><strong>Verdicts:</strong> Strong Fit / Good Fit / Partial Fit / Poor Fit.</p>
+
+      <a class="article-cta" href="/stock/">
+        <span class="article-cta-label">Try the free tool</span>
+        <span class="article-cta-text">Run a stock through the Dalio framework → Stock Evaluator</span>
+      </a>
+
+      <h2>Benjamin Graham: margin of safety</h2>
+
+      <p>Graham is the father of value investing. He survived the Great Depression and built a methodology around a single idea: buy cheaply enough that even if you are wrong about the business, you can still walk away intact. He called this a <em>margin of safety</em>. His framework is the strictest of the three, and it will reject most of the modern stock market — deliberately.</p>
+
+      <p><strong>P/E &lt; 15</strong> was Graham's ceiling. He had no interest in paying for future growth. The price had to reflect current earnings with room to spare. A P/E below 15 means you are not relying on the business to grow its way out of an expensive valuation — if earnings disappoint, the downside is limited. Buffett has moved well beyond this threshold in practice, comfortable paying more for businesses he considers exceptional. Graham was not.</p>
+
+      <p><strong>P/B &lt; 1.5</strong> is margin of safety made concrete. Buying close to book value means you are not paying much above what the assets are actually worth. If the business fails or deteriorates, the gap between price and book value determines how much permanent capital loss you suffer. For Graham, this was non-negotiable.</p>
+
+      <p><strong>Current Ratio ≥ 2</strong> is stricter than Dalio's equivalent. Graham's Depression-era experience shaped this: he had seen otherwise solvent companies collapse because they couldn't meet short-term obligations when banks called in loans. A current ratio of 2 means current assets cover short-term liabilities twice over — a genuine liquidity buffer, not just adequacy.</p>
+
+      <p><strong>Market Cap ≥ $2B</strong> excluded small companies on the grounds of stability and information quality. Larger businesses are more likely to have analyst coverage, independently audited financials, and institutional scrutiny — all of which reduce information risk for the investor. Graham was, above all, a defensive investor.</p>
+
+      <p>Positive EPS, a dividend, and Debt/Equity below 0.5 complete the picture. Together these criteria enforce a simple idea: pay a conservative price for a financially sound business, leave yourself room to be wrong, and let the margin of safety do the work.</p>
+
+      <p>When Graham returns an Avoid verdict on a high-quality compounder, it usually isn't saying the business is bad — it's saying Graham's margin of safety price isn't available today. That is a different statement from "don't own it." It means you are paying for the quality, not buying it at a discount.</p>
+
+      <p><strong>Verdicts:</strong> Strong Buy / Buy / Hold / Avoid.</p>
+
+      <a class="article-cta" href="/stock/">
+        <span class="article-cta-label">Try the free tool</span>
+        <span class="article-cta-text">Run a stock through the Graham framework → Stock Evaluator</span>
+      </a>
+
+      <h2>How to use the combined score</h2>
+
+      <p>The tool displays a combined score across all three frameworks out of a maximum of 20, with a colour indicator — green above 13, amber above 8, red below 8. The most useful application is comparative: run a shortlist of candidates and look for patterns of agreement.</p>
+
+      <p>When two of three frameworks return a Buy or better, the stock is worth investigating further. The dissenting framework will tell you what you are paying or accepting — Graham rejecting a Buffett Buy typically means the price-to-book is high; Dalio rejecting a Graham Buy typically means the liquidity or beta profile is poor.</p>
+
+      <p>When all three agree, take it seriously in either direction. A unanimous Strong Buy is rare and worth real attention. A unanimous Avoid on a company you like is worth understanding before proceeding.</p>
+
+      <p>The tool stores your last eight analyses in the recent tickers panel, sorted by combined score. Running a batch of candidates and comparing them side-by-side is faster than analysing one at a time — you see the relative landscape quickly.</p>
+
+      <p>What the score is not: a buy signal. Two stocks with the same combined score can have completely different risk profiles, business models, and outlooks. The score tells you which frameworks are satisfied; it does not tell you why, or whether that matters for your situation. Think of it as a pre-research filter — a way to reduce twenty candidates to five worth reading properly.</p>
+
+      <h2>What the tool cannot tell you</h2>
+
+      <p>The score tells you what ratios say about a business at a point in time. Here is what it cannot tell you.</p>
+
+      <p><strong>Competitive moat.</strong> None of the three frameworks directly tests for the durability of a competitive advantage. A company can pass all 20 criteria and have no moat — its market position could be eroding behind metrics that haven't caught up yet. Brand strength, network effects, switching costs, and structural cost advantages don't appear in a balance sheet. Buffett considers moat the most important factor in an investment; the tool cannot measure it.</p>
+
+      <p><strong>Management quality.</strong> Capital allocation discipline, response to adversity, and long-term strategic thinking only show up in the ratios years later, if at all. A management team that is quietly destroying value through poor acquisitions or share buybacks at the wrong price will still show a good ROE today. The framework scores what has happened, not what will happen under current leadership.</p>
+
+      <p><strong>Industry disruption.</strong> Historical ratios lag structural change. A business can pass all of Dalio's criteria and still be in structural decline — the ratios reflect what was true last year, not what is changing in the market. The tool has no way to see competitive dynamics, technological substitution, or regulatory risk that hasn't yet shown up in revenue or margins.</p>
+
+      <p><strong>Framework age.</strong> Graham's thresholds — P/E below 15, P/B below 1.5 — were calibrated against mid-20th century markets where most company value sat in tangible assets. Today's intangible-heavy businesses (software, platforms, brands) routinely trade above book value because their most valuable assets — code, data, relationships — don't appear on the balance sheet at all. Graham's Avoid on these companies often says more about the framework's era than the business's quality.</p>
+
+      <p><strong>Data limitations.</strong> The tool fetches data from Yahoo Finance, which is approximately 15 minutes delayed and carries no SLA on data accuracy. Earnings growth estimates, forward PE figures, and dividend yields are the most commonly absent fields for smaller or less-covered companies — when data is missing, the criterion is skipped rather than failed, and the denominator adjusts. A score of 5/6 could mean one criterion failed, or that one criterion had no available data. The details panel in the tool shows you which. Treat every figure as a starting point for verification, not a final number.</p>
+
+      <h2>A lens for each kind of risk</h2>
+
+      <p>The most useful insight from running a stock through all three frameworks isn't the combined score — it's reading where they disagree and understanding why. A stock that Buffett loves and Graham rejects is almost certainly a quality business at a price that doesn't offer a margin of safety. That's not the same as saying it's overpriced — it depends on how much you trust the quality to persist and for how long. A stock that Dalio rejects despite passing Buffett and Graham might be structurally fine but a poor diversifier for a portfolio already concentrated in high-beta names.</p>
+
+      <p>Use the scores to shortlist. Use the disagreements to focus your research.</p>
+
+      <a class="article-cta" href="/stock/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Score any stock against Buffett, Dalio and Graham → Stock Evaluator</span>
+      </a>
+
+      <a class="article-cta" href="/portfolio-health/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Check how concentrated your current holdings are → Portfolio Health Check</span>
+      </a>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. The Stock Evaluator scores stocks against published investment criteria using historical financial data. Past ratios do not predict future performance. Individual investment decisions depend on your financial situation, risk tolerance, investment timeline, and objectives. We recommend consulting a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Is the Stock Evaluator free to use?</summary>
+          <p>Yes. The Stock Evaluator is completely free — no sign-up, no account, no subscription. Enter a ticker symbol and the tool fetches live data from Yahoo Finance and scores it against all three frameworks instantly.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which stock markets does the Stock Evaluator support?</summary>
+          <p>US stocks work by default (e.g. AAPL, MSFT). For ASX stocks, tick the ASX checkbox or append .AX (e.g. BHP.AX). For Indian NSE/BSE stocks, use .NS or .BO (e.g. RELIANCE.NS). Other markets — Hong Kong (.HK), Germany (.DE), London (.L), Korea (.KS) — work via their standard Yahoo Finance ticker suffixes.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does the tool give buy or sell recommendations?</summary>
+          <p>No. The tool produces verdict labels (Strong Buy, Buy, Hold, Avoid) based on how many criteria a stock passes within each framework. These are framework scores derived from historical financial data — not personalised financial advice. Use them as a shortlisting filter to identify candidates worth researching further, not as trading signals.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How current is the data?</summary>
+          <p>Data is sourced from Yahoo Finance and is approximately 15 minutes delayed. This makes the tool suitable for fundamental screening and research, but not for intraday price decisions. Some fields — particularly earnings growth and forward PE estimates — may be absent for smaller or less-covered companies. When data is missing, the criterion is skipped rather than failed, and the score adjusts accordingly.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>
