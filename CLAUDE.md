@@ -34,7 +34,13 @@ docs/superpowers/
 
 1. Create `www/<slug>/index.html` — copy the existing article as a template
 2. Add an entry to `www/index.html` (the listing page)
-3. Update `kv-banner.js` in **both** `C:\Projects\StockAnalysis\www\kv-banner.js` **and** `C:\Projects\Budget Planner\public\kv-banner.js` — change `LATEST.title` and `LATEST.href` to point to the new article
+3. Update `kv-banner.js` in **both** `C:\Projects\StockAnalysis\www\kv-banner.js` **and** `C:\Projects\Budget Planner\public\kv-banner.js` — change `LATEST.title` and `LATEST.href` to point to the new article. After updating the Budget Planner source, **rebuild and copy** so the built output picks up the change:
+   ```bash
+   cd "C:/Projects/Budget Planner"
+   MSYS_NO_PATHCONV=1 VITE_BASE_PATH='/budget/' npm run build
+   cp -r dist/. "C:/Projects/StockAnalysis/www/budget/"
+   ```
+   The built `www/budget/kv-banner.js` is what actually gets served — editing only `public/kv-banner.js` without rebuilding has no effect on the live site.
 4. Add the new article URL to the sitemap
 5. Update **all three** "From the blog" placements on `C:\Projects\StockAnalysis\www\index.html` (hub landing page):
    - `#blog-sidebar` — fixed left sidebar shown on desktop (≥1360px); add new `<a>` block above existing links, before "All articles →"
