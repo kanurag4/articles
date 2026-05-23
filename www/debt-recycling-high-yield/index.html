@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>2026 Budget: Why High-Yield ETFs are the Smarter Choice for Debt Recycling — KashVector</title>
+  <meta name="description" content="At 6%+ interest rates, low-yield growth ETFs create a $300–$500 monthly cash drain even after your tax refund. See why high-yield franked ETFs like VHY change the equation for debt recycling.">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <style>
+    /* ── Comparison table ── */
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin: 20px 0 24px;
+      border-radius: 10px;
+      border: 1px solid var(--kv-border);
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      min-width: 500px;
+    }
+    .comparison-table th {
+      background: var(--kv-card-2);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--kv-muted);
+      border-bottom: 2px solid var(--kv-border);
+      line-height: 1.4;
+    }
+    .comparison-table th:not(:first-child) { text-align: right; }
+    .comparison-table th.col-a { color: #ef4444; }
+    .comparison-table th.col-b { color: #22c55e; }
+    .comparison-table td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--kv-border);
+      color: var(--kv-muted);
+      line-height: 1.4;
+    }
+    .comparison-table td:not(:first-child) {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr.row-total td {
+      background: var(--kv-card-2);
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-top: 2px solid var(--kv-border);
+    }
+    .comparison-table tr.row-total td:first-child { color: var(--kv-text); }
+    .col-neg { color: #ef4444; }
+    .col-pos { color: #22c55e; }
+
+    /* ── Insight box ── */
+    .insight-box {
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-left: 3px solid var(--kv-accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 4px 0 28px;
+    }
+    .insight-box p {
+      font-size: 0.88rem !important;
+      color: var(--kv-muted) !important;
+      margin-bottom: 10px !important;
+      line-height: 1.65 !important;
+    }
+    .insight-box p:last-child { margin-bottom: 0 !important; }
+    .insight-box strong { color: var(--kv-text); }
+
+    /* ── Inline calculator ── */
+    .dr-calc {
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 4px 0 28px;
+    }
+    .dr-calc-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--kv-text);
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--kv-border);
+    }
+    .dr-group { margin-bottom: 16px; }
+    .dr-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--kv-muted);
+      margin-bottom: 8px;
+    }
+    .dr-label-val { color: var(--kv-accent); font-variant-numeric: tabular-nums; }
+    input[type="range"].dr-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      background: var(--kv-border);
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"].dr-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--kv-accent);
+      cursor: pointer;
+      border: 2px solid var(--kv-bg);
+    }
+    input[type="range"].dr-slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--kv-accent);
+      cursor: pointer;
+      border: 2px solid var(--kv-bg);
+    }
+    .dr-select {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--kv-card-2);
+      border: 1px solid var(--kv-border);
+      border-radius: 8px;
+      color: var(--kv-text);
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+    }
+    .dr-select:focus { border-color: var(--kv-accent); }
+    .dr-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    @media (max-width: 500px) { .dr-cards { grid-template-columns: 1fr; } }
+    .dr-card {
+      background: var(--kv-card-2);
+      border: 1px solid var(--kv-border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .dr-card-a { border-top: 3px solid #ef4444; }
+    .dr-card-b { border-top: 3px solid #22c55e; }
+    .dr-card-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .dr-card-a .dr-card-title { color: #ef4444; }
+    .dr-card-b .dr-card-title { color: #22c55e; }
+    .dr-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--kv-muted);
+      margin-bottom: 6px;
+    }
+    .dr-row span:last-child { font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .dr-row-total {
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-top: 1px solid var(--kv-border);
+      padding-top: 8px;
+      margin-top: 6px;
+    }
+    .dr-row-total span:first-child { color: var(--kv-text); }
+    .txt-neg { color: #ef4444; }
+    .txt-pos { color: #22c55e; }
+    .dr-note {
+      font-size: 0.72rem;
+      color: var(--kv-muted);
+      font-style: italic;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* ── Formula block ── */
+    .formula-block {
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-radius: 8px;
+      padding: 12px 18px;
+      margin: 12px 0 16px;
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 0.85rem;
+      color: var(--kv-text);
+      overflow-x: auto;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "2026 Budget: Why High-Yield ETFs are the Smarter Choice for Debt Recycling",
+    "datePublished": "2026-05-23",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/debt-recycling-high-yield/",
+    "description": "At 6%+ interest rates, low-yield growth ETFs create a monthly cash drain even after your tax refund. See why high-yield franked ETFs like VHY change the equation for debt recycling."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does the 2026 budget negative gearing cap apply to shares and ETFs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The 2026 Federal Budget's negative gearing restriction applies only to established investment properties purchased after 12 May 2026. Shares and ETFs are completely unaffected — you can still deduct investment loan interest against your PAYG salary income even if it exceeds your dividend income. The case for high-yield ETFs in debt recycling is about cash-flow efficiency, not regulatory compliance." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do franking credits improve debt recycling cash flow?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Franking credits gross up your assessable dividend income, which increases the deduction you can offset against investment income and reduces or eliminates your tax payable. At high franking levels like VHY's 80–90%, the grossed-up income from a 5.5% cash yield often exceeds your interest cost entirely, generating a net tax credit that returns cash to you — turning a marginally cash-negative position into a positive one without waiting until July." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is debt recycling with low-yield growth ETFs still worth doing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — it remains legal and effective long-term. You still receive a full tax refund at year end. The issue is working capital: at 6%+ interest rates, a 2% yielding ETF requires you to fund a significant monthly cash shortfall throughout the year and wait until July for the refund. For investors with strong income and solid cash reserves this is manageable. For those optimising cash flow, a high-yield ETF like VHY eliminates this timing friction entirely." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this article financial advice?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This article is general information only and does not constitute financial advice. Debt recycling involves leverage, market risk, and tax implications specific to your personal circumstances. Speak with a licensed financial adviser and registered tax accountant before implementing any debt recycling strategy." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <h1>KashVector</h1>
+      <p>Australian financial calculators</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">2026 Budget: Why High-Yield ETFs are the Smarter Choice for Debt Recycling</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 23 May 2026 &nbsp;·&nbsp; 6 min read</div>
+
+      <div class="article-summary">
+        <p>What this article covers:</p>
+        <ul>
+          <li>Why the 2026 budget leaves share-based debt recycling untouched — but interest rates create a new cash-flow problem</li>
+          <li>The true annual and monthly cash-flow positions for growth ETFs vs. high-yield franked ETFs</li>
+          <li>Why franking credits from funds like VHY can turn a cash-negative strategy into a cash-positive one</li>
+        </ul>
+      </div>
+
+      <p>Debt recycling remains one of Australia's most potent wealth-building frameworks. By routing surplus household cash flow through a split investment loan to purchase income-producing assets, you systematically convert non-deductible home loan debt into tax-deductible investment debt — all without altering your net household liability.</p>
+
+      <p>While the 2026 Federal Budget left the tax deductibility of share-market debt recycling completely untouched — you can still deduct net investment losses against your PAYG salary — the macroeconomic reality of current interest rates has introduced a different kind of bottleneck: working capital friction.</p>
+
+      <p>For high-income earners maximising their strategy, using low-yield, high-growth international index funds creates a severe annual out-of-pocket cash drain. Even though you receive a tax refund at the end of the financial year, you must fund the monthly cash deficit throughout the year from your own pocket.</p>
+
+      <p>To keep your household budget stress-free and maximise the compounding velocity of your strategy, a distinct pivot toward high-yield, franked domestic equities — exemplified by vehicles like the Vanguard Australian Shares High Yield ETF (ASX: VHY) — is mathematically the superior cash-flow choice.</p>
+
+      <h2>The true cash-flow breakdown: growth vs. high yield</h2>
+
+      <p>Let's look at the actual math under a standard investment loan rate of 6.15% p.a. Imagine an investor debt-recycles $100,000 via a separate interest-only loan split, costing $6,150 in annual interest. They sit in the highest marginal tax bracket — 45% plus 2% Medicare Levy, giving 47% effective.</p>
+
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th class="col-a">Option A: Growth ETF<br>(2% yield, unfranked)</th>
+              <th class="col-b">Option B: VHY High Yield<br>(5.5% yield, 85% franked)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Recycled investment amount</td>
+              <td>$100,000</td>
+              <td>$100,000</td>
+            </tr>
+            <tr>
+              <td>Annual loan interest (6.15% p.a.)</td>
+              <td>−$6,150</td>
+              <td>−$6,150</td>
+            </tr>
+            <tr>
+              <td>Gross cash dividends received</td>
+              <td>+$2,000</td>
+              <td>+$5,500</td>
+            </tr>
+            <tr>
+              <td>Franking credits (85% of dividend × 30/70)</td>
+              <td>$0</td>
+              <td>+$2,004</td>
+            </tr>
+            <tr>
+              <td>Total assessable investment income</td>
+              <td>$2,000</td>
+              <td>$7,504</td>
+            </tr>
+            <tr>
+              <td>Net investment position</td>
+              <td class="col-neg">−$4,150 (tax loss)</td>
+              <td class="col-pos">+$1,354 (taxable gain)</td>
+            </tr>
+            <tr>
+              <td>Tax impact at 47%</td>
+              <td class="col-pos">+$1,951 refund (offsets salary)</td>
+              <td class="col-pos">Gross tax $636 − Franking credits $2,004 = +$1,368 refund</td>
+            </tr>
+            <tr class="row-total">
+              <td>True net annual cash position</td>
+              <td class="col-neg">−$2,199</td>
+              <td class="col-pos">+$718</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="insight-box">
+        <p><strong>Option A (Growth ETF):</strong> Even with a $1,951 tax refund at year end, you still finish $2,199 out of pocket annually. More critically, throughout the year you must cover a $512 monthly interest bill while receiving only $167 in monthly dividends — a $345 monthly shortfall from your household budget before the July refund arrives.</p>
+        <p><strong>Option B (VHY):</strong> The 5.5% cash yield closely mirrors the 6.15% interest cost. The grossed-up assessable income ($7,504) exceeds the interest deduction ($6,150), producing a $1,354 net taxable gain. Tax at 47% is $636 — well below the $2,004 in franking credits available, leaving a $1,368 net refund. That puts you $718 ahead for the year, and that surplus flows straight back into your offset account without touching your salary.</p>
+      </div>
+
+      <h2>Stress-test your debt recycling cash flow</h2>
+
+      <p>Use the tool below to see how monthly out-of-pocket requirements shift across different loan sizes, interest rates, and tax brackets.</p>
+
+      <div class="dr-calc">
+        <div class="dr-calc-title">Debt Recycling Cash Flow Analyser</div>
+
+        <div class="dr-group">
+          <div class="dr-label">
+            <span>Investment loan split size</span>
+            <span class="dr-label-val" id="lv-loan">$100,000</span>
+          </div>
+          <input type="range" id="inp-loan" class="dr-slider" min="10000" max="500000" step="5000" value="100000">
+        </div>
+
+        <div class="dr-group">
+          <div class="dr-label">
+            <span>Investment loan interest rate</span>
+            <span class="dr-label-val" id="lv-rate">6.15%</span>
+          </div>
+          <input type="range" id="inp-rate" class="dr-slider" min="4.00" max="9.00" step="0.05" value="6.15">
+        </div>
+
+        <div class="dr-group">
+          <div class="dr-label"><span>Marginal tax rate (inc. Medicare levy)</span></div>
+          <select id="inp-tax" class="dr-select">
+            <option value="0.47" selected>47% — Top bracket ($190k+)</option>
+            <option value="0.39">39% — $135k–$190k</option>
+            <option value="0.32">32% — $45k–$135k</option>
+            <option value="0.17">17% — $18k–$45k</option>
+          </select>
+        </div>
+
+        <div class="dr-cards">
+          <div class="dr-card dr-card-a">
+            <div class="dr-card-title">Option A: Growth ETF (2% yield)</div>
+            <div class="dr-row"><span>Annual interest</span><span id="a-interest">—</span></div>
+            <div class="dr-row"><span>Cash dividends</span><span id="a-div">—</span></div>
+            <div class="dr-row"><span>Year-end tax refund</span><span id="a-refund">—</span></div>
+            <div class="dr-row dr-row-total">
+              <span>Net annual cash</span>
+              <span id="a-net">—</span>
+            </div>
+            <div class="dr-note" id="a-note"></div>
+          </div>
+
+          <div class="dr-card dr-card-b">
+            <div class="dr-card-title">Option B: VHY (5.5% yield, 85% franked)</div>
+            <div class="dr-row"><span>Annual interest</span><span id="b-interest">—</span></div>
+            <div class="dr-row"><span>Cash dividends</span><span id="b-div">—</span></div>
+            <div class="dr-row"><span>Net franking refund</span><span id="b-refund">—</span></div>
+            <div class="dr-row dr-row-total">
+              <span>Net annual cash</span>
+              <span id="b-net">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="article-cta" href="/debt-recycling/">
+        <span class="article-cta-label">Run your actual numbers</span>
+        <span class="article-cta-text">Model your full debt recycling strategy year by year → Debt Recycling Calculator</span>
+      </a>
+
+      <h2>Why high-yield ETFs maintain the velocity of the recycling loop</h2>
+
+      <p>Debt recycling relies on compounding momentum. When you receive dividends, you don't use an automatic Dividend Reinvestment Plan (DRP). Instead, you collect cash distributions, deposit them directly into your non-deductible home loan, redraw that exact amount through your investment split, and buy more shares. Each cycle converts more home loan debt from non-deductible to deductible.</p>
+
+      <p>At high interest rates, prioritising high-yield assets like VHY inside a personal debt recycling structure offers two structural advantages:</p>
+
+      <ul>
+        <li><strong>Mitigating timing risk.</strong> Relying on a large year-end tax refund means your capital is uneven — cash-poor during the year, cash-rich in July. High-yield ETFs pay quarterly distributions, letting you pay down your non-deductible mortgage continuously throughout the year rather than once annually.</li>
+        <li><strong>Preserving borrowing capacity.</strong> Lenders assess serviceability based on ongoing cash commitments. A strategy that requires you to supplement your investment loan interest out of salary each month can negatively impact your servicing metrics for future refinancing or property purchases.</li>
+      </ul>
+
+      <p>While low-yield capital-growth indices like the S&amp;P 500 remain excellent long-term wealth vehicles inside low-tax, zero-cash-flow environments like Superannuation, debt recycling on your personal balance sheet requires cash-flow efficiency. By matching your portfolio yield to your borrowing costs, you shield your family's daily budget while turning your mortgage into a tax-deductible engine at maximum speed.</p>
+
+      <p>That said, the cash-flow advantage of a high-yield strategy comes with real trade-offs that every investor should weigh. A portfolio concentrated in Australian high-yield equities — heavily weighted toward banks and mining companies — is less diversified than a broad global index. Historically, global growth indices have delivered stronger long-run capital appreciation than domestically concentrated, income-focused portfolios. The pivot to high yield improves your debt recycling cash flow; it does not automatically improve your total return. The right choice depends on your personal priorities: if minimising monthly out-of-pocket costs is paramount, high yield wins on cash flow. If maximising long-run wealth accumulation is the priority and you can comfortably absorb the monthly shortfall, a global growth index may produce a larger portfolio at the end of a 20-year horizon — even after accounting for the timing of tax refunds.</p>
+
+      <a class="article-cta" href="/debt-recycling/">
+        <span class="article-cta-label">Ready to model your strategy?</span>
+        <span class="article-cta-text">Compare yield scenarios with your real loan balance → Debt Recycling Calculator</span>
+      </a>
+
+      <h2>Core assumptions &amp; modelling framework</h2>
+
+      <p><strong>Tax treatment:</strong> Fully reflective of current ATO guidelines. Net investment losses — interest expense minus grossed-up dividend income — are allowed to directly offset unrelated PAYG income at the specified marginal tax rates. The 2026 budget did not change this treatment for shares and ETFs.</p>
+
+      <p><strong>Franking credit calculation:</strong> Imputation credits are grossed up using the standard 30% corporate tax rate:</p>
+
+      <div class="formula-block">GrossedUp = NetCash × (1 + (Franking% × 0.30) / 0.70)</div>
+
+      <p><strong>Investment split structure:</strong> Modelled as a standalone interest-only loan to isolate investment cash flows from standard principal-and-interest home loan obligations.</p>
+
+      <h2>Data sources</h2>
+
+      <p><strong>Vanguard Australia — VHY product data:</strong> Historical trailing performance and distribution schedules for the Vanguard Australian Shares High Yield ETF (ASX: VHY) confirm an average yield profile between 5.2% and 5.6% with consistent high franking levels, varying with the mining and banking payout cycle.</p>
+
+      <p><strong>Australian Taxation Office:</strong> Rulings on the ongoing deductibility of interest expenses incurred in gaining assessable income through shares and public unit trusts (Ref: TR 2000/2).</p>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. Debt recycling involves leverage, market risk, and tax implications specific to your personal circumstances. The calculations above use fixed yield assumptions (2% and 5.5%) and may not reflect your actual investment returns. Historical ETF distributions are not a guarantee of future performance. Speak with a licensed financial adviser and registered tax accountant before implementing any debt recycling strategy.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Does the 2026 budget negative gearing cap apply to shares and ETFs?</summary>
+          <p>No. The 2026 Federal Budget's negative gearing restriction applies only to established investment properties purchased after 12 May 2026. Shares and ETFs are completely unaffected — you can still deduct investment loan interest against your PAYG salary income even if it exceeds your dividend income. The case for high-yield ETFs in debt recycling is about cash-flow efficiency, not regulatory compliance.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How do franking credits improve debt recycling cash flow?</summary>
+          <p>Franking credits gross up your assessable dividend income, which increases the deduction you can offset against investment income and reduces or eliminates your tax payable. At high franking levels like VHY's 80–90%, the grossed-up income from a 5.5% cash yield often exceeds your interest cost entirely, generating a net tax credit that returns cash to you — without waiting until July for a refund.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is debt recycling with low-yield growth ETFs still worth doing?</summary>
+          <p>Yes — it remains legal and effective long-term. You still receive a full tax refund at year end. The issue is working capital: at 6%+ interest rates, a 2% yielding ETF requires you to fund a significant monthly cash shortfall and wait until July for the refund. For investors with strong income and solid cash reserves this is manageable. For those optimising cash flow, a high-yield ETF like VHY eliminates this timing friction entirely.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is this article financial advice?</summary>
+          <p>No. This article is general information only and does not constitute financial advice. Debt recycling involves leverage, market risk, and tax implications specific to your personal circumstances. Speak with a licensed financial adviser and registered tax accountant before implementing any debt recycling strategy.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+
+  <script>
+    (function () {
+      var loanEl = document.getElementById('inp-loan');
+      var rateEl = document.getElementById('inp-rate');
+      var taxEl  = document.getElementById('inp-tax');
+
+      function fmtDollar(n) {
+        return '$' + Math.round(Math.abs(n)).toLocaleString('en-AU');
+      }
+
+      function calculate() {
+        var principal = parseFloat(loanEl.value);
+        var rate      = parseFloat(rateEl.value) / 100;
+        var taxRate   = parseFloat(taxEl.value);
+
+        document.getElementById('lv-loan').textContent = '$' + principal.toLocaleString('en-AU');
+        document.getElementById('lv-rate').textContent = parseFloat(rateEl.value).toFixed(2) + '%';
+
+        var interest = principal * rate;
+
+        // Option A: 2% yield, unfranked
+        var aCashDiv   = principal * 0.02;
+        var aNetInv    = aCashDiv - interest;           // negative = tax loss
+        var aRefund    = Math.abs(aNetInv) * taxRate;   // salary offset refund
+        var aNet       = aNetInv + aRefund;             // still negative
+        var aMonthly   = (interest - aCashDiv) / 12;    // monthly shortfall before refund
+
+        // Option B: 5.5% yield, 85% franked
+        // Correct ATO formula: only the franked portion (85%) of the cash dividend carries credits
+        var bCashDiv    = principal * 0.055;
+        var bFranking   = bCashDiv * 0.85 * (30 / 70);   // $5,500 × 85% × 30/70 = $2,003.57
+        var bAssessable = bCashDiv + bFranking;
+        var bNetInv     = bAssessable - interest;
+        var bTaxImpact;
+        if (bNetInv >= 0) {
+          bTaxImpact = bFranking - (bNetInv * taxRate); // franking credits exceed tax
+        } else {
+          bTaxImpact = bFranking + (Math.abs(bNetInv) * taxRate);
+        }
+        var bNet = bCashDiv - interest + bTaxImpact;
+
+        // Render Option A
+        document.getElementById('a-interest').textContent = '−' + fmtDollar(interest);
+        document.getElementById('a-div').textContent      = '+' + fmtDollar(aCashDiv);
+        document.getElementById('a-refund').textContent   = '+' + fmtDollar(aRefund);
+        var aNetEl = document.getElementById('a-net');
+        aNetEl.textContent = (aNet >= 0 ? '+' : '−') + fmtDollar(aNet);
+        aNetEl.className   = aNet >= 0 ? 'txt-pos' : 'txt-neg';
+        document.getElementById('a-note').innerHTML =
+          'Monthly gap before refund: <span class="txt-neg">−' + fmtDollar(aMonthly) + '/mo</span>';
+
+        // Render Option B
+        document.getElementById('b-interest').textContent = '−' + fmtDollar(interest);
+        document.getElementById('b-div').textContent      = '+' + fmtDollar(bCashDiv);
+        document.getElementById('b-refund').textContent   = (bTaxImpact >= 0 ? '+' : '−') + fmtDollar(bTaxImpact);
+        var bNetEl = document.getElementById('b-net');
+        bNetEl.textContent = (bNet >= 0 ? '+' : '−') + fmtDollar(bNet);
+        bNetEl.className   = bNet >= 0 ? 'txt-pos' : 'txt-neg';
+      }
+
+      loanEl.addEventListener('input', calculate);
+      rateEl.addEventListener('input', calculate);
+      taxEl.addEventListener('change', calculate);
+      calculate();
+    }());
+  </script>
+
+</body>
+</html>
