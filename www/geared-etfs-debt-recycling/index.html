@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>Mastering Leverage: Geared ETFs, Debt Recycling &amp; Long-Term Wealth — KashVector</title>
+  <meta name="description" content="How geared ETFs like GEAR and G200 work, the maths of volatility decay, and how to combine internal leverage with debt recycling for long-term wealth building.">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <style>
+    /* ── Comparison table ── */
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin: 20px 0 28px;
+      border-radius: 10px;
+      border: 1px solid var(--kv-border);
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      min-width: 640px;
+    }
+    .comparison-table th {
+      background: var(--kv-card-2);
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--kv-muted);
+      border-bottom: 2px solid var(--kv-border);
+      line-height: 1.4;
+    }
+    .comparison-table th:not(:first-child) { text-align: right; }
+    .comparison-table th.col-vhy  { color: #22c55e; }
+    .comparison-table th.col-a200 { color: var(--kv-muted); }
+    .comparison-table th.col-g200 { color: #f59e0b; }
+    .comparison-table th.col-gear { color: #ef4444; }
+    .comparison-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--kv-border);
+      color: var(--kv-muted);
+      line-height: 1.4;
+    }
+    .comparison-table td:not(:first-child) {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr.row-highlight td {
+      background: var(--kv-card-2);
+      font-weight: 700;
+      border-top: 2px solid var(--kv-border);
+    }
+    .comparison-table tr.row-highlight td:first-child { color: var(--kv-text); }
+    .col-green { color: #22c55e; }
+    .col-amber { color: #f59e0b; }
+    .col-red   { color: #ef4444; }
+
+    /* ── Insight box ── */
+    .insight-box {
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-left: 3px solid var(--kv-accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 4px 0 28px;
+    }
+    .insight-box p {
+      font-size: 0.88rem !important;
+      color: var(--kv-muted) !important;
+      margin-bottom: 10px !important;
+      line-height: 1.65 !important;
+    }
+    .insight-box p:last-child { margin-bottom: 0 !important; }
+    .insight-box strong { color: var(--kv-text); }
+
+    /* ── Formula / code block ── */
+    .formula-block {
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 12px 0 16px;
+      font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+      font-size: 0.83rem;
+      color: var(--kv-text);
+      overflow-x: auto;
+      line-height: 1.7;
+    }
+
+    /* ── Recovery chain ── */
+    .recovery-chain {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 16px 0 28px;
+      overflow-x: auto;
+    }
+    .chain-step {
+      flex: 1;
+      padding: 14px 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      min-width: 120px;
+      line-height: 1.45;
+    }
+    .chain-step-drop    { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.5); color: #ef4444; }
+    .chain-step-loss    { background: rgba(239,68,68,0.15); border: 1px solid #ef4444; color: #ef4444; font-size: 0.88rem; }
+    .chain-step-recover { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.5); color: #f59e0b; }
+    .chain-arrow        { font-size: 1.3rem; color: var(--kv-muted); padding: 0 8px; flex-shrink: 0; }
+    @media (max-width: 500px) {
+      .recovery-chain { flex-direction: column; align-items: stretch; gap: 4px; }
+      .chain-arrow    { transform: rotate(90deg); text-align: center; font-size: 1rem; padding: 2px 0; }
+    }
+
+    /* ── Equity split diagram ── */
+    .equity-diagram {
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 16px 0 28px;
+    }
+    .equity-source {
+      text-align: center;
+      background: var(--kv-card-2);
+      border: 1px solid var(--kv-border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--kv-text);
+      margin-bottom: 20px;
+    }
+    .equity-branches {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 500px) { .equity-branches { grid-template-columns: 1fr; } }
+    .equity-branch {
+      background: var(--kv-card-2);
+      border: 1px solid var(--kv-border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .equity-branch.path-yield     { border-top: 3px solid #22c55e; }
+    .equity-branch.path-leverage  { border-top: 3px solid #f59e0b; }
+    .equity-branch-title {
+      font-weight: 700;
+      font-size: 0.82rem;
+      margin-bottom: 3px;
+    }
+    .path-yield    .equity-branch-title { color: #22c55e; }
+    .path-leverage .equity-branch-title { color: #f59e0b; }
+    .equity-branch-sub {
+      font-size: 0.73rem;
+      color: var(--kv-muted);
+      margin-bottom: 10px;
+      font-style: italic;
+    }
+    .equity-branch ul {
+      margin: 0;
+      padding-left: 16px;
+      font-size: 0.8rem;
+      color: var(--kv-muted);
+      line-height: 1.7;
+    }
+
+    /* ── Portfolio allocation diagram ── */
+    .alloc-diagram {
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 16px 0 28px;
+    }
+    .alloc-header {
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--kv-text);
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--kv-border);
+      margin-bottom: 16px;
+    }
+    .alloc-cols {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 500px) { .alloc-cols { grid-template-columns: 1fr; } }
+    .alloc-core, .alloc-sat {
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .alloc-core { background: var(--kv-card-2); border: 1px solid var(--kv-border); }
+    .alloc-sat  { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.4); }
+    .alloc-section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .alloc-core .alloc-section-label { color: var(--kv-muted); }
+    .alloc-sat  .alloc-section-label { color: #f59e0b; }
+    .alloc-pct {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .alloc-core .alloc-pct { color: var(--kv-text); }
+    .alloc-sat  .alloc-pct { color: #f59e0b; }
+    .alloc-items {
+      font-size: 0.8rem;
+      color: var(--kv-muted);
+      line-height: 1.7;
+      padding-left: 14px;
+    }
+
+    /* ── Volatility decay example ── */
+    .vol-example {
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 16px 0 28px;
+    }
+    .vol-example-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--kv-text);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--kv-border);
+    }
+    .vol-example-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 480px) { .vol-example-cols { grid-template-columns: 1fr; } }
+    .vol-col {
+      background: var(--kv-card-2);
+      border: 1px solid var(--kv-border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 0.82rem;
+    }
+    .vol-col-title {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--kv-muted);
+      margin-bottom: 8px;
+    }
+    .vol-col-result {
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--kv-border);
+    }
+    .vol-col.unlevered .vol-col-result { color: #22c55e; }
+    .vol-col.levered   .vol-col-result { color: #ef4444; }
+    .vol-step { color: var(--kv-muted); margin-bottom: 4px; line-height: 1.55; }
+    .vol-step strong { color: var(--kv-text); }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Mastering Leverage: A Deep Dive into Geared ETFs, Debt Recycling, and Long-Term Wealth",
+    "datePublished": "2026-05-24",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/geared-etfs-debt-recycling/",
+    "description": "How geared ETFs like GEAR and G200 work, the maths of volatility decay, and how to combine internal leverage with debt recycling for long-term wealth building."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is volatility decay in geared ETFs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Volatility decay (also called compounding drag) is a mathematical phenomenon that causes leveraged ETFs to underperform a simple multiple of the index return over time, especially in choppy markets. When a fund constantly rebalances to maintain its target leverage, it must sell into weakness and buy into strength — a process that erodes returns during sideways or volatile periods, even when the underlying index eventually recovers. In a trending bull market this effect is minimal; during high-volatility periods it can significantly compress returns." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is debt recycling into geared ETFs safe?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Debt recycling into geared ETFs creates a dual-layer leverage structure: your investment mortgage split (external borrowing) layered over the internal borrowing inside the ETF. This amplifies both potential gains and potential losses. During a sustained market downturn, your portfolio can drop severely while your investment loan obligation remains unchanged. This strategy is only appropriate for investors with stable long-term income, a multi-decade time horizon, and the financial resilience to maintain repayments through a prolonged downturn." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the core-satellite approach for leveraged investing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The core-satellite approach allocates the majority of your portfolio (typically 70–80%) to stable, un-geared holdings (like diversified index ETFs or high-yield income funds) and a smaller satellite portion (20–30%) to higher-risk, higher-growth geared exposure. This structure gives your portfolio a meaningful growth boost from the geared satellite without subjecting the entire portfolio to leveraged drawdowns. The un-geared core also acts as a reserve to rebalance into the geared position at lower prices during market downturns." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this article financial advice?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This article is general information only and does not constitute financial advice. Geared ETFs and debt recycling involve leverage, market risk, and tax implications specific to your personal circumstances. Returns cited are historical or back-tested and are not a guarantee of future performance. Speak with a licensed financial adviser before implementing any leveraged investment strategy." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <h1>KashVector</h1>
+      <p>Australian financial calculators</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">Mastering Leverage: A Deep Dive into Geared ETFs, Debt Recycling, and Long-Term Wealth</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 24 May 2026 &nbsp;·&nbsp; 12 min read</div>
+
+      <div class="article-summary">
+        <p>What this article covers:</p>
+        <ul>
+          <li>How VHY, A200, G200, and GEAR differ structurally — and what a $10,000 investment looks like across each over 10 years</li>
+          <li>The mathematics of volatility decay and why geared returns are never simply a multiple of the index</li>
+          <li>How your life stage should dictate the leverage level you take on</li>
+          <li>Combining debt recycling with geared ETFs — the yield path, the leverage path, and the core-satellite sweet spot</li>
+        </ul>
+      </div>
+
+      <p>For modern investors seeking to accelerate wealth creation, traditional buy-and-hold strategies with standard exchange-traded funds (ETFs) are often just the starting point. Some investors use leverage to potentially accelerate portfolio growth — specifically through geared ETFs and structural frameworks like debt recycling.</p>
+
+      <p>When used prudently, gearing can amplify long-term portfolio growth, although it also materially increases risk. Here is a balanced, deep-dive exploration of geared ETFs, the maths behind volatility decay, interest rate environments, and how your life stage dictates their use.</p>
+
+      <h2>The spectrum of Australian equities: from yield to hyper-growth</h2>
+
+      <p>When mapping out an investment strategy, it is critical to look past simple marketing names and understand the portfolio structure and leverage mechanics involved. The Australian market offers four distinct paths for deploying capital into domestic blue-chip companies, ranging from targeted, un-geared income streams to aggressive, internally leveraged index exposures:</p>
+
+      <ul>
+        <li><strong>Vanguard Australian Shares High Yield ETF (VHY):</strong> An un-geared (0% leverage) fund that filters the market for roughly 70 of the highest-yielding, dividend-paying companies — heavily weighted toward big banks and resource giants. It targets organic income rather than broad market tracking.</li>
+        <li><strong>Betashares Australia 200 ETF (A200):</strong> The traditional, un-geared baseline. It simply buys the 200 largest companies on the ASX. With a 0% loan-to-value ratio (LVR), its performance mirrors the broad market index.</li>
+        <li><strong>Betashares Wealth Builder Australia 200 Geared (30–40% LVR) Fund (G200):</strong> A moderate leverage option. It feeds capital into the Top 200 index structure but utilises internal, institutionally priced borrowing to maintain a target LVR of 30% to 40%, resulting in an investment multiple of roughly 1.5×.</li>
+        <li><strong>Betashares Geared Australian Equity Fund (GEAR):</strong> The veteran, aggressively geared broad-market fund. It targets an internal LVR of 50% to 65%, typically resulting in effective exposure near 2× the fund's net asset value, although the actual leverage fluctuates over time.</li>
+      </ul>
+
+      <h2>What happens to a $10,000 investment? (10-year model)</h2>
+
+      <p>Because G200 was launched in April 2024, we cannot look at a literal 10-year trading history for that ticker. However, because A200, G200, and GEAR all track the identical underlying index, we can map their performance outcomes alongside VHY's actual 10-year historical data.</p>
+
+      <p>The table below shows how these strategies scale over a 10-year horizon on an initial $10,000 investment, with all dividends and franking credits fully reinvested. Returns factor in historical index performance, institutional borrowing costs, fund management fees, and tracking drag.</p>
+
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th class="col-vhy">VHY<br><span style="font-weight:400;font-size:0.75rem;">High Yield</span></th>
+              <th class="col-a200">A200<br><span style="font-weight:400;font-size:0.75rem;">Broad Index</span></th>
+              <th class="col-g200">G200<br><span style="font-weight:400;font-size:0.75rem;">Moderate Gearing</span></th>
+              <th class="col-gear">GEAR<br><span style="font-weight:400;font-size:0.75rem;">Aggressive Gearing</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Target LVR range</td>
+              <td>0%</td>
+              <td>0%</td>
+              <td>30–40%</td>
+              <td>50–65%</td>
+            </tr>
+            <tr>
+              <td>Effective leverage multiple</td>
+              <td>1.0×</td>
+              <td>1.0×</td>
+              <td>~1.5×</td>
+              <td>Dynamic (~2.0×+)</td>
+            </tr>
+            <tr>
+              <td>Core portfolio focus</td>
+              <td>High dividend<br>(~70 stocks)</td>
+              <td>S&amp;P/ASX 200 index</td>
+              <td>S&amp;P/ASX 200 index</td>
+              <td>S&amp;P/ASX 200 index</td>
+            </tr>
+            <tr>
+              <td>10-yr return p.a.</td>
+              <td class="col-green">10.18% <small>(actual)</small></td>
+              <td>~8.80% <small>(actual)</small></td>
+              <td class="col-amber">~11.20% <small>(back-tested)</small></td>
+              <td class="col-red">13.17% <small>(actual)</small></td>
+            </tr>
+            <tr class="row-highlight">
+              <td>Final value of $10,000</td>
+              <td class="col-green">$26,360</td>
+              <td>$23,240</td>
+              <td class="col-amber">$28,900</td>
+              <td class="col-red">$34,600</td>
+            </tr>
+            <tr>
+              <td>Max drawdown risk (crash)</td>
+              <td>Moderate</td>
+              <td>Moderate</td>
+              <td class="col-amber">High</td>
+              <td class="col-red">Severe</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><em>G200 return is a back-tested mathematical projection applying a constant historical 30–40% LVR to ASX 200 index data over 2016–2026, adjusted for institutional borrowing costs and the fund's 0.35% management fee. All other figures are from official fund data as of 30 April 2026.</em></p>
+
+      <h2>The hidden engine modifier: volatility decay explained</h2>
+
+      <p>Looking at the 10-year numbers, you might notice something: GEAR operates with significantly amplified exposure relative to A200, yet its long-term annual return (13.17%) is not double A200's return (8.80%). Aside from interest costs on the internal loan, the primary culprit is a mathematical phenomenon known as <strong>volatility decay</strong> (or compounding drag).</p>
+
+      <p>Geared ETFs must constantly rebalance their portfolios — usually daily or within a strict target LVR band — to maintain their mandated leverage. This operational mechanism shifts performance outcomes depending on the market cycle:</p>
+
+      <ul>
+        <li><strong>In trending bull markets:</strong> The regular rebalancing process can actively enhance positive compounding, amplifying gains as the underlying index climbs steadily.</li>
+        <li><strong>In volatile sideways markets:</strong> The rebalancing process creates a compounding drag that erodes returns over time. A jagged, sideways market forces the fund to reduce exposure near the bottom to protect its LVR, then buy back in at higher prices during a recovery.</li>
+      </ul>
+
+      <h2>The mathematical reality of a choppy market</h2>
+
+      <div class="vol-example">
+        <div class="vol-example-title">Two-day volatility decay example</div>
+        <div class="vol-example-cols">
+          <div class="vol-col unlevered">
+            <div class="vol-col-title">Un-geared index (1×)</div>
+            <div class="vol-step">Start: <strong>$100</strong></div>
+            <div class="vol-step">Day 1: Index −10% → <strong>$90</strong></div>
+            <div class="vol-step">Day 2: Index +11.11% → <strong>$100.00</strong></div>
+            <div class="vol-col-result">Break-even ✓ (0.00% loss)</div>
+          </div>
+          <div class="vol-col levered">
+            <div class="vol-col-title">2× Geared ETF</div>
+            <div class="vol-step">Start: <strong>$100</strong></div>
+            <div class="vol-step">Day 1: −20% (2× the drop) → <strong>$80</strong></div>
+            <div class="vol-step">Day 2: +22.22% (2× the rise) → <strong>$97.78</strong></div>
+            <div class="vol-col-result">Loss of 2.22% — despite the index breaking even</div>
+          </div>
+        </div>
+      </div>
+
+      <p>The underlying market completely recovered to break-even, but the geared investor lost 2.22% in just two days. For a geared fund to fully deliver on its promise, the underlying index must trend strongly and smoothly upward over time to outrun this mathematical friction and its internal borrowing costs.</p>
+
+      <h2>Portfolio risks and macro realities</h2>
+
+      <h3>Interest rate sensitivity</h3>
+
+      <p>Geared ETFs are highly sensitive to changes in interest rates. Rising borrowing costs increase the internal financing expense of the fund, which can materially reduce long-term returns even during positive market periods. Sustained high-rate environments compress the performance advantage of leveraged structures.</p>
+
+      <h3>The asymmetric maths of recovery</h3>
+
+      <p>Leverage inherently deepens drawdowns, which creates a steep mathematical hurdle for capital recovery. Even a 10% portfolio decline requires an 11.1% gain just to break even — and that gap compounds quickly as losses grow. A routine 5% index dip can trigger this in a 2× geared vehicle:</p>
+
+      <div class="recovery-chain">
+        <div class="chain-step chain-step-drop">Standard 5%<br>Index Drop</div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step chain-step-loss">Leveraged 10%<br>Portfolio Loss</div>
+        <div class="chain-arrow">→</div>
+        <div class="chain-step chain-step-recover">Requires 11.1%<br>Gain to Break Even</div>
+      </div>
+
+      <div class="insight-box">
+        <p><strong>The core asymmetry:</strong> A 5% index fall — a perfectly routine market event — becomes a 10% portfolio loss in a 2× geared vehicle. An un-geared investor needs only a 5.3% rebound to recover. The geared investor needs 11.1%. The gap widens sharply at larger drawdowns: a 15% index drop produces a 30% portfolio loss that requires a 43% gain to recover; a 25% index drop produces a 50% loss requiring a full 100% recovery.</p>
+        <p>This is why sequence of returns risk is so severe for leveraged positions held close to retirement. There is no time to wait out a multi-year recovery if you need to draw on that capital.</p>
+      </div>
+
+      <h2>How age and life stage dictate the strategy</h2>
+
+      <p>Because leverage amplifies both sides of the ledger, your time horizon and career stability should dictate which fund tier you choose.</p>
+
+      <h3>Accumulation phase (ages 25–45)</h3>
+
+      <p>Some investors with long time horizons may consider allocations to exposures like G200 and GEAR. With a 15-to-25-year horizon until retirement, mid-career professionals possess the runway required to stomach severe paper drawdowns during a market crash, knowing the market historically recovers over extended timelines. They can use steady employment cash flow to dollar-cost average (DCA) into these positions during downturns, acquiring assets during cyclical lows.</p>
+
+      <h3>Transition and preservation phase (ages 50+)</h3>
+
+      <p>Many investors approaching retirement choose to transition away from internal leverage toward capital preservation and organic stability. Introducing leverage late in the accumulation cycle exposes a portfolio to catastrophic sequence of returns risk — structural losses become exponentially harder to recover from when you lack the time to wait out a market cycle. The natural transition is toward un-geared income anchors like VHY, locking in reliable, franked cash flow without the threat of volatility decay.</p>
+
+      <a class="article-cta" href="/fire/">
+        <span class="article-cta-label">Know your retirement number</span>
+        <span class="article-cta-text">Calculate your FIRE number, Coast FIRE milestone, and when you can retire → FIRE Calculator</span>
+      </a>
+
+      <h2>Supercharging the strategy: gearing meets debt recycling</h2>
+
+      <p>For homeowners with a mortgage, combining geared ETFs with a structural debt recycling strategy is a distinct wealth-creation framework — but it raises the risk profile significantly.</p>
+
+      <p>Debt recycling involves paying down non-deductible home loan debt, redrawing those funds through a dedicated investment loan split, and deploying that capital into income-producing assets. This converts non-deductible home loan debt into tax-deductible investment debt.</p>
+
+      <p>When you choose to debt-recycle into a geared or high-yielding ETF, your portfolio architecture dictates your risk profile:</p>
+
+      <div class="equity-diagram">
+        <div class="equity-source">YOUR HOME EQUITY</div>
+        <div class="equity-branches">
+          <div class="equity-branch path-yield">
+            <div class="equity-branch-title">The Yield Path</div>
+            <div class="equity-branch-sub">e.g., VHY</div>
+            <ul>
+              <li>High organic dividends</li>
+              <li>No volatility decay</li>
+              <li>Potentially faster debt reduction</li>
+              <li>Lower portfolio volatility</li>
+            </ul>
+          </div>
+          <div class="equity-branch path-leverage">
+            <div class="equity-branch-title">The Leverage Path</div>
+            <div class="equity-branch-sub">e.g., G200 / GEAR</div>
+            <ul>
+              <li>Magnified capital growth</li>
+              <li>Dual-layer structural risk</li>
+              <li>Vulnerable to volatility decay</li>
+              <li>Requires strong cash resilience</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <h3>1. The yield path (recycling into VHY)</h3>
+
+      <p>By recycling equity into an income-focused product like VHY, you accelerate the debt-destruction loop. VHY delivers consistent, franked quarterly distributions. Because there is no internal gearing, there is no volatility decay to contend with. Those dividends flow back into your non-deductible home loan, you redraw the next chunk, and systematically clean up your mortgage with lower portfolio volatility throughout the process.</p>
+
+      <h3>2. The leverage path (recycling into G200 or GEAR)</h3>
+
+      <p>If you debt-recycle into GEAR or G200, you are creating a dual-layer leverage structure: external gearing (your investment mortgage split) layered over internal gearing (the borrowing inside the ETF).</p>
+
+      <p>During a sustained bull market, this structure can significantly accelerate wealth accumulation. The leveraged capital growth accelerates net worth, while the magnified distributions flow back into your mortgage.</p>
+
+      <p><strong>The danger:</strong> If the market enters a multi-year sideways or downward grind, your household balance sheet faces a triple threat: your investment portfolio drops heavily due to internal gearing; volatility decay erodes your asset base further; and you still owe the bank the full value of the redrawn investment loan split.</p>
+
+      <h2>The core-satellite approach</h2>
+
+      <p>You do not have to choose between going 100% un-geared or 100% geared. Gearing is often best implemented as a portfolio accelerator rather than the entire foundation. By treating geared ETFs as an aggressive satellite holding within a diversified portfolio, you capture a structural sweet spot.</p>
+
+      <div class="alloc-diagram">
+        <div class="alloc-header">Total Portfolio Allocation</div>
+        <div class="alloc-cols">
+          <div class="alloc-core">
+            <div class="alloc-section-label">Un-geared "Core"</div>
+            <div class="alloc-pct">70–80%</div>
+            <ul class="alloc-items">
+              <li>VHY (high-yield income)</li>
+              <li>Broad global / index ETFs</li>
+              <li>Volatility safety buffer</li>
+            </ul>
+          </div>
+          <div class="alloc-sat">
+            <div class="alloc-section-label">Geared "Satellite"</div>
+            <div class="alloc-pct">20–30%</div>
+            <ul class="alloc-items">
+              <li>GEAR (aggressive)</li>
+              <li>G200 (moderate)</li>
+              <li>Growth multiplier</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p>This structure provides three structural benefits:</p>
+
+      <ul>
+        <li><strong>Amplified growth:</strong> A 20–30% geared allocation provides meaningfully larger market exposure than its nominal weight suggests, giving the overall portfolio a noticeable performance boost during bull markets.</li>
+        <li><strong>Built-in risk mitigation:</strong> If the market suffers a sudden crash, 70–80% of your wealth remains protected in un-geared assets. Your total portfolio drawdown is shielded from the full brunt of a leveraged meltdown.</li>
+        <li><strong>The rebalancing mechanism:</strong> During major market downturns, some investors selectively sell portions of their resilient un-geared core — or direct fresh cash flow — to buy into the geared fund at depressed prices, increasing exposure precisely when it is cheapest.</li>
+      </ul>
+
+      <a class="article-cta" href="/debt-recycling/">
+        <span class="article-cta-label">Model your debt recycling strategy</span>
+        <span class="article-cta-text">Compare yield paths, tax savings, and long-term outcomes → Debt Recycling Calculator</span>
+      </a>
+
+      <h2>The 2026 budget changes the CGT equation at exit</h2>
+
+      <p>For investors building a geared ETF portfolio today, one often-overlooked consideration is the tax treatment of gains when you eventually sell. The 2026 Federal Budget replaced the 50% CGT discount with indexation of the cost base for assets acquired after 12 May 2026 — and introduced a 30% minimum tax rate on the indexed gain.</p>
+
+      <p>This changes the exit maths significantly depending on your holding period and actual capital growth rate:</p>
+
+      <ul>
+        <li><strong>High real capital growth (5%+ p.a.):</strong> The old 50% discount was better. Indexation only removes the inflation component of your gain; the remaining real gain is taxed at the higher of your marginal rate or 30%. Investors building large positions in geared ETFs targeting strong capital returns will face higher CGT at exit than under the old rules.</li>
+        <li><strong>Moderate real capital growth (~3% p.a.):</strong> If much of your nominal gain is inflation-driven, indexation can wipe most of it out. The new rules may produce a similar or lower CGT outcome than the old discount — particularly for investors with modest nominal returns over long holding periods.</li>
+        <li><strong>Geared ETFs and the amplification effect:</strong> Because geared funds target strong capital growth by design, most geared ETF scenarios will land firmly in the "high real growth" category. Investors in GEAR and G200 building long-term positions should factor in a meaningfully higher effective CGT rate at exit compared to the pre-budget regime.</li>
+      </ul>
+
+      <p>For assets acquired before 12 May 2026, the position is more complex: gains are split at the 1 July 2027 transition date, with the pre-transition portion taxed under the old 50% discount rules and the post-transition portion under the new indexation framework.</p>
+
+      <a class="article-cta" href="/budget-impact/">
+        <span class="article-cta-label">Quantify the CGT impact</span>
+        <span class="article-cta-text">Model your exact CGT position under old vs new rules across different growth rates → 2026-27 Budget Impact Calculator</span>
+      </a>
+
+      <h2>Takeaway</h2>
+
+      <p>Geared ETFs are institutional-grade tools — amplifiers, not shortcuts. If your primary focus is risk mitigation, steady cash flow, and straightforward debt destruction, pairing your wealth strategy with a high-yielding, un-geared anchor like VHY delivers consistency.</p>
+
+      <p>However, if you have a stable primary income, a time horizon spanning decades, and the risk tolerance and emotional discipline to watch your portfolio value fluctuate without panic-selling, a tactical allocation into G200 or GEAR can alter your compounding trajectory.</p>
+
+      <p>Dictate your leverage by your life stage, safeguard your primary residence, and ensure your household cash flow can comfortably support your structural debt obligations through any market cycle.</p>
+
+      <h2>Sources and assumptions</h2>
+
+      <h3>Data sources</h3>
+
+      <p><strong>VHY performance:</strong> Official Vanguard Australia fund data as of 30 April 2026. The 10-year annualised total return is 10.18% p.a. (net of the 0.25% management fee).</p>
+
+      <p><strong>GEAR performance:</strong> Official Betashares fund data as of 30 April 2026. The 10-year annualised total return is 13.17% p.a.</p>
+
+      <p><strong>A200 baseline:</strong> S&amp;P/ASX 200 Total Return Index performance history. Annualised returns sit at approximately 9.31% gross, normalising to approximately 8.80% p.a. once typical broad-market fund transaction costs and long-term fee variables are factored in.</p>
+
+      <p><strong>Product disclosures:</strong> Betashares Capital Ltd Product Disclosure Statements (PDS) and Target Market Determinations (TMD) for the Wealth Builder series (G200) and Geared Australian Equity Fund (GEAR).</p>
+
+      <h3>Modelling assumptions</h3>
+
+      <p><strong>Reinvestment:</strong> All calculations assume a strict Dividend Reinvestment Plan (DRP) framework where 100% of distributions are immediately reinvested at net asset value (NAV).</p>
+
+      <p><strong>Taxation:</strong> Figures represent pre-personal income tax returns. They do not factor in individual marginal tax rates, capital gains tax adjustments, or the cash value of franking credit refunds.</p>
+
+      <p><strong>G200 extrapolation:</strong> Because G200 was launched in April 2024, its 10-year return is a back-tested mathematical projection. It reflects a constant historical 30–40% LVR applied to S&amp;P/ASX 200 Index data over the 2016–2026 timeframe, adjusted for institutional wholesale borrowing rates (RBA cash rate plus typical institutional spread) and the fund's 0.35% management cost.</p>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. Geared ETFs and debt recycling involve leverage, market risk, and tax implications specific to your personal circumstances. Historical returns and back-tested projections are not a guarantee of future performance. The 10-year projections for G200 are mathematical extrapolations, not actual fund history. Speak with a licensed financial adviser and registered tax accountant before implementing any leveraged investment strategy.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>What is volatility decay in geared ETFs?</summary>
+          <p>Volatility decay (compounding drag) is a mathematical phenomenon that causes leveraged ETFs to underperform a simple multiple of index returns over time, especially in choppy markets. When a fund rebalances to maintain its target leverage, it sells into weakness and buys into strength — eroding returns during volatile or sideways periods even when the underlying index eventually recovers. In a sustained bull market the effect is minimal; in high-volatility environments it can significantly compress returns.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is debt recycling into geared ETFs safe?</summary>
+          <p>Debt recycling into geared ETFs creates a dual-layer leverage structure: your investment mortgage split (external borrowing) layered over internal borrowing inside the ETF. This amplifies both potential gains and potential losses. During a sustained market downturn, your portfolio can drop severely while your loan obligation remains unchanged. This strategy is only appropriate for investors with stable long-term income, a multi-decade time horizon, and the financial resilience to maintain repayments through a prolonged downturn without being forced to sell at lows.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is the core-satellite approach for leveraged investing?</summary>
+          <p>The core-satellite approach allocates the majority of your portfolio (typically 70–80%) to stable, un-geared holdings — diversified index ETFs or high-yield income funds — and a smaller satellite portion (20–30%) to higher-risk geared exposure. This gives the portfolio a meaningful growth boost from the satellite without subjecting the entire portfolio to leveraged drawdowns. The un-geared core also acts as a reserve to rebalance into the geared position at lower prices during market downturns.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is this article financial advice?</summary>
+          <p>No. This article is general information only and does not constitute financial advice. Geared ETFs and debt recycling involve leverage, market risk, and tax implications specific to your personal circumstances. Historical returns and back-tested projections are not a guarantee of future performance. Speak with a licensed financial adviser before implementing any leveraged investment strategy.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+
+</body>
+</html>
