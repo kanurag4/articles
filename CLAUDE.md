@@ -10,10 +10,15 @@ Source for the KashVector articles section. Vanilla HTML/CSS — no build step. 
 
 ```
 www/
-  article.css                        # Shared styles for all article pages
-  index.html                         # Articles listing page (/articles/)
-  2026-budget-what-changes/
-    index.html                       # Article page (/articles/2026-budget-what-changes/)
+  article.css                           # Shared styles for all article pages
+  index.html                            # Articles listing page (/articles/)
+  2026-budget-what-changes/             # /articles/2026-budget-what-changes/
+  debt-recycling-101/                   # /articles/debt-recycling-101/
+  investing-after-2026-budget/          # /articles/investing-after-2026-budget/
+  stock-evaluator-guide/                # /articles/stock-evaluator-guide/
+  bracket-creep-2026/                   # /articles/bracket-creep-2026/
+  debt-recycling-high-yield/            # /articles/debt-recycling-high-yield/
+  geared-etfs-debt-recycling/           # /articles/geared-etfs-debt-recycling/
 docs/superpowers/
   specs/2026-05-19-kashvector-articles-design.md   # Design spec
   plans/2026-05-19-kashvector-articles.md          # Implementation plan
