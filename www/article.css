@@ -195,6 +195,17 @@ body {
   border-bottom: 1px solid var(--kv-border);
 }
 
+.article-ai-note {
+  font-size: 0.78rem;
+  color: var(--kv-muted);
+  font-style: italic;
+  border-left: 3px solid var(--kv-border);
+  padding: 8px 12px;
+  margin-top: -16px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
 .article-body p {
   font-size: 0.95rem;
   line-height: 1.75;
