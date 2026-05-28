@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>Noise vs. Fundamentals: Why the Golden Rules of ETF Investing Haven't Changed — KashVector</title>
+  <meta name="description" content="Tax codes change, trade tariffs shift, and geopolitical shocks rattle markets — but the core rules of building long-term wealth with index ETFs haven't moved. Here's the data behind that claim.">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <style>
+    /* ── Recovery summary table ── */
+    .recovery-table-wrap {
+      overflow-x: auto;
+      margin: 20px 0 28px;
+      border-radius: 10px;
+      border: 1px solid var(--kv-border);
+    }
+    .recovery-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      min-width: 580px;
+    }
+    .recovery-table th {
+      background: var(--kv-card-2);
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--kv-muted);
+      border-bottom: 2px solid var(--kv-border);
+      line-height: 1.4;
+    }
+    .recovery-table th:not(:first-child) { text-align: right; }
+    .recovery-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--kv-border);
+      color: var(--kv-muted);
+      line-height: 1.4;
+    }
+    .recovery-table td:not(:first-child) {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .recovery-table tr:last-child td { border-bottom: none; }
+    .recovery-table .days-fast   { color: #22c55e; font-weight: 600; }
+    .recovery-table .days-medium { color: #f59e0b; font-weight: 600; }
+    .recovery-table .days-slow   { color: #ef4444; font-weight: 600; }
+    .recovery-table .event-name  { color: var(--kv-text); font-weight: 500; }
+
+    /* ── Crash detail block ── */
+    .crash-block {
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-left: 3px solid var(--kv-border);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0 22px;
+    }
+    .crash-block.crash-slow   { border-left-color: #ef4444; }
+    .crash-block.crash-medium { border-left-color: #f59e0b; }
+    .crash-block.crash-fast   { border-left-color: #22c55e; }
+    .crash-block-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .crash-block-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--kv-text);
+    }
+    .crash-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .crash-badge-slow   { background: rgba(239,68,68,0.1);  color: #ef4444;  border: 1px solid rgba(239,68,68,0.3);  }
+    .crash-badge-medium { background: rgba(245,158,11,0.1); color: #f59e0b;  border: 1px solid rgba(245,158,11,0.3); }
+    .crash-badge-fast   { background: rgba(34,197,94,0.1);  color: #22c55e;  border: 1px solid rgba(34,197,94,0.3);  }
+    .crash-block p {
+      font-size: 0.86rem !important;
+      color: var(--kv-muted) !important;
+      margin-bottom: 0 !important;
+      line-height: 1.65 !important;
+    }
+
+    /* ── DCA visual ── */
+    .dca-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0 28px;
+    }
+    @media (max-width: 520px) {
+      .dca-grid { grid-template-columns: 1fr; }
+    }
+    .dca-card {
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-radius: 8px;
+      padding: 14px;
+      text-align: center;
+    }
+    .dca-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+    .dca-card-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--kv-text);
+      margin-bottom: 6px;
+    }
+    .dca-card-body {
+      font-size: 0.78rem;
+      color: var(--kv-muted);
+      line-height: 1.6;
+    }
+    .dca-card.dca-up   { border-top: 2px solid #f59e0b; }
+    .dca-card.dca-down { border-top: 2px solid #22c55e; }
+    .dca-card.dca-flat { border-top: 2px solid var(--kv-accent); }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Noise vs. Fundamentals: Why the Golden Rules of ETF Investing Haven't Changed",
+    "datePublished": "2026-05-28",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/noise-vs-fundamentals-etf-investing/",
+    "description": "Tax codes change, trade tariffs shift, and geopolitical shocks rattle markets — but the core rules of building long-term wealth with index ETFs haven't moved. Here's the data behind that claim."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long does the stock market take to recover from a crash?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Recovery time varies enormously by the nature of the crash. The 2020 COVID crash took just 181 days; the 2025 Liberation Day tariff shock recovered in 86 days. The 2008 GFC took approximately 1,997 days (~5.5 years); the 2000 dot-com bubble took 2,623 days (~7.2 years). These figures measure from the prior all-time high to when the S&P 500 next closed above that level." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is dollar-cost averaging (DCA) and does it really work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dollar-cost averaging means investing a fixed dollar amount at regular intervals regardless of market conditions — for example, $200 every month into an ETF. Because you invest the same dollar amount whether the market is up or down, you automatically buy more units when prices are cheap and fewer when prices are expensive. This removes the need to time the market and means your personal portfolio typically breaks even and moves into profit faster than the index itself." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the most popular index ETFs for Australian investors?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Some of the most widely held index ETFs in Australia include: IVV (iShares S&P 500 AUD ETF — US large caps), IOZ (iShares Core S&P/ASX 200 ETF — Australian top 200 with franking credits), VGS (Vanguard MSCI Index International Shares ETF — ~1,500 developed-market companies globally), A200 (BetaShares Australia 200 ETF — low-cost ASX top 200), DHHF (diversified all-in-one growth fund). All are low-cost, passively managed, and highly liquid. The right choice depends on whether you want targeted exposure or a single diversified holding." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the 2026 budget change how I should invest in ETFs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The 2026 Federal Budget replaced the 50% CGT discount with cost-base indexation for assets acquired after 12 May 2026, with a 30% minimum tax rate on the indexed gain. For long-term ETF investors with strong capital growth (5%+ p.a. real returns), the old 50% discount was generally more favourable. For investors with modest real returns or long holding periods in a low-inflation environment, the new rules can be similar or better. The core strategy — buy diversified index ETFs, hold for decades, reinvest dividends — remains the same. The exit tax treatment has changed, not the fundamentals of compounding." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <h1>KashVector</h1>
+      <p>Australian financial calculators</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">Noise vs. Fundamentals: Why the Golden Rules of ETF Investing Haven't Changed</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 28 May 2026 &nbsp;·&nbsp; 10 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <div class="article-summary">
+        <p>What this article covers:</p>
+        <ul>
+          <li>What indexed ETFs are and why their structure makes them resilient by design</li>
+          <li>Every major S&amp;P 500 and ASX 200 crash since 2000 — with verified recovery timelines</li>
+          <li>Why dollar-cost averaging turns every market dip into a wealth-building advantage</li>
+          <li>Why the 2026 budget, 2025 tariffs, and 2026 geopolitical events changed nothing about the long-term playbook</li>
+        </ul>
+      </div>
+
+      <p>Whenever tax laws change, trade tariffs shift, or geopolitical conflicts shake up the global economy, the media goes into overdrive. Headlines often make it sound like the "old ways" of building wealth are completely broken and that everyday investors should panic.</p>
+
+      <p>But if you look past the scary headlines, a comforting reality emerges: the core rules of building long-term wealth remain exactly the same. Tax codes change, trade tensions fluctuate, and military actions cause short-term ripples — but the mathematics behind long-term growth does not. Building wealth over the long haul is simply about buying high-quality, productive assets, holding them for a long time, and letting compound growth do the heavy lifting.</p>
+
+      <p>Broad-market Exchange-Traded Funds (ETFs) remain one of the most reliable, resilient, and efficient ways for everyday Australians to grow their savings. If recent events have you feeling nervous, the data below is for you.</p>
+
+      <h2>What is an indexed ETF and why does it work?</h2>
+
+      <p>Think of an Exchange-Traded Fund (ETF) as a giant investment basket. Instead of risking your money on just one or two companies, you buy one unit of an ETF and instantly own a tiny slice of hundreds of different companies at once.</p>
+
+      <p>Because these funds are "indexed," they do not rely on an expensive fund manager picking stocks. They passively track a specific list of top-tier companies. This structural passivity makes them cheap to own and highly tax-efficient. (It is worth noting that not all ETFs work this way — some are actively managed, meaning a fund manager makes stock-selection decisions on your behalf. Active ETFs typically carry higher fees.)</p>
+
+      <p>Some of the most widely held index ETFs among Australian investors include:</p>
+
+      <ul>
+        <li><strong>iShares S&amp;P 500 AUD ETF (IVV):</strong> Tracks the 500 largest publicly traded companies in the United States. By holding IVV, you instantly invest in global leaders like Apple, Microsoft, Amazon, and Nvidia.</li>
+        <li><strong>iShares Core S&amp;P/ASX 200 ETF (IOZ):</strong> Tracks the 200 largest companies in Australia. It gives you exposure to our biggest banks, miners, and supermarkets, alongside valuable tax perks called franking credits.</li>
+        <li><strong>Vanguard MSCI Index International Shares ETF (VGS):</strong> Tracks approximately 1,500 large and mid-cap companies across developed markets globally, excluding Australia. It is one of the most popular single-fund routes to broad international diversification.</li>
+        <li><strong>BetaShares Diversified All Growth ETF (DHHF):</strong> An all-in-one diversified growth fund that bundles Australian and international equities into a single holding. Designed for investors who want a simple, set-and-forget structure without needing to manage multiple ETFs themselves.</li>
+        <li><strong>BetaShares Australia 200 ETF (A200):</strong> A low-cost alternative to IOZ that also tracks Australia's top 200 companies, with one of the lowest management fees of any Australian equities ETF.</li>
+      </ul>
+
+      <p>The historical data shows why this long-term strategy works. Over the past twenty years, the S&amp;P 500 has delivered approximately <strong>10.7% per annum in total return</strong> (dividends reinvested). The ASX 200 Accumulation Index has returned approximately <strong>8.5% per annum</strong> over the same period. Put simply: $10,000 invested in the S&amp;P 500 twenty years ago would be worth roughly <strong>$74,000</strong> today with dividends reinvested. The same $10,000 in the ASX 200 Accumulation Index would be worth approximately <strong>$50,000</strong>. Neither number involves any stock-picking, fund manager fees, or market timing — just holding the index.</p>
+
+      <p>No matter what changes happen to local tax rules, these index funds represent real, productive businesses that power the global economy. Crucially, the companies inside the index are not fixed forever — the index automatically rebalances itself. As companies grow in value they earn their place in the top 500 or top 200; as companies shrink or fail, they are replaced by the next largest. This means the index is always self-correcting, holding the most relevant and economically significant businesses of the day. As long as the global economy continues to produce goods, technology, and services, your investment will continue to build value over time.</p>
+
+      <h2>The anatomy of a recovery: how long does it actually take?</h2>
+
+      <p>It is completely normal to feel anxious when stock prices fall on the news. But history proves that market drops are a normal, healthy part of the investing journey. The stock market has a 100% historical track record of recovering from crashes and reaching brand-new highs.</p>
+
+      <p>The real question isn't <em>if</em> the market will recover — it is <em>how long</em> it takes, and how patience pays. The table below shows every major shock to the S&amp;P 500 since 2000, measured from the prior all-time high to the date the index next closed above that level.</p>
+
+      <div class="recovery-table-wrap">
+        <table class="recovery-table">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Peak-to-trough drop</th>
+              <th>Days to new ATH</th>
+              <th>Recovery speed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="event-name">2000 Dot-com Bubble</td>
+              <td>~50%</td>
+              <td class="days-slow">2,623</td>
+              <td>Slow</td>
+            </tr>
+            <tr>
+              <td class="event-name">2008 Global Financial Crisis</td>
+              <td>~57%</td>
+              <td class="days-slow">1,997</td>
+              <td>Slow</td>
+            </tr>
+            <tr>
+              <td class="event-name">2022 Inflation &amp; Rate Shock</td>
+              <td>~25%</td>
+              <td class="days-medium">746</td>
+              <td>Moderate</td>
+            </tr>
+            <tr>
+              <td class="event-name">2020 COVID-19 Crash</td>
+              <td>~34%</td>
+              <td class="days-fast">181</td>
+              <td>Fast</td>
+            </tr>
+            <tr>
+              <td class="event-name">2025 Liberation Day Tariffs</td>
+              <td>~12%+</td>
+              <td class="days-fast">86</td>
+              <td>Fast</td>
+            </tr>
+            <tr>
+              <td class="event-name">2026 U.S.–Iran Conflict</td>
+              <td>~8%</td>
+              <td class="days-fast">47</td>
+              <td>Fast</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><em>All figures measure the S&amp;P 500 price index from the prior all-time closing high to the date the index next closed above that level. "Days to new ATH" is a calendar-day count, not trading days. Sources listed at the bottom of this article.</em></p>
+
+      <h2>1. The U.S. stock market (S&amp;P 500 Index)</h2>
+
+      <p>The S&amp;P 500 tracks the 500 largest companies in the United States. It is growth-focused and heavily weighted toward global technology giants. Because American companies tend to reinvest profits into future growth rather than paying large dividends, its recovery timeline is driven almost entirely by share price appreciation.</p>
+
+      <div class="crash-block crash-slow">
+        <div class="crash-block-header">
+          <span class="crash-block-title">2000 Dot-com Bubble</span>
+          <span class="crash-badge crash-badge-slow">2,623 days (~7.2 years)</span>
+        </div>
+        <p>Speculative tech valuations built on growth promises rather than real earnings collapsed completely. The S&amp;P 500 peaked on 24 March 2000 and did not close above that level again until 30 May 2007 — the longest recovery in modern market history. Because the broader index had to rebuild authentic corporate cash flows from the ground up, every year of that recovery was hard-earned.</p>
+      </div>
+
+      <div class="crash-block crash-slow">
+        <div class="crash-block-header">
+          <span class="crash-block-title">2008 Global Financial Crisis</span>
+          <span class="crash-badge crash-badge-slow">1,997 days (~5.5 years)</span>
+        </div>
+        <p>Systemic banking failures slashed global index values by nearly 57% from peak to trough. Reclaiming the pre-crash high required approximately five and a half years as credit markets froze, housing unwound, and corporate balance sheets were rebuilt. The broad recovery from that October 2007 peak to a new all-time high was confirmed in March 2013.</p>
+      </div>
+
+      <div class="crash-block crash-medium">
+        <div class="crash-block-header">
+          <span class="crash-block-title">2022 Inflation &amp; Interest Rate Shock</span>
+          <span class="crash-badge crash-badge-medium">746 days (~2 years)</span>
+        </div>
+        <p>Rapid monetary tightening forced a global re-pricing of risk assets, leading to a slow, painful multi-month decline of approximately 25%. It took roughly two years for the broad market to fully erase those losses, with the S&amp;P 500 hitting new all-time highs in January 2024 — 746 days after its January 2022 peak.</p>
+      </div>
+
+      <div class="crash-block crash-fast">
+        <div class="crash-block-header">
+          <span class="crash-block-title">2020 COVID-19 Crash</span>
+          <span class="crash-badge crash-badge-fast">181 days (~6 months)</span>
+        </div>
+        <p>Unprecedented global lockdowns sparked a sharp liquidity shock, with the S&amp;P 500 falling 34% in just over a month. Despite the severity, the recovery was remarkably swift. The index peaked on 19 February 2020, bottomed on 23 March 2020, and closed at a brand-new all-time high on 18 August 2020 — exactly 181 days after the pre-crash peak.</p>
+      </div>
+
+      <div class="crash-block crash-fast">
+        <div class="crash-block-header">
+          <span class="crash-block-title">2025 "Liberation Day" Tariffs</span>
+          <span class="crash-badge crash-badge-fast">86 days (~3 months)</span>
+        </div>
+        <p>Wide-ranging import levies announced on 2 April 2025 caused an immediate ~12% sell-off in the days that followed. On 9 April, a temporary tariff pause triggered the S&amp;P 500's largest single-day gain since 2008. The recovery accelerated as the United States struck trade frameworks with the United Kingdom and China, neutralising the most punishing components of the initial policy. The S&amp;P 500 closed at a brand-new all-time high of 6,173.07 on 27 June 2025 — just 86 days after Liberation Day.</p>
+      </div>
+
+      <div class="crash-block crash-fast">
+        <div class="crash-block-header">
+          <span class="crash-block-title">2026 U.S.–Iran Conflict</span>
+          <span class="crash-badge crash-badge-fast">47 days (~7 weeks)</span>
+        </div>
+        <p>Joint US-Israeli airstrikes beginning 28 February 2026 disrupted energy markets and caused an approximately 8% pullback from February's all-time highs. The market's response was notably measured: AI and technology stocks, which now account for nearly half the S&amp;P 500's market capitalisation, continued running on their own growth dynamic largely independent of oil prices. The S&amp;P 500 had erased all its losses and closed at new all-time highs by mid-April 2026 — approximately 47 days after the conflict began.</p>
+      </div>
+
+      <a class="article-cta" href="/fire/">
+        <span class="article-cta-label">Put long-term growth to work</span>
+        <span class="article-cta-text">Calculate your FIRE number and see when consistent ETF investing can fund your retirement → FIRE Calculator</span>
+      </a>
+
+      <h2>2. The Australian stock market (S&amp;P/ASX 200 Accumulation Index)</h2>
+
+      <p>The ASX 200 tracks Australia's top 200 companies. Crucially, Australian companies pay some of the highest dividends in the world, backed by valuable franking credits. For the ASX, recovery must be measured on the <strong>Accumulation Index</strong> — which reinvests all dividends — rather than the price index alone. The price-only chart dramatically overstates how long Australian investors actually suffer through downturns.</p>
+
+      <p><strong>The Dot-com Shield (approximately 365 days):</strong> Australia largely bypassed the worst of the 2000 tech crash, with the accumulation index recovering in roughly one year. The ASX was heavily anchored by "old economy" businesses — banks and miners — that kept churning out real profits while speculative tech collapsed overseas. The index simply had little exposure to the bubble that burst.</p>
+
+      <p><strong>The GFC Dividend Buffer (approximately 2,010 days on an accumulation basis):</strong> While the ASX price index on paper took over a decade to break even after the 2007 high of 6,851, investors who automatically reinvested their dividends broke even approximately six years sooner. Consistent cash returns fundamentally protect patient, income-reinvesting Australians during major downturns in a way that raw price charts simply do not capture.</p>
+
+      <p><strong>The recent speed recoveries:</strong> During the 2022 inflation shock, the 2025 global trade disruptions, and the 2026 geopolitical headlines, the commodity-heavy nature of the ASX — with its deep weighting in energy, materials, and banking — meant our market absorbed volatility remarkably quickly, keeping accumulation index recovery windows tight relative to the S&amp;P 500.</p>
+
+      <h2>The ultimate stress-reliever: Dollar-Cost Averaging (DCA)</h2>
+
+      <p>You do not need to guess when a market downturn will hit rock bottom, nor do you need to time your entry perfectly. Trying to time the market is how most everyday investors lose money. Instead, the most successful investors rely on a simple, automated mechanical system: Dollar-Cost Averaging.</p>
+
+      <p>DCA simply means investing a fixed amount of money at regular intervals — such as $200 every single month — regardless of whether headlines are positive, negative, or moving sideways. This approach completely removes emotion from investing and turns market drops into your greatest wealth-building advantage.</p>
+
+      <div class="dca-grid">
+        <div class="dca-card dca-up">
+          <div class="dca-card-icon">📈</div>
+          <div class="dca-card-title">When prices are high</div>
+          <div class="dca-card-body">Your fixed dollar amount automatically buys fewer units, protecting you from over-investing at the absolute peak.</div>
+        </div>
+        <div class="dca-card dca-down">
+          <div class="dca-card-icon">📉</div>
+          <div class="dca-card-title">When the market crashes</div>
+          <div class="dca-card-body">Your fixed dollar amount buys more units at a steep discount — filling your basket with cheap shares that act as rocket fuel when markets recover.</div>
+        </div>
+        <div class="dca-card dca-flat">
+          <div class="dca-card-icon">➡️</div>
+          <div class="dca-card-title">When markets are flat</div>
+          <div class="dca-card-body">You continue accumulating at fair value. Consistency is compounding — every additional unit purchased is working for your future.</div>
+        </div>
+      </div>
+
+      <p>When you DCA, you are no longer measuring your outcome against those "days to recovery" figures in the table above. Because you bought steadily all the way through the bottom of the dip, your personal average cost is lower than the index's prior peak. Your portfolio breaks even and moves into profit <em>vastly faster</em> than the index itself — and you never had to predict a thing.</p>
+
+      <a class="article-cta" href="/debt-recycling/">
+        <span class="article-cta-label">Combine DCA with a tax advantage</span>
+        <span class="article-cta-text">Homeowners can turn mortgage repayments into tax-deductible ETF investments → Debt Recycling Calculator</span>
+      </a>
+
+      <h2>Keep your eyes on the horizon</h2>
+
+      <p>Tax laws will change again in the future. Trade policies will pivot. New political cycles will always bring new rules. The 2026 Federal Budget replaced the 50% CGT discount with cost-base indexation for new assets — a meaningful change for how your gains are taxed at exit, but not a reason to abandon the strategy that builds those gains in the first place.</p>
+
+      <p>If you alter your entire long-term financial strategy every time a headline causes a short-term market dip, you will waste money on transaction fees, incur unnecessary emotional stress, and interrupt the compounding process that generates real wealth.</p>
+
+      <p>The wealth-building playbook remains exactly the same as it has always been:</p>
+
+      <ul>
+        <li><strong>Automate your investing:</strong> Set up a regular, recurring transfer to buy diversified, low-cost index ETFs like IVV, IOZ, VGS, A200, or DHHF. Remove the decision from yourself entirely.</li>
+        <li><strong>Ignore the daily noise:</strong> Market pullbacks are simply high-quality, global assets going on a temporary sale. The data above shows that every single one of them — without exception — has resolved.</li>
+        <li><strong>Let time do the work:</strong> Trust the long-term resilience of corporate productivity. The most powerful force in investing is not intelligence or timing — it is patience compounding over decades.</li>
+      </ul>
+
+      <a class="article-cta" href="/life-buyback/">
+        <span class="article-cta-label">Know what your wealth is really worth</span>
+        <span class="article-cta-text">See how many weeks of your life your financial independence number buys back → Life Buyback Calculator</span>
+      </a>
+
+      <h2>Sources and data notes</h2>
+
+      <p><strong>Long-term index returns:</strong> S&amp;P 500 20-year total return (~10.7% p.a.) derived from compounding annual S&amp;P 500 total return data (2006–2025); consistent with SPY's nominal return since inception of 10.86% p.a. (TotalRealReturns.com) and the widely cited long-run average of ~10–11% p.a. Exact figure can be verified via the DQYDJ S&amp;P 500 Return Calculator (dqydj.com). ASX 200 Accumulation Index (~8.5% p.a.) from Market Index (marketindex.com.au/asx/xjt); the verified since-inception figure (March 2000–February 2026) is 8.53% p.a. Both figures are nominal, with dividends reinvested, pre personal income tax. The $10,000 growth figures use 10.7% and 8.5% compounded annually over 20 years.</p>
+
+      <p><strong>S&amp;P 500 recovery dates:</strong> Wikipedia — Closing milestones of the S&amp;P 500; NPR (COVID recovery, 18 August 2020); Fortune and CNN (Liberation Day recovery, 27 June 2025); CNBC and Euronews (2026 Iran conflict recovery, April 2026).</p>
+
+      <p><strong>ASX accumulation index:</strong> S&amp;P/ASX 200 Accumulation Index (XJOA). First Links — "The ASX's 16-year drought: a rebuttal" (accumulation vs price index comparison).</p>
+
+      <p><strong>Recovery day counts:</strong> All figures are calendar days from the prior all-time closing high to the date the index next closed above that level. Dot-com: 24 March 2000 → 30 May 2007 = 2,623 days. GFC: 9 October 2007 → ~28 March 2013 = ~1,997 days. 2022: 3 January 2022 → 19 January 2024 = 746 days. COVID: 19 February 2020 → 18 August 2020 = 181 days. Liberation Day: 2 April 2025 → 27 June 2025 = 86 days. Iran conflict: measured from conflict start (28 February 2026) to new all-time high (~April 2026) ≈ 47 days.</p>
+
+      <p><strong>ASX figures:</strong> The dot-com (~365 days) and GFC accumulation index (~2,010 days) recovery figures are approximate, derived from published historical analysis of the XJOA index. Investors should verify these against current XJOA data for precise dates.</p>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. Past market recoveries are not a guarantee of future outcomes. All recovery timelines are historical and measured on a specific index basis; individual portfolio results will vary depending on the assets held, the timing of contributions, and whether dividends are reinvested. Speak with a licensed financial adviser before making any investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>How long does the stock market take to recover from a crash?</summary>
+          <p>Recovery time varies enormously by the nature of the crash. The 2020 COVID crash took just 181 days; the 2025 Liberation Day tariff shock recovered in 86 days from the announcement date. The 2008 GFC took approximately 1,997 days (~5.5 years); the 2000 dot-com bubble took 2,623 days (~7.2 years). These figures measure the S&P 500 price index from the prior all-time high to when the index next closed above that level.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is dollar-cost averaging (DCA) and does it really work?</summary>
+          <p>Dollar-cost averaging means investing a fixed dollar amount at regular intervals regardless of market conditions — for example, $200 every month into an ETF. Because you invest the same amount whether the market is up or down, you automatically buy more units when prices are cheap and fewer when prices are expensive. This removes the need to time the market and means your personal average cost is lower than the index's prior peak, so your portfolio typically breaks even faster than the index itself.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What are the most popular index ETFs for Australian investors?</summary>
+          <p>Some of the most widely held index ETFs in Australia include: IVV (iShares S&P 500 AUD ETF — US large caps), IOZ (iShares Core S&P/ASX 200 ETF — Australian top 200 with franking credits), VGS (Vanguard MSCI Index International Shares ETF — ~1,500 developed-market companies globally), A200 (BetaShares Australia 200 ETF — low-cost ASX top 200), DHHF (diversified all-in-one growth fund bundling Australian and international equities). All are low-cost, passively managed, and highly liquid. The right choice depends on whether you want targeted exposure (IVV, IOZ, VGS) or a single diversified holding (DHHF, GHHF).</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does the 2026 budget change how I should invest in ETFs?</summary>
+          <p>The 2026 Federal Budget replaced the 50% CGT discount with cost-base indexation for assets acquired after 12 May 2026, with a 30% minimum tax rate on the indexed gain. For long-term ETF investors with strong real capital growth (5%+ p.a.), the old 50% discount was generally more favourable. For modest real returns or long holding periods in a low-inflation environment, the new rules can be similar or better. The core strategy — buy diversified index ETFs, hold for decades, reinvest dividends — remains unchanged. The exit tax treatment has changed, not the fundamentals of compounding.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+
+</body>
+</html>
