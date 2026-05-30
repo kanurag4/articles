@@ -182,7 +182,7 @@
 
       <p>DCF answers one question: if I owned this whole business, what is the cash it will hand me worth today? It works in five steps, and the tool exposes the inputs for each.</p>
 
-      <p><strong>1. Start from free cash flow.</strong> Free cash flow (FCF) is the cash left after the business has paid its running costs and reinvested to keep operating — the money genuinely available to owners. The tool seeds this from Yahoo Finance. Where reported FCF is missing, it estimates it as operating cash flow times 0.8.</p>
+      <p><strong>1. Start from free cash flow.</strong> Free cash flow (FCF) is the cash left after the business has paid its running costs and reinvested to keep operating — the money genuinely available to owners. The tool seeds this from Yahoo Finance. Where reported FCF is missing, it derives it as operating cash flow minus capital expenditure (the real figure, not a rule of thumb); only if capital expenditure is also unavailable does it fall back to operating cash flow times 0.8 — a rough proxy that assumes capital spending is about 20% of operating cash flow, and which can overstate FCF for very capital-intensive businesses like miners and utilities. Whichever path is used is labelled next to the input, so you always know whether the figure is reported, derived, or a rough estimate you should replace.</p>
 
       <p><strong>2. Grow it over a forecast period.</strong> You set a growth rate, and the tool projects FCF forward over a projection window (five years by default, adjustable from three to ten). The growth rate is seeded from the company's recent revenue and earnings growth, but this is the first number you should sanity-check: no business compounds at 25% indefinitely.</p>
 
