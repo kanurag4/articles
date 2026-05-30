@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>How to Value a Stock: DCF and the Dividend Discount Model — KashVector</title>
+  <meta name="description" content="A plain-English guide to the two valuation methods behind the KashVector DCF tool: Discounted Cash Flow and the Dividend Discount Model. The exact inputs, the assumptions that matter, and when to use each.">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Value a Stock: DCF and the Dividend Discount Model",
+    "datePublished": "2026-05-30",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/dcf-ddm-stock-valuation/",
+    "description": "A plain-English guide to the two valuation methods behind the KashVector DCF tool: Discounted Cash Flow and the Dividend Discount Model. The exact inputs, the assumptions that matter, and when to use each."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When should I use DCF versus the Dividend Discount Model?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use Discounted Cash Flow (DCF) for companies that generate meaningful free cash flow — most industrial, consumer, technology, healthcare, and energy businesses. Use the Dividend Discount Model (DDM) for banks and insurers, where free cash flow is not a meaningful number. The tool detects banks and insurers automatically and switches to DDM; for every other company it uses DCF." }
+      },
+      {
+        "@type": "Question",
+        "name": "What discount rate does the calculator use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It calculates WACC from first principles. Cost of equity uses CAPM: the risk-free rate plus beta times the equity risk premium. The risk-free rate is the local 10-year government bond yield (about 4.5% in the US, 4.8% in Australia, 7.0% in India), and the equity risk premium defaults to 5.5% for the US, 6.0% for Australia, and 7.5% for India. Cost of debt comes from interest expense over total debt, and the two are weighted by the company's capital structure. Every number can be overridden." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the tool use a minimum beta for ASX and Indian stocks?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yahoo Finance measures beta against the S&P 500. For non-US stocks that understates risk, because those markets do not move in lockstep with the US — producing artificially low betas (an ASX insurer showing 0.17, for example). The tool applies a minimum beta of 0.5 for ASX and most international stocks, and 0.6 for India, when seeding the discount rate. It flags when it has done so, and you can override it." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the tool do when free cash flow is negative?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Growth companies often reinvest everything and report negative free cash flow. The tool lets you normalise it from revenue multiplied by a target FCF margin — your estimate of the margin the business will earn at maturity — and then runs the DCF on that figure. It also estimates roughly when free cash flow should turn positive given your revenue growth assumption." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the intrinsic value a price target?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The intrinsic value is what the model says the business is worth given the assumptions you feed it, and small changes in those assumptions move it a lot. That is why the tool shows three scenarios — Bear, Base, and Bull — rather than a single number. Treat the output as one input into your own research, not a target or a recommendation." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <h1>KashVector</h1>
+      <p>Australian financial calculators</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">How to Value a Stock: DCF and the Dividend Discount Model</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 30 May 2026 &nbsp;·&nbsp; 12 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <p>The value of a business is the cash it will return to its owners over its life, expressed in today's money. That sentence is the whole idea behind intrinsic valuation. Everything else — the spreadsheets, the discount rates, the terminal values — is machinery for turning a stream of future cash into a single number you can compare against today's share price.</p>
+
+      <p>The KashVector DCF tool uses two such methods, and which one applies depends on the company. For most businesses it uses <strong>Discounted Cash Flow (DCF)</strong>. For banks and insurers it uses the <strong>Dividend Discount Model (DDM)</strong>. This article explains how each one works, the exact numbers that go into them, the assumptions that matter most, and how to decide which method fits the company in front of you.</p>
+
+      <div class="article-summary">
+        <p>The short version:</p>
+        <ul>
+          <li><strong>DCF</strong> discounts a company's future free cash flow back to today. Use it for businesses with meaningful free cash flow.</li>
+          <li><strong>DDM</strong> discounts future dividends instead. Use it for banks and insurers, where free cash flow is not a meaningful number.</li>
+          <li>Both rely on a <strong>discount rate</strong> built from the risk-free rate, a beta-adjusted equity risk premium, and (for DCF) the cost of debt.</li>
+          <li>The <strong>terminal value</strong> — everything beyond the forecast period — usually drives 60–80% of the answer, so the terminal growth assumption matters more than almost anything else.</li>
+          <li>The output is a <strong>range</strong>, not a target. Small changes in assumptions move it a lot.</li>
+        </ul>
+      </div>
+
+      <h2>How the tool chooses a method</h2>
+
+      <p>Before any numbers are crunched, the tool decides which model applies. The logic is simple, and it is worth seeing as a whole before getting into the detail of each method.</p>
+
+      <div style="margin:24px 0; padding:16px; border:1px solid var(--kv-border); border-radius:10px; background:var(--kv-card);">
+        <svg viewBox="0 0 490 432" role="img" aria-label="Flowchart of how the tool decides which valuation method to use" style="width:100%; height:auto; display:block;">
+          <defs>
+            <marker id="fcArrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="var(--kv-muted)"/>
+            </marker>
+            <style>
+              .fc-proc { fill: var(--kv-card-2); stroke: var(--kv-accent); stroke-width:1.5; }
+              .fc-dec  { fill: var(--kv-card-2); stroke: var(--kv-warn);   stroke-width:1.5; }
+              .fc-term { fill: var(--kv-card-2); stroke: var(--kv-pass);   stroke-width:1.8; }
+              .fc-alt  { fill: var(--kv-card-2); stroke: var(--kv-muted);  stroke-width:1.5; }
+              .fc-t  { fill: var(--kv-text);  font: 600 12px system-ui, -apple-system, sans-serif; text-anchor:middle; }
+              .fc-m  { fill: var(--kv-muted); font: 11px system-ui, -apple-system, sans-serif; text-anchor:middle; }
+              .fc-edge { stroke: var(--kv-muted); stroke-width:1.5; fill:none; }
+              .fc-lbl  { fill: var(--kv-muted); font: 700 10px system-ui, sans-serif; }
+            </style>
+          </defs>
+
+          <!-- edges -->
+          <path class="fc-edge" d="M150,54 V70"  marker-end="url(#fcArrow)"/>
+          <path class="fc-edge" d="M210,98 H262" marker-end="url(#fcArrow)"/>
+          <path class="fc-edge" d="M150,126 V150" marker-end="url(#fcArrow)"/>
+          <path class="fc-edge" d="M150,184 V202" marker-end="url(#fcArrow)"/>
+          <path class="fc-edge" d="M214,232 H262" marker-end="url(#fcArrow)"/>
+          <path class="fc-edge" d="M150,262 V300"/>
+          <path class="fc-edge" d="M372,258 V300 H150"/>
+          <path class="fc-edge" d="M150,300 V316" marker-end="url(#fcArrow)"/>
+          <path class="fc-edge" d="M150,356 V374" marker-end="url(#fcArrow)"/>
+          <circle cx="150" cy="300" r="2.6" fill="var(--kv-muted)"/>
+
+          <!-- branch labels -->
+          <text class="fc-lbl" x="222" y="92">YES</text>
+          <text class="fc-lbl" x="158" y="142">NO</text>
+          <text class="fc-lbl" x="226" y="226">NO</text>
+          <text class="fc-lbl" x="158" y="284">YES</text>
+
+          <!-- Start -->
+          <rect class="fc-proc" x="50" y="16" width="200" height="38" rx="8"/>
+          <text class="fc-t" x="150" y="40">Enter ticker → fetch financials</text>
+
+          <!-- Decision 1: bank/insurer -->
+          <polygon class="fc-dec" points="150,70 212,98 150,126 88,98"/>
+          <text class="fc-t" x="150" y="102">Bank or insurer?</text>
+
+          <!-- DDM branch box -->
+          <rect class="fc-term" x="262" y="70" width="220" height="62" rx="8"/>
+          <text class="fc-t" x="372" y="90">Dividend Discount Model</text>
+          <text class="fc-m" x="372" y="106">value from projected dividends,</text>
+          <text class="fc-m" x="372" y="121">discounted at the cost of equity</text>
+
+          <!-- DCF -->
+          <rect class="fc-proc" x="50" y="150" width="200" height="34" rx="8"/>
+          <text class="fc-t" x="150" y="171">Discounted Cash Flow</text>
+
+          <!-- Decision 2: FCF positive -->
+          <polygon class="fc-dec" points="150,202 216,232 150,262 84,232"/>
+          <text class="fc-t" x="150" y="229">Free cash flow</text>
+          <text class="fc-t" x="150" y="243">positive?</text>
+
+          <!-- Normalise box -->
+          <rect class="fc-alt" x="262" y="206" width="220" height="52" rx="8"/>
+          <text class="fc-m" x="372" y="227">Negative or missing →</text>
+          <text class="fc-m" x="372" y="242">normalise: revenue × target margin</text>
+
+          <!-- Project / discount -->
+          <rect class="fc-proc" x="50" y="316" width="200" height="40" rx="8"/>
+          <text class="fc-t" x="150" y="333">Discount FCF at WACC,</text>
+          <text class="fc-t" x="150" y="349">subtract net debt</text>
+
+          <!-- Terminal -->
+          <rect class="fc-term" x="50" y="374" width="200" height="42" rx="10"/>
+          <text class="fc-t" x="150" y="391">Intrinsic value / share</text>
+          <text class="fc-m" x="150" y="407">→ Bear · Base · Bull</text>
+        </svg>
+        <p style="font-size:0.82rem; color:var(--kv-muted); line-height:1.6; margin:12px 4px 0;">Two edge cases are left off the chart to keep it readable. A bank or insurer that pays no dividend shows valuation multiples (price-to-book, return on equity, price-to-earnings) instead of an intrinsic value, because the DDM has nothing to discount. And if a company's net debt is larger than its DCF firm value, the equity comes out at roughly zero on a DCF basis — a signal that the market is pricing it on future growth or asset value rather than today's cash flow.</p>
+      </div>
+
+      <h2>Method 1: Discounted Cash Flow</h2>
+
+      <p>DCF answers one question: if I owned this whole business, what is the cash it will hand me worth today? It works in five steps, and the tool exposes the inputs for each.</p>
+
+      <p><strong>1. Start from free cash flow.</strong> Free cash flow (FCF) is the cash left after the business has paid its running costs and reinvested to keep operating — the money genuinely available to owners. The tool seeds this from Yahoo Finance. Where reported FCF is missing, it estimates it as operating cash flow times 0.8.</p>
+
+      <p><strong>2. Grow it over a forecast period.</strong> You set a growth rate, and the tool projects FCF forward over a projection window (five years by default, adjustable from three to ten). The growth rate is seeded from the company's recent revenue and earnings growth, but this is the first number you should sanity-check: no business compounds at 25% indefinitely.</p>
+
+      <p><strong>3. Discount each year back to today.</strong> A dollar in five years is worth less than a dollar now, so each year's projected cash flow is divided by (1 + discount rate) raised to the power of the year. The discount rate here is WACC, covered in the next section.</p>
+
+      <p><strong>4. Add a terminal value.</strong> The business does not stop at year five. Terminal value captures everything after the forecast as a perpetuity growing at a terminal growth rate — 2.5% by default. This single figure typically accounts for <strong>60–80% of the total</strong>, which is why the terminal growth assumption deserves real scrutiny. It should never exceed long-run economic growth (roughly 2–3%); a business cannot outgrow the economy forever.</p>
+
+      <p><strong>5. Adjust for debt, then divide by shares.</strong> Subtracting net debt (total debt minus cash) from the firm value gives the equity value; dividing by shares outstanding gives intrinsic value per share. That is the number you compare against today's price.</p>
+
+      <h2>The discount rate, and the numbers behind it</h2>
+
+      <p>The discount rate is where most of the judgement lives. The tool builds it as a Weighted Average Cost of Capital (WACC) — a blend of what equity investors require and what lenders charge, weighted by how much of each the company uses.</p>
+
+      <p><strong>Cost of equity</strong> comes from the Capital Asset Pricing Model (CAPM):</p>
+
+      <p style="text-align:center; font-size:1.05rem;"><strong>Cost of equity = Risk-free rate + Beta × Equity risk premium</strong></p>
+
+      <p>The <strong>risk-free rate</strong> is what you would earn with near-certainty, so the tool uses the local 10-year government bond yield and fetches it live by market:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.9rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;">
+          <th style="padding:6px 8px;">Market</th><th style="padding:6px 8px;">Risk-free rate (approx.)</th><th style="padding:6px 8px;">Equity risk premium</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">United States</td><td style="padding:6px 8px;">~4.5% (10-yr Treasury)</td><td style="padding:6px 8px;">5.5%</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Australia (ASX)</td><td style="padding:6px 8px;">~4.8% (10-yr Govt Bond)</td><td style="padding:6px 8px;">6.0%</td></tr>
+          <tr><td style="padding:6px 8px;">India (NSE/BSE)</td><td style="padding:6px 8px;">~7.0% (10-yr Govt Bond)</td><td style="padding:6px 8px;">7.5%</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>The <strong>equity risk premium</strong> is the extra return investors demand for holding shares over bonds. The 5.5% US default is the long-run historical figure from Professor Aswath Damodaran's data. Developed markets sit around 4–6%; emerging markets like India carry 7–9% for the additional political and currency risk. This input is more powerful than it looks: a one-percentage-point change in the premium can move the valuation by 15–25%.</p>
+
+      <p><strong>Beta</strong> measures how much the stock moves relative to its market, scaling the risk premium. Here there is a data trap worth knowing. Yahoo Finance computes beta against the S&P 500, which is correct for US stocks but understates risk for everything else — an Australian or Indian company does not move in lockstep with the US market, so its measured beta comes out artificially low (a global insurer showing 0.17, for instance). To compensate, the tool applies a minimum beta when seeding the discount rate: <strong>0.5 for ASX and most international stocks, 0.6 for India</strong>, and none for US stocks where Yahoo's figure is sound. It tells you when the floor has been applied, and you can override it with a local-market beta if you have one.</p>
+
+      <p><strong>Cost of debt</strong> is the company's interest expense divided by its total debt, plus a small 0.5% spread to approximate today's borrowing cost rather than the rate on old debt. <strong>Tax</strong> comes from the income statement (defaulting to 25% if unavailable), because interest is tax-deductible and lowers the effective cost of debt. The two costs are then weighted by the company's equity and debt to give WACC.</p>
+
+      <h3>A note for Australian investors: franking credits</h3>
+
+      <p>Australia's dividend imputation system passes the company tax already paid to shareholders as franking credits, which reduce their personal tax. In a professional valuation this is captured by a variable called gamma, which the regulator (the ACCC) values at 0.4–0.5; including it lowers the effective tax rate and trims WACC by roughly 0.3–0.8%. For ASX stocks the tool explains this but does not apply it, staying on standard post-tax WACC — the conservative choice most individual investors make.</p>
+
+      <h2>The assumptions that move the answer most</h2>
+
+      <p>A DCF is only as good as its inputs, and three of them do most of the work:</p>
+
+      <p><strong>Terminal growth rate.</strong> Because terminal value is the majority of the result, this is the single most sensitive input. Keep it at or below long-run GDP growth (2–3%). A terminal rate of 4% or 5% quietly assumes the company outgrows the entire economy forever, which inflates the valuation into fiction.</p>
+
+      <p><strong>Equity risk premium.</strong> As above, a one-point change flows straight into the discount rate and swings the answer 15–25%. Match it to the market rather than leaving the US default on a foreign stock.</p>
+
+      <p><strong>Growth rate.</strong> The forecast growth is seeded from history, but history is not destiny. Fast growth fades as companies scale; cyclical businesses show flattering growth at the top of their cycle. Adjust it to what you actually believe.</p>
+
+      <p>This sensitivity is the reason the tool runs three scenarios rather than printing one number — more on that below.</p>
+
+      <h2>Method 2: The Dividend Discount Model</h2>
+
+      <p>For most companies DCF works well. For banks and insurers it breaks down, and not because of a quirk you can patch — the breakage is structural.</p>
+
+      <p>For a <strong>bank</strong>, "debt" is mostly customer deposits, which are a raw material the business runs on rather than a funding cost you can subtract. There is no clean free cash flow, and the standard capital-structure WACC has no sensible meaning. For an <strong>insurer</strong>, reported cash flow is dominated by investment-portfolio movements and changes in reserves, not the owner earnings a DCF assumes. Running a DCF on either tends to produce numbers that are confidently wrong.</p>
+
+      <p>The Dividend Discount Model sidesteps the problem by valuing the business from what it actually pays its owners: dividends. The tool detects banks and insurers automatically and switches to it. The model is mechanically similar to DCF — project, discount, add a terminal value — but with two differences:</p>
+
+      <ul>
+        <li>It projects <strong>dividends per share</strong> rather than company-wide free cash flow, so the result is already per share — there is no net-debt or share-count step.</li>
+        <li>It discounts at the <strong>cost of equity</strong> alone (the CAPM figure above), with no debt component, because the question is purely what the equity is worth to a shareholder.</li>
+      </ul>
+
+      <p>The terminal value uses the Gordon Growth Model: the final dividend grown by a long-term rate, divided by the cost of equity minus that growth rate. Because that denominator can be small, the cost-of-equity and growth assumptions matter even more here than in a DCF — which is exactly why the non-US beta floor exists. Without it, a low Yahoo beta produces a cost of equity barely above the growth rate, and the model returns a wildly inflated value.</p>
+
+      <p>The tool also shows the metrics that actually matter for these businesses — price-to-book, return on equity, price-to-earnings, and dividend yield — as a cross-check. If a bank or insurer pays no dividend, the DDM has nothing to work with, so the tool shows those multiples and no intrinsic value rather than inventing one.</p>
+
+      <h2>Which method to use, and when</h2>
+
+      <p>The tool makes the default choice for you, but it helps to understand the reasoning so you know when to trust the output and when to reach for something else.</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.9rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;">
+          <th style="padding:6px 8px;">Company type</th><th style="padding:6px 8px;">Method</th><th style="padding:6px 8px;">Why</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Industrials, consumer, tech, healthcare, energy</td><td style="padding:6px 8px;"><strong>DCF</strong></td><td style="padding:6px 8px;">Meaningful, measurable free cash flow</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Banks &amp; insurers</td><td style="padding:6px 8px;"><strong>DDM</strong></td><td style="padding:6px 8px;">Free cash flow is not a meaningful number</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Other dividend payers</td><td style="padding:6px 8px;">DCF, or DDM as a cross-check</td><td style="padding:6px 8px;">The tool offers an optional DDM view</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Pre-profit growth companies</td><td style="padding:6px 8px;">DCF on normalised FCF</td><td style="padding:6px 8px;">Estimate the mature margin first (below)</td></tr>
+          <tr><td style="padding:6px 8px;">REITs</td><td style="padding:6px 8px;">Neither, ideally</td><td style="padding:6px 8px;">Better valued on Funds From Operations</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <a class="article-cta" href="/dcf/">
+        <span class="article-cta-label">Try the free tool</span>
+        <span class="article-cta-text">Value any stock with DCF or DDM → Discounted Cash Flow Calculator</span>
+      </a>
+
+      <h2>Sector reference ranges</h2>
+
+      <p>A useful sanity check is whether your calculated discount rate lands near where the company's sector usually sits. The tool shows a reference range for the stock's sector and market; if your WACC is far outside it, an input is probably off. These are typical post-tax ranges, not rules.</p>
+
+      <p><strong>United States:</strong> Regulated Utilities 5.5–6.5% · REITs and Energy 6.5–7.5% · Aerospace &amp; Defense 7.0–8.0% · Retail 7.5–8.5% · Biotech &amp; Pharma 8.0–10.0% · Technology &amp; Software 8.5–10.5%.</p>
+
+      <p><strong>Australia (ASX):</strong> Utilities &amp; Infrastructure 6.5–8.0% · A-REITs 7.5–9.0% · Banks &amp; Financials 8.5–9.5% · Healthcare &amp; Biotech 8.5–10.0% · Mining &amp; Resources 10.0–12.0%.</p>
+
+      <p><strong>India (NSE/BSE):</strong> Utilities &amp; Infrastructure 8.0–10.0% · FMCG 9.0–11.0% · Banking &amp; Financials and Pharma 10.0–12.0% · Commodities 11.0–13.0% · IT &amp; Software 11.0–14.0%.</p>
+
+      <p>The patterns are intuitive: regulated, debt-heavy businesses with stable cash flows sit at the low end; cyclical, equity-funded, high-growth businesses sit at the high end. Indian ranges sit above their US and Australian equivalents because the underlying risk-free rate and risk premium are both higher.</p>
+
+      <h2>When cash flow is negative, or debt swallows the equity</h2>
+
+      <p>Two situations break a naïve DCF, and the tool handles each explicitly rather than printing a nonsense number.</p>
+
+      <p><strong>Negative or missing free cash flow.</strong> A fast-growing company reinvesting everything can report negative FCF, which a standard DCF cannot value. Instead of giving up, you normalise: estimate the FCF margin the business will earn once it matures (say 15% for software, 8% for retail) and apply it to current revenue. The tool seeds this target margin from the reported profit margin, runs the DCF on the normalised figure, and estimates roughly which year FCF should turn positive given your growth assumption. The result is clearly labelled as revenue-normalised, because it rests on an extra assumption you have made.</p>
+
+      <p><strong>Net debt larger than firm value.</strong> For some heavily indebted or capital-hungry companies, the DCF firm value comes out below net debt, leaving negative equity. Rather than show an impossible negative share price, the tool states plainly that the equity is worth roughly zero on a DCF basis. That is not a glitch — it is the model telling you the market is pricing the stock on future growth or asset value that today's cash flow cannot justify. The honest response is to revisit your growth assumption, or to accept that a cash-flow model is the wrong lens for that particular business.</p>
+
+      <h2>Bear, Base, and Bull — and the margin of safety</h2>
+
+      <p>Because the output is so sensitive to assumptions, a single intrinsic value would imply a precision that does not exist. The tool runs three scenarios side by side instead. <strong>Base</strong> uses the seeded assumptions. <strong>Bear</strong> applies lower growth and a higher discount rate. <strong>Bull</strong> applies higher growth and a lower discount rate. Together they describe a range of plausible values rather than a false point estimate.</p>
+
+      <p>Each scenario reports a <strong>margin of safety</strong> — the gap between intrinsic value and the current price. A positive margin means the stock trades below the model's estimate; a negative one means it trades above. The idea, which goes back to Benjamin Graham, is to buy with enough of a discount that you can be somewhat wrong and still not overpay. When the price sits below even the Bear value, that is a meaningful signal; when it sits above the Bull value, the stock looks expensive on these assumptions.</p>
+
+      <h2>What the numbers cannot tell you</h2>
+
+      <p>A valuation model is a disciplined way to convert assumptions into a number. It is not a crystal ball, and it is worth being clear about its limits.</p>
+
+      <p>The output is only as good as the inputs — change the growth rate or discount rate slightly and the answer moves a lot, which is a feature of the method, not a flaw in the tool. It works best for mature, stable, cash-generative businesses, and least well for cyclical commodity producers (volatile earnings), early-stage companies (no cash-flow history), REITs (better valued on Funds From Operations), and conglomerates priced on future optionality. The data comes from Yahoo Finance, is roughly 15 minutes delayed, and carries no accuracy guarantee, so treat every figure as a starting point to verify rather than a fact.</p>
+
+      <p>Used well, the model is a way to make your assumptions explicit and test them. The number at the end is far less valuable than the discipline of having to state, out loud, what you believe about a company's future — and seeing how much the answer depends on it.</p>
+
+      <a class="article-cta" href="/dcf/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Estimate intrinsic value across Bear, Base &amp; Bull → Discounted Cash Flow Calculator</span>
+      </a>
+
+      <a class="article-cta" href="/stock/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Score a stock against Buffett, Dalio &amp; Graham → Stock Evaluator</span>
+      </a>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. The Discounted Cash Flow Calculator estimates intrinsic value from assumptions you provide, using historical financial data that may be delayed or incomplete. Valuation models are highly sensitive to their inputs and do not predict future performance. Individual investment decisions depend on your financial situation, risk tolerance, timeline, and objectives. We recommend consulting a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>When should I use DCF versus the Dividend Discount Model?</summary>
+          <p>Use Discounted Cash Flow (DCF) for companies that generate meaningful free cash flow — most industrial, consumer, technology, healthcare, and energy businesses. Use the Dividend Discount Model (DDM) for banks and insurers, where free cash flow is not a meaningful number. The tool detects banks and insurers automatically and switches to DDM; for every other company it uses DCF.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What discount rate does the calculator use?</summary>
+          <p>It calculates WACC from first principles. Cost of equity uses CAPM: the risk-free rate plus beta times the equity risk premium. The risk-free rate is the local 10-year government bond yield (about 4.5% in the US, 4.8% in Australia, 7.0% in India), and the equity risk premium defaults to 5.5% for the US, 6.0% for Australia, and 7.5% for India. Cost of debt comes from interest expense over total debt, and the two are weighted by the company's capital structure. Every number can be overridden.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why does the tool use a minimum beta for ASX and Indian stocks?</summary>
+          <p>Yahoo Finance measures beta against the S&amp;P 500. For non-US stocks that understates risk, because those markets do not move in lockstep with the US — producing artificially low betas (an ASX insurer showing 0.17, for example). The tool applies a minimum beta of 0.5 for ASX and most international stocks, and 0.6 for India, when seeding the discount rate. It flags when it has done so, and you can override it.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What does the tool do when free cash flow is negative?</summary>
+          <p>Growth companies often reinvest everything and report negative free cash flow. The tool lets you normalise it from revenue multiplied by a target FCF margin — your estimate of the margin the business will earn at maturity — and then runs the DCF on that figure. It also estimates roughly when free cash flow should turn positive given your revenue growth assumption.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is the intrinsic value a price target?</summary>
+          <p>No. The intrinsic value is what the model says the business is worth given the assumptions you feed it, and small changes in those assumptions move it a lot. That is why the tool shows three scenarios — Bear, Base, and Bull — rather than a single number. Treat the output as one input into your own research, not a target or a recommendation.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>
