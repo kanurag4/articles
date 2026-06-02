@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>The Most Undervalued ASX 300 Stocks: How the Screen Works — KashVector</title>
+  <meta name="description" content="How KashVector's monthly screen runs every ASX 300 company through the same DCF/DDM engine as the tool, the four filters a stock must clear, and the caveats behind the list.">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Most Undervalued ASX 300 Stocks: How the Screen Works",
+    "datePublished": "2026-06-02",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/most-undervalued-asx-300/",
+    "description": "How KashVector's monthly screen runs every ASX 300 company through the same DCF/DDM engine as the tool, the four filters a stock must clear, and the caveats behind the list."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the undervalued list a buy recommendation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. It is a purely quantitative screen — a starting point for research, not advice. A stock can look cheap on the numbers while facing problems the numbers do not capture. Always do your own research." }
+      },
+      {
+        "@type": "Question",
+        "name": "How often is the screen updated?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Roughly monthly. Each published list shows an 'as at' date for when the snapshot was taken, and the current price for each stock updates live whenever you open the page." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the list sometimes short?",
+        "acceptedAnswer": { "@type": "Answer", "text": "On conservative base-case assumptions, most large companies trade above their estimated fair value, so few qualify. The list is capped at a maximum number rather than always being filled — a short list is an honest signal that obvious bargains are scarce." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the screen consider news or management quality?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. It is built only from reported financial data. It does not read news, assess management, brand strength, competitive position, or litigation risk — which is exactly why it is a screen, not a verdict." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <h1>KashVector</h1>
+      <p>Australian financial calculators</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">The Most Undervalued ASX 300 Stocks: How the Screen Works</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 2 June 2026 &nbsp;·&nbsp; 5 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <div class="article-summary">
+        <p><strong>New to intrinsic valuation?</strong> Start with the companion guide, <a href="/articles/dcf-ddm-stock-valuation/">How to Value a Stock: DCF and the Dividend Discount Model</a>, which explains the method, the discount rate, and the assumptions in detail. This piece is shorter — it is about what happens when you point that same method at an entire market.</p>
+      </div>
+
+      <p>The <a href="/dcf/">DCF Valuation tool</a> answers a question one stock at a time: on conservative assumptions, what is this business worth, and is it trading below that? The <a href="/dcf/asx-undervalued/">Most Undervalued ASX 300</a> screen asks the same question of every large company on the ASX at once, once a month, and publishes the names that come out cheapest.</p>
+
+      <div class="article-summary">
+        <p>The short version:</p>
+        <ul>
+          <li>Every ASX 300 company is valued monthly with the <strong>same base-case engine as the DCF tool</strong> — DCF for most businesses, a Dividend Discount Model for banks and insurers.</li>
+          <li>We keep only the genuinely undervalued names that pass <strong>four quality filters</strong>, rank them by margin of safety, and show the top of the list.</li>
+          <li>It is <strong>purely quantitative</strong> — no news, management, or competitive judgement.</li>
+          <li>A <strong>short list is normal</strong>: on conservative assumptions, most blue chips are not cheap.</li>
+          <li>It is a <strong>starting point for research, not a buy list</strong>.</li>
+        </ul>
+      </div>
+
+      <h2>The same engine, run 300 times</h2>
+
+      <p>There is no separate model behind the screen. Each company is run through the exact calculation the public tool uses for its <strong>base case</strong>: a five-year cash-flow projection, a 2.5% terminal growth rate, and a discount rate built from live market data. Banks and insurers — where discounted cash flow breaks down — are valued with a Dividend Discount Model instead and labelled <strong>DDM</strong>. Because it is the same code, the screen can never quietly disagree with what you would see if you typed the ticker into the tool yourself.</p>
+
+      <h2>The four rules a stock must clear</h2>
+
+      <p>To appear on the list, a company has to pass all four of these. Most of the ASX 300 fails at the first one.</p>
+
+      <ul>
+        <li><strong>Undervalued</strong> — its estimated fair value is above the current price. On a deliberately conservative base case, most large caps are not, so this filter does the heavy lifting.</li>
+        <li><strong>Valuable by the model</strong> — it produced a real number. Companies with no positive cash flow, with debt larger than the whole business, or banks that pay no dividend can't be valued and drop out (exchange-traded funds and trusts fall away here too).</li>
+        <li><strong>Real cash flow</strong> — the free cash flow figure came from reported data, not a rough rule-of-thumb estimate that can manufacture fake bargains.</li>
+        <li><strong>Plausible margin</strong> — the gap between fair value and price is 80% or less. When a model claims a stock is worth more than roughly double its price, that usually reflects cash flow at a cyclical peak, not a genuine discount.</li>
+      </ul>
+
+      <h2>What it deliberately ignores</h2>
+
+      <p>This is the part worth dwelling on. The screen is <strong>purely quantitative</strong>: it reads reported financials and nothing else. It does not know about a profit warning, a CEO departure, a regulatory investigation, a fading brand, or a competitor eating the company's lunch. A stock can sit near the top of this list precisely <em>because</em> the market has marked it down for a reason the financial statements do not yet show.</p>
+
+      <p>That is also why the 80% cap matters. Left unchecked, a raw ranking by margin of safety surfaces the <em>least</em> trustworthy valuations first — cyclical miners and contractors whose current cash flow is at the top of its cycle, which the model then projects forward as if it were permanent. Trimming those out leaves a more defensible list, but it does not turn a screen into a judgement. The numbers narrow the field; you still have to do the thinking.</p>
+
+      <h2>How to read the list</h2>
+
+      <p>Each row shows the model's <strong>fair value</strong>, the current price, and the <strong>margin of safety</strong> between them — the gap you are being asked to trust. Two columns are there as cross-checks: the <strong>analyst target</strong> (do professional analysts also see upside?) and <strong>terminal value %</strong>, which tells you how much of the valuation rests on the far-future assumption rather than the next five years. A high figure there is a flag to be sceptical.</p>
+
+      <p>We also note when each stock <strong>first appeared</strong> on the list and at what price. That is shown for transparency only — it is deliberately <strong>not</strong> a "return since listed" figure, because dressing a screen up as a track record would be dishonest. The list refreshes about monthly, and the "as at" date tells you when the snapshot was taken.</p>
+
+      <a class="article-cta" href="/dcf/asx-undervalued/">
+        <span class="article-cta-label">Updated monthly · free</span>
+        <span class="article-cta-text">See this month's list → Most Undervalued ASX 300</span>
+      </a>
+
+      <a class="article-cta" href="/dcf/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Value any stock yourself → Discounted Cash Flow Calculator</span>
+      </a>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. The Most Undervalued ASX 300 screen is an automated, assumption-driven valuation produced from historical financial data that may be delayed or incomplete. It is not a recommendation to buy or sell any security, and valuation models are highly sensitive to their inputs. Individual investment decisions depend on your financial situation, risk tolerance, timeline, and objectives. We recommend consulting a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Is the undervalued list a buy recommendation?</summary>
+          <p>No. It is a purely quantitative screen — a starting point for research, not advice. A stock can look cheap on the numbers while facing problems the numbers do not capture. Always do your own research.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How often is the screen updated?</summary>
+          <p>Roughly monthly. Each published list shows an "as at" date for when the snapshot was taken, and the current price for each stock updates live whenever you open the page.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why is the list sometimes short?</summary>
+          <p>On conservative base-case assumptions, most large companies trade above their estimated fair value, so few qualify. The list is capped at a maximum number rather than always being filled — a short list is an honest signal that obvious bargains are scarce.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does the screen consider news or management quality?</summary>
+          <p>No. It is built only from reported financial data. It does not read news, assess management, brand strength, competitive position, or litigation risk — which is exactly why it is a screen, not a verdict.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>
