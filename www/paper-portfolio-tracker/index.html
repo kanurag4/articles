@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>The $10,000 Paper Portfolio: Tracking an Undervalued Screen Over Time — KashVector</title>
+  <meta name="description" content="How KashVector's paper portfolio tracks the Most Undervalued screens — equal-weight, rebalanced monthly. How stocks leave the list, how returns are locked in, and why it is a long-term experiment.">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <style>
+    /* High-contrast green for inline body links (default UA blue/visited-purple is hard to read).
+       Scoped to this article; excludes the .article-cta button blocks. */
+    .article-body a:not(.article-cta),
+    .article-body a:not(.article-cta):visited { color: #34d399; text-decoration: none; }
+    .article-body a:not(.article-cta):hover { color: #6ee7b7; text-decoration: underline; }
+    html:not(.dark) .article-body a:not(.article-cta),
+    html:not(.dark) .article-body a:not(.article-cta):visited { color: #15803d; }
+    html:not(.dark) .article-body a:not(.article-cta):hover { color: #166534; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The $10,000 Paper Portfolio: Tracking an Undervalued Screen Over Time",
+    "datePublished": "2026-06-20",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/paper-portfolio-tracker/",
+    "description": "How KashVector's paper portfolio tracks the Most Undervalued screens — equal-weight, rebalanced monthly. How stocks leave the list, how returns are locked in, and why it is a long-term experiment."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does the paper portfolio include dividends?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not yet. The tracker currently counts price return only — the change in each stock's price between when it entered and left the list. Dividends are a real part of total return, especially for ASX stocks, so the figure shown understates true performance. Including dividends is planned for a future update." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the paper portfolio a real track record?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. It is a hypothetical, paper-only experiment — no money is invested and no trades are placed. It is designed to be watched over years, not weeks. Any short-term figure is an illustration of the mechanics, not evidence that the screen works." }
+      },
+      {
+        "@type": "Question",
+        "name": "How are stocks bought and sold in the portfolio?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Each month the screen's top names are held in equal weight. When a stock drops off the list, it is sold at that month's snapshot price and the proceeds are spread equally across the new list. There is no attempt to time the market — it simply follows whatever the screen says that month." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why rebalance monthly instead of buying and holding?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The screen changes every month as new stocks qualify and others become fully valued. A buy-and-hold tracker would slowly drift away from what the screen is actually recommending. Monthly rebalancing keeps the portfolio honest — it always reflects the screen's current view, not a snapshot from month one." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <h1>KashVector</h1>
+      <p>Australian financial calculators</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">The $10,000 Paper Portfolio: Tracking an Undervalued Screen Over Time</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 20 June 2026 &nbsp;·&nbsp; 5 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <div class="article-summary">
+        <p>The <a href="/dcf/asx-undervalued/">Most Undervalued ASX 300</a> screen tells you what looks cheap <em>this month</em>. The obvious next question is the one a list can't answer on its own: <strong>what if you'd actually followed it?</strong> The paper portfolio is our attempt to answer that honestly, in the open, over the long run.</p>
+      </div>
+
+      <p>At the top of each undervalued screen there's an amber card showing what a hypothetical <strong>$10,000</strong> would be worth today if it had tracked that screen from the start — equal-weighted across the list and rebalanced every month. It's a paper portfolio: no money is invested, no trades are placed. It exists to keep the screen honest. A list of "cheap" stocks is easy to publish and easy to forget; a running total that follows those picks month after month is much harder to look away from.</p>
+
+      <div class="article-summary">
+        <p>The short version:</p>
+        <ul>
+          <li>A starting stake — <strong>$10,000</strong> on the ASX (and the same idea for the US and Indian screens) — is spread <strong>equally</strong> across the list.</li>
+          <li>Every month the portfolio <strong>rebalances</strong>: stocks that leave the list are sold, the cash is spread evenly across the new list.</li>
+          <li>Returns shown are <strong>price only</strong> for now — <strong>dividends are not yet counted</strong>, which understates the real result.</li>
+          <li>It's a <strong>long-term experiment</strong>. A few weeks of movement is noise — the point is what happens over <em>years</em>.</li>
+          <li>It is <strong>paper only</strong>: a transparency tool, not advice and not a real track record.</li>
+        </ul>
+      </div>
+
+      <h2>Equal weight, rebalanced monthly</h2>
+
+      <p>The rules are deliberately simple, because the whole point is to mirror what a disciplined retail investor might plausibly do — not to run a clever strategy on top of the screen.</p>
+
+      <p><strong>Equal weight</strong> means the stake is split evenly across every name on the list. If there are twenty stocks, each gets a twentieth. There's no conviction-weighting, no "this one looks better" — the screen has already done the ranking, and equal weight is the honest way to say "I'll back all of them the same." It's also simply what most people do when handed a shortlist.</p>
+
+      <p><strong>Monthly rebalancing</strong> means that each time the screen refreshes, the portfolio is rebuilt to match it. This matters more than it sounds. The screen is a living thing: companies that have run up are no longer undervalued and drop out, while new bargains appear. A portfolio that bought the month-one list and never touched it would slowly become a museum of last quarter's ideas. Rebalancing keeps it pointed at whatever the screen actually believes <em>today</em>.</p>
+
+      <h2>How a stock leaves the list</h2>
+
+      <p>This is the part that makes the tracker feel real. When a stock falls out of the list — usually because its price rose far enough that it's no longer undervalued — it is "sold" at that month's snapshot price, and the gain or loss between its entry and exit is locked in.</p>
+
+      <p>A concrete example from the ASX portfolio: <strong>Maas Group (MGH.AX)</strong> entered the list on 2 June 2026 at <strong>$5.04</strong>. By the 19 June refresh it had climbed to <strong>$5.36</strong> and no longer cleared the undervalued filter, so it left the list — a <strong>+6.3%</strong> move banked on paper. The cash from that sale doesn't sit idle: it's pooled with the rest of the portfolio and spread equally across the new list at the next rebalance. Below the main table, an "exited this month" row records each departure with its entry and exit prices, so you can see exactly what left and why.</p>
+
+      <h2>How the running total is tracked</h2>
+
+      <p>The headline number on the card is cumulative, not just today's wiggle. Each month, the price movements of the holdings are baked into a saved running value. When you open the page, the only thing calculated live is <em>today's</em> intraday movement, layered on top of that stored base. So the percentage you see is the whole journey since the start date — every month stacked together — not a single day's change.</p>
+
+      <p>At the time of writing, the ASX portfolio sits a little above its $10,000 start. That figure will move every month, sometimes down, and on its own it means very little — which brings us to the most important caveat.</p>
+
+      <h2>What isn't counted yet: dividends</h2>
+
+      <div class="article-summary">
+        <p><strong>Right now the tracker counts price return only.</strong> It measures how far each stock's price moved while it was on the list — and nothing else. <strong>Dividends are not yet included.</strong> Because many ASX companies pay meaningful, often franked dividends, this means the paper portfolio currently <em>understates</em> the true total return an investor would have received. We'd rather show a conservative number and say so plainly than flatter the result. Adding dividends to the calculation is on the roadmap, and we'll note it here when it lands.</p>
+      </div>
+
+      <h2>Why this is a long-term experiment</h2>
+
+      <p>The tracker only started in June 2026. A few weeks — even a few months — of data tells you essentially nothing about whether valuation screening works. Markets are noisy over short windows; a portfolio can be up or down 5% for reasons that have nothing to do with the quality of the picks. Reading too much into an early number cuts both ways: an early gain isn't proof the method works, and an early loss isn't proof it doesn't.</p>
+
+      <p>This is built to be watched over <strong>years</strong>. The question it's trying to answer — does patiently buying what a conservative DCF model calls cheap, and rebalancing monthly, actually pay off? — only becomes meaningful across many cycles. Treat today's figure as an illustration of the machinery, not a scorecard. The honesty of the experiment is the whole point; the verdict is a long way off.</p>
+
+      <p>The same system runs on all three screens — the <a href="/dcf/asx-undervalued/">ASX 300</a> ($10,000), the <a href="/dcf/sp500-undervalued/">S&amp;P 500</a> ($10,000), and the <a href="/dcf/nifty-undervalued/">NIFTY 500</a> (₹1,00,000) — so you can follow whichever market you care about.</p>
+
+      <a class="article-cta" href="/dcf/asx-undervalued/">
+        <span class="article-cta-label">Updated monthly · free</span>
+        <span class="article-cta-text">See the live paper portfolio → Most Undervalued ASX 300</span>
+      </a>
+
+      <a class="article-cta" href="/dcf/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Value any stock yourself → Discounted Cash Flow Calculator</span>
+      </a>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. The paper portfolio is a hypothetical, automated illustration built from historical financial data that may be delayed or incomplete — no money is invested and no trades are placed. Returns shown are price return only and do not currently include dividends, so they understate total return. Past or simulated performance is not a reliable indicator of future results, and valuation models are highly sensitive to their inputs. Individual investment decisions depend on your financial situation, risk tolerance, timeline, and objectives. We recommend consulting a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Does the paper portfolio include dividends?</summary>
+          <p>Not yet. The tracker currently counts price return only — the change in each stock's price between when it entered and left the list. Dividends are a real part of total return, especially for ASX stocks, so the figure shown understates true performance. Including dividends is planned for a future update.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is the paper portfolio a real track record?</summary>
+          <p>No. It is a hypothetical, paper-only experiment — no money is invested and no trades are placed. It is designed to be watched over years, not weeks. Any short-term figure is an illustration of the mechanics, not evidence that the screen works.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How are stocks bought and sold in the portfolio?</summary>
+          <p>Each month the screen's top names are held in equal weight. When a stock drops off the list, it is sold at that month's snapshot price and the proceeds are spread equally across the new list. There is no attempt to time the market — it simply follows whatever the screen says that month.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why rebalance monthly instead of buying and holding?</summary>
+          <p>The screen changes every month as new stocks qualify and others become fully valued. A buy-and-hold tracker would slowly drift away from what the screen is actually recommending. Monthly rebalancing keeps the portfolio honest — it always reflects the screen's current view, not a snapshot from month one.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>
