@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>When Will Your HECS Debt Be Paid Off? A Guide to the HECS/HELP Calculator — KashVector</title>
+  <meta name="description" content="The HECS/HELP Repayment Calculator projects your payoff year under the new marginal repayment system — here's what it calculates, what to enter, and how to read the results.">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "When Will Your HECS Debt Be Paid Off? A Guide to the HECS/HELP Calculator",
+    "datePublished": "2026-07-18",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/hecs-calculator-guide/",
+    "description": "The HECS/HELP Repayment Calculator projects your payoff year under the new marginal repayment system — what it calculates, what to enter, and how to read the results."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is the HECS/HELP Repayment Calculator free to use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. The calculator is completely free — no sign-up, no account, no subscription. Enter your HELP balance and income and it projects your payoff year instantly, entirely in your browser." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the calculator use the new marginal repayment system?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. It uses the FY2026-27 marginal thresholds and rates — nil below $69,528 of Repayment Income, 15c per dollar between $69,528 and $129,717, then 17c per dollar up to $186,050, and 10% of total Repayment Income above that — not the old single-percentage-of-income table. The projection grows the thresholds forward each year using your assumed indexation rate — an approximation of the ATO's actual practice of indexing thresholds to average weekly earnings (AWOTE)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the calculator account for the 20% HECS cut?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The one-off 20% reduction announced in 2025 has already been applied to balances by the ATO. Enter your current balance from ATO online services (via myGov) and the calculator projects forward from there — it does not re-apply the cut." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the calculator apply voluntary payments before indexation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because that's how the real system works. Indexation is applied on 1 June each year at the lower of CPI or WPI. Voluntary payments made before 1 June reduce the balance before indexation is calculated, while compulsory repayments are credited at tax time, after indexation. The calculator mirrors this ordering, which is why extra payments made early save more than the same payments made late." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the calculator tell me whether to pay off HECS early or invest?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The Pay Off Early vs Invest card shows both paths side by side — the indexation you'd save by paying extra, and what the same dollars could grow to at your assumed investment return — without recommending either. The comparison depends entirely on the return assumption you choose." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <h1>KashVector</h1>
+      <p>Australian financial calculators</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">When Will Your HECS Debt Be Paid Off? A Guide to the HECS/HELP Calculator</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 18 Jul 2026 &nbsp;·&nbsp; 6 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <p>Most HECS calculators still use the old repayment table — a single percentage of your whole income, stepped up in bands. That system is gone. From 1 July 2026 — the 2026-27 financial year — HECS/HELP repayments are calculated marginally, like income tax: you only pay the higher rate on the income <em>above</em> each threshold, not on every dollar you earn. For most people that means lower compulsory repayments — and a longer payoff timeline than the old calculators suggest.</p>
+
+      <p>The <a href="/hecs/">HECS/HELP Repayment Calculator</a> is built on the new system. It projects your balance forward year by year and answers the question the ATO never quite does: <strong>in which financial year will your debt actually reach zero</strong> — and how much would extra repayments or a lump sum before 1 June change that?</p>
+
+      <div class="article-summary">
+        <p>What the calculator does:</p>
+        <ul>
+          <li>Projects your payoff year using the <strong>FY2026-27 marginal repayment thresholds</strong>, indexed forward each year</li>
+          <li>Models <strong>extra voluntary repayments</strong> and a <strong>one-off lump sum before 1 June</strong> — applied before indexation, as in the real system</li>
+          <li>Shows a <strong>Pay Off Early vs Invest</strong> comparison side by side, with no recommendation either way</li>
+          <li>Free, no sign-up, runs entirely in your browser — nothing you enter is sent anywhere</li>
+        </ul>
+      </div>
+
+      <h2>The repayment system it models</h2>
+
+      <p>The calculator uses the FY2026-27 repayment settings. Your compulsory repayment is based on your <strong>Repayment Income</strong> (HRI) — taxable income plus a few add-backs — and is calculated in bands:</p>
+
+      <ul>
+        <li>Below <strong>$69,528</strong> — no compulsory repayment</li>
+        <li><strong>$69,528 to $129,717</strong> — 15c for each dollar of HRI above $69,528</li>
+        <li><strong>$129,717 to $186,050</strong> — $9,028 plus 17c for each dollar above $129,717</li>
+        <li>Above <strong>$186,050</strong> — 10% of your <em>total</em> HRI</li>
+      </ul>
+
+      <p>Only the income above each threshold is charged at that band's rate. Someone on $80,000 pays 15c on the $10,472 above the threshold — about $1,571 — not a percentage of the full $80,000 as under the old table. In the real system the ATO indexes these repayment thresholds each year in line with average weekly earnings (AWOTE); the calculator approximates this by growing the thresholds forward at your assumed indexation rate.</p>
+
+      <p>One thing the calculator deliberately does <em>not</em> do: re-apply the one-off 20% balance reduction from 2025. The ATO has already applied that cut to outstanding balances. You enter your current balance — the exact figure is in ATO online services via myGov — and the projection starts from there.</p>
+
+      <a class="article-cta" href="/hecs/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">See your payoff year → HECS/HELP Repayment Calculator</span>
+      </a>
+
+      <h2>What you enter</h2>
+
+      <p>Two fields do most of the work: your <strong>current HELP balance</strong> and your <strong>annual income before tax</strong>. As soon as both are in, the calculator shows your compulsory repayment for the year and the full projection.</p>
+
+      <p>An <strong>Advanced</strong> section covers the HRI add-backs that catch people out. Repayment Income isn't just taxable income — the ATO adds back three things, and each has its own field:</p>
+
+      <ul>
+        <li><strong>Reportable super contributions</strong> — salary-sacrificed super above the compulsory employer amount. It reduces your taxable income but still counts toward HRI.</li>
+        <li><strong>Reportable fringe benefits</strong> — the grossed-up value on your income statement, for example from a novated lease.</li>
+        <li><strong>Net investment losses</strong> — negative gearing losses claimed as deductions are added back for HECS purposes.</li>
+      </ul>
+
+      <p>If any of these apply to you, your compulsory repayment is higher than your taxable income alone suggests — which is exactly why the fields exist.</p>
+
+      <p>Two assumptions drive the projection. <strong>Income growth</strong> (default 3.5% p.a.) controls how quickly your HRI climbs into higher repayment bands. <strong>Indexation rate</strong> (default 2.8% — the rate applied on 1 June 2026) is the lower of CPI or WPI, applied to your balance once a year. The calculator also uses this rate to grow the repayment thresholds — a simplification, since the ATO actually indexes thresholds to average weekly earnings (AWOTE) rather than CPI/WPI. Both assumptions are editable, so you can test optimistic and pessimistic cases in seconds.</p>
+
+      <h2>The what-if scenarios</h2>
+
+      <p>The third input group is where the calculator earns its keep. Three fields let you test strategies against the baseline of paying only compulsory repayments:</p>
+
+      <p><strong>Extra voluntary repayment per year.</strong> A recurring amount on top of your compulsory repayment. Because voluntary payments reduce your balance <em>before</em> each year's indexation is calculated, the saving compounds every year you keep paying it.</p>
+
+      <p><strong>One-off lump sum before 1 June.</strong> A single payment made before this year's indexation date. The timing matters: indexation is charged on your balance as at 1 June, so a lump sum paid in May reduces the amount indexation applies to, while the same payment in July doesn't help until the following year. The calculator shows the immediate indexation saving from your lump sum in a dedicated insight card.</p>
+
+      <p><strong>Invest-comparison return.</strong> The assumed annual return (default 7% p.a.) if you invested those extra dollars in the market instead of paying down HECS. This feeds the Pay Off Early vs Invest comparison and nothing else.</p>
+
+      <h2>What you get back</h2>
+
+      <p>Four summary cards sit at the top of the results: the financial year you'll be <strong>debt-free</strong>, how much <strong>sooner</strong> your extras get you there, the <strong>total indexation</strong> you'll pay over the life of the loan, and the <strong>indexation saved</strong> by your extra repayments versus the compulsory-only baseline.</p>
+
+      <p>Below that, a <strong>balance-over-time chart</strong> shows the shape of the payoff — including the counterintuitive early years where indexation on a large balance can nearly offset your compulsory repayments. A collapsible <strong>year-by-year table</strong> breaks every financial year into opening balance, voluntary payments, indexation charged, compulsory repayment, and closing balance, so you can verify exactly how the projection gets from your current balance to zero.</p>
+
+      <p>The <strong>Pay Off Early vs Invest</strong> card runs both paths over the same horizon: the indexation you'd avoid by paying extra, next to what the same contributions could grow to at your assumed return. It makes no recommendation — paying down HECS is a guaranteed saving at the indexation rate, investing is an unguaranteed but historically higher return, and which wins depends on the return assumption you chose. The card exists so you can see the trade-off with your own numbers rather than a rule of thumb.</p>
+
+      <p>Every scenario is shareable — a <strong>Create link</strong> button encodes your inputs into a URL you can send to someone else or save for later.</p>
+
+      <a class="article-cta" href="/hecs/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Test a lump sum before June 1 → HECS/HELP Repayment Calculator</span>
+      </a>
+
+      <h2>How the projection works under the hood</h2>
+
+      <p>Each projected year follows the real system's ordering. First, voluntary payments (your annual extra, plus the lump sum in year one) come off the balance. Then indexation is applied to what remains. Then the compulsory repayment — calculated from that year's HRI against that year's indexed thresholds — is deducted. Income grows at your assumed rate, thresholds index up, and the loop repeats until the balance hits zero or 50 years pass.</p>
+
+      <p>That ordering is the whole reason voluntary payments punch above their weight: they dodge indexation, while compulsory repayments are credited after indexation has already been charged. It's also why the calculator treats "before 1 June" as a meaningful distinction rather than a footnote.</p>
+
+      <h2>What the calculator doesn't model</h2>
+
+      <p>The projection assumes constant income growth and a constant indexation rate — real years will vary around both. The Advanced HRI add-ons are held constant across the projection rather than growing with your income. SFSS and other loan types, Medicare levy interactions, and partner income are not modelled. And the tool makes no recommendation on paying early versus investing — it shows both paths and leaves the decision to you.</p>
+
+      <h2>Where it connects to the other tools</h2>
+
+      <p>HECS doesn't exist in isolation, and two interactions are worth knowing about.</p>
+
+      <p><strong>Salary sacrifice raises your HECS repayment.</strong> Salary-sacrificed super lowers your taxable income but counts toward Repayment Income — so sacrificing more can increase your compulsory HECS repayment even as it cuts your tax. The <a href="/super-compare/">Salary Sacrifice Calculator</a> models the super side of that equation; enter the same sacrifice amount in the HECS calculator's reportable super field to see the repayment side.</p>
+
+      <p><strong>Finding room for extra repayments.</strong> If the projection shows that an extra $2,000 a year saves you years of indexation, the practical question is where that $2,000 comes from. The <a href="/budget/">Budget Planner</a> is built for exactly that.</p>
+
+      <p>And once the debt is gone, your compulsory repayment stops being withheld from your pay — a permanent boost to take-home income. The <a href="/fire/">FIRE Calculator</a> can show what redirecting that repayment into investments does over a couple of decades.</p>
+
+      <a class="article-cta" href="/super-compare/">
+        <span class="article-cta-label">Related tool</span>
+        <span class="article-cta-text">See how salary sacrifice changes your tax and super → Salary Sacrifice Calculator</span>
+      </a>
+
+      <a class="article-cta" href="/budget/">
+        <span class="article-cta-label">Related tool</span>
+        <span class="article-cta-text">Find room in your budget for extra repayments → Budget Planner</span>
+      </a>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. The HECS/HELP Repayment Calculator produces projections based on the assumptions you enter; actual repayments, indexation rates, and thresholds will vary. Whether to make voluntary HECS repayments depends on your financial situation, goals, and risk tolerance. We recommend consulting a licensed financial adviser before making financial decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Is the HECS/HELP Repayment Calculator free to use?</summary>
+          <p>Yes. The calculator is completely free — no sign-up, no account, no subscription. Enter your HELP balance and income and it projects your payoff year instantly, entirely in your browser.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does the calculator use the new marginal repayment system?</summary>
+          <p>Yes. It uses the FY2026-27 marginal thresholds and rates — nil below $69,528 of Repayment Income, 15c per dollar between $69,528 and $129,717, then 17c per dollar up to $186,050, and 10% of total Repayment Income above that — not the old single-percentage-of-income table. The projection grows the thresholds forward each year using your assumed indexation rate — an approximation of the ATO's actual practice of indexing thresholds to average weekly earnings (AWOTE).</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does the calculator account for the 20% HECS cut?</summary>
+          <p>The one-off 20% reduction announced in 2025 has already been applied to balances by the ATO. Enter your current balance from ATO online services (via myGov) and the calculator projects forward from there — it does not re-apply the cut.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why does the calculator apply voluntary payments before indexation?</summary>
+          <p>Because that's how the real system works. Indexation is applied on 1 June each year at the lower of CPI or WPI. Voluntary payments made before 1 June reduce the balance before indexation is calculated, while compulsory repayments are credited at tax time, after indexation. The calculator mirrors this ordering — which is why extra payments made early save more than the same payments made late.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does the calculator tell me whether to pay off HECS early or invest?</summary>
+          <p>No. The Pay Off Early vs Invest card shows both paths side by side — the indexation you'd save by paying extra, and what the same dollars could grow to at your assumed investment return — without recommending either. The comparison depends entirely on the return assumption you choose.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>
