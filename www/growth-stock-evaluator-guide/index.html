@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1120">
+  <title>How to Value Unprofitable Growth Stocks: Rule of 40, DCF & EV/Sales | KashVector</title>
+  <meta name="description" content="A plain-English guide to scoring and valuing pre-profit growth stocks — Rule of 40, cash runway, dilution, multi-stage DCF, and EV/Sales — with a worked Rocket Lab (RKLB) example.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Value a Growth Stock That Isn't Profitable Yet",
+    "datePublished": "2026-07-24",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/growth-stock-evaluator-guide/",
+    "description": "A plain-English guide to scoring and valuing pre-profit growth stocks — Rule of 40, cash runway, dilution, multi-stage DCF, and EV/Sales — with a worked Rocket Lab (RKLB) example."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why do Buffett, Graham, and DCF-style frameworks fail on growth companies?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Those frameworks assume a mature, cash-generative business — positive earnings, a sensible P/E, often a dividend, and free cash flow you can discount. A pre-profit growth company fails all of those by construction, regardless of how good the underlying business is. Scoring one against Buffett or Graham criteria mostly measures how far it is from being a mature company, not how well it is executing as a growth company. The Growth Stock Evaluator uses a different set of checks built for exactly this situation." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Rule of 40, and why does the number 40 matter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Rule of 40 is revenue growth % plus free cash flow margin % — if the total is 40 or higher, the company's growth is considered fast enough to justify how much cash it is burning. A company growing 60% while burning cash equal to 30% of revenue scores 30 and fails; a company growing 45% while burning only 5% scores 40 and passes. It is a widely used SaaS/software health check, not a KashVector invention, and it is one input among six, not a pass/fail gate on its own." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did Rocket Lab (RKLB) score 'Good Fit' on the scorecard but come back 'Deeply Overvalued' on both valuation models?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The scorecard and the valuation models answer different questions. The scorecard asks whether the business is executing well as a growth company — is it growing fast, is cash running low, is ownership being diluted. The DCF and EV/Sales models ask whether today's share price is already justified by a reasonable set of future assumptions. Rocket Lab can pass most of the operational checks while still trading at a price that assumes far more growth, or a far richer sales multiple, than the tool's seeded default assumptions produce. That gap is not a contradiction — it is the tool telling you the market is pricing in a more optimistic story than the defaults assume, which is exactly the kind of disagreement worth investigating rather than ignoring." }
+      },
+      {
+        "@type": "Question",
+        "name": "What's different about the multi-stage DCF compared to a normal DCF?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A standard DCF starts from today's free cash flow, which does not exist for a pre-profit company. The multi-stage DCF instead starts from revenue and a current (often negative) operating margin, then ramps that margin toward a target you set over a chosen number of years, before applying a terminal growth rate. It is a way to get a defensible valuation out of a business with no positive cash flow history, at the cost of resting on more assumptions than a normal DCF — the target margin and the number of years to reach it do most of the work." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool tell me whether to buy a growth stock like Rocket Lab?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. It produces a scorecard verdict (Strong Fit / Good Fit / Partial Fit / Poor Fit) describing how many growth-health checks a company passes, and separate valuation verdicts (from Deeply Undervalued to Deeply Overvalued) describing where the current price sits relative to a model built on assumptions you can edit. Neither is a recommendation to buy, hold, or sell. They are a structured way to see whether a company's growth looks healthy and whether its price already assumes a lot of future success — the investment decision, and the assumptions behind it, are still yours to make." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <h1>KashVector</h1>
+      <p>Australian financial calculators</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">How to Value a Growth Stock That Isn't Profitable Yet</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 24 Jul 2026 &nbsp;·&nbsp; 10 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <p>Run a company like Rocket Lab, Rivian, or Palantir through a traditional value-investing checklist and it fails almost everything on the list. No meaningful P/E, because there are no meaningful earnings. No dividend. Free cash flow that is negative, sometimes deeply so. A discounted cash flow model built for mature, cash-generative businesses doesn't just value these companies poorly — it can't value them at all, because the inputs it expects don't exist yet.</p>
+
+      <p>That doesn't mean the company is bad. It means the checklist is wrong for the job. The <strong>Growth Stock Evaluator</strong> uses a different set of checks, built specifically for companies that are still spending more than they earn in the hope of earning a lot more later. This article explains what each check measures, how the tool's two valuation models work, and walks through a live worked example — Rocket Lab (RKLB) — end to end, including what the numbers deliberately don't tell you.</p>
+
+      <div class="article-summary">
+        <p>The short version:</p>
+        <ul>
+          <li>Traditional scorers assume positive earnings and cash flow. Growth companies fail that by construction — a different scorecard is needed, not a harsher one.</li>
+          <li>The <strong>Growth Scorecard</strong> checks six things: Rule of 40, revenue growth, gross margin, cash runway, margin trajectory, and dilution.</li>
+          <li>Two independent valuation models — <strong>multi-stage DCF</strong> and <strong>EV/Sales</strong> — estimate a per-share value without needing positive free cash flow to start from.</li>
+          <li>The scorecard and the valuations can — and often do — disagree. That disagreement is informative, not a bug.</li>
+          <li>Every valuation output is a range built from assumptions you can edit, not a price target.</li>
+        </ul>
+      </div>
+
+      <h2>Why the usual checklists don't work here</h2>
+
+      <p>A Buffett-style scorecard checks things like return on equity, debt-to-equity, and a track record of rising earnings per share. A Graham-style scorecard wants a low P/E and P/B. A dividend discount model needs, at minimum, a dividend. All three assume the company has already found a profitable, repeatable way of making money and is simply continuing to do it.</p>
+
+      <p>A company still in its growth-investment phase — spending heavily on R&amp;D, sales capacity, or manufacturing scale-up before the revenue catches up — has none of that yet. Scoring it against those frameworks mostly measures the distance between "growth company" and "mature company," which every growth company fails by definition. The Growth Stock Evaluator instead asks growth-appropriate questions: is the growth fast enough to matter, is the cash burn sustainable, and is the business getting closer to or further from profitability.</p>
+
+      <h2>The Growth Scorecard: six checks</h2>
+
+      <p>Six criteria, each pass/fail against a fixed threshold (two are skipped rather than scored when they don't apply — skipped criteria are excluded from both the score and the maximum, so a company isn't penalised for a check that genuinely doesn't fit it).</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;">
+          <th style="padding:6px 8px;">Criterion</th><th style="padding:6px 8px;">Threshold</th><th style="padding:6px 8px;">What it's really asking</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Rule of 40</strong></td><td style="padding:6px 8px;">Growth % + FCF margin % ≥ 40</td><td style="padding:6px 8px;">Is growth fast enough to justify the cash being burned?</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Revenue growth</strong></td><td style="padding:6px 8px;">&gt; 20%</td><td style="padding:6px 8px;">Is this actually a growth company, or a slow one dressed up as one?</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Gross margin</strong></td><td style="padding:6px 8px;">&gt; 50%</td><td style="padding:6px 8px;">A proxy for software-like unit economics — structurally lower for hardware, auto, and retail, and the tool expects that.</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Cash runway</strong></td><td style="padding:6px 8px;">&gt; 24 months</td><td style="padding:6px 8px;">Months of cash left at the current burn rate before a capital raise or dilution becomes necessary. Skipped once free cash flow turns positive.</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Margin trajectory</strong></td><td style="padding:6px 8px;">Latest &gt; earliest</td><td style="padding:6px 8px;">Is operating margin improving year over year, or drifting further from breakeven?</td></tr>
+          <tr><td style="padding:6px 8px;"><strong>Dilution</strong></td><td style="padding:6px 8px;">Diluted shares growth ≤ 10%/yr</td><td style="padding:6px 8px;">How much of your ownership stake is being sold to new shareholders to fund the business?</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>The verdict — <strong>Strong Fit, Good Fit, Partial Fit,</strong> or <strong>Poor Fit</strong> — is the ratio of criteria passed to criteria scored, the same ratio-based convention used by the Buffett, Dalio, and Graham scorecards elsewhere on KashVector. It describes how healthy the growth looks by these six measures. It says nothing about price — that's a separate question, covered next.</p>
+
+      <h2>Worked example: Rocket Lab (RKLB)</h2>
+
+      <p>Rocket Lab builds and launches small orbital rockets and satellite components — a capital-intensive, pre-mature-profitability business, and a reasonable stress test for this tool. Here is its snapshot from the <a href="https://kashvector.com/growth/?ticker=RKLB" style="color:var(--kv-accent);">Growth Stock Evaluator</a> on 24 July 2026:</p>
+
+      <div style="margin:20px 0; padding:16px; border:1px solid var(--kv-border); border-radius:10px; background:var(--kv-card);">
+        <img src="rklb-summary.png" alt="Rocket Lab Corporation (RKLB) summary stats: price $69.99, market cap $43.73B, free cash flow -$215.0M, operating CF -$161.6M, revenue (TTM) $679.6M, revenue growth 63.5%, gross margin 36.6%, net debt -$1.24B, beta 2.55, EV/Revenue 57.77x, 52-week range $37.57-$151.00" style="width:100%; height:auto; display:block; border-radius:8px;">
+      </div>
+
+      <p>Free cash flow and operating cash flow are both negative — normal for a company still scaling manufacturing and launch cadence — but net debt is negative $1.24B, meaning the company sits on more cash than debt. Revenue is growing 63.5% year over year. That combination is exactly what the scorecard is built to evaluate.</p>
+
+      <div style="margin:20px 0; padding:16px; border:1px solid var(--kv-border); border-radius:10px; background:var(--kv-card);">
+        <img src="rklb-scorecard-valuation.png" alt="RKLB Growth Scorecard: Good Fit, 4 of 6 criteria passed. Rule of 40 31.9% fail, Revenue Growth 63.5% pass, Gross Margin 36.6% fail, Cash Runway 77 months pass, Operating Margin Trajectory -64.1% to -38.0% pass, Dilution 7.0% pass. Multi-Stage DCF: intrinsic value $15.37, -78.0% margin of safety, Deeply Overvalued. EV/Sales: intrinsic value $4.50, -93.6% margin of safety, Deeply Overvalued." style="width:100%; height:auto; display:block; border-radius:8px;">
+      </div>
+
+      <p><strong>Scorecard: Good Fit, 4 of 6.</strong> Revenue growth (63.5%), cash runway (77 months — over six years at the current burn rate), margin trajectory (operating margin narrowed from −64.1% to −38.0% between the earliest and latest fiscal years available), and dilution (7.0% annual share growth, under the 10% ceiling) all pass. Rule of 40 fails — free cash flow of −$215.0M on $679.6M revenue is a −31.6% FCF margin, and 63.5% growth + (−31.6%) FCF margin nets to 31.9%, short of the 40 bar, because the cash burn is still large relative to revenue. Gross margin (36.6%) also fails the 50% software-style bar, which is expected and noted in the tool itself: aerospace hardware businesses are structurally lower-margin than SaaS, and this criterion isn't recalibrated by sector.</p>
+
+      <p><strong>Multi-stage DCF: $15.37 intrinsic value, −78.0% margin of safety, Deeply Overvalued.</strong> The tool seeds the growth rate from RKLB's own trailing figure (63.5%), assumes operating margin ramps to a 20% target over 7 years, and applies a 2.5% terminal growth rate after that — all four are editable. Against a $69.99 share price, that produces a value less than a quarter of where the stock trades.</p>
+
+      <p><strong>EV/Sales: $4.50 intrinsic value, −93.6% margin of safety, Deeply Overvalued.</strong> RKLB currently trades at 57.77x revenue. The tool's sector-median starting multiple for Industrials is just 2x — nowhere close. Even allowing that Industrials is a broad bucket that undersells a space-launch company's growth profile, the gap between 2x and 57.77x is the entire story here.</p>
+
+      <h2>How the tool works: Multi-Stage DCF</h2>
+
+      <p>A standard DCF starts from today's free cash flow and discounts it forward. That collapses immediately for a company like RKLB, where free cash flow is negative. The multi-stage DCF instead starts from <strong>revenue</strong> and today's <strong>operating margin</strong> (however negative), then does four things:</p>
+
+      <ol style="margin:12px 0 12px 20px; color:var(--kv-text); line-height:1.7;">
+        <li>Grows revenue at your chosen rate for a set number of years (the <strong>ramp years</strong>).</li>
+        <li>Linearly improves operating margin from today's level toward a <strong>target operating margin</strong> you set, reaching it exactly at the end of the ramp.</li>
+        <li>Approximates free cash flow each year as revenue × margin × (1 − tax rate) — a simplified proxy, not a full cash-flow build.</li>
+        <li>Discounts everything back at a WACC computed automatically from CAPM (Yahoo's beta, a 4.5% risk-free rate, a 5.5% equity risk premium, blended with cost of debt) — this discount rate itself isn't a field you can override in this tool, only the four inputs above are.</li>
+      </ol>
+
+      <p>The result is one number, but it rests on two assumptions that matter more than anything else: the <strong>target margin</strong> (what this business looks like once mature) and the <strong>years to get there</strong>. Push either one out further or higher and the valuation climbs quickly — which is exactly why the tool shows those two fields as editable, not fixed.</p>
+
+      <p>There's a second, less obvious sensitivity worth naming: in a multi-stage growth DCF, the <strong>terminal value</strong> — everything after the ramp years — typically accounts for 70–80% or more of the total, since the explicit forecast is short relative to how long the business will actually operate. That means RKLB's $15.37 figure is driven far more by the terminal growth rate and the WACC than by any single year of the seven-year ramp — a small change in either moves the result by a lot more than intuition suggests.</p>
+
+      <h2>How the tool works: EV/Sales</h2>
+
+      <p>When there's no profit to apply a P/E-style multiple to, the standard fallback is to value the business as a multiple of revenue instead. Enterprise Value ÷ Sales (EV/Sales) is that multiple. The tool pre-fills a <strong>target multiple</strong> from a sector-median starting point — 6x for Technology, 4x for Healthcare, 2x for Industrials, and so on down to 1.5x for Basic Materials and Energy — labelled "auto" and always editable, because it's reference data, not KashVector's view of what any specific company deserves.</p>
+
+      <p>Implied enterprise value is revenue × target multiple; subtract debt and add back cash to get implied equity value; divide by shares outstanding for a per-share figure. It's the simplest model in the tool, and also the bluntest — it says nothing about margins, growth durability, or capital intensity, only "what would this be worth at a normal-for-its-sector sales multiple." That bluntness is a feature when you want a sanity check that doesn't depend on forecasting seven years of margin expansion.</p>
+
+      <h2>When the scorecard and the valuation disagree</h2>
+
+      <p>Rocket Lab's result is a useful illustration of something the tool is deliberately built to show: <strong>the scorecard and the two valuation models are never blended into one number.</strong> They answer different questions, and a healthy "Good Fit" alongside two "Deeply Overvalued" verdicts isn't a contradiction to explain away — it's the tool doing exactly its job.</p>
+
+      <p>The scorecard asks whether the business is executing well as a growth company: is revenue growing fast, is the cash burn survivable, is the ownership stake being diluted responsibly. RKLB passes most of that. The valuation models ask a completely separate question: does today's $69.99 share price already assume a future good enough to justify it, using the seeded default assumptions? On those defaults, no — not by a wide margin.</p>
+
+      <p>That gap doesn't mean the market is wrong and the model is right, or vice versa. It means the market is pricing in something more aggressive than "63.5% growth for 7 years, ramping to a 20% margin" or "2x sales" — plausibly a longer growth runway, a higher terminal margin, dominant market share in a category still being defined, or simply a bet that a broad Industrials-sector multiple understates what a space-launch company is worth. The tool's job stops at making that gap visible and quantifiable. Deciding whether the market's more optimistic story is one you believe is the part that stays entirely yours.</p>
+
+      <a class="article-cta" href="/growth/">
+        <span class="article-cta-label">Try it on your own stock</span>
+        <span class="article-cta-text">Run the same scorecard and dual valuation → Growth Stock Evaluator</span>
+      </a>
+
+      <h2>What this tool cannot tell you</h2>
+
+      <p>Every simplification below exists to make a pre-profit company valuable at all — the alternative is refusing to value it, which isn't more honest, just less useful. Knowing where the simplifications sit tells you where to apply your own judgement.</p>
+
+      <p><strong>The discount rate isn't yours to adjust.</strong> Unlike the KashVector DCF tool, WACC here is computed automatically from Yahoo's beta and fixed 4.5%/5.5% risk-free-rate and equity-risk-premium assumptions, with no international adjustment for non-US markets and no input field to override it. If you think RKLB's beta of 2.55 overstates or understates its real risk, the only way to express that view is indirectly, through the growth and margin inputs.</p>
+
+      <p><strong>Free cash flow is a proxy, not a forecast.</strong> Revenue × margin × (1 − tax) ignores capital expenditure and working-capital swings entirely. For a capital-intensive manufacturer scaling up a new product line — Rocket Lab's Neutron rocket is a good example — CapEx and inventory build can dwarf the operating loss itself, so the real cash burn can run well ahead of what an operating-margin proxy implies. The multi-stage model can end up looking more optimistic than the real-world cash position, especially in the earlier ramp years — exactly when a capital-intensive scale-up is spending the most.</p>
+
+      <p><strong>Dilution is scored, but not priced in.</strong> The scorecard checks whether shares outstanding are growing too fast, but the DCF divides by today's share count throughout the entire forecast. If a company keeps issuing 5–10% more shares every year to fund losses — as many pre-profit growth companies do — the true value per share a current holder ends up with is lower than the model shows, because the model never shrinks the ownership slice to account for it.</p>
+
+      <p><strong>Gross margin and Rule of 40 were built for software.</strong> Both travelled from the SaaS world, where 50%+ gross margins and near-zero marginal cost are normal. Hardware, aerospace, and industrial companies fail the 50% gross-margin bar structurally, not because they're worse businesses — the tool flags this in its own notes but doesn't recalibrate the threshold by sector, so read a gross-margin fail on a hardware company differently than the same fail on a software one.</p>
+
+      <p><strong>The EV/Sales starting multiple is a sector average, nothing more.</strong> A single number per GICS-style sector papers over enormous dispersion — the difference between a commodity industrial and a category-defining space company, both filed under "Industrials," is exactly the gap RKLB's example shows. Treat it as a floor to argue up from, not a fair-value estimate.</p>
+
+      <p><strong>Margin trajectory and dilution need two data points that don't always exist.</strong> Both read from Yahoo's multi-year fundamentals feed. For newly listed or thinly covered companies, that history can be short, missing, or non-consecutive — when it isn't available, the criterion shows "Skipped," not a fail, and the scorecard's maximum shrinks accordingly rather than penalising the stock for a data gap.</p>
+
+      <p><strong>The data itself is third-party and delayed.</strong> Every figure comes from Yahoo Finance, roughly 15 minutes behind live prices, with no accuracy guarantee. Treat every number as a starting point to verify, not a fact to build a decision on.</p>
+
+      <p>None of this is a recommendation to buy, hold, or sell anything — the tool's verdicts describe growth health and price-versus-assumptions, nothing more. Used well, it's a way to make your assumptions about a growth company's future explicit, and to see exactly how much the answer moves when you change them.</p>
+
+      <a class="article-cta" href="/growth/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Score and value a pre-profit growth stock → Growth Stock Evaluator</span>
+      </a>
+
+      <a class="article-cta" href="/dcf/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Once a company turns cash-flow positive, cross-check it → DCF Valuation</span>
+      </a>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. The Growth Stock Evaluator scores companies against fixed thresholds and values them using assumptions you provide, based on historical financial data that may be delayed or incomplete. Valuation models are highly sensitive to their inputs and do not predict future performance. Individual investment decisions depend on your financial situation, risk tolerance, timeline, and objectives. We recommend consulting a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Why do Buffett, Graham, and DCF-style frameworks fail on growth companies?</summary>
+          <p>Those frameworks assume a mature, cash-generative business — positive earnings, a sensible P/E, often a dividend, and free cash flow you can discount. A pre-profit growth company fails all of those by construction, regardless of how good the underlying business is. Scoring one against Buffett or Graham criteria mostly measures how far it is from being a mature company, not how well it is executing as a growth company. The Growth Stock Evaluator uses a different set of checks built for exactly this situation.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is the Rule of 40, and why does the number 40 matter?</summary>
+          <p>Rule of 40 is revenue growth % plus free cash flow margin % — if the total is 40 or higher, the company's growth is considered fast enough to justify how much cash it is burning. A company growing 60% while burning cash equal to 30% of revenue scores 30 and fails; a company growing 45% while burning only 5% scores 40 and passes. It is a widely used SaaS/software health check, not a KashVector invention, and it is one input among six, not a pass/fail gate on its own.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why did Rocket Lab (RKLB) score "Good Fit" on the scorecard but come back "Deeply Overvalued" on both valuation models?</summary>
+          <p>The scorecard and the valuation models answer different questions. The scorecard asks whether the business is executing well as a growth company — is it growing fast, is cash running low, is ownership being diluted. The DCF and EV/Sales models ask whether today's share price is already justified by a reasonable set of future assumptions. Rocket Lab can pass most of the operational checks while still trading at a price that assumes far more growth, or a far richer sales multiple, than the tool's seeded default assumptions produce. That gap is not a contradiction — it is the tool telling you the market is pricing in a more optimistic story than the defaults assume, which is exactly the kind of disagreement worth investigating rather than ignoring.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What's different about the multi-stage DCF compared to a normal DCF?</summary>
+          <p>A standard DCF starts from today's free cash flow, which does not exist for a pre-profit company. The multi-stage DCF instead starts from revenue and a current (often negative) operating margin, then ramps that margin toward a target you set over a chosen number of years, before applying a terminal growth rate. It is a way to get a defensible valuation out of a business with no positive cash flow history, at the cost of resting on more assumptions than a normal DCF — the target margin and the number of years to reach it do most of the work.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does this tool tell me whether to buy a growth stock like Rocket Lab?</summary>
+          <p>No. It produces a scorecard verdict (Strong Fit / Good Fit / Partial Fit / Poor Fit) describing how many growth-health checks a company passes, and separate valuation verdicts (from Deeply Undervalued to Deeply Overvalued) describing where the current price sits relative to a model built on assumptions you can edit. Neither is a recommendation to buy, hold, or sell. They are a structured way to see whether a company's growth looks healthy and whether its price already assumes a lot of future success — the investment decision, and the assumptions behind it, are still yours to make.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>
