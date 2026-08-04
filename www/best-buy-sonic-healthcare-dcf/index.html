@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1120">
+  <title>DCF Valuation Guide: A Walkthrough With Best Buy and Sonic Healthcare | KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/best-buy-sonic-healthcare-dcf/">
+  <meta property="og:title" content="DCF Valuation Guide: A Walkthrough With Best Buy and Sonic Healthcare | KashVector">
+  <meta property="og:description" content="The exact DCF inputs and output for Best Buy (BBY) and Sonic Healthcare (SHL.AX) — free cash flow, WACC build, growth assumptions, and Bear/Base/Bull results, number by number.">
+  <meta property="og:url" content="https://kashvector.com/articles/best-buy-sonic-healthcare-dcf/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KashVector — free stock valuation tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DCF Valuation Guide: A Walkthrough With Best Buy and Sonic Healthcare | KashVector">
+  <meta name="twitter:description" content="The exact DCF inputs and output for Best Buy (BBY) and Sonic Healthcare (SHL.AX) — free cash flow, WACC build, growth assumptions, and Bear/Base/Bull results, number by number.">
+  <meta name="twitter:image" content="https://kashvector.com/og-image.png">
+  <meta name="description" content="The exact DCF inputs and output for Best Buy (BBY) and Sonic Healthcare (SHL.AX) — free cash flow, WACC build, growth assumptions, and Bear/Base/Bull results, number by number.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "DCF Valuation Guide: A Walkthrough With Best Buy and Sonic Healthcare",
+    "datePublished": "2026-08-04",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/best-buy-sonic-healthcare-dcf/",
+    "description": "The exact DCF inputs and output for Best Buy (BBY) and Sonic Healthcare (SHL.AX) — free cash flow, WACC build, growth assumptions, and Bear/Base/Bull results, number by number."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this article a recommendation to buy Best Buy or Sonic Healthcare?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Every figure here is mechanical output from running each company's cash flows through a Discounted Cash Flow formula — it is not a view on either company's news, management, or competitive position, and it is not a signal to act on either stock. See the tool's own scenario range and the Not Financial Advice notice for why a single output should never be read as a target." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why were Best Buy and Sonic Healthcare picked for this article?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Both currently sit on KashVector's live \"Most Undervalued\" screens, and both have been on those screens for over five weeks — long enough to show what happened to price since they were first flagged, using real, checkable dates rather than a hand-picked snapshot." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a stock's price moving toward the DCF's call prove the model works?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Two stocks moving in the flagged direction over five to six weeks is not evidence of anything — it is two data points, in a period when broader equity markets were also generally rising, and it says nothing about whether the same call on the next flagged stock, or on either of these stocks over a longer horizon, plays out the same way." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does \"terminal value over 70%\" mean for these two stocks?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It means more than 70% of each stock's calculated intrinsic value comes from the perpetuity assumption beyond the five-year forecast, not from the forecast itself. That makes the terminal growth rate — 2.5% for both, in line with long-run economic growth — the single most sensitive input in both valuations." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <div class="site-wordmark"><span class="logo-kash">Kash</span><span class="logo-vector">Vector</span></div>
+      <p class="motto">Vector to Financial Growth</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">DCF Valuation Guide: A Walkthrough With Best Buy and Sonic Healthcare</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 4 August 2026 &nbsp;·&nbsp; 6 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <div class="article-play-callout">
+        <span class="article-play-callout-text">📱 Prefer this on your phone? Get the free Android app.</span>
+        <a href="https://play.google.com/store/apps/details?id=com.stockeval.app" target="_blank" rel="noopener" aria-label="Get Stock Evaluator on Google Play">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+        </a>
+      </div>
+
+      <p><strong>Every number below is mechanical output</strong> — the KashVector DCF tool's free cash flow, discount rate, and growth inputs run through a fixed formula, not an opinion on either company's news, management, or competitive position. This article walks through those inputs and the resulting output for two real stocks, pulled live from the tool on 4 August 2026. It is not a recommendation on either stock.</p>
+
+      <div class="article-summary">
+        <p>The short version:</p>
+        <ul>
+          <li><strong>Best Buy (BBY)</strong> — Base case intrinsic value $129.84 vs a $85.25 price, a 52.3% margin of safety.</li>
+          <li><strong>Sonic Healthcare (SHL.AX)</strong> — Base case intrinsic value A$34.06 vs an A$22.09 price, a 54.2% margin of safety.</li>
+          <li>Both have sat on KashVector's live "Most Undervalued" screens for 5–6 weeks, and both are up roughly 10% since first flagged — reported below as a fact, not as evidence the model works.</li>
+          <li>In both cases, <strong>more than 70% of the valuation is terminal value</strong> — the 2.5% terminal growth assumption matters more than the 5-year forecast itself.</li>
+        </ul>
+      </div>
+
+      <h2>Both are still sitting on the live screens</h2>
+
+      <p>Best Buy first appeared on the S&amp;P 500 "Most Undervalued" screen on 26 June 2026, priced at $76.89. Today it's $85.25 — up 10.9% over 39 days. Sonic Healthcare first appeared on the ASX 300 screen on 19 June 2026, priced at A$20.05. Today it's A$22.09 — up 10.2% over 46 days.</p>
+
+      <p>Two stocks, two price moves in the direction each DCF flagged, over five to six weeks. <strong>That is not evidence the model works.</strong> It's two data points, in a period when broader equity markets were also generally rising. The tool's own output reports expected annualised return over 1, 3, and 5 years, never over six weeks — so a short-term move toward the flagged value isn't something the model even claims to predict, and it says nothing about whether the same call on the next flagged stock plays out the same way. Nothing that follows is a signal to act on either stock, now or going forward.</p>
+
+      <h2>The company snapshot</h2>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;">
+          <th style="padding:6px 8px;"></th><th style="padding:6px 8px;">Best Buy (BBY)</th><th style="padding:6px 8px;">Sonic Healthcare (SHL.AX)</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Sector</td><td style="padding:6px 8px;">Consumer Cyclical · Specialty Retail</td><td style="padding:6px 8px;">Healthcare · Diagnostics &amp; Research</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Price</td><td style="padding:6px 8px;">$85.25</td><td style="padding:6px 8px;">A$22.09</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Market cap</td><td style="padding:6px 8px;">$17.97B</td><td style="padding:6px 8px;">A$10.92B</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Free cash flow (TTM)</td><td style="padding:6px 8px;">$1.14B</td><td style="padding:6px 8px;">A$597.8M</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Revenue (TTM)</td><td style="padding:6px 8px;">$41.86B</td><td style="padding:6px 8px;">A$10.42B</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Revenue growth</td><td style="padding:6px 8px;">1.9%</td><td style="padding:6px 8px;">16.6%</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Net debt</td><td style="padding:6px 8px;">$2.23B</td><td style="padding:6px 8px;">A$5.39B</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Beta</td><td style="padding:6px 8px;">1.32</td><td style="padding:6px 8px;">0.59</td></tr>
+          <tr><td style="padding:6px 8px;">P/E (TTM)</td><td style="padding:6px 8px;">15.8x</td><td style="padding:6px 8px;">19.9x</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h2>Building the discount rate</h2>
+
+      <p>Both companies use standard DCF (neither is a bank or insurer). The discount rate — WACC — is built the same way for both: cost of equity via CAPM, blended with an estimated cost of debt, weighted by each company's own capital structure.</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;">
+          <th style="padding:6px 8px;"></th><th style="padding:6px 8px;">Best Buy (BBY)</th><th style="padding:6px 8px;">Sonic Healthcare (SHL.AX)</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Risk-free rate</td><td style="padding:6px 8px;">4.75% (US 10-yr Treasury)</td><td style="padding:6px 8px;">4.80% (AU 10-yr Govt Bond)</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Beta</td><td style="padding:6px 8px;">1.32</td><td style="padding:6px 8px;">0.59</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Equity risk premium</td><td style="padding:6px 8px;">5.50%</td><td style="padding:6px 8px;">6.00%</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Cost of equity</strong></td><td style="padding:6px 8px;"><strong>11.99%</strong></td><td style="padding:6px 8px;"><strong>8.33%</strong></td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Cost of debt (pre-tax, est.)</td><td style="padding:6px 8px;">5.00%</td><td style="padding:6px 8px;">5.00%</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Tax rate (est.)</td><td style="padding:6px 8px;">25%</td><td style="padding:6px 8px;">25%</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Capital structure (equity/debt)</td><td style="padding:6px 8px;">81% / 19%</td><td style="padding:6px 8px;">65% / 35%</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Calculated WACC (Base)</strong></td><td style="padding:6px 8px;"><strong>10.45%</strong></td><td style="padding:6px 8px;"><strong>6.72%</strong></td></tr>
+          <tr><td style="padding:6px 8px;">Sector reference range</td><td style="padding:6px 8px;">7.5–8.5% (Retail &amp; Apparel)</td><td style="padding:6px 8px;">8.5–10.0% (Healthcare &amp; Biotech)</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>The two WACCs land on opposite sides of their sector reference ranges, for opposite mechanical reasons. Best Buy's 10.45% sits <em>above</em> its 7.5–8.5% retail range — its beta of 1.32 pushes cost of equity to 11.99%, and a light 19% debt weighting doesn't pull the blend down much. Sonic Healthcare's 6.72% sits <em>below</em> its 8.5–10.0% healthcare range — its beta of 0.59 keeps cost of equity to 8.33%, and a heavier 35% debt weighting (debt is cheaper than equity here) pulls the blended rate down further still.</p>
+
+      <h2>The scenarios and the output</h2>
+
+      <p>Both run a 5-year projection with a 2.5% terminal growth rate in every scenario. Growth and WACC move together across Bear/Base/Bull — lower growth pairs with a higher discount rate, higher growth with a lower one.</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;">
+          <th style="padding:6px 8px;">Best Buy (BBY) — price $85.25</th><th style="padding:6px 8px;">Growth</th><th style="padding:6px 8px;">WACC</th><th style="padding:6px 8px;">Intrinsic</th><th style="padding:6px 8px;">vs price</th><th style="padding:6px 8px;">Verdict</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Bear</td><td style="padding:6px 8px;">9.9%</td><td style="padding:6px 8px;">11.45%</td><td style="padding:6px 8px;">$73.38</td><td style="padding:6px 8px;">-13.9%</td><td style="padding:6px 8px;">Fairly Valued</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Base</td><td style="padding:6px 8px;">19.9%</td><td style="padding:6px 8px;">10.45%</td><td style="padding:6px 8px;">$129.84</td><td style="padding:6px 8px;">+52.3%</td><td style="padding:6px 8px;">Undervalued</td></tr>
+          <tr><td style="padding:6px 8px;">Bull</td><td style="padding:6px 8px;">29.8%</td><td style="padding:6px 8px;">9.45%</td><td style="padding:6px 8px;">$223.74</td><td style="padding:6px 8px;">+162.5%</td><td style="padding:6px 8px;">Undervalued</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div style="overflow-x:auto; margin-top:8px;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;">
+          <th style="padding:6px 8px;">Sonic Healthcare (SHL.AX) — price A$22.09</th><th style="padding:6px 8px;">Growth</th><th style="padding:6px 8px;">WACC</th><th style="padding:6px 8px;">Intrinsic</th><th style="padding:6px 8px;">vs price</th><th style="padding:6px 8px;">Verdict</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Bear</td><td style="padding:6px 8px;">6.2%</td><td style="padding:6px 8px;">7.72%</td><td style="padding:6px 8px;">A$17.01</td><td style="padding:6px 8px;">-23.0%</td><td style="padding:6px 8px;">Overvalued</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Base</td><td style="padding:6px 8px;">12.3%</td><td style="padding:6px 8px;">6.72%</td><td style="padding:6px 8px;">A$34.06</td><td style="padding:6px 8px;">+54.2%</td><td style="padding:6px 8px;">Undervalued</td></tr>
+          <tr><td style="padding:6px 8px;">Bull</td><td style="padding:6px 8px;">18.5%</td><td style="padding:6px 8px;">5.72%</td><td style="padding:6px 8px;">A$65.84</td><td style="padding:6px 8px;">+198.0%</td><td style="padding:6px 8px;">Undervalued</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Note the spread: Best Buy's Bear case (-13.9%) lands inside the tool's Fairly Valued band, while Sonic Healthcare's Bear case (-23.0%) falls outside it into Overvalued. Only the Base and Bull cases agree with the "undervalued" read for both — the Bear case is where the two stocks actually disagree.</p>
+
+      <h2>Where most of the number comes from</h2>
+
+      <p>For both stocks, the tool flags <strong>terminal value over 70%</strong> of the total intrinsic value. That means the majority of both figures rests on a single assumption — cash flows growing at 2.5% forever after year five — not on the five-year forecast itself. A 2.5% terminal rate is in line with long-run economic growth, which is the standard sanity check for that input; the tool would flag a value of 4–5% as implying the company outgrows the entire economy indefinitely. Both scenarios pass that check, but it's worth naming explicitly, since it means the 5-year growth assumptions in the table above — however different they look between Bear, Base, and Bull — are doing less work than the fixed 2.5% figure repeated in every row.</p>
+
+      <a class="article-cta" href="/dcf/">
+        <span class="article-cta-label">Try it yourself</span>
+        <span class="article-cta-text">Run the same DCF on any ticker → Discounted Cash Flow Calculator</span>
+      </a>
+
+      <p>For the full mechanics behind every number above — how free cash flow is derived, why WACC is built the way it is, and when the tool switches to the Dividend Discount Model instead — see the companion explainer:</p>
+      <ul>
+        <li><a href="/articles/dcf-ddm-stock-valuation/" style="color:var(--kv-accent);">How to Value a Stock: DCF and the Dividend Discount Model →</a></li>
+        <li><a href="/dcf/sp500-undervalued/" style="color:var(--kv-accent);">Most Undervalued S&amp;P 500 Stocks →</a> — where Best Buy currently ranks</li>
+        <li><a href="/dcf/asx-undervalued/" style="color:var(--kv-accent);">Most Undervalued ASX 300 Stocks →</a> — where Sonic Healthcare currently ranks</li>
+      </ul>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. The figures above are the Discounted Cash Flow Calculator's output from the assumptions shown, using historical financial data that may be delayed or incomplete. Valuation models are highly sensitive to their inputs and do not predict future performance, and a stock's past price movement — including the moves reported in this article — is not an indicator of future results. Individual investment decisions depend on your financial situation, risk tolerance, timeline, and objectives. We recommend consulting a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Is this article a recommendation to buy Best Buy or Sonic Healthcare?</summary>
+          <p>No. Every figure here is mechanical output from running each company's cash flows through a Discounted Cash Flow formula — it is not a view on either company's news, management, or competitive position, and it is not a signal to act on either stock.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why were Best Buy and Sonic Healthcare picked for this article?</summary>
+          <p>Both currently sit on KashVector's live "Most Undervalued" screens, and both have been on those screens for over five weeks — long enough to show what happened to price since they were first flagged, using real, checkable dates rather than a hand-picked snapshot.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does a stock's price moving toward the DCF's call prove the model works?</summary>
+          <p>No. Two stocks moving in the flagged direction over five to six weeks is not evidence of anything — it is two data points, in a period when broader equity markets were also generally rising, and it says nothing about whether the same call on the next flagged stock, or on either of these stocks over a longer horizon, plays out the same way.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What does "terminal value over 70%" mean for these two stocks?</summary>
+          <p>It means more than 70% of each stock's calculated intrinsic value comes from the perpetuity assumption beyond the five-year forecast, not from the forecast itself. That makes the terminal growth rate — 2.5% for both, in line with long-run economic growth — the single most sensitive input in both valuations.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>

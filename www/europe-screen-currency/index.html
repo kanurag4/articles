@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1120">
+  <title>Pence, Euros and One Portfolio: How the Europe Undervalued Screen Works — KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/europe-screen-currency/">
+  <meta property="og:title" content="Pence, Euros and One Portfolio: How the Europe Undervalued Screen Works — KashVector">
+  <meta property="og:description" content="How can one screen rank UK and eurozone stocks together when they trade in different currencies — and London quotes in pence? Inside the ranking, the FX handling, and the €10,000 paper portfolio.">
+  <meta property="og:url" content="https://kashvector.com/articles/europe-screen-currency/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KashVector — free stock valuation tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pence, Euros and One Portfolio: How the Europe Undervalued Screen Works — KashVector">
+  <meta name="twitter:description" content="How can one screen rank UK and eurozone stocks together when they trade in different currencies — and London quotes in pence? Inside the ranking, the FX handling, and the €10,000 paper portfolio.">
+  <meta name="twitter:image" content="https://kashvector.com/og-image.png">
+  <meta name="description" content="How can one screen rank UK and eurozone stocks side by side when London quotes in pence and Frankfurt in euros? Inside the Europe undervalued screen's currency handling. Free, no sign-up.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <style>
+    /* High-contrast green for inline body links (default UA blue/visited-purple is hard to read).
+       Scoped to this article; excludes the .article-cta button blocks. */
+    .article-body a:not(.article-cta),
+    .article-body a:not(.article-cta):visited { color: #34d399; text-decoration: none; }
+    .article-body a:not(.article-cta):hover { color: #6ee7b7; text-decoration: underline; }
+    html:not(.dark) .article-body a:not(.article-cta),
+    html:not(.dark) .article-body a:not(.article-cta):visited { color: #15803d; }
+    html:not(.dark) .article-body a:not(.article-cta):hover { color: #166534; }
+
+    /* Data tables — this article shows the exchange mix and the screening funnel.
+       Wrapper scrolls horizontally on narrow screens so the page body never does. */
+    .article-table-wrap { overflow-x: auto; margin: 20px 0; }
+    .article-table {
+      width: 100%; min-width: 420px; border-collapse: collapse;
+      font-size: 0.85rem; font-variant-numeric: tabular-nums;
+    }
+    .article-table caption {
+      caption-side: bottom; text-align: left; padding-top: 8px;
+      font-size: 0.78rem; color: var(--kv-muted); font-style: italic;
+    }
+    .article-table th, .article-table td {
+      padding: 7px 10px; text-align: left;
+      border-bottom: 1px solid var(--kv-border);
+    }
+    .article-table thead th {
+      color: var(--kv-text); font-weight: 700; font-size: 0.78rem;
+      text-transform: uppercase; letter-spacing: 0.03em;
+      border-bottom: 1px solid var(--kv-accent);
+    }
+    .article-table td { color: var(--kv-muted); }
+    .article-table td:first-child { color: var(--kv-text); font-weight: 500; }
+    .article-table .num { text-align: right; }
+    .article-table tbody tr:last-child td { border-bottom: none; }
+
+    /* Inline code for tickers / currency codes */
+    .article-body code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.88em; padding: 1px 5px; border-radius: 4px;
+      background: var(--kv-card-2); border: 1px solid var(--kv-border);
+      color: var(--kv-text);
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Pence, Euros and One Portfolio: How the Europe Undervalued Screen Works",
+    "datePublished": "2026-08-03",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/europe-screen-currency/",
+    "description": "How KashVector's Europe undervalued screen ranks UK and eurozone stocks side by side, why ranking needs no currency conversion, and how the €10,000 paper portfolio handles pence, pounds and euros."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why are UK stock prices quoted in pence, not pounds?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is a London Stock Exchange convention that dates back to pre-decimal sterling. Most UK-listed shares are quoted in pence, so a price of 650 means £6.50, not £650. Data providers label this currency GBp (lowercase p) to distinguish it from GBP. Any calculation that treats a GBp price as pounds will be wrong by a factor of 100." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does ranking UK and eurozone stocks together require a currency conversion?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The screen ranks by margin of safety — the gap between estimated intrinsic value and current price, expressed as a percentage. Both numbers are in the same currency for any given stock, so the currency cancels out and the result is a dimensionless ratio. A 40% margin of safety means the same thing whether the stock trades in pence, euros or anything else." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which currency does the Europe paper portfolio use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Euros. The simulated portfolio starts at €10,000 and is always reported in euros, regardless of which stock currently ranks first. UK holdings are converted from pence into euros at the live GBP/EUR rate purely for the purposes of pooling them into a single figure — the ranking table itself always shows each stock in its own native currency." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the screen use a fixed risk-free rate for the UK and eurozone?",
+        "acceptedAnswer": { "@type": "Answer", "text": "There is no reliable live 10-year Gilt or Bund yield ticker available through the data source the screen uses, which is the same situation as the Korean and Japanese screens. The UK uses a fixed 5.0% Gilt-proxy rate and the eurozone a 3.2% Bund-proxy rate, both spot-checked when the screen launched. These are point-in-time estimates and will drift stale as rates move, which is one more reason to treat the output as a starting point rather than a conclusion." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the Europe screen track a real European stock index?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. There is no single published index covering exactly the eurozone plus the UK at this scale, so the 200-name universe is hand-assembled from national blue-chip indices — the full FTSE 100, DAX 40 and CAC 40, backfilled with the largest names from the AEX, FTSE MIB, IBEX 35, BEL 20, ISEQ 20, ATX, OMX Helsinki 25 and PSI-20. Switzerland, Norway, Sweden, Denmark and Poland are deliberately out of scope." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="home-logo" aria-label="All KashVector tools">
+      <img src="/logo.svg" alt="KashVector" width="32" height="32">
+      <span class="home-logo-label">← All tools</span>
+    </a>
+    <div class="app-header-center">
+      <div class="site-wordmark"><span class="logo-kash">Kash</span><span class="logo-vector">Vector</span></div>
+      <p class="motto">Vector to Financial Growth</p>
+    </div>
+    <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
+  </header>
+
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">Pence, Euros and One Portfolio: How the Europe Undervalued Screen Works</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 3 August 2026 &nbsp;·&nbsp; 6 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <div class="article-play-callout">
+        <span class="article-play-callout-text">📱 Prefer this on your phone? Get the free Android app.</span>
+        <a href="https://play.google.com/store/apps/details?id=com.stockeval.app" target="_blank" rel="noopener" aria-label="Get Stock Evaluator on Google Play">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+        </a>
+      </div>
+
+      <div class="article-summary">
+        <p>Most people say "European stocks" as if that were one market with one currency. It isn't. The <a href="/dcf/europe-undervalued/">Most Undervalued Europe</a> screen spans <strong>eleven stock exchanges across two currency regimes</strong> — and London, awkwardly, doesn't quote in pounds at all. Here's how one ranking holds all of that together, and the one place where the currency genuinely has to be dealt with.</p>
+      </div>
+
+      <p>The other five screens each live in a single market and a single currency — the <a href="/dcf/asx-undervalued/">ASX 300</a> in Australian dollars, the <a href="/dcf/sp500-undervalued/">S&amp;P 500</a> in US dollars, the <a href="/dcf/nifty-undervalued/">NIFTY 500</a> in rupees — and never need to ask what a number is denominated in. Europe breaks that assumption. What follows is how the ranking stays currency-free, the one place conversion <em>is</em> unavoidable, and what the resulting list actually tells you about where value sits in Europe right now.</p>
+
+      <h2>What the screen actually covers</h2>
+
+      <p>The universe is <strong>200 companies across 11 exchanges</strong>, spanning the eurozone and the United Kingdom. Roughly half of it is London-listed:</p>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Exchange mix of the 200-name Europe universe, as at 3 August 2026.</caption>
+          <thead>
+            <tr><th>Exchange</th><th>Suffix</th><th class="num">Names</th><th>Currency</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>London</td><td><code>.L</code></td><td class="num">100</td><td>GBp (pence)</td></tr>
+            <tr><td>Frankfurt / XETRA</td><td><code>.DE</code></td><td class="num">39</td><td>EUR</td></tr>
+            <tr><td>Paris</td><td><code>.PA</code></td><td class="num">39</td><td>EUR</td></tr>
+            <tr><td>Amsterdam</td><td><code>.AS</code></td><td class="num">6</td><td>EUR</td></tr>
+            <tr><td>Madrid</td><td><code>.MC</code></td><td class="num">5</td><td>EUR</td></tr>
+            <tr><td>Milan</td><td><code>.MI</code></td><td class="num">4</td><td>EUR</td></tr>
+            <tr><td>Brussels</td><td><code>.BR</code></td><td class="num">2</td><td>EUR</td></tr>
+            <tr><td>Dublin</td><td><code>.IR</code></td><td class="num">2</td><td>EUR</td></tr>
+            <tr><td>Vienna</td><td><code>.VI</code></td><td class="num">1</td><td>EUR</td></tr>
+            <tr><td>Helsinki</td><td><code>.HE</code></td><td class="num">1</td><td>EUR</td></tr>
+            <tr><td>Lisbon</td><td><code>.LS</code></td><td class="num">1</td><td>EUR</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>An honest disclosure:</strong> unlike the ASX 300 or Nikkei 225 — real indices someone else maintains — no single published index covers "the eurozone plus the UK" at this scale. This universe is <strong>hand-assembled</strong>: the full FTSE 100, DAX 40 and CAC 40, backfilled with the largest names from the AEX, FTSE MIB, IBEX 35, BEL 20, ISEQ 20, ATX, OMX Helsinki 25 and PSI-20. Switzerland, Norway, Sweden, Denmark and Poland are excluded — European, but neither the eurozone nor the UK, and each would add another currency regime for little gain. The screen is called "Europe" because that's what people search for; it is not a replica of any real index.</p>
+
+      <h2>The pence problem</h2>
+
+      <div class="article-summary">
+        <p><strong>London quotes most shares in pence, not pounds.</strong> A UK stock showing a price of <code>650</code> is trading at <strong>£6.50</strong>, not £650. This is a leftover convention from pre-decimal sterling that simply never went away. Data providers flag it with a distinct currency code — <code>GBp</code>, with a lowercase <em>p</em> — as opposed to <code>GBP</code> for pounds.</p>
+      </div>
+
+      <p>The two codes differ by a single character and by a factor of one hundred. Any calculation that reads <code>GBp</code> and treats it as pounds will be wrong by 100× — and, the dangerous part, wrong <em>silently</em>. Nothing crashes; you simply get a plausible-looking number that is completely false. Half of this screen's universe is quoted this way, so getting it right wasn't optional.</p>
+
+      <h2>Why the ranking itself needs no currency at all</h2>
+
+      <p>Now the part that makes the whole thing tractable. The screen ranks by <strong>margin of safety</strong>: how far below its estimated intrinsic value a stock trades, as a percentage. Both halves of that — the intrinsic value from the <a href="/dcf/">DCF</a> or dividend discount model, and the market price — are in the <em>same</em> currency for any given stock. Divide one by the other and the currency cancels out.</p>
+
+      <div class="article-summary">
+        <p>A <strong>40% margin of safety</strong> means the same thing in pence, euros or yen. It is dimensionless. So a French stock at 55% and a British stock at 45% rank against each other directly, with <strong>no conversion whatsoever</strong> — and no stale or wrong exchange rate can corrupt the ranking, because none is ever consulted. Converting everything up front instead would have injected an FX dependency into the one part of the system with no business having one.</p>
+      </div>
+
+      <h2>The one place conversion is unavoidable</h2>
+
+      <p>Every undervalued screen carries a <a href="/articles/paper-portfolio-tracker/">simulated paper portfolio</a> — a hypothetical stake spread equally across the list, rebalanced each time the screen refreshes. On the Europe screen that stake is <strong>€10,000</strong>, and <em>that</em> has to be one number in one currency: you cannot add a position denominated in pence to one denominated in euros and get anything meaningful. So conversion happens in exactly one place — the moment the portfolio rebalances — and nowhere else on the page.</p>
+
+      <p>The screen rebalances <strong>weekly</strong>, and we intend to keep following this exact list — same rules, same €10,000 starting stake, no cherry-picking — against the <strong>STOXX Europe 600</strong> as the benchmark. A handful of weeks tells you nothing; the question worth answering is whether patiently buying what a conservative DCF or DDM calls cheap actually beats simply owning the broad index over years, not whether it looks good on any given Monday.</p>
+
+      <h2>Two exchange rates, not one</h2>
+
+      <p>The obvious approach — grab today's GBP/EUR rate, convert every UK holding, done — is wrong, and the reason is the design decision worth the most attention here. Between two rebalances, a UK holding's contribution to a euro-denominated pool changes for <strong>two independent reasons</strong>:</p>
+
+      <ul>
+        <li>the stock's own price moved, in pence; <em>and</em></li>
+        <li>the pound itself moved against the euro.</li>
+      </ul>
+
+      <p>A single-rate conversion captures only the first. Convert both last period's and this period's holdings at today's rate and the currency movement mathematically cancels out — you'd report the stock's local-currency return while presenting it as a euro return. That is not what actually happened to a euro-based investor's money: they earned whatever the stock did in its own market, <em>and</em> whatever sterling did against the euro while they held it. Global fund fact sheets routinely split "local return" from "currency return" apart for exactly this reason — the two can point in opposite directions.</p>
+
+      <div class="article-summary">
+        <p><strong>The fix:</strong> convert last period's holdings at <strong>last period's</strong> exchange rate — persisted alongside the rankings for exactly this purpose — and this period's holdings at <strong>this period's fresh rate</strong>. The fact that the two rates differ isn't an inconvenience to smooth away; it <em>is</em> the currency return, and it belongs in the result.</p>
+      </div>
+
+      <h2>Dividends are income, and income has a currency too</h2>
+
+      <p>The paper portfolio credits <strong>real dividends</strong> paid by its holdings, not just price movement — which matters more here than on the other five screens. Six of the twenty stocks that currently qualify are banks and insurers valued by <strong>dividend discount model</strong>, meaning the entire investment case for holding them <em>is</em> the dividend, not price appreciation. A screen that only tracked price return would be quietly ignoring the return those six names are actually built to deliver.</p>
+
+      <div class="article-summary">
+        <p>Counting dividends properly means treating them as income in their own currency, exactly like the share price — a UK dividend is declared in pence and needs the <em>same</em> GBP/EUR rate applied to it as the position it came from. Using a different rate for the income than for the capital would decouple a stock's yield from its price, misstating the very number a DDM valuation is built around. The same currency risk that applies to a capital gain applies to the dividend it's paired with — it's easy to account for one and forget the other.</p>
+      </div>
+
+      <h2>What the valuation mix tells you</h2>
+
+      <p>Past the mechanics, the 20 names that currently qualify say something about where value sits in Europe right now.</p>
+
+      <p><strong>Discount rates on individual names range from 5.0% to 8.9% WACC</strong> — wider than the region-level 3.2%/5.0% risk-free split alone suggests. Banks and insurers sit highest (BNP Paribas at 8.9%, Hannover Rück at 5.9%): funding-dependent balance sheets and regulatory capital carry a structurally higher cost of capital than an industrial or consumer-staples name with predictable, contract-backed cash flow. A wide margin of safety cleared against a high hurdle rate is a stronger signal than the same margin cleared against a low one.</p>
+
+      <p><strong>Terminal value dominates the DCF names</strong> — <strong>73% to 87%</strong> of estimated intrinsic value comes from cash flows <em>beyond</em> the explicit forecast horizon, not the near-term numbers the model can actually pin down, but a perpetuity built on one terminal growth assumption. That's a standing criticism of DCF generally, not a defect of this screen: nudge the terminal growth rate half a point and the "cheap" verdict can move a long way, which is exactly why the <a href="/dcf/">DCF calculator</a> exposes that assumption for you to stress-test rather than burying it.</p>
+
+      <p><strong>The list is concentrated, not diversified</strong> — eight of the twenty qualifying names, 40%, are Financial Services. That reflects where cheap valuations currently sit rather than a deliberate sector call, but it means the paper portfolio illustrates the screen's output, not a template for a diversified European allocation. Treat the list as a shortlist to research individually, not a ready-made basket.</p>
+
+      <h2>Two currencies on the same page, deliberately</h2>
+
+      <p>Each <strong>row</strong> in the ranking table shows its own native currency — <code>p</code> for a UK stock, <code>€</code> for a eurozone one, never converted — while the <strong>portfolio total</strong> is always <code>€</code>. That looks inconsistent and is intentional: a row should match what you'd see looking the stock up anywhere else, whereas the portfolio <em>is</em> a euro pool by definition.</p>
+
+      <p>The second half needed a specific fix. The instinctive way to pick the portfolio's currency symbol is to read it off the top-ranked stock — which would make the total flicker between <code>p</code> and <code>€</code> week to week depending on which company happened to rank first. The pool's currency has nothing to do with the leaderboard.</p>
+
+      <h2>Discount rates: fixed, and honestly so</h2>
+
+      <p>Every DCF needs a risk-free rate. The Australian, US and Indian screens fetch theirs live from a government bond yield. For the UK and the eurozone, no reliable live 10-year Gilt or Bund yield ticker is available through the data source the screens use — the same situation Korea and Japan already faced. So these are fixed constants:</p>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Valuation seeds by region, as at 3 August 2026. Users can override every one of these in the live DCF tool.</caption>
+          <thead>
+            <tr><th>Region</th><th class="num">Risk-free rate</th><th class="num">Equity risk premium</th><th class="num">Terminal growth</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>United Kingdom</td><td class="num">5.0% <span style="opacity:.7">(Gilt proxy)</span></td><td class="num">6.0%</td><td class="num">2.0%</td></tr>
+            <tr><td>Eurozone</td><td class="num">3.2% <span style="opacity:.7">(Bund proxy)</span></td><td class="num">5.5%</td><td class="num">1.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>The UK's higher risk-free rate means British companies are discounted more heavily than eurozone ones — a genuine reflection of the rate environment, but it does structurally raise the bar UK names must clear. More importantly: <strong>these are point-in-time estimates and they will go stale.</strong> A fixed 5.0% Gilt proxy is reasonable today and may be poor in a year — which is why every number here is a starting point rather than a conclusion, and why the <a href="/dcf/">DCF calculator</a> lets you change all of them yourself.</p>
+
+      <h2>The first run, in numbers</h2>
+
+      <p>The screen went live on <strong>3 August 2026</strong>. Its first full run shows how aggressively the filters cut:</p>
+
+      <div class="article-table-wrap">
+        <table class="article-table">
+          <caption>Screening funnel, first run — 3 August 2026.</caption>
+          <thead>
+            <tr><th>Stage</th><th class="num">Names</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Universe fetched</td><td class="num">200</td></tr>
+            <tr><td>Failed to fetch</td><td class="num">0</td></tr>
+            <tr><td>Dropped — unvaluable <span style="opacity:.7">(no/negative FCF, negative equity, bank with no dividend)</span></td><td class="num">−42</td></tr>
+            <tr><td>Dropped — overvalued on base-case assumptions</td><td class="num">−114</td></tr>
+            <tr><td>Dropped — margin of safety above the 80% cap</td><td class="num">−23</td></tr>
+            <tr><td>Dropped — free cash flow too rough a proxy to trust</td><td class="num">−1</td></tr>
+            <tr><td><strong>Qualified and shown</strong></td><td class="num"><strong>20</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>Most large European companies are not cheap</strong> — 114 of 200 came out above fair value. That's normal; a screen returning a long list every week would have its thresholds set too loosely. The <strong>80% cap removed another 23</strong>: a margin that high almost never means a spectacular bargain, it means a broken input, a one-off distorting cash flows, or something the market knows and the model doesn't.</p>
+
+      <p><strong>Six of the twenty were valued by dividend discount model rather than DCF</strong> — BNP Paribas, Hannover Re, Munich Re, AXA, Intesa Sanpaolo and Aviva. Free cash flow isn't meaningful for a bank or insurer, so those are valued on dividends; the engine picks per company, using the same logic as the live tools.</p>
+
+      <p><strong>And despite half the universe being British, exactly one UK name qualified</strong> — Aviva, twentieth, at a slender 1.3% margin of safety. The higher UK discount rate is part of that; so is the FTSE 100's strong run. Whether it persists is exactly what the paper portfolio exists to record.</p>
+
+      <p>The live GBP/EUR rate on that first run was <strong>1.169</strong>, and the top of the list was <strong>Edenred</strong> (<code>EDEN.PA</code>, Paris) at a 76.2% margin of safety.</p>
+
+      <h2>What this screen can't tell you</h2>
+
+      <p>Everything above is machinery. It says nothing about whether any of these companies is a good investment.</p>
+
+      <p>A margin of safety is a model's output, and a model is only as good as its assumptions — several of which are fixed constants that will drift out of date. The screen has no view on management quality, competitive position, regulatory risk, or the possibility that a stock looks cheap precisely because the market has priced in a problem the numbers haven't caught yet. Cross-border investing adds another layer: withholding tax, currency exposure and brokerage access vary by country and appear nowhere in this calculation. Narrowing 200 companies down to 20 worth a closer look is useful work — but it is the beginning of the process, not the end.</p>
+
+      <a class="article-cta" href="/dcf/europe-undervalued/">
+        <span class="article-cta-label">Updated weekly · free</span>
+        <span class="article-cta-text">See the live list → Most Undervalued Europe</span>
+      </a>
+
+      <a class="article-cta" href="/dcf/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Change every assumption yourself → Discounted Cash Flow Calculator</span>
+      </a>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice or a recommendation to buy, hold or sell any security. The Europe screen is an automated, quantitative filter built from third-party financial data that may be delayed, incomplete or incorrect, and its valuations rest on fixed default assumptions — including risk-free rates that are point-in-time estimates — which will not suit every company or every market environment. The paper portfolio is hypothetical: no money is invested and no trades are placed. Simulated performance is not a reliable indicator of future results. Investing in overseas markets carries additional currency, tax and access considerations not modelled here. Individual investment decisions depend on your financial situation, risk tolerance, timeline and objectives. We recommend consulting a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Why are UK stock prices quoted in pence, not pounds?</summary>
+          <p>It is a London Stock Exchange convention that dates back to pre-decimal sterling. Most UK-listed shares are quoted in pence, so a price of 650 means £6.50, not £650. Data providers label this currency <code>GBp</code> (lowercase p) to distinguish it from <code>GBP</code>. Any calculation that treats a GBp price as pounds will be wrong by a factor of 100 — and will usually be wrong silently, without any error.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does ranking UK and eurozone stocks together require a currency conversion?</summary>
+          <p>No. The screen ranks by margin of safety — the gap between estimated intrinsic value and current price, as a percentage. Both figures are in the same currency for any given stock, so the currency cancels out and what remains is a dimensionless ratio. A 40% margin of safety means the same thing in pence as it does in euros, so no exchange rate is ever consulted for the ranking.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which currency does the Europe paper portfolio use?</summary>
+          <p>Euros. The simulated portfolio starts at €10,000 and is always reported in euros, regardless of which stock currently ranks first. UK holdings are converted from pence into euros at the live GBP/EUR rate purely so they can be pooled into a single figure. The ranking table itself always shows each stock in its own native currency, so it matches what you would see on any other data source.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why does the screen use a fixed risk-free rate for the UK and eurozone?</summary>
+          <p>There is no reliable live 10-year Gilt or Bund yield ticker available through the data source the screens use — the same situation as the Korean and Japanese screens. The UK uses a fixed 5.0% Gilt-proxy rate and the eurozone a 3.2% Bund-proxy rate, both spot-checked at launch. These are point-in-time estimates that will drift stale as rates move, which is one more reason to treat the output as a starting point. The <a href="/dcf/">DCF calculator</a> lets you set your own.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does the Europe screen track a real European stock index?</summary>
+          <p>No. There is no single published index covering exactly the eurozone plus the UK at this scale, so the 200-name universe is hand-assembled from national blue-chip indices — the full FTSE 100, DAX 40 and CAC 40, backfilled with the largest names from the AEX, FTSE MIB, IBEX 35, BEL 20, ISEQ 20, ATX, OMX Helsinki 25 and PSI-20. Switzerland, Norway, Sweden, Denmark and Poland are deliberately out of scope.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why did only one UK stock qualify when half the universe is British?</summary>
+          <p>Two reasons. The UK's higher risk-free rate means British companies are discounted more heavily than eurozone ones, which structurally raises the bar they have to clear. And the FTSE 100 has had a strong run, so fewer of its constituents look cheap on conservative assumptions. This may well change from week to week — the screen re-runs and re-ranks from scratch each time.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>
