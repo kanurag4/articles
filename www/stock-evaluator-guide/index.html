@@ -4,9 +4,26 @@
   <script src="/kv-theme.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#0b1120">
   <title>Evaluate Stocks like Buffett, Dalio or Graham — KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/stock-evaluator-guide/">
+  <meta property="og:title" content="Evaluate Stocks like Buffett, Dalio or Graham — KashVector">
+  <meta property="og:description" content="The Stock Evaluator runs Buffett, Dalio, and Graham frameworks simultaneously against live data. Here's what each framework measures, why they often disagree, and what the tool can't tell you.">
+  <meta property="og:url" content="https://kashvector.com/articles/stock-evaluator-guide/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KashVector — free stock valuation tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Evaluate Stocks like Buffett, Dalio or Graham — KashVector">
+  <meta name="twitter:description" content="The Stock Evaluator runs Buffett, Dalio, and Graham frameworks simultaneously against live data. Here's what each framework measures, why they often disagree, and what the tool can't tell you.">
+  <meta name="twitter:image" content="https://kashvector.com/og-image.png">
   <meta name="description" content="The Stock Evaluator runs Buffett, Dalio, and Graham frameworks simultaneously against live data. Here's what each framework measures, why they often disagree, and what the tool can't tell you.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/brand.css">
   <link rel="stylesheet" href="../article.css">
   <script type="application/ld+json">
@@ -39,7 +56,7 @@
       {
         "@type": "Question",
         "name": "Does the tool give buy or sell recommendations?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. The tool produces verdict labels (Strong Buy, Buy, Hold, Avoid) based on how many criteria a stock passes within each framework. These are framework scores derived from historical financial data — not personalised financial advice. Use them as a shortlisting filter to identify candidates worth researching further, not as trading signals." }
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The tool produces verdict labels (Strong Fit, Good Fit, Partial Fit, Poor Fit) based on how many criteria a stock passes within each framework. These are framework scores derived from historical financial data — not personalised financial advice. Use them as a shortlisting filter to identify candidates worth researching further, not as trading signals." }
       },
       {
         "@type": "Question",
@@ -57,8 +74,8 @@
       <span class="home-logo-label">← All tools</span>
     </a>
     <div class="app-header-center">
-      <h1>KashVector</h1>
-      <p>Australian financial calculators</p>
+      <div class="site-wordmark"><span class="logo-kash">Kash</span><span class="logo-vector">Vector</span></div>
+      <p class="motto">Vector to Financial Growth</p>
     </div>
     <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
   </header>
@@ -78,7 +95,14 @@
       <div class="article-byline">KashVector &nbsp;·&nbsp; 22 May 2026 &nbsp;·&nbsp; 6 min read</div>
       <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
 
-      <p>Take a high-quality technology business — strong earnings growth, dominant market position, margins most companies can only dream of. Run it through the Buffett framework and you'll likely get a Buy. Run the same stock through Graham and you'll probably get Avoid. Dalio might land somewhere in between.</p>
+      <div class="article-play-callout">
+        <span class="article-play-callout-text">📱 Prefer this on your phone? Get the free Android app.</span>
+        <a href="https://play.google.com/store/apps/details?id=com.stockeval.app" target="_blank" rel="noopener" aria-label="Get Stock Evaluator on Google Play">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play">
+        </a>
+      </div>
+
+      <p>Take a high-quality technology business — strong earnings growth, dominant market position, margins most companies can only dream of. Run it through the Buffett framework and you'll likely get a Good Fit. Run the same stock through Graham and you'll probably get Poor Fit. Dalio might land somewhere in between.</p>
 
       <p>This isn't a bug. It's the most honest thing the tool can tell you.</p>
 
@@ -106,7 +130,7 @@
 
       <p>The remaining criteria — PE below 20, a dividend yield above 1%, positive profit margin, and a forward PE below trailing — round out the picture. They are checkpoints rather than differentiators; the three above tend to do the heavy lifting. One structural note: Debt/Equity is skipped (not failed) for financial sector companies, where high leverage is a structural feature of the business model, not a warning sign.</p>
 
-      <p><strong>Verdicts:</strong> Strong Buy / Buy / Hold / Avoid — scaled to the proportion of available criteria passed, so a missing data point doesn't artificially deflate the score.</p>
+      <p><strong>Verdicts:</strong> Strong Fit / Good Fit / Partial Fit / Poor Fit — scaled to the proportion of available criteria passed, so a missing data point doesn't artificially deflate the score.</p>
 
       <a class="article-cta" href="/stock/">
         <span class="article-cta-label">Try the free tool</span>
@@ -146,9 +170,9 @@
 
       <p>Positive EPS, a dividend, and Debt/Equity below 0.5 complete the picture. Together these criteria enforce a simple idea: pay a conservative price for a financially sound business, leave yourself room to be wrong, and let the margin of safety do the work.</p>
 
-      <p>When Graham returns an Avoid verdict on a high-quality compounder, it usually isn't saying the business is bad — it's saying Graham's margin of safety price isn't available today. That is a different statement from "don't own it." It means you are paying for the quality, not buying it at a discount.</p>
+      <p>When Graham returns a Poor Fit verdict on a high-quality compounder, it usually isn't saying the business is bad — it's saying Graham's margin of safety price isn't available today. That is a different statement from "don't own it." It means you are paying for the quality, not buying it at a discount.</p>
 
-      <p><strong>Verdicts:</strong> Strong Buy / Buy / Hold / Avoid.</p>
+      <p><strong>Verdicts:</strong> Strong Fit / Good Fit / Partial Fit / Poor Fit.</p>
 
       <a class="article-cta" href="/stock/">
         <span class="article-cta-label">Try the free tool</span>
@@ -159,9 +183,9 @@
 
       <p>The tool displays a combined score across all three frameworks out of a maximum of 20, with a colour indicator — green above 13, amber above 8, red below 8. The most useful application is comparative: run a shortlist of candidates and look for patterns of agreement.</p>
 
-      <p>When two of three frameworks return a Buy or better, the stock is worth investigating further. The dissenting framework will tell you what you are paying or accepting — Graham rejecting a Buffett Buy typically means the price-to-book is high; Dalio rejecting a Graham Buy typically means the liquidity or beta profile is poor.</p>
+      <p>When two of three frameworks return a Good Fit or better, the stock is worth investigating further. The dissenting framework will tell you what you are paying or accepting — Graham rejecting a Buffett Good Fit typically means the price-to-book is high; Dalio rejecting a Graham Good Fit typically means the liquidity or beta profile is poor.</p>
 
-      <p>When all three agree, take it seriously in either direction. A unanimous Strong Buy is rare and worth real attention. A unanimous Avoid on a company you like is worth understanding before proceeding.</p>
+      <p>When all three agree, take it seriously in either direction. A unanimous Strong Fit is rare and worth real attention. A unanimous Poor Fit on a company you like is worth understanding before proceeding.</p>
 
       <p>The tool stores your last eight analyses in the recent tickers panel, sorted by combined score. Running a batch of candidates and comparing them side-by-side is faster than analysing one at a time — you see the relative landscape quickly.</p>
 
@@ -177,7 +201,7 @@
 
       <p><strong>Industry disruption.</strong> Historical ratios lag structural change. A business can pass all of Dalio's criteria and still be in structural decline — the ratios reflect what was true last year, not what is changing in the market. The tool has no way to see competitive dynamics, technological substitution, or regulatory risk that hasn't yet shown up in revenue or margins.</p>
 
-      <p><strong>Framework age.</strong> Graham's thresholds — P/E below 15, P/B below 1.5 — were calibrated against mid-20th century markets where most company value sat in tangible assets. Today's intangible-heavy businesses (software, platforms, brands) routinely trade above book value because their most valuable assets — code, data, relationships — don't appear on the balance sheet at all. Graham's Avoid on these companies often says more about the framework's era than the business's quality.</p>
+      <p><strong>Framework age.</strong> Graham's thresholds — P/E below 15, P/B below 1.5 — were calibrated against mid-20th century markets where most company value sat in tangible assets. Today's intangible-heavy businesses (software, platforms, brands) routinely trade above book value because their most valuable assets — code, data, relationships — don't appear on the balance sheet at all. Graham's Poor Fit on these companies often says more about the framework's era than the business's quality.</p>
 
       <p><strong>Data limitations.</strong> The tool fetches data from Yahoo Finance, which is approximately 15 minutes delayed and carries no SLA on data accuracy. Earnings growth estimates, forward PE figures, and dividend yields are the most commonly absent fields for smaller or less-covered companies — when data is missing, the criterion is skipped rather than failed, and the denominator adjusts. A score of 5/6 could mean one criterion failed, or that one criterion had no available data. The details panel in the tool shows you which. Treat every figure as a starting point for verification, not a final number.</p>
 
@@ -216,7 +240,7 @@
         </details>
         <details class="faq-item">
           <summary>Does the tool give buy or sell recommendations?</summary>
-          <p>No. The tool produces verdict labels (Strong Buy, Buy, Hold, Avoid) based on how many criteria a stock passes within each framework. These are framework scores derived from historical financial data — not personalised financial advice. Use them as a shortlisting filter to identify candidates worth researching further, not as trading signals.</p>
+          <p>No. The tool produces verdict labels (Strong Fit, Good Fit, Partial Fit, Poor Fit) based on how many criteria a stock passes within each framework. These are framework scores derived from historical financial data — not personalised financial advice. Use them as a shortlisting filter to identify candidates worth researching further, not as trading signals.</p>
         </details>
         <details class="faq-item">
           <summary>How current is the data in the Stock Evaluator?</summary>

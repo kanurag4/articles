@@ -4,9 +4,26 @@
   <script src="/kv-theme.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#0b1120">
   <title>Mastering Leverage: Geared ETFs, Debt Recycling &amp; Long-Term Wealth — KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/geared-etfs-debt-recycling/">
+  <meta property="og:title" content="Mastering Leverage: Geared ETFs, Debt Recycling &amp; Long-Term Wealth — KashVector">
+  <meta property="og:description" content="How geared ETFs like GEAR and G200 work, the maths of volatility decay, and how to combine internal leverage with debt recycling for long-term wealth building.">
+  <meta property="og:url" content="https://kashvector.com/articles/geared-etfs-debt-recycling/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KashVector — free stock valuation tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mastering Leverage: Geared ETFs, Debt Recycling &amp; Long-Term Wealth — KashVector">
+  <meta name="twitter:description" content="How geared ETFs like GEAR and G200 work, the maths of volatility decay, and how to combine internal leverage with debt recycling for long-term wealth building.">
+  <meta name="twitter:image" content="https://kashvector.com/og-image.png">
   <meta name="description" content="How geared ETFs like GEAR and G200 work, the maths of volatility decay, and how to combine internal leverage with debt recycling for long-term wealth building.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/brand.css">
   <link rel="stylesheet" href="../article.css">
   <link rel="icon" type="image/svg+xml" href="/logo.svg">
@@ -36,7 +53,7 @@
     .comparison-table th:not(:first-child) { text-align: right; }
     .comparison-table th.col-vhy  { color: #22c55e; }
     .comparison-table th.col-a200 { color: var(--kv-muted); }
-    .comparison-table th.col-g200 { color: #f59e0b; }
+    .comparison-table th.col-g200 { color: var(--kv-warn); }
     .comparison-table th.col-gear { color: #ef4444; }
     .comparison-table td {
       padding: 9px 12px;
@@ -57,7 +74,7 @@
     }
     .comparison-table tr.row-highlight td:first-child { color: var(--kv-text); }
     .col-green { color: #22c55e; }
-    .col-amber { color: #f59e0b; }
+    .col-amber { color: var(--kv-warn); }
     .col-red   { color: #ef4444; }
 
     /* ── Insight box ── */
@@ -112,7 +129,7 @@
     }
     .chain-step-drop    { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.5); color: #ef4444; }
     .chain-step-loss    { background: rgba(239,68,68,0.15); border: 1px solid #ef4444; color: #ef4444; font-size: 0.88rem; }
-    .chain-step-recover { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.5); color: #f59e0b; }
+    .chain-step-recover { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.5); color: var(--kv-warn); }
     .chain-arrow        { font-size: 1.3rem; color: var(--kv-muted); padding: 0 8px; flex-shrink: 0; }
     @media (max-width: 500px) {
       .recovery-chain { flex-direction: column; align-items: stretch; gap: 4px; }
@@ -151,14 +168,14 @@
       padding: 14px;
     }
     .equity-branch.path-yield     { border-top: 3px solid #22c55e; }
-    .equity-branch.path-leverage  { border-top: 3px solid #f59e0b; }
+    .equity-branch.path-leverage  { border-top: 3px solid var(--kv-warn); }
     .equity-branch-title {
       font-weight: 700;
       font-size: 0.82rem;
       margin-bottom: 3px;
     }
     .path-yield    .equity-branch-title { color: #22c55e; }
-    .path-leverage .equity-branch-title { color: #f59e0b; }
+    .path-leverage .equity-branch-title { color: var(--kv-warn); }
     .equity-branch-sub {
       font-size: 0.73rem;
       color: var(--kv-muted);
@@ -201,7 +218,7 @@
       padding: 14px;
     }
     .alloc-core { background: var(--kv-card-2); border: 1px solid var(--kv-border); }
-    .alloc-sat  { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.4); }
+    .alloc-sat  { background: rgba(249,115,22,0.06); border: 1px solid rgba(249,115,22,0.4); }
     .alloc-section-label {
       font-size: 0.72rem;
       font-weight: 700;
@@ -210,14 +227,14 @@
       margin-bottom: 4px;
     }
     .alloc-core .alloc-section-label { color: var(--kv-muted); }
-    .alloc-sat  .alloc-section-label { color: #f59e0b; }
+    .alloc-sat  .alloc-section-label { color: var(--kv-warn); }
     .alloc-pct {
       font-size: 1.5rem;
       font-weight: 800;
       margin-bottom: 10px;
     }
     .alloc-core .alloc-pct { color: var(--kv-text); }
-    .alloc-sat  .alloc-pct { color: #f59e0b; }
+    .alloc-sat  .alloc-pct { color: var(--kv-warn); }
     .alloc-items {
       font-size: 0.8rem;
       color: var(--kv-muted);
@@ -321,8 +338,8 @@
       <span class="home-logo-label">← All tools</span>
     </a>
     <div class="app-header-center">
-      <h1>KashVector</h1>
-      <p>Australian financial calculators</p>
+      <div class="site-wordmark"><span class="logo-kash">Kash</span><span class="logo-vector">Vector</span></div>
+      <p class="motto">Vector to Financial Growth</p>
     </div>
     <button class="theme-toggle" onclick="window.kvTheme.toggle()" aria-label="Toggle theme"></button>
   </header>
@@ -512,7 +529,7 @@
 
       <p>For homeowners with a mortgage, combining geared ETFs with a structural debt recycling strategy is a distinct wealth-creation framework — but it raises the risk profile significantly.</p>
 
-      <p>Debt recycling involves paying down non-deductible home loan debt, redrawing those funds through a dedicated investment loan split, and deploying that capital into income-producing assets. This converts non-deductible home loan debt into tax-deductible investment debt.</p>
+      <p><a href="/debt-recycling/">Debt recycling</a> involves paying down non-deductible home loan debt, redrawing those funds through a dedicated investment loan split, and deploying that capital into income-producing assets. This converts non-deductible home loan debt into tax-deductible investment debt.</p>
 
       <p>When you choose to debt-recycle into a geared or high-yielding ETF, your portfolio architecture dictates your risk profile:</p>
 

@@ -1,26 +1,35 @@
-/* ── Shared KashVector vars (mirrors brand.css for standalone dev) ── */
+/* ── Standalone-dev fallback tokens ────────────────────────────────────────
+   SOURCE-REPO ONLY — this block does not exist in the deployed copy at
+   StockAnalysis/www/articles/article.css, and must not be copied there.
+
+   Live pages load /brand.css (the real source of truth for these tokens)
+   before this file. Serving this repo standalone has no /brand.css to
+   resolve, so every var() would fall back to nothing and the page would
+   render unstyled. These values mirror brand.css's "Ink & Amber" palette
+   as at 2026-08-04 — if brand.css changes, refresh them here too.
+
+   Declared before `body` so brand.css always wins the cascade when present. */
 :root {
-  --kv-bg:      #0f172a;
-  --kv-card:    #1e293b;
-  --kv-card-2:  #273449;
-  --kv-text:    #f1f5f9;
-  --kv-muted:   #94a3b8;
-  --kv-accent:  #38bdf8;
-  --kv-accent-h:#0ea5e9;
-  --kv-border:  #334155;
-  --kv-pass:    #22c55e;
+  --kv-bg:       #0b1120;
+  --kv-card:     #111a30;
+  --kv-card-2:   #182342;
+  --kv-text:     #f5f7fc;
+  --kv-muted:    #93a0bd;
+  --kv-accent:   #f5a623;
+  --kv-accent-h: #ffb84d;
+  --kv-border:   #223052;
 }
 
-/* ── Light mode ── */
+/* ── Light mode — "Paper & Ink" ── */
 html:not(.dark) {
-  --kv-bg:     #edf2f7;
-  --kv-card:   #d4dce8;
-  --kv-card-2: #c5cfe0;
-  --kv-text:   #0f172a;
-  --kv-muted:  #64748b;
-  --kv-border: #e2e8f0;
-  --kv-accent: #0369a1;
-  --kv-warn:   #d97706;
+  --kv-bg:       #faf8f4;
+  --kv-card:     #ffffff;
+  --kv-card-2:   #f1ede4;
+  --kv-text:     #16202b;
+  --kv-muted:    #4d5c6b;
+  --kv-accent:   #1a3a5f;
+  --kv-accent-h: #12293f;
+  --kv-border:   #e7e2d8;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,9 +37,12 @@ html:not(.dark) {
 body {
   background: var(--kv-bg);
   color: var(--kv-text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-size: 15px;
+  font-family: 'Carlito', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15.5px;
   min-height: 100vh;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ── Header ── */
@@ -41,7 +53,11 @@ body {
   border-bottom: 1px solid var(--kv-border);
 }
 
-.app-header h1 {
+/* .site-wordmark is the brand lockup on article pages — a <div>, not an <h1>,
+   so the article's own headline is the page's single H1. articles/index.html
+   still uses a real <h1> here ("Articles"), hence both selectors. */
+.app-header h1,
+.app-header .site-wordmark {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--kv-text);
@@ -50,6 +66,23 @@ body {
 .app-header p {
   font-size: 0.85rem;
   color: var(--kv-muted);
+  margin-top: 4px;
+}
+
+.app-header .site-wordmark .logo-kash {
+  background: linear-gradient(135deg, #f5a623, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.app-header .site-wordmark .logo-vector { color: var(--kv-text); }
+
+.app-header .motto {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--kv-accent);
   margin-top: 4px;
 }
 
@@ -206,6 +239,24 @@ body {
   line-height: 1.6;
 }
 
+/* ── Article Play Store callout (stock-tool articles only) — placed near
+   the top so it's actually seen, not buried below the FAQ in the footer ── */
+.article-play-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 16px;
+  margin-bottom: 28px;
+  background: color-mix(in srgb, var(--kv-accent) 8%, var(--kv-card));
+  border: 1px solid var(--kv-accent);
+  border-radius: 10px;
+}
+.article-play-callout-text { font-size: 0.88rem; color: var(--kv-text); font-weight: 500; }
+.article-play-callout img { height: 32px; width: auto; display: block; }
+@media (max-width: 480px) { .article-play-callout { justify-content: center; text-align: center; } }
+
 .article-body p {
   font-size: 0.95rem;
   line-height: 1.75;
@@ -341,7 +392,8 @@ footer a:hover { color: var(--kv-accent); }
   .home-logo { position: static; flex: 0 0 auto; order: 1; padding-top: 4px; }
   .app-header-center { flex: 1; min-width: 0; order: 2; text-align: center; }
   .theme-toggle { position: static; flex: 0 0 auto; order: 3; width: 44px; height: 44px; }
-  .app-header h1 { font-size: 1.1rem; }
+  .app-header h1,
+  .app-header .site-wordmark { font-size: 1.1rem; }
   .article-headline { font-size: 1.3rem; }
   input, select, textarea { font-size: 16px; }
 }
