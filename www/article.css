@@ -5,30 +5,31 @@
    Live pages load /brand.css (the real source of truth for these tokens)
    before this file. Serving this repo standalone has no /brand.css to
    resolve, so every var() would fall back to nothing and the page would
-   render unstyled. These values mirror brand.css's "Ink & Amber" palette
-   as at 2026-08-04 — if brand.css changes, refresh them here too.
+   render unstyled. These values mirror brand.css's light-first "navy +
+   amber" palette as at 2026-08-20 — if brand.css changes, refresh them
+   here too.
 
    Declared before `body` so brand.css always wins the cascade when present. */
 :root {
   --kv-bg:       #0b1120;
-  --kv-card:     #111a30;
-  --kv-card-2:   #182342;
-  --kv-text:     #f5f7fc;
-  --kv-muted:    #93a0bd;
-  --kv-accent:   #f5a623;
-  --kv-accent-h: #ffb84d;
-  --kv-border:   #223052;
+  --kv-card:     #111d33;
+  --kv-card-2:   #162040;
+  --kv-text:     #e2e8f0;
+  --kv-muted:    #7b8eaa;
+  --kv-accent:   #fbbf24;
+  --kv-accent-h: #f5a623;
+  --kv-border:   #1e3050;
 }
 
-/* ── Light mode — "Paper & Ink" ── */
+/* ── Light mode — "navy + amber" ── */
 html:not(.dark) {
-  --kv-bg:       #faf8f4;
+  --kv-bg:       #f8fafc;
   --kv-card:     #ffffff;
-  --kv-card-2:   #f1ede4;
+  --kv-card-2:   #f1f5f9;
   --kv-text:     #16202b;
   --kv-muted:    #4d5c6b;
-  --kv-accent:   #1a3a5f;
-  --kv-accent-h: #12293f;
+  --kv-accent:   #12335e;
+  --kv-accent-h: #c07d0f;
   --kv-border:   #e7e2d8;
 }
 
@@ -45,69 +46,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Header ── */
+/* ── Header — compact single row (redesign 2026-08-19). Only
+   articles/index.html still has an .app-header (h1 "Articles" + toggle) —
+   the 15 individual article pages dropped it entirely: their old
+   .site-wordmark/.motto brand lockup just duplicated kv-nav.js's own
+   "KashVector" logo, and the article's own headline (.article-headline,
+   rendered further down the page) is already that page's real H1. Those
+   pages fall back to kv-nav.js's own theme-toggle since they no longer
+   have one of their own. ── */
 .app-header {
   position: relative;
-  text-align: center;
-  padding: 28px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 60px;
   border-bottom: 1px solid var(--kv-border);
 }
 
-/* .site-wordmark is the brand lockup on article pages — a <div>, not an <h1>,
-   so the article's own headline is the page's single H1. articles/index.html
-   still uses a real <h1> here ("Articles"), hence both selectors. */
-.app-header h1,
-.app-header .site-wordmark {
-  font-size: 1.4rem;
+.app-header h1 {
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--kv-text);
-}
-
-.app-header p {
-  font-size: 0.85rem;
-  color: var(--kv-muted);
-  margin-top: 4px;
-}
-
-.app-header .site-wordmark .logo-kash {
-  background: linear-gradient(135deg, #f5a623, #818cf8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.app-header .site-wordmark .logo-vector { color: var(--kv-text); }
-
-.app-header .motto {
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--kv-accent);
-  margin-top: 4px;
-}
-
-.home-logo {
-  position: absolute;
-  top: 12px;
-  left: 16px;
+  margin: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 3px;
-  text-decoration: none;
 }
-
-.home-logo img { width: 32px; height: 32px; opacity: 0.9; display: block; transition: opacity 0.15s; }
-.home-logo:hover img { opacity: 1; }
-.home-logo-label {
-  font-size: 0.6rem;
-  font-weight: 500;
-  letter-spacing: 0.03em;
-  color: var(--kv-muted);
-  transition: color 0.15s;
-  white-space: nowrap;
-}
-.home-logo:hover .home-logo-label { color: var(--kv-accent); }
 
 .theme-toggle {
   position: absolute;
@@ -388,12 +351,9 @@ footer a:hover { color: var(--kv-accent); }
 
 /* ── Mobile ── */
 @media (max-width: 680px) {
-  .app-header { display: flex; align-items: flex-start; gap: 8px; padding: 12px 16px; text-align: left; }
-  .home-logo { position: static; flex: 0 0 auto; order: 1; padding-top: 4px; }
-  .app-header-center { flex: 1; min-width: 0; order: 2; text-align: center; }
-  .theme-toggle { position: static; flex: 0 0 auto; order: 3; width: 44px; height: 44px; }
-  .app-header h1,
-  .app-header .site-wordmark { font-size: 1.1rem; }
+  .app-header { padding: 10px 52px; }
+  .theme-toggle { width: 44px; height: 44px; }
+  .app-header h1 { font-size: 1.05rem; }
   .article-headline { font-size: 1.3rem; }
   input, select, textarea { font-size: 16px; }
 }
