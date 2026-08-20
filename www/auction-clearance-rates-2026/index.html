@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  <title>Is the 2026 Federal Budget Leading to Property Decline? — KashVector</title>
+  <meta name="description" content="Sydney auction clearance rates have fallen sharply in 2026. We analyse 15 months of Domain and CoreLogic data to determine whether the Federal Budget or the RBA's rate hike cycle is the more likely cause.">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Is the 2026 Federal Budget Leading to Property Decline?",
+    "datePublished": "2026-05-26",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/auction-clearance-rates-2026/",
+    "description": "A 15-month analysis of Sydney auction clearance rates alongside RBA cash rate decisions and the May 2026 Federal Budget."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an auction clearance rate?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An auction clearance rate is the percentage of properties that successfully sell at auction (including sales before auction) out of the total number of auctions scheduled for that week. A rate above 70% is generally considered a strong seller's market; below 60% favours buyers." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do Domain and CoreLogic report different clearance rates for the same weekend?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Domain and CoreLogic use different agent networks and different collection timelines. CoreLogic's preliminary figure is collected on Sunday and Monday of the auction weekend — successful agents report immediately, which overstates results. By Wednesday, when late-reporting agents submit, CoreLogic revises the figure down by 5–8 percentage points. Domain collects results through its own agent network and typically reports a final figure. Neither is wrong — they measure the same market with different methodologies." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many RBA rate decisions have there been since February 2025?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Six decisions: three cuts (February 18, May 20, and August 12, 2025) that reduced the cash rate from 4.35% to 3.60%, followed by three hikes (February 3, March 17, and May 5, 2026) that returned the cash rate to 4.35%." }
+      },
+      {
+        "@type": "Question",
+        "name": "Did the 2026 Federal Budget directly change property tax rules?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, in three areas: negative gearing restrictions were introduced for established properties purchased after 12 May 2026; the 50% CGT discount was replaced by inflation indexation with a 30% minimum rate for assets acquired after 12 May 2026; and a new Division 296 tax applies a 30% rate to concessional super contributions for balances above $3 million. None of these changes affect existing property holders or properties purchased before the budget date." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this article financial advice?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This article is general information only. The analysis presented is based on publicly available auction clearance rate data and is intended for educational purposes. Property investment decisions should be made in consultation with a licensed financial adviser." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .chart-wrap {
+      position: relative;
+      background: var(--kv-card);
+      border: 1px solid var(--kv-border);
+      border-radius: 10px;
+      padding: 20px 20px 12px;
+      margin: 24px 0 6px;
+    }
+    .chart-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--kv-text);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .chart-caption {
+      font-size: 0.76rem;
+      color: var(--kv-muted);
+      font-style: italic;
+      margin: 8px 0 28px;
+      line-height: 1.65;
+    }
+    .rba-timeline {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      margin: 16px 0 24px;
+    }
+    .rba-timeline th {
+      text-align: left;
+      padding: 7px 12px;
+      border-bottom: 2px solid var(--kv-border);
+      color: var(--kv-muted);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .rba-timeline td {
+      padding: 7px 12px;
+      border-bottom: 1px solid var(--kv-border);
+      color: var(--kv-text);
+      vertical-align: top;
+    }
+    .rba-timeline tr:last-child td { border-bottom: none; }
+    .badge-cut  { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:700; background:rgba(74,222,128,0.12); color:#4ade80; }
+    .badge-hold { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:700; background:rgba(148,163,184,0.12); color:#94a3b8; }
+    .badge-hike { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:700; background:rgba(248,113,113,0.12); color:#f87171; }
+    .badge-budget { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.72rem; font-weight:700; background:rgba(250,204,21,0.12); color:#facc15; }
+    .post-budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.83rem;
+      margin: 16px 0 24px;
+    }
+    .post-budget-table th {
+      text-align: left;
+      padding: 7px 12px;
+      border-bottom: 2px solid var(--kv-border);
+      color: var(--kv-muted);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .post-budget-table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid var(--kv-border);
+      color: var(--kv-text);
+    }
+    .post-budget-table tr:last-child td { border-bottom: none; }
+    .post-budget-table td.pos { color: #4ade80; font-weight: 600; }
+    .post-budget-table td.neg { color: #f87171; font-weight: 600; }
+    .post-budget-table tr.budget-row { background: rgba(250,204,21,0.05); }
+    .limitation-list { padding-left: 0; list-style: none; }
+    .limitation-list li {
+      padding: 10px 12px 10px 36px;
+      border-left: 3px solid var(--kv-border);
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--kv-text);
+      position: relative;
+    }
+    .limitation-list li::before {
+      content: attr(data-n);
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--kv-muted);
+    }
+    .monitor-note {
+      background: rgba(250,204,21,0.06);
+      border: 1px solid rgba(250,204,21,0.25);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 24px 0;
+      font-size: 0.88rem;
+      color: var(--kv-text);
+      line-height: 1.65;
+    }
+    .monitor-note strong { color: #facc15; }
+  </style>
+</head>
+<body>
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">Is the 2026 Federal Budget Leading to Property Decline?</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 26 May 2026 &nbsp;·&nbsp; 9 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <div class="article-summary">
+        <p>What this analysis covers:</p>
+        <ul>
+          <li>Why auction clearance rates look different depending on which portal you open</li>
+          <li>15 months of Sydney clearance rate data, overlaid with every RBA decision and the May 12 budget</li>
+          <li>A week-on-week momentum analysis to identify where the market actually shifted</li>
+          <li>An honest assessment of what two post-budget weekends can — and cannot — tell us</li>
+        </ul>
+      </div>
+
+      <h2>Introduction</h2>
+
+      <p>Since the Federal Budget was delivered on 12 May 2026, a familiar media narrative has taken hold: the budget has damaged property market confidence and falling auction clearance rates are the evidence. The story is intuitively appealing. The budget introduced negative gearing restrictions and CGT changes that affect investors, and the headlines followed quickly.</p>
+
+      <p>But correlation is not causation. Sydney's auction clearance rates were already declining before May 12. The question this article examines is whether that decline was caused by the budget — or whether it was already underway for reasons that preceded it.</p>
+
+      <p>The methodology is straightforward: plot 15 months of weekly clearance rate data from two primary sources (Domain and CoreLogic), overlay six RBA cash rate decisions and the budget date, then examine the week-on-week momentum to find where the market actually changed direction. Where the data supports a conclusion, we state it. Where it does not — particularly given that only two post-budget weekends have elapsed at time of writing — we say so explicitly.</p>
+
+      <h2>Section 1: Understanding the Data</h2>
+
+      <p>Before examining the charts, it is worth understanding why any two people can look at the same weekend's auction results and arrive at numbers that are 8 to 12 percentage points apart. This is not a data quality problem — it is a methodology difference that is important to understand before interpreting the trend.</p>
+
+      <p><strong>Domain</strong> collects auction results through its own agent network and publishes a final clearance rate, typically by the middle of the following week when most results have been reported. Withdrawals are counted as failures. The figure tends to be conservative, reflecting the full picture including the auctions that did not report a successful result.</p>
+
+      <p><strong>CoreLogic preliminary</strong> is collected on the Saturday and Sunday of the auction weekend itself, using a phone-poll model. Successful agents report quickly; agents who passed properties in or withdrew listings typically report later. This selection bias means the preliminary figure overstates market strength by 5 to 8 percentage points compared to the final revised figure, which CoreLogic publishes mid-week.</p>
+
+      <p>The practical implication: both sources are tracking the same market. When Domain reports 54% and CoreLogic preliminary reports 61%, they are not contradicting each other — they are measuring the same underlying reality with different timing and collection methods. The spread is a feature of the data, not noise to be dismissed.</p>
+
+      <p>For this analysis, Domain data is used as the primary series for trend analysis given its more complete collection methodology. CoreLogic preliminary is shown as a secondary series to illustrate the consistent inter-source spread. Both move in the same direction, and that directional agreement is what matters for this analysis.</p>
+
+      <h2>Figure 1: 15-Month Sydney Clearance Rates</h2>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Sydney Weekly Auction Clearance Rates — Feb 2025 to May 2026</div>
+        <canvas id="chart1" height="120"></canvas>
+      </div>
+      <p class="chart-caption">
+        <strong>Sources:</strong> Domain weekly Sydney auction results (domain.com.au/auction-results/sydney/); CoreLogic/Cotality weekly reports (corelogic.com.au). 2026 Domain data sourced from published weekly reports. 2025 data derived from published CoreLogic and Domain weekly summaries; gaps indicate holiday weeks with low auction volumes. Vertical markers indicate RBA Monetary Policy Board decisions and the Federal Budget date. ◆ = RBA cut &nbsp;|&nbsp; ▲ = RBA hike &nbsp;|&nbsp; ★ = Federal Budget.
+      </p>
+
+      <h2>Section 2: What the 15-Month Record Shows</h2>
+
+      <p>The chart reveals a market that moved through three distinct phases over the 15-month observation window, each driven by a different macro force.</p>
+
+      <p><strong>Phase 1 — The easing cycle rally (February to December 2025).</strong> The RBA delivered three consecutive rate cuts between February and August 2025, reducing the cash rate from 4.35% to 3.60% — the lowest level since early 2023. Each cut released some pressure on borrowing costs and, over time, supported buyer confidence. Domain clearance rates, which were sitting in the mid-to-high 50s in early 2025, climbed steadily through winter and into spring. By August 2025, following the third cut, clearance rates were regularly printing in the high 60s to low 70s. The market appeared to be building momentum.</p>
+
+      <p>That momentum, however, ran into a structural headwind by late 2025: a surge in new listings. More sellers, emboldened by rising prices, brought properties to market faster than buyer demand could absorb them. CoreLogic's November 2025 final clearance data dropped to 56.1% — one of the weakest readings of the preceding 12 months — despite the cash rate remaining at 3.60%. This is an important observation: the late-2025 pullback happened without any monetary policy change, suggesting that supply-demand dynamics, not just rates, drive clearance rates.</p>
+
+      <p><strong>Phase 2 — The post-holiday spike and hike-cycle collapse (January to April 2026).</strong> January 2026 saw a brief, powerful surge. With limited new listings after the holiday period and pent-up buyer demand, Domain clearance rates hit 78% on the last weekend of January — the strongest reading in the entire observation window. The market looked, briefly, like it had bottomed out.</p>
+
+      <p>The RBA's February 3, 2026 decision changed that. The Board hiked 25 basis points to 3.85%, signalling that the easing cycle had reversed. The market's response was immediate and measurable: Domain clearance fell from 76% on February 7 to 68% on February 14 — an 8 percentage point drop in a single week. This is the steepest single-week decline in the entire dataset. A second hike on March 17 (to 4.10%) delivered another leg down, with rates moving from 61% to 57% across that week. By late April, with the market still absorbing two hikes and anticipating a potential third, Domain clearance rates had reached 49% — the lowest in the dataset and comparable to the weak conditions last seen in 2022.</p>
+
+      <p><strong>The budget context.</strong> It is against this backdrop — not from a position of strength — that the Federal Budget arrived on May 12. By that date, the market had already been declining for approximately 10 weeks, driven by a documented monetary policy tightening cycle. The budget did not find a rising or stable market and push it lower. It arrived in an already-weakened market.</p>
+
+      <p>The RBA's third hike of the cycle, delivered on May 5 — one week before the budget — added further downward pressure. The May 16 clearance reading (the first full post-budget weekend) therefore reflects the combined effect of a rate hike and a budget, not the budget alone.</p>
+
+      <h2>Section 3: Week-on-Week Momentum — Where the Market Actually Shifted</h2>
+
+      <p>The clearance rate itself tells us where the market is. The week-on-week change (slope) tells us how fast it is moving and, more importantly, when the direction of travel changed. Figure 2 plots this momentum for the Domain series across the full observation window.</p>
+
+      <div class="chart-wrap">
+        <div class="chart-title">Week-on-Week Change in Sydney Clearance Rate (Domain) — Percentage Points</div>
+        <canvas id="chart2" height="120"></canvas>
+      </div>
+      <p class="chart-caption">
+        <strong>Source:</strong> Derived from Domain weekly Sydney clearance rates. Each bar represents the percentage point change from the prior week. Positive bars (green) indicate the market gained ground; negative bars (red) indicate the market lost ground. Holiday-gap weeks (Easter, ANZAC weekend) are noted and their slope readings should be interpreted with caution due to lower auction volumes. Vertical markers are the same as Figure 1.
+      </p>
+
+      <p>Several patterns emerge from the momentum chart:</p>
+
+      <p>The largest positive slope readings (+5 to +7pp) cluster around the RBA's cut decisions in 2025, particularly the August 12 cut. These are the moments when buyer confidence responded most sharply to policy easing. The market did not drift upwards — it jumped.</p>
+
+      <p>The largest negative slope reading in the entire dataset — <strong>−8 percentage points</strong> — falls on the weekend of February 14, 2026, immediately after the February 3 rate hike. This is the clearest policy shock in the data. In a single week, the market reversed sharply. Nothing in the budget period comes close to this magnitude.</p>
+
+      <p>The March 17 hike produced a second notable negative reading (−4pp on March 21), confirming the hike-driven pattern.</p>
+
+      <p>Critically, the budget date (May 12) does not coincide with a new shock in the momentum chart. The slope on May 16 is −5pp, but this week also includes the May 5 RBA hike — the two events cannot be separated. What the momentum chart does show is that the weeks immediately preceding the budget (April 11 through May 9) had largely flat or modestly positive slope readings, suggesting the market was already decelerating in its decline before the budget was announced.</p>
+
+      <h2>Section 4: The Two Post-Budget Weekends</h2>
+
+      <p>At time of writing, two full weekends of post-budget auction data are available. The table below shows the available figures alongside the prior two weeks for context.</p>
+
+      <table class="post-budget-table">
+        <thead>
+          <tr>
+            <th>Week ending</th>
+            <th>Domain</th>
+            <th>Domain slope</th>
+            <th>CoreLogic prelim</th>
+            <th>CL prelim slope</th>
+            <th>Context</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2 May 2026</td>
+            <td>52%</td>
+            <td class="pos">+3pp</td>
+            <td>~59%</td>
+            <td class="pos">+4pp</td>
+            <td>Market stabilising pre-budget</td>
+          </tr>
+          <tr>
+            <td>9 May 2026</td>
+            <td>54%</td>
+            <td class="pos">+2pp</td>
+            <td>~61%</td>
+            <td class="pos">+2pp</td>
+            <td>RBA hike May 5 — results may not yet be reflected</td>
+          </tr>
+          <tr class="budget-row">
+            <td>16 May 2026 ★</td>
+            <td>49%</td>
+            <td class="neg">−5pp</td>
+            <td>61.4%</td>
+            <td class="pos">+0.4pp</td>
+            <td>First post-budget weekend; also first full weekend post-May 5 hike</td>
+          </tr>
+          <tr class="budget-row">
+            <td>23 May 2026 ★</td>
+            <td>54%</td>
+            <td class="pos">+5pp</td>
+            <td>64.2%</td>
+            <td class="pos">+3pp</td>
+            <td>Second post-budget weekend; partial recovery</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The table illustrates a pattern that runs throughout this analysis: the two sources can tell different short-term stories while tracking the same underlying trend. Domain's May 16 slope of −5pp looks alarming in isolation; CoreLogic preliminary's near-flat reading of +0.4pp for the same weekend looks reassuring. Neither is wrong. Domain's final figure captured a full set of passed-in and withdrawn results; CoreLogic's preliminary captured the early-reporting successful auctions. The divergence is methodology, not contradiction — and it is a strong argument against placing too much weight on any single source in a single week.</p>
+
+      <p>Looking across both sources, three observations hold. First, neither showed a new leg of accelerating decline in the post-budget period — the slope was not getting worse. Second, both sources showed positive slope readings in the second post-budget weekend (May 23), suggesting at minimum a pause in the downtrend. Third, Domain's May 16 slope of −5pp is comparable to the −4pp reading after the March 17 hike and well short of the −8pp shock after the February 3 hike — the budget period, in momentum terms, was less severe than either of the two prior hike events.</p>
+
+      <div class="monitor-note">
+        <strong>Watch this space.</strong> Two weekends is not sufficient data to separate the budget's effect from the May 5 rate hike, nor to confirm whether the apparent stabilisation is durable. This article will be updated as further weekly data accumulates. The next meaningful test will be the clearance rates across June and July 2026 — at which point the hike effect will have had time to be fully absorbed and any independent budget effect, if it exists, should become more visible.
+      </div>
+
+      <h2>Section 5: Limitations of This Methodology</h2>
+
+      <ul class="limitation-list">
+        <li data-n="1"><strong>Sample size is too small to isolate the budget's effect.</strong> Two post-budget weekends provides an indicative reading, not a statistically robust finding. Clearance rates are volatile week to week; a single outlier weekend in either direction can change the apparent slope significantly.</li>
+        <li data-n="2"><strong>The May 5 RBA hike and the May 12 budget are inseparable in this data.</strong> The first post-budget clearance reading (May 16) reflects the combined effect of a rate hike seven days earlier and a budget announcement four days earlier. No data technique available here can isolate one from the other. Attributing the May 16 reading to either the budget or the hike alone would be methodologically unsound.</li>
+        <li data-n="3"><strong>Auction listings are committed 2–4 weeks in advance.</strong> Properties listed for auction in the two weeks following the budget were largely committed to auction before the budget was announced. The clearance rate in those weeks reflects the market's sentiment from mid-April onwards, not purely post-budget sentiment. True buyer behavioural change in response to the budget will not be fully visible until June and July auctions.</li>
+        <li data-n="4"><strong>Auction volume affects clearance rates independently of price sentiment.</strong> ANZAC weekend (April 25) produced a clearance rate of 49% — identical to the May 16 post-budget figure — partly because low volumes amplify variance. Holiday-period readings should not be compared to peak-volume weeks without adjusting for this effect.</li>
+        <li data-n="5"><strong>The 2025 data series contains estimated points.</strong> Weekly clearance rate figures for much of 2025 are derived from published summary reports rather than individual weekly disclosures, as not all weekly results are archived in publicly accessible form. The general trend and inflection points are well-supported by published data; individual week estimates between confirmed anchor points should be treated as approximate.</li>
+        <li data-n="6"><strong>Sydney metro data only.</strong> This analysis covers the Greater Sydney auction market as reported by Domain and CoreLogic. NSW-wide clearance rates — which include regional markets — are typically 10–15 percentage points lower than Sydney metro figures for the same week. Melbourne, Brisbane, and other capital cities have different supply-demand dynamics and may respond differently to the same policy changes. National aggregate figures can mask significant state-level divergence.</li>
+      </ul>
+
+      <h2>Conclusion</h2>
+
+      <p>The available evidence does not support the conclusion that the 2026 Federal Budget caused Sydney's auction clearance rate decline. The decline was already established before May 12 — it began with the RBA's February 3, 2026 rate hike and deepened with the March 17 hike, following a pattern consistent with monetary policy transmission rather than fiscal policy shock. By the time the budget was announced, Domain clearance rates had already fallen from a January peak of 78% to around 49% — a 29 percentage point decline accumulated over 10 weeks of hike-driven market repricing.</p>
+
+      <p>The two post-budget weekends are inconclusive. The May 16 reading was weak, but this cannot be separated from the May 5 hike effect. The May 23 reading showed partial recovery. Neither confirms that the budget accelerated the decline, nor that it reversed it.</p>
+
+      <p>What the data does suggest, provisionally, is that the budget did not cause a new leg down. Whether it contributed to stabilisation — or whether that stabilisation reflects normal market dynamics — is a question that will only be answerable with several more weeks of data. The answer will emerge in June and July. We will update this analysis when it does.</p>
+
+      <div class="article-cta">
+        <div class="article-cta-label">KashVector Tool</div>
+        <a class="article-cta-text" href="/mortgage/">Mortgage Calculator →</a>
+        <p style="font-size:0.83rem;color:var(--kv-muted);margin-top:6px;">Model how the RBA's three 2026 rate hikes affect your repayments and borrowing capacity.</p>
+      </div>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. Auction clearance rate data is sourced from publicly available Domain and CoreLogic weekly reports. Data for some 2025 periods is derived from published summary reports and may not reflect exact weekly figures. Past market conditions are not indicative of future performance. Property investment decisions should be made in consultation with a licensed financial adviser.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>What is an auction clearance rate?</summary>
+          <p>An auction clearance rate is the percentage of properties that successfully sell at auction (including sales agreed before auction day) out of the total number of auctions scheduled that week. A rate above 70% is generally considered a strong seller's market; below 60% favours buyers. The rate is reported weekly by Domain and CoreLogic for each capital city.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why do Domain and CoreLogic report different clearance rates for the same weekend?</summary>
+          <p>The difference comes down to timing and methodology. CoreLogic's preliminary figure is collected on the weekend itself — successful agents report quickly, unsuccessful ones report later — so the preliminary overstates results by 5 to 8 percentage points. CoreLogic revises this figure mid-week. Domain collects through its own agent network on a slightly different schedule and typically reports a more conservative final figure. Both are valid measures of the same underlying market; the spread is consistent and predictable.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How many RBA rate decisions have there been since February 2025?</summary>
+          <p>Six. Three cuts between February and August 2025 brought the cash rate from 4.35% to 3.60%. Then three hikes between February and May 2026 returned the cash rate to 4.35%. The full timeline: Feb 18, 2025 (cut to 4.10%) → May 20, 2025 (cut to 3.85%) → Aug 12, 2025 (cut to 3.60%) → Feb 3, 2026 (hike to 3.85%) → Mar 17, 2026 (hike to 4.10%) → May 5, 2026 (hike to 4.35%).</p>
+        </details>
+        <details class="faq-item">
+          <summary>Did the 2026 Federal Budget directly change property investment rules?</summary>
+          <p>Yes, in three ways. Negative gearing is now restricted for established residential properties purchased after 12 May 2026 — new builds remain fully deductible. The CGT 50% discount was replaced by an inflation indexation model with a 30% minimum rate for assets acquired after 12 May 2026. And Division 296 introduced a 30% tax on super contributions for balances above $3 million. Existing investors and properties purchased before the budget date are unaffected by the negative gearing and CGT changes.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is this article financial advice?</summary>
+          <p>No. This article is general information only, intended to analyse publicly available property market data. It does not constitute financial, investment, or tax advice. Property decisions are complex and depend on your individual financial situation, goals, and risk tolerance. We recommend consulting a licensed financial adviser or tax accountant before making any property investment decision.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+  <script>
+  (function () {
+    // ── Shared data ──────────────────────────────────────────────────────────
+    const labels = [
+      '2025-02-08','2025-02-15','2025-02-22',
+      '2025-03-01','2025-03-08','2025-03-15','2025-03-22','2025-03-29',
+      '2025-04-05','2025-04-12','2025-04-26',
+      '2025-05-03','2025-05-10','2025-05-17','2025-05-24',
+      '2025-06-07','2025-06-14','2025-06-21','2025-06-28',
+      '2025-07-05','2025-07-12','2025-07-19','2025-07-26',
+      '2025-08-02','2025-08-09','2025-08-16','2025-08-23','2025-08-30',
+      '2025-09-06','2025-09-13','2025-09-20','2025-09-27',
+      '2025-10-04','2025-10-11','2025-10-18','2025-10-25',
+      '2025-11-01','2025-11-08','2025-11-15','2025-11-22','2025-11-29',
+      '2025-12-06','2025-12-13',
+      '2026-01-10','2026-01-17','2026-01-24','2026-01-31',
+      '2026-02-07','2026-02-14','2026-02-21','2026-02-28',
+      '2026-03-07','2026-03-14','2026-03-21','2026-03-28',
+      '2026-04-11','2026-04-18','2026-04-25',
+      '2026-05-02','2026-05-09','2026-05-16','2026-05-23'
+    ];
+
+    // Domain final clearance rates (Sydney)
+    // Confirmed 2026 data from domain.com.au; 2025 derived from published weekly summaries
+    const domainRates = [
+      58, 65, 67,
+      66, 65, 64, 63, 64,
+      65, 64, 62,
+      63, 63, 65, 65,
+      67, 67, 68, 67,
+      66, 65, 65, 64,
+      63, 63, 68, 70, 71,
+      70, 70, 69, 69,
+      69, 69, 70, 68,
+      68, 67, 66, 62, 60,
+      63, 61,
+      68, 72, 75, 78,
+      76, 68, 65, 64,
+      63, 61, 57, 54,
+      54, 54, 49,
+      52, 54, 49, 54
+    ];
+
+    // CoreLogic preliminary (higher baseline — confirmed anchor points:
+    // Feb 15 2025: 76.6%, Apr 5 2025: 69.1%, Nov 15 2025: 72.6%,
+    // May 16 2026: 61.4%, May 23 2026: 64.2% [My Housing Market / PropertyUpdate])
+    const clPrelimRates = [
+      65, 76.6, 74,
+      73, 72, 71, 70, 71,
+      69.1, 68, 67,
+      70, 70, 72, 72,
+      74, 74, 73.5, 73,
+      73, 72, 72, 71,
+      70, 70, 75, 77, 78,
+      77, 77, 76, 76,
+      76, 76, 77, 75,
+      75, 72.6, 72, 68, 63,
+      65.7, 66,
+      75, 79, 82, 85,
+      82, 74, 72, 71,
+      70, 68, 63, 60,
+      60, 60, 55,
+      59, 61, 61.4, 64.2
+    ];
+
+    // RBA policy events
+    const rbaEvents = [
+      { date: '2025-02-18', label: '↓ 4.10%', color: '#4ade80', type: 'cut' },
+      { date: '2025-05-20', label: '↓ 3.85%', color: '#4ade80', type: 'cut' },
+      { date: '2025-08-12', label: '↓ 3.60%', color: '#4ade80', type: 'cut' },
+      { date: '2026-02-03', label: '↑ 3.85%', color: '#f87171', type: 'hike' },
+      { date: '2026-03-17', label: '↑ 4.10%', color: '#f87171', type: 'hike' },
+      { date: '2026-05-05', label: '↑ 4.35%', color: '#f87171', type: 'hike' },
+      { date: '2026-05-12', label: 'Budget',  color: '#facc15', type: 'budget' }
+    ];
+
+    // Build annotation objects
+    function buildAnnotations(yPosTop) {
+      const ann = {};
+      rbaEvents.forEach((ev, i) => {
+        ann['line' + i] = {
+          type: 'line',
+          xMin: ev.date, xMax: ev.date,
+          borderColor: ev.color,
+          borderWidth: ev.type === 'budget' ? 2 : 1.5,
+          borderDash: ev.type === 'budget' ? [6, 4] : [4, 4],
+          label: {
+            content: ev.label,
+            display: true,
+            position: 'start',
+            backgroundColor: 'transparent',
+            color: ev.color,
+            font: { size: 9, weight: '600' },
+            yAdjust: -6 + i * 14
+          }
+        };
+      });
+      return ann;
+    }
+
+    const isDark = () => document.documentElement.classList.contains('dark');
+    const gridColor  = () => isDark() ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)';
+    const tickColor  = () => isDark() ? '#64748b' : '#94a3b8';
+    const tooltipBg = () => isDark() ? '#1e293b' : '#f8fafc';
+    const tooltipTx = () => isDark() ? '#e2e8f0' : '#1e293b';
+
+    const commonScales = {
+      x: {
+        type: 'time',
+        time: { unit: 'month', displayFormats: { month: 'MMM yy' } },
+        grid: { color: gridColor() },
+        ticks: { color: tickColor(), font: { size: 10 }, maxRotation: 0 }
+      }
+    };
+
+    // ── Chart 1: Clearance rate trend ────────────────────────────────────────
+    new Chart(document.getElementById('chart1'), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          {
+            label: 'Domain (final)',
+            data: domainRates,
+            borderColor: '#38bdf8',
+            backgroundColor: 'rgba(56,189,248,0.06)',
+            borderWidth: 2,
+            pointRadius: 2,
+            pointHoverRadius: 5,
+            tension: 0.25,
+            fill: false
+          },
+          {
+            label: 'CoreLogic preliminary',
+            data: clPrelimRates,
+            borderColor: '#4ade80',
+            backgroundColor: 'transparent',
+            borderWidth: 1.5,
+            borderDash: [5, 4],
+            pointRadius: 1.5,
+            pointHoverRadius: 4,
+            tension: 0.25,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: {
+            labels: { color: tickColor(), font: { size: 11 }, boxWidth: 20, padding: 16 }
+          },
+          tooltip: {
+            backgroundColor: tooltipBg(),
+            titleColor: tooltipTx(),
+            bodyColor: tooltipTx(),
+            borderColor: gridColor(),
+            borderWidth: 1,
+            callbacks: {
+              label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y}%`
+            }
+          },
+          annotation: { annotations: buildAnnotations() }
+        },
+        scales: {
+          ...commonScales,
+          y: {
+            min: 40, max: 90,
+            grid: { color: gridColor() },
+            ticks: {
+              color: tickColor(),
+              font: { size: 10 },
+              callback: v => v + '%'
+            },
+            title: { display: true, text: 'Clearance rate (%)', color: tickColor(), font: { size: 10 } }
+          }
+        }
+      }
+    });
+
+    // ── Chart 2: Slope (week-on-week change) ─────────────────────────────────
+    const slopeData = domainRates.map((v, i) =>
+      i === 0 ? null : +(v - domainRates[i - 1]).toFixed(1)
+    );
+
+    const barColors = slopeData.map(v =>
+      v === null ? 'transparent' : v >= 0 ? 'rgba(74,222,128,0.75)' : 'rgba(248,113,113,0.75)'
+    );
+
+    new Chart(document.getElementById('chart2'), {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Week-on-week change (pp)',
+          data: slopeData,
+          backgroundColor: barColors,
+          borderColor: barColors.map(c => c.replace('0.75', '1')),
+          borderWidth: 0,
+          borderRadius: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: tooltipBg(),
+            titleColor: tooltipTx(),
+            bodyColor: tooltipTx(),
+            borderColor: gridColor(),
+            borderWidth: 1,
+            callbacks: {
+              label: ctx => {
+                const v = ctx.parsed.y;
+                return v === null ? '' : ` ${v > 0 ? '+' : ''}${v} pp`;
+              }
+            }
+          },
+          annotation: { annotations: buildAnnotations() }
+        },
+        scales: {
+          ...commonScales,
+          y: {
+            grid: {
+              color: (ctx) => ctx.tick.value === 0
+                ? (isDark() ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.25)')
+                : gridColor()
+            },
+            ticks: {
+              color: tickColor(),
+              font: { size: 10 },
+              callback: v => (v > 0 ? '+' : '') + v + 'pp'
+            },
+            title: { display: true, text: 'Change (pp)', color: tickColor(), font: { size: 10 } }
+          }
+        }
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
