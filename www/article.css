@@ -202,23 +202,6 @@ body {
   line-height: 1.6;
 }
 
-/* ── Article Play Store callout (stock-tool articles only) — placed near
-   the top so it's actually seen, not buried below the FAQ in the footer ── */
-.article-play-callout {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 12px 16px;
-  margin-bottom: 28px;
-  background: color-mix(in srgb, var(--kv-accent) 8%, var(--kv-card));
-  border: 1px solid var(--kv-accent);
-  border-radius: 10px;
-}
-.article-play-callout-text { font-size: 0.88rem; color: var(--kv-text); font-weight: 500; }
-.article-play-callout img { height: 32px; width: auto; display: block; }
-@media (max-width: 480px) { .article-play-callout { justify-content: center; text-align: center; } }
 
 .article-body p {
   font-size: 0.95rem;
