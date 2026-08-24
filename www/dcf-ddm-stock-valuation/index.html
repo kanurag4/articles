@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f8fafc">
-  <title>DCF vs DDM: How to Value a Stock — and Which Method to Use When | KashVector</title>
+  <title>How to Value a Stock: DCF, DDM, REIT, Airline &amp; Every Method Explained | KashVector</title>
   <link rel="canonical" href="https://kashvector.com/articles/dcf-ddm-stock-valuation/">
-  <meta property="og:title" content="DCF vs DDM: How to Value a Stock — and Which Method to Use When | KashVector">
-  <meta property="og:description" content="Discounted Cash Flow or Dividend Discount Model — which fits the stock you're valuing? A plain-English comparison of both methods, their inputs, and when each one breaks.">
+  <meta property="og:title" content="How to Value a Stock: DCF, DDM, REIT, Airline &amp; Every Method Explained | KashVector">
+  <meta property="og:description" content="A flowchart and plain-English walkthrough of every model KashVector uses to value a stock — DCF, DDM, Excess Return, REIT, Airline, and the Cyclical/Holdco adjustments — and exactly how each calculation works.">
   <meta property="og:url" content="https://kashvector.com/articles/dcf-ddm-stock-valuation/">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="KashVector">
@@ -17,10 +17,10 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="KashVector — free stock valuation tools">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="DCF vs DDM: How to Value a Stock — and Which Method to Use When | KashVector">
-  <meta name="twitter:description" content="Discounted Cash Flow or Dividend Discount Model — which fits the stock you're valuing? A plain-English comparison of both methods, their inputs, and when each one breaks.">
+  <meta name="twitter:title" content="How to Value a Stock: DCF, DDM, REIT, Airline &amp; Every Method Explained | KashVector">
+  <meta name="twitter:description" content="A flowchart and plain-English walkthrough of every model KashVector uses to value a stock — DCF, DDM, Excess Return, REIT, Airline, and the Cyclical/Holdco adjustments — and exactly how each calculation works.">
   <meta name="twitter:image" content="https://kashvector.com/og-image.png">
-  <meta name="description" content="Discounted Cash Flow or Dividend Discount Model — which fits the stock you're valuing? A plain-English comparison of both methods, their inputs, and when each one breaks.">
+  <meta name="description" content="A flowchart and plain-English walkthrough of every model KashVector uses to value a stock — DCF, DDM, Excess Return, REIT, Airline, and the Cyclical/Holdco adjustments — and exactly how each calculation works.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
@@ -30,12 +30,13 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "DCF vs DDM: How to Value a Stock — and Which Method to Use When",
+    "headline": "How to Value a Stock: DCF, DDM, REIT, Airline &amp; Every Method Explained",
     "datePublished": "2026-05-30",
+    "dateModified": "2026-08-24",
     "author": { "@type": "Organization", "name": "KashVector" },
     "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
     "url": "https://kashvector.com/articles/dcf-ddm-stock-valuation/",
-    "description": "Discounted Cash Flow or Dividend Discount Model — which fits the stock you're valuing? A plain-English comparison of both methods, their inputs, and when each one breaks."
+    "description": "A flowchart and plain-English walkthrough of every model KashVector uses to value a stock — DCF, DDM, Excess Return, REIT, Airline, and the Cyclical/Holdco adjustments — and exactly how each calculation works."
   }
   </script>
   <script type="application/ld+json">
@@ -51,7 +52,7 @@
       {
         "@type": "Question",
         "name": "What discount rate does the calculator use?",
-        "acceptedAnswer": { "@type": "Answer", "text": "It calculates WACC from first principles. Cost of equity uses CAPM: the risk-free rate plus beta times the equity risk premium. The risk-free rate is the local 10-year government bond yield (about 4.5% in the US, 4.8% in Australia, 7.0% in India), and the equity risk premium defaults to 5.5% for the US, 6.0% for Australia, and 7.5% for India. Cost of debt comes from interest expense over total debt, and the two are weighted by the company's capital structure. Every number can be overridden." }
+        "acceptedAnswer": { "@type": "Answer", "text": "It calculates WACC from first principles. Cost of equity uses CAPM: the risk-free rate plus beta times the equity risk premium. The risk-free rate is the local 10-year government bond yield (about 4.5% in the US, 4.8% in Australia, 7.0% in India), and the equity risk premium defaults to 5.5% for the US, 6.0% for Australia, and 7.5% for India. Cost of debt is estimated from a synthetic credit rating based on interest coverage (EBIT over interest expense) — the same shorthand analysts use when a company's bonds have no observable market yield — falling back to interest expense over total debt when EBIT isn't available. The two costs are then weighted by the company's capital structure. Every number can be overridden." }
       },
       {
         "@type": "Question",
@@ -67,6 +68,26 @@
         "@type": "Question",
         "name": "Is the intrinsic value a price target?",
         "acceptedAnswer": { "@type": "Answer", "text": "No. The intrinsic value is what the model says the business is worth given the assumptions you feed it, and small changes in those assumptions move it a lot. That is why the tool shows three scenarios — Bear, Base, and Bull — rather than a single number. Treat the output as one input into your own research, not a target or a recommendation." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the tool value REITs and airlines?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Neither uses a discounted model. REITs are valued as AFFO per share (Funds From Operations, less recurring capex) multiplied by a sector-typical P/AFFO multiple, because GAAP depreciation distorts a REIT's reported free cash flow. Airlines are valued as EBITDA multiplied by a flat 6x EV/EBITDA multiple, then adjusted for net debt, because extreme cyclicality and leverage make a single trailing-year free-cash-flow forecast unreliable. Both are the same shape as a P/E-based valuation — a multiple applied to one number, not a multi-year discounted projection — so Bear/Base/Bull vary the multiple instead of a growth or discount rate." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the tool value regulated utilities?",
+        "acceptedAnswer": { "@type": "Answer", "text": "With the Excess Return Model, the same engine used for banks that retain most of their earnings. A regulator sets how much a utility can earn on its asset base, which produces the same 'value = book equity + the present value of returns above the cost of equity' shape as a bank earning a spread on its book value. The tool only routes regulated sub-industries (Electric, Gas, Water, Diversified) here — merchant or renewable generators, which aren't rate-regulated, stay on ordinary DCF." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the tool handle cyclical and commodity stocks?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It stays on ordinary DCF but replaces the starting free cash flow with a normalized figure: the average FCF margin across every real fiscal year Yahoo returns (typically around four), applied to trailing revenue — instead of just the latest year, which can sit at a cycle peak or trough. This applies to mining, oil & gas, auto manufacturing, chemicals, and semiconductors, among others. It is a modified input, not a different model." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the tool value conglomerates and holding companies?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It applies a flat 15% discount on top of whatever value the ticker's normal model already produced. This is a documented, uncalibrated placeholder reflecting the typically less efficient capital allocation and reduced transparency of diversified holding companies — it is explicitly not a true segment-by-segment sum-of-the-parts valuation, because the underlying data provider does not expose per-segment financials." }
       }
     ]
   }
@@ -85,33 +106,35 @@
         <a href="/articles/">← Articles</a>
       </div>
 
-      <h1 class="article-headline">How to Value a Stock: DCF and the Dividend Discount Model</h1>
-      <div class="article-byline">KashVector &nbsp;·&nbsp; 30 May 2026 &nbsp;·&nbsp; 12 min read</div>
+      <h1 class="article-headline">How to Value a Stock: DCF, DDM, REIT, Airline &amp; Every Method Explained</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 30 May 2026 &nbsp;·&nbsp; updated 24 Aug 2026 &nbsp;·&nbsp; 18 min read</div>
       <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
 
       <p>The value of a business is the cash it will return to its owners over its life, expressed in today's money. That sentence is the whole idea behind intrinsic valuation. Everything else — the spreadsheets, the discount rates, the terminal values — is machinery for turning a stream of future cash into a single number you can compare against today's share price.</p>
 
-      <p>The KashVector DCF tool uses two such methods, and which one applies depends on the company. For most businesses it uses <strong>Discounted Cash Flow (DCF)</strong>. For banks and insurers it uses the <strong>Dividend Discount Model (DDM)</strong>. This article explains how each one works, the exact numbers that go into them, the assumptions that matter most, and how to decide which method fits the company in front of you.</p>
+      <p>A single formula does not fit every business, though. A bank's "debt" is customer deposits, not a funding cost. A REIT's reported cash flow is distorted by depreciation that does not reflect real economic wear. An airline's earnings swing so hard with the fuel-price and travel-demand cycle that one trailing year says very little. KashVector's evaluation tool picks a model automatically based on what the company actually is — no manual toggle — and this article walks through every one of them: <strong>Discounted Cash Flow (DCF)</strong> for most businesses, the <strong>Dividend Discount Model (DDM)</strong> and <strong>Excess Return Model</strong> for banks/insurers and regulated utilities, dedicated <strong>REIT</strong> and <strong>Airline</strong> multiple models, and two adjustments layered on top of whichever model applies — a <strong>Cyclical</strong> normalization for commodity businesses and a <strong>Holding-Company discount</strong> for conglomerates.</p>
 
       <div class="article-summary">
         <p>The short version:</p>
         <ul>
-          <li><strong>DCF</strong> discounts a company's future free cash flow back to today. Use it for businesses with meaningful free cash flow.</li>
-          <li><strong>DDM</strong> discounts future dividends instead. Use it for banks and insurers, where free cash flow is not a meaningful number.</li>
-          <li>Both rely on a <strong>discount rate</strong> built from the risk-free rate, a beta-adjusted equity risk premium, and (for DCF) the cost of debt.</li>
-          <li>The <strong>terminal value</strong> — everything beyond the forecast period — usually drives 60–80% of the answer, so the terminal growth assumption matters more than almost anything else.</li>
-          <li>The output is a <strong>range</strong>, not a target. Small changes in assumptions move it a lot.</li>
+          <li><strong>DCF</strong> discounts a company's future free cash flow back to today. The default for most businesses.</li>
+          <li><strong>DDM</strong> discounts future dividends instead, for banks and insurers where free cash flow is not a meaningful number.</li>
+          <li><strong>Excess Return</strong> values book equity plus the value created by earning above the cost of equity — for banks/insurers that retain most of their earnings, and for regulated utilities.</li>
+          <li><strong>REIT</strong> and <strong>Airline</strong> apply a multiple directly to a single figure (AFFO, EBITDA) rather than discounting a multi-year projection — no WACC, no terminal value.</li>
+          <li><strong>Cyclical</strong> commodity businesses get a multi-year average FCF margin instead of the latest year alone; <strong>conglomerates</strong> get a flat discount on top of whatever model they'd otherwise use.</li>
+          <li>DCF/DDM/Excess Return all rely on a <strong>discount rate</strong> built from the risk-free rate, a beta-adjusted equity risk premium, and (for DCF) the cost of debt. Terminal value usually drives 60–80% of a DCF's answer.</li>
+          <li>Every output is a <strong>range</strong> — Bear, Base, Bull — not a single target.</li>
         </ul>
       </div>
 
       <h2>How the tool chooses a method</h2>
 
-      <p>Before any numbers are crunched, the tool decides which model applies. The logic is simple, and it is worth seeing as a whole before getting into the detail of each method.</p>
+      <p>Before any numbers are crunched, the tool decides which model applies — automatically, with no manual toggle. It checks the company's sector and industry against four special cases in order; whichever matches first wins, and anything left over gets ordinary DCF. Two more adjustments — for cyclical companies and conglomerates — are layered on afterward regardless of which model above was picked.</p>
 
-      <div style="margin:24px 0; padding:16px; border:1px solid var(--kv-border); border-radius:10px; background:var(--kv-card);">
-        <svg viewBox="0 0 490 432" role="img" aria-label="Flowchart of how the tool decides which valuation method to use" style="width:100%; height:auto; display:block;">
+      <div style="margin:24px 0; padding:16px; border:1px solid var(--kv-border); border-radius:10px; background:var(--kv-card); overflow-x:auto;">
+        <svg viewBox="0 0 580 646" role="img" aria-label="Flowchart of how the tool decides which valuation model to use, from bank/insurer through REIT, Airline, and regulated utility checks down to the default DCF, with Cyclical and Holding-Company adjustments applied afterward" style="width:100%; height:auto; display:block; min-width:520px;">
           <defs>
-            <marker id="fcArrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+            <marker id="fcArrow2" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
               <path d="M0,0 L6,3 L0,6 Z" fill="var(--kv-muted)"/>
             </marker>
             <style>
@@ -120,69 +143,97 @@
               .fc-term { fill: var(--kv-card-2); stroke: var(--kv-pass);   stroke-width:1.8; }
               .fc-alt  { fill: var(--kv-card-2); stroke: var(--kv-muted);  stroke-width:1.5; }
               .fc-t  { fill: var(--kv-text);  font: 600 12px system-ui, -apple-system, sans-serif; text-anchor:middle; }
-              .fc-m  { fill: var(--kv-muted); font: 11px system-ui, -apple-system, sans-serif; text-anchor:middle; }
+              .fc-m  { fill: var(--kv-muted); font: 10.5px system-ui, -apple-system, sans-serif; text-anchor:middle; }
               .fc-edge { stroke: var(--kv-muted); stroke-width:1.5; fill:none; }
+              .fc-edge-alt { stroke: var(--kv-muted); stroke-width:1.3; fill:none; stroke-dasharray:3,3; }
               .fc-lbl  { fill: var(--kv-muted); font: 700 10px system-ui, sans-serif; }
             </style>
           </defs>
 
-          <!-- edges -->
-          <path class="fc-edge" d="M150,54 V70"  marker-end="url(#fcArrow)"/>
-          <path class="fc-edge" d="M210,98 H262" marker-end="url(#fcArrow)"/>
-          <path class="fc-edge" d="M150,126 V150" marker-end="url(#fcArrow)"/>
-          <path class="fc-edge" d="M150,184 V202" marker-end="url(#fcArrow)"/>
-          <path class="fc-edge" d="M214,232 H262" marker-end="url(#fcArrow)"/>
-          <path class="fc-edge" d="M150,262 V300"/>
-          <path class="fc-edge" d="M372,258 V300 H150"/>
-          <path class="fc-edge" d="M150,300 V316" marker-end="url(#fcArrow)"/>
-          <path class="fc-edge" d="M150,356 V374" marker-end="url(#fcArrow)"/>
-          <circle cx="150" cy="300" r="2.6" fill="var(--kv-muted)"/>
-
-          <!-- branch labels -->
-          <text class="fc-lbl" x="222" y="92">YES</text>
-          <text class="fc-lbl" x="158" y="142">NO</text>
-          <text class="fc-lbl" x="226" y="226">NO</text>
-          <text class="fc-lbl" x="158" y="284">YES</text>
-
           <!-- Start -->
-          <rect class="fc-proc" x="50" y="16" width="200" height="38" rx="8"/>
+          <path class="fc-edge" d="M150,54 V72" marker-end="url(#fcArrow2)"/>
+          <rect class="fc-proc" x="40" y="16" width="220" height="38" rx="8"/>
           <text class="fc-t" x="150" y="40">Enter ticker → fetch financials</text>
 
-          <!-- Decision 1: bank/insurer -->
-          <polygon class="fc-dec" points="150,70 212,98 150,126 88,98"/>
-          <text class="fc-t" x="150" y="102">Bank or insurer?</text>
+          <!-- D1: Bank/insurer/NBFC -->
+          <polygon class="fc-dec" points="150,72 218,100 150,128 82,100"/>
+          <text class="fc-t" x="150" y="96">Bank, insurer,</text>
+          <text class="fc-t" x="150" y="112">or NBFC?</text>
+          <path class="fc-edge" d="M218,100 H300" marker-end="url(#fcArrow2)"/>
+          <text class="fc-lbl" x="226" y="94">YES</text>
+          <rect class="fc-term" x="300" y="72" width="260" height="62" rx="8"/>
+          <text class="fc-t" x="430" y="92">Dividend Discount Model</text>
+          <text class="fc-m" x="430" y="108">or Excess Return if it retains</text>
+          <text class="fc-m" x="430" y="123">earnings at a high ROE</text>
+          <path class="fc-edge" d="M150,128 V160" marker-end="url(#fcArrow2)"/>
+          <text class="fc-lbl" x="158" y="144">NO</text>
 
-          <!-- DDM branch box -->
-          <rect class="fc-term" x="262" y="70" width="220" height="62" rx="8"/>
-          <text class="fc-t" x="372" y="90">Dividend Discount Model</text>
-          <text class="fc-m" x="372" y="106">value from projected dividends,</text>
-          <text class="fc-m" x="372" y="121">discounted at the cost of equity</text>
+          <!-- D2: REIT -->
+          <polygon class="fc-dec" points="150,160 218,188 150,216 82,188"/>
+          <text class="fc-t" x="150" y="184">REIT</text>
+          <text class="fc-t" x="150" y="200">(not mortgage)?</text>
+          <path class="fc-edge" d="M218,188 H300" marker-end="url(#fcArrow2)"/>
+          <text class="fc-lbl" x="226" y="182">YES</text>
+          <rect class="fc-term" x="300" y="160" width="260" height="62" rx="8"/>
+          <text class="fc-t" x="430" y="189">REIT Model</text>
+          <text class="fc-m" x="430" y="207">FFO/AFFO × sector P/AFFO multiple</text>
+          <path class="fc-edge" d="M150,216 V248" marker-end="url(#fcArrow2)"/>
+          <text class="fc-lbl" x="158" y="232">NO</text>
 
-          <!-- DCF -->
-          <rect class="fc-proc" x="50" y="150" width="200" height="34" rx="8"/>
-          <text class="fc-t" x="150" y="171">Discounted Cash Flow</text>
+          <!-- D3: Airline -->
+          <polygon class="fc-dec" points="150,248 218,276 150,304 82,276"/>
+          <text class="fc-t" x="150" y="280">Airline?</text>
+          <path class="fc-edge" d="M218,276 H300" marker-end="url(#fcArrow2)"/>
+          <text class="fc-lbl" x="226" y="270">YES</text>
+          <rect class="fc-term" x="300" y="248" width="260" height="62" rx="8"/>
+          <text class="fc-t" x="430" y="277">Airline Model</text>
+          <text class="fc-m" x="430" y="295">EV/EBITDA × flat 6x multiple</text>
+          <path class="fc-edge" d="M150,304 V336" marker-end="url(#fcArrow2)"/>
+          <text class="fc-lbl" x="158" y="320">NO</text>
 
-          <!-- Decision 2: FCF positive -->
-          <polygon class="fc-dec" points="150,202 216,232 150,262 84,232"/>
-          <text class="fc-t" x="150" y="229">Free cash flow</text>
-          <text class="fc-t" x="150" y="243">positive?</text>
+          <!-- D4: Regulated utility -->
+          <polygon class="fc-dec" points="150,336 218,364 150,392 82,364"/>
+          <text class="fc-t" x="150" y="360">Regulated</text>
+          <text class="fc-t" x="150" y="376">utility?</text>
+          <path class="fc-edge" d="M218,364 H300" marker-end="url(#fcArrow2)"/>
+          <text class="fc-lbl" x="226" y="358">YES</text>
+          <rect class="fc-term" x="300" y="336" width="260" height="62" rx="8"/>
+          <text class="fc-t" x="430" y="357">Excess Return Model</text>
+          <text class="fc-m" x="430" y="373">rate-base-and-allowed-</text>
+          <text class="fc-m" x="430" y="388">return economics</text>
+          <path class="fc-edge" d="M150,392 V424" marker-end="url(#fcArrow2)"/>
+          <text class="fc-lbl" x="158" y="408">NO</text>
 
-          <!-- Normalise box -->
-          <rect class="fc-alt" x="262" y="206" width="220" height="52" rx="8"/>
-          <text class="fc-m" x="372" y="227">Negative or missing →</text>
-          <text class="fc-m" x="372" y="242">normalise: revenue × target margin</text>
+          <!-- DCF default + Cyclical note -->
+          <rect class="fc-proc" x="40" y="424" width="220" height="40" rx="8"/>
+          <text class="fc-t" x="150" y="449">Discounted Cash Flow</text>
+          <path class="fc-edge-alt" d="M260,444 H300" marker-end="url(#fcArrow2)"/>
+          <rect class="fc-alt" x="300" y="424" width="260" height="40" rx="8"/>
+          <text class="fc-m" x="430" y="440">Cyclical sector? → normalize FCF</text>
+          <text class="fc-m" x="430" y="455">from multi-year average margin</text>
 
-          <!-- Project / discount -->
-          <rect class="fc-proc" x="50" y="316" width="200" height="40" rx="8"/>
-          <text class="fc-t" x="150" y="333">Discount FCF at WACC,</text>
-          <text class="fc-t" x="150" y="349">subtract net debt</text>
+          <!-- convergence -->
+          <path class="fc-edge" d="M430,134 V504"/>
+          <path class="fc-edge" d="M430,222 V504"/>
+          <path class="fc-edge" d="M430,310 V504"/>
+          <path class="fc-edge" d="M430,398 V504"/>
+          <path class="fc-edge" d="M150,464 V504"/>
+          <path class="fc-edge" d="M430,504 H150"/>
+          <circle cx="150" cy="504" r="2.6" fill="var(--kv-muted)"/>
+          <path class="fc-edge" d="M150,504 V522" marker-end="url(#fcArrow2)"/>
+
+          <!-- Holdco note -->
+          <rect class="fc-alt" x="50" y="522" width="200" height="40" rx="8"/>
+          <text class="fc-m" x="150" y="538">Conglomerate? → 15% discount</text>
+          <text class="fc-m" x="150" y="553">applied to the value above</text>
+          <path class="fc-edge" d="M150,562 V580" marker-end="url(#fcArrow2)"/>
 
           <!-- Terminal -->
-          <rect class="fc-term" x="50" y="374" width="200" height="42" rx="10"/>
-          <text class="fc-t" x="150" y="391">Intrinsic value / share</text>
-          <text class="fc-m" x="150" y="407">→ Bear · Base · Bull</text>
+          <rect class="fc-term" x="50" y="580" width="200" height="46" rx="10"/>
+          <text class="fc-t" x="150" y="601">Intrinsic value / share</text>
+          <text class="fc-m" x="150" y="617">→ Bear · Base · Bull</text>
         </svg>
-        <p style="font-size:0.82rem; color:var(--kv-muted); line-height:1.6; margin:12px 4px 0;">Two edge cases are left off the chart to keep it readable. A bank or insurer that pays no dividend shows valuation multiples (price-to-book, return on equity, price-to-earnings) instead of an intrinsic value, because the DDM has nothing to discount. And if a company's net debt is larger than its DCF firm value, the equity comes out at roughly zero on a DCF basis — a signal that the market is pricing it on future growth or asset value rather than today's cash flow.</p>
+        <p style="font-size:0.82rem; color:var(--kv-muted); line-height:1.6; margin:12px 4px 0;">A few edge cases are left off the chart to keep it readable. Mortgage REITs route to the Dividend Discount Model, not the REIT model — their economics are a loan book, not a property portfolio. Independent power producers and renewable generators are not treated as regulated utilities (they carry real merchant-market risk a rate-base model doesn't capture) and stay on ordinary DCF. A bank or insurer that pays no dividend shows valuation multiples (price-to-book, return on equity, price-to-earnings) instead of an intrinsic value. And if a company's net debt is larger than its DCF firm value, the equity comes out at roughly zero — a signal the market is pricing the stock on future growth or asset value rather than today's cash flow.</p>
       </div>
 
       <h2>Method 1: Discounted Cash Flow</h2>
@@ -198,6 +249,12 @@
       <p><strong>4. Add a terminal value.</strong> The business does not stop at year five. Terminal value captures everything after the forecast as a perpetuity growing at a terminal growth rate — 2.5% by default. This single figure typically accounts for <strong>60–80% of the total</strong>, which is why the terminal growth assumption deserves real scrutiny. It should never exceed long-run economic growth (roughly 2–3%); a business cannot outgrow the economy forever.</p>
 
       <p><strong>5. Adjust for debt, then divide by shares.</strong> Subtracting net debt (total debt minus cash) from the firm value gives the equity value; dividing by shares outstanding gives intrinsic value per share. That is the number you compare against today's price.</p>
+
+      <h3>Cyclical companies: normalizing the base year</h3>
+
+      <p>Step 1 above has a real weakness for mining, oil &amp; gas, auto manufacturing, chemicals, and semiconductor companies: a single trailing year of free cash flow can sit at a cycle peak or trough, and projecting five years of growth off that one number either wildly overstates or understates the business. The tool detects these sectors and replaces the trailing-year FCF with a <strong>normalized</strong> figure instead: it averages the FCF margin (free cash flow ÷ revenue) across every real fiscal year Yahoo Finance returns — typically around four — and applies that average margin to trailing revenue. Everything downstream (growth, discount rate, terminal value) runs unchanged; only the starting FCF input is different.</p>
+
+      <p>This is a real, disclosed limitation, not a hidden one: a genuine commodity cycle usually runs five to ten years, and four years of history rarely spans a full cycle. When the tool applies this normalization it labels the input as such and states the number of years and the margin actually used, so you can judge for yourself whether that window looks representative.</p>
 
       <h2>The discount rate, and the numbers behind it</h2>
 
@@ -225,7 +282,7 @@
 
       <p><strong>Beta</strong> measures how much the stock moves relative to its market, scaling the risk premium. Here there is a data trap worth knowing. Yahoo Finance computes beta against the S&P 500, which is correct for US stocks but understates risk for everything else — an Australian or Indian company does not move in lockstep with the US market, so its measured beta comes out artificially low (a global insurer showing 0.17, for instance). To compensate, the tool applies a minimum beta when seeding the discount rate: <strong>0.5 for ASX and most international stocks, 0.6 for India</strong>, and none for US stocks where Yahoo's figure is sound. It tells you when the floor has been applied, and you can override it with a local-market beta if you have one.</p>
 
-      <p><strong>Cost of debt</strong> is the company's interest expense divided by its total debt, plus a small 0.5% spread to approximate today's borrowing cost rather than the rate on old debt. <strong>Tax</strong> comes from the income statement (defaulting to 25% if unavailable), because interest is tax-deductible and lowers the effective cost of debt. The two costs are then weighted by the company's equity and debt to give WACC.</p>
+      <p><strong>Cost of debt</strong> is estimated from a synthetic credit rating — the same shorthand professional analysts use when a company's bonds aren't liquid enough to have an observable market yield. The tool computes an interest coverage ratio (EBIT ÷ interest expense) and maps it to a rating band from AAA down to D, each carrying its own credit spread over the risk-free rate: a strongly covered borrower rated AAA adds only a small spread, a highly levered one adds much more. When EBIT isn't available, it falls back to a simpler book-yield estimate — interest expense divided by total debt, plus a small 0.5% spread to approximate today's borrowing cost rather than the rate on old debt — and finally to a flat default if neither figure exists. <strong>Tax</strong> comes from the income statement (defaulting to 25% if unavailable), because interest is tax-deductible and lowers the effective cost of debt. The two costs are then weighted by the company's equity and debt to give WACC.</p>
 
       <h3>A note for Australian investors: franking credits</h3>
 
@@ -260,6 +317,60 @@
 
       <p>The tool also shows the metrics that actually matter for these businesses — price-to-book, return on equity, price-to-earnings, and dividend yield — as a cross-check. If a bank or insurer pays no dividend, the DDM has nothing to work with, so the tool shows those multiples and no intrinsic value rather than inventing one.</p>
 
+      <h3>When DDM understates the value: the Excess Return Model</h3>
+
+      <p>DDM only sees the dividend actually paid out. A bank that retains most of its earnings and reinvests them at a return above its cost of equity is creating real value DDM can't capture — it would show a low intrinsic value simply because the payout is low, even though the retained earnings are compounding at an attractive rate. For these companies the tool switches to the <strong>Excess Return Model</strong> instead:</p>
+
+      <p style="text-align:center; font-size:1.05rem;"><strong>Value of equity = Book value of equity + the present value of (ROE − Cost of equity) × book value, for each projected year</strong></p>
+
+      <p>Each year's "excess return" — the return earned above what shareholders require — is discounted back at the cost of equity and added to today's book value. Deliberately, there is <strong>no terminal value</strong>: a permanent excess return would mean a bank earns above its cost of equity forever, which the model treats as an assumption to state explicitly for a handful of projected years, not to bake in indefinitely. The choice between DDM and Excess Return is made automatically by comparing the actual payout ratio against what would be sustainable given the bank's ROE and growth rate — a payout below roughly half of that sustainable level routes to Excess Return; anything higher stays on DDM.</p>
+
+      <p>The same formula, for the same underlying reason, is also how the tool values <strong>regulated utilities</strong> (electric, gas, water, and diversified utilities under direct rate regulation). A regulator sets how much a utility is allowed to earn on its asset base — the same "earn a return on book value" shape as a bank's economics — which makes ordinary FCF-based DCF a poor fit for the same reason it's a poor fit for banks. Merchant generators and renewable-only utilities, which sell into competitive markets rather than earning a regulated return, are explicitly excluded and stay on ordinary DCF.</p>
+
+      <h2>Method 3: REIT — a Multiple, Not a Discounted Model</h2>
+
+      <p>Property REITs (real estate investment trusts) have a specific accounting problem: GAAP depreciation is a large, non-cash expense that reduces reported net income and free cash flow even though a well-maintained building often holds or gains value over time. Running a standard DCF on a REIT's reported FCF systematically understates it.</p>
+
+      <p>The real-estate industry's own answer to this is <strong>FFO</strong> (Funds From Operations) and <strong>AFFO</strong> (Adjusted FFO), and the tool uses the same convention:</p>
+
+      <p style="text-align:center; font-size:1.05rem;"><strong>FFO = Net income + Depreciation &amp; amortization</strong><br><strong>AFFO = FFO − Capital expenditure</strong></p>
+
+      <p>AFFO per share is then multiplied directly by a sector-typical <strong>P/AFFO multiple</strong> — no discounting, no growth projection, no terminal value, the same shape as a P/E-based valuation. The multiple varies by property type, since different REIT sectors trade at structurally different multiples in practice:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.9rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;">
+          <th style="padding:6px 8px;">REIT sub-sector</th><th style="padding:6px 8px;">P/AFFO multiple</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Industrial</td><td style="padding:6px 8px;">18×</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Residential / Specialty</td><td style="padding:6px 8px;">16×</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Healthcare Facilities</td><td style="padding:6px 8px;">15×</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Diversified</td><td style="padding:6px 8px;">14×</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Retail</td><td style="padding:6px 8px;">13×</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Hotel &amp; Motel</td><td style="padding:6px 8px;">11×</td></tr>
+          <tr><td style="padding:6px 8px;">Office</td><td style="padding:6px 8px;">10×</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Two things worth knowing: FFO deliberately omits gains on asset sales, because Yahoo's income statement doesn't break that figure out separately — a documented, usually-minor understatement, not a silent gap. And AFFO uses total reported capex as a proxy for "recurring" capex, since the recurring-vs-growth split is a REIT-specific disclosure no financial-data API exposes — this understates AFFO for a REIT that's actively expanding, a conservative bias rather than an inflated one. Mortgage REITs (which hold loans, not property) are excluded from this model entirely and valued as financials instead, via DDM or Excess Return.</p>
+
+      <h2>Method 4: Airline — an EV/EBITDA Multiple</h2>
+
+      <p>Airlines share REIT's problem in spirit if not in mechanism: extreme cyclicality and high operating and financial leverage make a single trailing year's free cash flow and growth rate an unreliable basis for a multi-year DCF projection. An airline's DCF can come back with no computable value at all in a weak year despite the business generating solid EBITDA, or show a materially different picture than a multiple-based read.</p>
+
+      <p>The tool values airlines the same non-discounted way it values REITs — a multiple applied to a single figure:</p>
+
+      <p style="text-align:center; font-size:1.05rem;"><strong>Enterprise value = EBITDA × 6 &nbsp;→&nbsp; Equity value = Enterprise value − net debt &nbsp;→&nbsp; ÷ shares outstanding</strong></p>
+
+      <p>The flat 6× multiple is a documented, explicitly uncalibrated mid-cycle placeholder — Yahoo tags every airline with the same single industry label, so there's no sub-classification to build a table from the way REIT's property types allow. Ideally this would be EV/EBITDAR, which adds back aircraft lease rent to normalize for owned-versus-leased fleet mix (a standard airline-analyst convention) — but that figure isn't reliably broken out in the free data feed this tool relies on, so plain EBITDA ships as a real, disclosed limitation rather than a hidden one.</p>
+
+      <h2>The Holding-Company Discount</h2>
+
+      <p>A conglomerate — a company operating several genuinely different businesses under one listing — creates a valuation problem none of the models above solve on their own: whichever model the ticker would otherwise get (almost always DCF) values it as if it were one coherent business, when in practice a sum-of-the-parts valuation would treat each segment separately.</p>
+
+      <p>A true segment-by-segment valuation isn't possible with this tool's data source, since it doesn't expose per-segment financials for a diversified holding company. Instead, once a conglomerate is detected, the tool applies a flat <strong>15% discount</strong> to whatever value the underlying model already produced — a documented, deliberately uncalibrated placeholder reflecting the typically less efficient capital allocation and reduced transparency of diversified structures, the same "state the limitation plainly" posture the Airline model's multiple takes. This is not a per-segment sum-of-the-parts estimate, and it stacks on top of any of the models above — a utility-tagged or bank-tagged conglomerate still gets its normal model first, with the discount applied afterward.</p>
+
       <h2>Which method to use, and when</h2>
 
       <p>The tool makes the default choice for you, but it helps to understand the reasoning so you know when to trust the output and when to reach for something else.</p>
@@ -269,11 +380,14 @@
         <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;">
           <th style="padding:6px 8px;">Company type</th><th style="padding:6px 8px;">Method</th><th style="padding:6px 8px;">Why</th></tr></thead>
         <tbody>
-          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Industrials, consumer, tech, healthcare, energy</td><td style="padding:6px 8px;"><strong>DCF</strong></td><td style="padding:6px 8px;">Meaningful, measurable free cash flow</td></tr>
-          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Banks &amp; insurers</td><td style="padding:6px 8px;"><strong>DDM</strong></td><td style="padding:6px 8px;">Free cash flow is not a meaningful number</td></tr>
-          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Other dividend payers</td><td style="padding:6px 8px;">DCF, or DDM as a cross-check</td><td style="padding:6px 8px;">The tool offers an optional DDM view</td></tr>
-          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Pre-profit growth companies</td><td style="padding:6px 8px;">DCF on normalised FCF</td><td style="padding:6px 8px;">Estimate the mature margin first (below)</td></tr>
-          <tr><td style="padding:6px 8px;">REITs</td><td style="padding:6px 8px;">Neither, ideally</td><td style="padding:6px 8px;">Better valued on Funds From Operations</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Industrials, consumer, tech, healthcare, most energy</td><td style="padding:6px 8px;"><strong>DCF</strong></td><td style="padding:6px 8px;">Meaningful, measurable free cash flow</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Banks &amp; insurers, high payout</td><td style="padding:6px 8px;"><strong>DDM</strong></td><td style="padding:6px 8px;">Free cash flow is not a meaningful number</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Banks &amp; insurers, low payout / high ROE; regulated utilities</td><td style="padding:6px 8px;"><strong>Excess Return</strong></td><td style="padding:6px 8px;">Values retained-earnings growth DDM can't see; matches rate-base economics</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Property REITs (excl. mortgage REITs)</td><td style="padding:6px 8px;"><strong>REIT (AFFO × multiple)</strong></td><td style="padding:6px 8px;">GAAP depreciation distorts reported FCF</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Airlines</td><td style="padding:6px 8px;"><strong>Airline (EV/EBITDA × multiple)</strong></td><td style="padding:6px 8px;">Cyclicality/leverage distort a single-year FCF forecast</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Mining, oil &amp; gas, autos, chemicals, semiconductors</td><td style="padding:6px 8px;">DCF, normalized FCF</td><td style="padding:6px 8px;">Multi-year average margin, not one cycle-sensitive year</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Conglomerates / holding companies</td><td style="padding:6px 8px;">Normal model, minus 15%</td><td style="padding:6px 8px;">Flat discount for capital-allocation drag; no per-segment data available</td></tr>
+          <tr><td style="padding:6px 8px;">Pre-profit growth companies</td><td style="padding:6px 8px;">DCF on normalised FCF</td><td style="padding:6px 8px;">Estimate the mature margin first (below)</td></tr>
         </tbody>
       </table>
       </div>
@@ -283,11 +397,14 @@
         <span class="article-cta-text">Value any stock with DCF or DDM → Discounted Cash Flow Calculator</span>
       </a>
 
-      <p>If you want a ready-made starting list rather than valuing stocks one at a time, the automated monthly screens apply the same DCF and DDM logic across an entire index and rank every stock by margin of safety — useful for surfacing names worth investigating further:</p>
+      <p>If you want a ready-made starting list rather than valuing stocks one at a time, the automated monthly screens apply this same model dispatch — DCF, DDM, Excess Return, REIT, Airline, and the Cyclical/Holdco adjustments — across an entire index and rank every stock by margin of safety, useful for surfacing names worth investigating further:</p>
       <ul>
         <li><a href="/dcf/asx-undervalued/" style="color:var(--kv-accent);">Most Undervalued ASX 300 Stocks →</a> — ranked monthly by DCF margin of safety, AUD</li>
         <li><a href="/dcf/sp500-undervalued/" style="color:var(--kv-accent);">Most Undervalued S&amp;P 500 Stocks →</a> — ranked monthly by DCF margin of safety, USD</li>
         <li><a href="/dcf/nifty-undervalued/" style="color:var(--kv-accent);">Most Undervalued NIFTY 500 Stocks →</a> — ranked monthly by DCF margin of safety, INR</li>
+        <li><a href="/dcf/kospi-undervalued/" style="color:var(--kv-accent);">Most Undervalued KOSPI 200 Stocks →</a> — ranked monthly by DCF margin of safety, KRW</li>
+        <li><a href="/dcf/nikkei-undervalued/" style="color:var(--kv-accent);">Most Undervalued Nikkei 225 Stocks →</a> — ranked monthly by DCF margin of safety, JPY</li>
+        <li><a href="/dcf/europe-undervalued/" style="color:var(--kv-accent);">Most Undervalued European Stocks →</a> — ranked monthly by DCF margin of safety, EUR</li>
       </ul>
 
       <h2>Sector reference ranges</h2>
@@ -312,7 +429,7 @@
 
       <h2>Bear, Base, and Bull — and the margin of safety</h2>
 
-      <p>Because the output is so sensitive to assumptions, a single intrinsic value would imply a precision that does not exist. The tool runs three scenarios side by side instead. <strong>Base</strong> uses the seeded assumptions. <strong>Bear</strong> applies lower growth and a higher discount rate. <strong>Bull</strong> applies higher growth and a lower discount rate. Together they describe a range of plausible values rather than a false point estimate.</p>
+      <p>Because the output is so sensitive to assumptions, a single intrinsic value would imply a precision that does not exist. The tool runs three scenarios side by side instead. <strong>Base</strong> uses the seeded assumptions. <strong>Bear</strong> applies lower growth and a higher discount rate; <strong>Bull</strong> applies higher growth and a lower discount rate — for DCF, DDM, and Excess Return. REIT and Airline have no growth or discount rate to vary, so their Bear/Base/Bull instead move the multiple ±20% around its base value; the shape is the same three-scenario range either way.</p>
 
       <p>Each scenario reports a <strong>margin of safety</strong> — the gap between intrinsic value and the current price. A positive margin means the stock trades below the model's estimate; a negative one means it trades above. The idea, which goes back to Benjamin Graham, is to buy with enough of a discount that you can be somewhat wrong and still not overpay. When the price sits below even the Bear value, that is a meaningful signal; when it sits above the Bull value, the stock looks expensive on these assumptions.</p>
 
@@ -320,7 +437,7 @@
 
       <p>A valuation model is a disciplined way to convert assumptions into a number. It is not a crystal ball, and it is worth being clear about its limits.</p>
 
-      <p>The output is only as good as the inputs — change the growth rate or discount rate slightly and the answer moves a lot, which is a feature of the method, not a flaw in the tool. It works best for mature, stable, cash-generative businesses, and least well for cyclical commodity producers (volatile earnings), early-stage companies (no cash-flow history), REITs (better valued on Funds From Operations), and conglomerates priced on future optionality. The data comes from Yahoo Finance, is roughly 15 minutes delayed, and carries no accuracy guarantee, so treat every figure as a starting point to verify rather than a fact.</p>
+      <p>The output is only as good as the inputs — change the growth rate or discount rate slightly and the answer moves a lot, which is a feature of the method, not a flaw in the tool. Every one of the sector-specific models above exists precisely because the plain version breaks somewhere, and each still carries its own real limitation: cyclical normalization is capped by however many years of history Yahoo actually returns, the Airline model's 6× multiple and the Holdco discount's 15% are both explicit, uncalibrated placeholders rather than calibrated estimates, and none of this is a substitute for reading the actual business. Early-stage companies with no cash-flow history at all and conglomerates priced heavily on future optionality remain the hardest cases regardless of which model applies. The data comes from Yahoo Finance, is roughly 15 minutes delayed, and carries no accuracy guarantee, so treat every figure as a starting point to verify rather than a fact.</p>
 
       <p>Used well, the model is a way to make your assumptions explicit and test them. The number at the end is far less valuable than the discipline of having to state, out loud, what you believe about a company's future — and seeing how much the answer depends on it.</p>
 
@@ -349,7 +466,7 @@
         </details>
         <details class="faq-item">
           <summary>What discount rate does the calculator use?</summary>
-          <p>It calculates WACC from first principles. Cost of equity uses CAPM: the risk-free rate plus beta times the equity risk premium. The risk-free rate is the local 10-year government bond yield (about 4.5% in the US, 4.8% in Australia, 7.0% in India), and the equity risk premium defaults to 5.5% for the US, 6.0% for Australia, and 7.5% for India. Cost of debt comes from interest expense over total debt, and the two are weighted by the company's capital structure. Every number can be overridden.</p>
+          <p>It calculates WACC from first principles. Cost of equity uses CAPM: the risk-free rate plus beta times the equity risk premium. The risk-free rate is the local 10-year government bond yield (about 4.5% in the US, 4.8% in Australia, 7.0% in India), and the equity risk premium defaults to 5.5% for the US, 6.0% for Australia, and 7.5% for India. Cost of debt is estimated from a synthetic credit rating based on interest coverage (EBIT over interest expense) — the same shorthand analysts use when a company's bonds have no observable market yield — falling back to interest expense over total debt when EBIT isn't available. The two costs are then weighted by the company's capital structure. Every number can be overridden.</p>
         </details>
         <details class="faq-item">
           <summary>Why does the tool use a minimum beta for ASX and Indian stocks?</summary>
@@ -362,6 +479,22 @@
         <details class="faq-item">
           <summary>Is the intrinsic value a price target?</summary>
           <p>No. The intrinsic value is what the model says the business is worth given the assumptions you feed it, and small changes in those assumptions move it a lot. That is why the tool shows three scenarios — Bear, Base, and Bull — rather than a single number. Treat the output as one input into your own research, not a target or a recommendation.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How does the tool value REITs and airlines?</summary>
+          <p>Neither uses a discounted model. REITs are valued as AFFO per share (Funds From Operations, less recurring capex) multiplied by a sector-typical P/AFFO multiple, because GAAP depreciation distorts a REIT's reported free cash flow. Airlines are valued as EBITDA multiplied by a flat 6x EV/EBITDA multiple, then adjusted for net debt, because extreme cyclicality and leverage make a single trailing-year free-cash-flow forecast unreliable. Both are the same shape as a P/E-based valuation — a multiple applied to one number, not a multi-year discounted projection — so Bear/Base/Bull vary the multiple instead of a growth or discount rate.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How does the tool value regulated utilities?</summary>
+          <p>With the Excess Return Model, the same engine used for banks that retain most of their earnings. A regulator sets how much a utility can earn on its asset base, which produces the same "value = book equity + the present value of returns above the cost of equity" shape as a bank earning a spread on its book value. The tool only routes regulated sub-industries (Electric, Gas, Water, Diversified) here — merchant or renewable generators, which aren't rate-regulated, stay on ordinary DCF.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How does the tool handle cyclical and commodity stocks?</summary>
+          <p>It stays on ordinary DCF but replaces the starting free cash flow with a normalized figure: the average FCF margin across every real fiscal year Yahoo returns (typically around four), applied to trailing revenue — instead of just the latest year, which can sit at a cycle peak or trough. This applies to mining, oil &amp; gas, auto manufacturing, chemicals, and semiconductors, among others. It is a modified input, not a different model.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How does the tool value conglomerates and holding companies?</summary>
+          <p>It applies a flat 15% discount on top of whatever value the ticker's normal model already produced. This is a documented, uncalibrated placeholder reflecting the typically less efficient capital allocation and reduced transparency of diversified holding companies — it is explicitly not a true segment-by-segment sum-of-the-parts valuation, because the underlying data provider does not expose per-segment financials.</p>
         </details>
       </div>
     </section>
