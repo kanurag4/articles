@@ -132,7 +132,7 @@
       <p>Before any numbers are crunched, the tool decides which model applies — automatically, with no manual toggle. It checks the company's sector and industry against four special cases in order; whichever matches first wins, and anything left over gets ordinary DCF. Two more adjustments — for cyclical companies and conglomerates — are layered on afterward regardless of which model above was picked.</p>
 
       <div style="margin:24px 0; padding:16px; border:1px solid var(--kv-border); border-radius:10px; background:var(--kv-card); overflow-x:auto;">
-        <svg viewBox="0 0 580 646" role="img" aria-label="Flowchart of how the tool decides which valuation model to use, from bank/insurer through REIT, Airline, and regulated utility checks down to the default DCF, with Cyclical and Holding-Company adjustments applied afterward" style="width:100%; height:auto; display:block; min-width:520px;">
+        <svg viewBox="0 0 600 646" role="img" aria-label="Flowchart of how the tool decides which valuation model to use, from bank/insurer through REIT, Airline, and regulated utility checks down to the default DCF, with Cyclical and Holding-Company adjustments applied afterward" style="width:100%; height:auto; display:block; min-width:520px;">
           <defs>
             <marker id="fcArrow2" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
               <path d="M0,0 L6,3 L0,6 Z" fill="var(--kv-muted)"/>
@@ -212,13 +212,14 @@
           <text class="fc-m" x="430" y="440">Cyclical sector? → normalize FCF</text>
           <text class="fc-m" x="430" y="455">from multi-year average margin</text>
 
-          <!-- convergence -->
-          <path class="fc-edge" d="M430,134 V504"/>
-          <path class="fc-edge" d="M430,222 V504"/>
-          <path class="fc-edge" d="M430,310 V504"/>
-          <path class="fc-edge" d="M430,398 V504"/>
+          <!-- convergence: route around the branch boxes' right edge (x=560), not through them -->
+          <path class="fc-edge" d="M560,103 H575"/>
+          <path class="fc-edge" d="M560,191 H575"/>
+          <path class="fc-edge" d="M560,279 H575"/>
+          <path class="fc-edge" d="M560,367 H575"/>
+          <path class="fc-edge" d="M575,103 V504"/>
           <path class="fc-edge" d="M150,464 V504"/>
-          <path class="fc-edge" d="M430,504 H150"/>
+          <path class="fc-edge" d="M575,504 H150"/>
           <circle cx="150" cy="504" r="2.6" fill="var(--kv-muted)"/>
           <path class="fc-edge" d="M150,504 V522" marker-end="url(#fcArrow2)"/>
 
