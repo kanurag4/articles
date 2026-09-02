@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Are Thematic ETFs Undervalued or Overvalued? Inside the Valuation Radar — KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/undervalued-etfs-radar/">
+  <meta property="og:title" content="Are Thematic ETFs Undervalued or Overvalued? Inside the Valuation Radar — KashVector">
+  <meta property="og:description" content="We checked whether any thematic ETF is undervalued — right now, none are. How the look-through valuation works, and which funds are closest to fair value.">
+  <meta property="og:url" content="https://kashvector.com/articles/undervalued-etfs-radar/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KashVector — free stock valuation tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Are Thematic ETFs Undervalued or Overvalued? Inside the Valuation Radar — KashVector">
+  <meta name="twitter:description" content="We checked whether any thematic ETF is undervalued — right now, none are. How the look-through valuation works, and which funds are closest to fair value.">
+  <meta name="twitter:image" content="https://kashvector.com/og-image.png">
+  <meta name="description" content="We checked whether any thematic ETF is undervalued — right now, none are. How the look-through valuation works, and which funds are closest to fair value.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <style>
+    /* High-contrast green for inline body links, same treatment as the ASX-300 article */
+    .article-body a:not(.article-cta),
+    .article-body a:not(.article-cta):visited { color: #34d399; text-decoration: none; }
+    .article-body a:not(.article-cta):hover { color: #6ee7b7; text-decoration: underline; }
+    html:not(.dark) .article-body a:not(.article-cta),
+    html:not(.dark) .article-body a:not(.article-cta):visited { color: #15803d; }
+    html:not(.dark) .article-body a:not(.article-cta):hover { color: #166534; }
+
+    /* ── Radar ranking table ── */
+    .radar-table-wrap {
+      overflow-x: auto;
+      margin: 20px 0 28px;
+      border-radius: 10px;
+      border: 1px solid var(--kv-border);
+    }
+    .radar-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      min-width: 560px;
+    }
+    .radar-table th {
+      background: var(--kv-card-2);
+      padding: 9px 10px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--kv-muted);
+      border-bottom: 2px solid var(--kv-border);
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+    .radar-table th:not(:first-child):not(:nth-child(2)) { text-align: right; }
+    .radar-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--kv-border);
+      color: var(--kv-muted);
+      line-height: 1.4;
+    }
+    .radar-table td:not(:first-child):not(:nth-child(2)) {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .radar-table tr:last-child td { border-bottom: none; }
+    .radar-table .fund-name { color: var(--kv-text); font-weight: 500; }
+    .radar-table .fund-mos { font-weight: 700; }
+
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Are Thematic ETFs Undervalued or Overvalued? Inside the Valuation Radar",
+    "datePublished": "2026-09-02",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/undervalued-etfs-radar/",
+    "description": "We checked whether any thematic ETF is undervalued — right now, none are. How the look-through valuation works, and which funds are closest to fair value."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Are any thematic ETFs undervalued right now?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not on the latest monthly snapshot — every fund in the radar currently reads a premium to its combined look-through intrinsic value, so none is undervalued today. Some sit much closer to fair value than others (healthcare and cloud-computing funds are closest; AI-heavy themes like semiconductors are furthest), and the ranking refreshes monthly, so that can change as prices and growth assumptions move." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which thematic ETF is closest to being undervalued?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Whichever fund sits at the top of the current ranking — the one with the smallest premium to its combined intrinsic value. On the latest snapshot that's a cloud-computing fund, with the two global healthcare funds close behind; that can change from one monthly refresh to the next, so check the live ranking for the current order rather than relying on any fixed name." }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the Thematic ETF Valuation Radar actually measure?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For each fund, it values every underlying holding with the same DCF/DDM engine as KashVector's own stock tools, weights each holding's premium or discount to intrinsic value by its fund weight, and sums to one number: how far the fund's holdings collectively trade above or below their combined intrinsic value." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does it use thematic ETFs instead of broad index funds like VAS or IVV?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Broad market-cap index funds reconstitute — expensive constituents are naturally dropped and cheaper ones added as market caps shift — so a point-in-time look-through valuation of a broad index has little predictive value. Thematic funds are locked to their theme and can't rotate out the same way, which is what makes a look-through measurement meaningful." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a fund showing a large premium overvalued?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily. The underlying DCF model is deliberately conservative — it caps growth assumptions hard — so it structurally values fast-growing companies below where the market prices them. A premium is partly a statement about the market and partly a statement about the model's own caution, and a theme can trade above a conservative intrinsic value for years while it keeps compounding." }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do the fund holdings come from?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Each issuer's own published full-holdings file (BetaShares' and iShares' portfolio CSVs), not a data aggregator's ETF holdings list, which is frequently wrong or stale for ASX-listed cross-listings of US funds." }
+      },
+      {
+        "@type": "Question",
+        "name": "How often is the ranking updated?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Monthly. Each fund's holdings, prices and financial data are a snapshot from that run, not a live feed." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-footer.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">Are Thematic ETFs Undervalued or Overvalued? Inside the Valuation Radar</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 2 Sep 2026 &nbsp;·&nbsp; 9 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <div class="article-summary">
+        <p>The short version:</p>
+        <ul>
+          <li><strong>No thematic ETF in the radar is undervalued right now</strong> — every fund currently reads a premium to intrinsic value, some by a lot more than others.</li>
+          <li>A thematic ETF is just a basket of individual stocks — so we valued every stock in the basket, the same way the <a href="/dcf/">DCF tool</a> values one.</li>
+          <li>Each holding runs through the <strong>same engine as KashVector's undervalued screens</strong>, weighted by fund weight and summed to one number per fund.</li>
+          <li>Holdings come from the <strong>issuer's own published file</strong>, not a data aggregator's ETF holdings list.</li>
+          <li>Every holding runs through two built-in checks first — currency matching and a multi-year growth trend — so a currency mismatch or one unusual year can't skew the number.</li>
+          <li>Today, <strong>every fund in the radar reads a premium</strong> to combined intrinsic value — some closer to fair than others.</li>
+          <li>It is a <strong>measurement, never a buy/sell/hold call</strong>.</li>
+        </ul>
+      </div>
+
+      <p><strong>Are any thematic ETFs undervalued right now?</strong> It's a harder question than it sounds, because a thematic ETF isn't one thing — it's a basket of dozens or hundreds of individual stocks, each with its own price and its own intrinsic value. The <a href="/dcf/">DCF Valuation tool</a> already answers this for a single stock: on conservative assumptions, what is this business worth, and is it trading above or below that? The <a href="/dcf/etf-radar/">Thematic ETF Valuation Radar</a> asks the same question of every stock inside a fund at once, rolls the answer into one number for the whole fund, and does it once a month across a growing list of thematic funds.</p>
+
+      <h2>Why thematic funds, and not VAS or IVV</h2>
+
+      <p>The obvious objection: why not run this on a plain S&amp;P 500 or ASX 200 index fund? Because a broad index fund <strong>reconstitutes</strong> — its rules automatically drop a constituent once it no longer qualifies (too expensive relative to market cap thresholds, too small, delisted) and add the next one in. That self-cleansing means a point-in-time look-through valuation of a broad index has almost no predictive teeth; it can read "overvalued" for a decade while the underlying companies — and the index itself — keep compounding, because the index simply carries whatever the market currently rewards.</p>
+
+      <p>A thematic fund can't do that. If you buy a cybersecurity ETF, it stays a cybersecurity ETF — it can't quietly rotate into cheaper, unrelated businesses just because the theme has run hot. That constraint is what makes a look-through measurement mean something: the fund is genuinely locked to whatever its holdings are worth, for better or worse.</p>
+
+      <h2>How the valuation is actually built</h2>
+
+      <p>The pipeline is deliberately unglamorous — no new valuation model, just the existing one pointed at a lot more companies at once:</p>
+
+      <ul>
+        <li><strong>Real holdings, not a shortcut.</strong> Each fund's holdings come from the issuer's own published full-holdings file — BetaShares' and iShares' portfolio CSVs — rather than a data aggregator's ETF holdings feed, which is frequently wrong or stale for an ASX-listed cross-listing of a US fund.</li>
+        <li><strong>One valuation per company, however many funds hold it.</strong> Across the whole radar, the underlying holdings overlap heavily — Nvidia turns up in a semiconductor fund, a robotics fund, and a software fund all at once. Rather than valuing it three times, every fund's holdings are pooled into one union of roughly 830 unique companies, and each is valued exactly once.</li>
+        <li><strong>The same engine as everywhere else on the site.</strong> Every holding runs through the identical dispatch the DCF tool and the six undervalued screens use — a five-year discounted cash flow by default, a dividend or excess-return model for banks, insurers and regulated utilities, and an EV/Sales comparison for the small tail of companies the cash-flow models reject outright.</li>
+        <li><strong>Weight, then sum.</strong> Each holding's premium or discount to its own intrinsic value is weighted by how much of the fund it actually represents, then summed into one figure: the fund-weighted average premium or discount across everything we could value.</li>
+        <li><strong>A coverage gate.</strong> A fund is only ranked once the holdings we could value cover at least 70% of its total weight — below that, the number would be answering for a fund the model barely saw.</li>
+        <li><strong>A sanity band.</strong> Any single holding whose output lands outside roughly −200% to +100% is treated as unvaluable and dropped from the blend rather than distorting it — the next section is exactly why that guardrail exists.</li>
+      </ul>
+
+      <h2>Two checks built into every valuation</h2>
+
+      <p>A look-through number is only as good as the growth assumption behind each individual holding, so every company is put through two checks before it's included in a fund's result.</p>
+
+      <p><strong>Currency matching.</strong> Some companies report their underlying financial results in one currency but trade in another — an Indian company's US-listed shares, for example, report profits in rupees while the share price is in dollars. Before valuing any holding, its financial results are converted into the same currency as its share price. Skip this step and a currency mismatch alone can make an ordinary business look wildly more valuable than it is.</p>
+
+      <p><strong>A multi-year growth trend, not a single year.</strong> A common way to estimate a company's future growth is to look at its most recent one-year figure. But a single year can be misleading — a company recovering from a one-off hit, such as a lawsuit or a bad quarter, can post a sharp rebound that isn't a repeatable growth rate. Projected forward for five years, that one unusual year can make an otherwise fairly-priced company look dramatically undervalued. So instead, each holding's growth input is the slower of its multi-year revenue trend and its multi-year free-cash-flow trend — around four years of history — so one unusual year can't drive the whole projection. UnitedHealth is a real example: its earnings had rebounded sharply off a litigation-depressed prior year, which on a one-year view looked like strong growth. On the multi-year trend, its free cash flow was actually shrinking — and it now reads close to fair value rather than dramatically undervalued. A genuinely fast-growing company's premium still shows up either way; what changes is that a company merely recovering from a rough year isn't mistaken for one.</p>
+
+      <a class="article-cta" href="/dcf/etf-radar/">
+        <span class="article-cta-label">Updated monthly · free · no sign-up</span>
+        <span class="article-cta-text">See the full ranking → Thematic ETF Valuation Radar</span>
+      </a>
+
+      <h2>What it says today</h2>
+
+      <p>As at the 2 September 2026 snapshot, every fund in the radar reads a <strong>premium</strong> to its combined look-through intrinsic value — none currently reads as a discount. They range from a cloud-computing fund trading closest to fair value, to a semiconductor fund trading furthest above it:</p>
+
+      <div class="radar-table-wrap">
+        <table class="radar-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Fund</th>
+              <th>Theme</th>
+              <th>vs intrinsic value</th>
+              <th>Coverage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td class="fund-name">BetaShares Cloud Computing (CLDD)</td><td>Cloud computing</td><td class="fund-mos">−18%</td><td>95%</td></tr>
+            <tr><td>2</td><td class="fund-name">BetaShares Global Healthcare (DRUG)</td><td>Global healthcare</td><td class="fund-mos">−22%</td><td>94%</td></tr>
+            <tr><td>3</td><td class="fund-name">iShares Global Healthcare (IXJ)</td><td>Global healthcare</td><td class="fund-mos">−24%</td><td>94%</td></tr>
+            <tr><td>4</td><td class="fund-name">BetaShares Global Gold Miners (MNRS)</td><td>Gold miners</td><td class="fund-mos">−33%</td><td>80%</td></tr>
+            <tr><td>5</td><td class="fund-name">BetaShares Global Cybersecurity (HACK)</td><td>Cybersecurity</td><td class="fund-mos">−37%</td><td>94%</td></tr>
+            <tr><td>6</td><td class="fund-name">iShares Expanded Tech-Software (IGV)</td><td>Software</td><td class="fund-mos">−40%</td><td>98%</td></tr>
+            <tr><td>7</td><td class="fund-name">BetaShares Global Sustainability Leaders (ETHI)</td><td>Sustainability / ethical</td><td class="fund-mos">−41%</td><td>92%</td></tr>
+            <tr><td>8</td><td class="fund-name">iShares U.S. Aerospace &amp; Defense (ITA)</td><td>Aerospace &amp; defense</td><td class="fund-mos">−41%</td><td>99%</td></tr>
+            <tr><td>9</td><td class="fund-name">BetaShares Climate Change Innovation (ERTH)</td><td>Climate innovation</td><td class="fund-mos">−43%</td><td>82%</td></tr>
+            <tr><td>10</td><td class="fund-name">BetaShares Global Quality Leaders (QLTY)</td><td>Quality factor</td><td class="fund-mos">−45%</td><td>95%</td></tr>
+            <tr><td>11</td><td class="fund-name">BetaShares Asia Technology Tigers (ASIA)</td><td>Asia technology</td><td class="fund-mos">−50%</td><td>85%</td></tr>
+            <tr><td>12</td><td class="fund-name">BetaShares S&amp;P/ASX Australian Technology (ATEC)</td><td>Australian technology</td><td class="fund-mos">−52%</td><td>94%</td></tr>
+            <tr><td>13</td><td class="fund-name">BetaShares Global Robotics &amp; AI (RBTZ)</td><td>Robotics &amp; AI</td><td class="fund-mos">−57%</td><td>89%</td></tr>
+            <tr><td>14</td><td class="fund-name">iShares Semiconductor (SOXX)</td><td>Semiconductors</td><td class="fund-mos">−74%</td><td>100%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><em>"vs intrinsic value" is the fund-weighted average premium of the fund's holdings to their own combined intrinsic value — a larger negative number means the holdings collectively trade further above what the models say they're worth. Full ranking, prices and implied fair values at the <a href="/dcf/etf-radar/">live page</a>, which updates as prices move.</em></p>
+
+      <p>The pattern reads sensibly rather than randomly. The two healthcare funds sit closest to fair value — a sector the market currently prices with less optimism. The semiconductor fund sits furthest out, which is exactly what you'd expect from a five-year, growth-capped model pointed at the middle of an AI capital-spending run. That's not a coincidence — it's the next section's point made concrete.</p>
+
+      <h2>What the premium actually means, and what it doesn't</h2>
+
+      <p>Nothing here is a buy, sell, or hold call — that's a legal constraint on every KashVector tool, not just a style choice. Beyond that, a few things are worth holding in mind before reading too much into any single number:</p>
+
+      <ul>
+        <li><strong>A premium is partly the model's own caution.</strong> The underlying DCF caps growth assumptions hard by design. That structurally values fast-growing companies below where the market prices them — an across-the-board premium in a strong market is expected, not on its own evidence of mispricing.</li>
+        <li><strong>AI and platform-shift companies are the model's weak spot.</strong> A five-year cash-flow model can't price a genuine platform shift, and it penalises a company whose growth is currently showing up as capital expenditure rather than free cash flow. Semiconductor and cloud-infrastructure names read as the steepest premiums here partly for that reason.</li>
+        <li><strong>A theme can stay "expensive" for years while still compounding.</strong> A conservative intrinsic value is a reference point, not a ceiling — the market has traded well above conservative fair value for long stretches before, in both directions.</li>
+        <li><strong>Coverage matters.</strong> A fund ranked at 80% coverage is telling you about four-fifths of its weight, not all of it — the lower the coverage, the more caution the headline number deserves.</li>
+        <li><strong>It's a monthly snapshot, not a live feed.</strong> Holdings, prices and the underlying financial data are all frozen at the date shown — a fast-moving month can leave the numbers stale before the next refresh.</li>
+      </ul>
+
+      <a class="article-cta" href="/dcf/">
+        <span class="article-cta-label">Free, no sign-up required</span>
+        <span class="article-cta-text">Value any single stock yourself → Discounted Cash Flow Calculator</span>
+      </a>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. The Thematic ETF Valuation Radar is an automated, assumption-driven valuation produced from historical financial data that may be delayed or incomplete. It is not a recommendation to buy, sell or hold any security, and valuation models are highly sensitive to their inputs and growth assumptions. Individual investment decisions depend on your financial situation, risk tolerance, timeline and objectives. Consult a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Are any thematic ETFs undervalued right now?</summary>
+          <p>Not on the latest monthly snapshot — every fund in the radar currently reads a premium to its combined look-through intrinsic value, so none is undervalued today. Some sit much closer to fair value than others (healthcare and cloud-computing funds are closest; AI-heavy themes like semiconductors are furthest), and the ranking refreshes monthly, so that can change as prices and growth assumptions move.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which thematic ETF is closest to being undervalued?</summary>
+          <p>Whichever fund sits at the top of the current ranking — the one with the smallest premium to its combined intrinsic value. On the latest snapshot that's a cloud-computing fund, with the two global healthcare funds close behind; that can change from one monthly refresh to the next, so check the live ranking for the current order rather than relying on any fixed name.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What does the Thematic ETF Valuation Radar actually measure?</summary>
+          <p>For each fund, it values every underlying holding with the same DCF/DDM engine as KashVector's own stock tools, weights each holding's premium or discount to intrinsic value by its fund weight, and sums to one number: how far the fund's holdings collectively trade above or below their combined intrinsic value.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why does it use thematic ETFs instead of broad index funds like VAS or IVV?</summary>
+          <p>Broad market-cap index funds reconstitute — expensive constituents are naturally dropped and cheaper ones added as market caps shift — so a point-in-time look-through valuation of a broad index has little predictive value. Thematic funds are locked to their theme and can't rotate out the same way, which is what makes a look-through measurement meaningful.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is a fund showing a large premium overvalued?</summary>
+          <p>Not necessarily. The underlying DCF model is deliberately conservative — it caps growth assumptions hard — so it structurally values fast-growing companies below where the market prices them. A premium is partly a statement about the market and partly a statement about the model's own caution, and a theme can trade above a conservative intrinsic value for years while it keeps compounding.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Where do the fund holdings come from?</summary>
+          <p>Each issuer's own published full-holdings file (BetaShares' and iShares' portfolio CSVs), not a data aggregator's ETF holdings list, which is frequently wrong or stale for ASX-listed cross-listings of US funds.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How often is the ranking updated?</summary>
+          <p>Monthly. Each fund's holdings, prices and financial data are a snapshot from that run, not a live feed.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+
+</body>
+</html>
