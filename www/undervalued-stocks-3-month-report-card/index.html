@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Undervalued Stocks: 3-Month Report Card (ASX 200 &amp; S&amp;P 500) — KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/undervalued-stocks-3-month-report-card/">
+  <meta property="og:title" content="Undervalued Stocks: 3-Month Report Card (ASX 200 &amp; S&amp;P 500) — KashVector">
+  <meta property="og:description" content="Our first quarterly report card: real, untouched 3-month returns from our ASX 200 and S&P 500 undervalued-stock screens — +13.0% and +20.1% vs. +4.1% and +1.7% for the index. Best/worst picks, rebalancing, and fee impact.">
+  <meta property="og:url" content="https://kashvector.com/articles/undervalued-stocks-3-month-report-card/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/articles/undervalued-stocks-3-month-report-card/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Undervalued Stocks 3-Month Report Card — ASX 200 portfolio +13.0% vs index +4.1%, S&P 500 portfolio +20.1% vs index +1.7%">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Undervalued Stocks: 3-Month Report Card (ASX 200 &amp; S&amp;P 500) — KashVector">
+  <meta name="twitter:description" content="Our first quarterly report card: real, untouched 3-month returns from our ASX 200 and S&P 500 undervalued-stock screens — +13.0% and +20.1% vs. +4.1% and +1.7% for the index. Best/worst picks, rebalancing, and fee impact.">
+  <meta name="twitter:image" content="https://kashvector.com/articles/undervalued-stocks-3-month-report-card/og-card.png">
+  <meta name="description" content="Our first quarterly report card: real, untouched 3-month returns from our ASX 200 and S&P 500 undervalued-stock screens — +13.0% and +20.1% vs. +4.1% and +1.7% for the index. Best/worst picks, rebalancing, and what a 0.5% fund fee would cost.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <style>
+    /* High-contrast green for inline body links, same treatment as the ASX-300 / ETF radar articles */
+    .article-body a:not(.article-cta),
+    .article-body a:not(.article-cta):visited { color: #15803d; text-decoration: none; }
+    .article-body a:not(.article-cta):hover { color: #166534; text-decoration: underline; }
+    html.dark .article-body a:not(.article-cta),
+    html.dark .article-body a:not(.article-cta):visited { color: #34d399; }
+    html.dark .article-body a:not(.article-cta):hover { color: #6ee7b7; }
+
+    /* ── Market tag ── */
+    .mkt-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; letter-spacing: 0.03em; text-transform: uppercase; margin-right: 6px; vertical-align: middle; }
+    .mkt-asx   { background: color-mix(in srgb, #12335e 14%, var(--kv-card)); color: #12335e; border: 1px solid color-mix(in srgb, #12335e 40%, transparent); }
+    html.dark .mkt-asx { color: #a3bfed; border-color: color-mix(in srgb, #a3bfed 40%, transparent); }
+    .mkt-sp500 { background: color-mix(in srgb, var(--kv-accent) 14%, var(--kv-card)); color: var(--kv-accent-h); border: 1px solid color-mix(in srgb, var(--kv-accent) 40%, transparent); }
+    html.dark .mkt-sp500 { color: var(--kv-accent); }
+
+    /* ── Headline results table ── */
+    .comparison-table-wrap { overflow-x: auto; margin: 20px 0 28px; border-radius: 10px; border: 1px solid var(--kv-border); }
+    .comparison-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 560px; }
+    .comparison-table th { background: var(--kv-card-2); padding: 10px 12px; text-align: left; font-weight: 600; color: var(--kv-muted); border-bottom: 2px solid var(--kv-border); line-height: 1.4; }
+    .comparison-table th:not(:first-child) { text-align: right; }
+    .comparison-table th.col-asx   { color: #12335e; }
+    html.dark .comparison-table th.col-asx { color: #a3bfed; }
+    .comparison-table th.col-sp500 { color: var(--kv-accent-h); }
+    html.dark .comparison-table th.col-sp500 { color: var(--kv-accent); }
+    .comparison-table td { padding: 9px 12px; border-bottom: 1px solid var(--kv-border); color: var(--kv-muted); line-height: 1.4; }
+    .comparison-table td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr.row-highlight td { background: var(--kv-card-2); font-weight: 700; border-top: 2px solid var(--kv-border); }
+    .comparison-table tr.row-highlight td:first-child { color: var(--kv-text); }
+    .col-pos { color: #22c55e; } .col-neg { color: #ef4444; }
+
+    /* ── Insight box ── */
+    .insight-box { background: var(--kv-card); border: 1px solid var(--kv-border); border-left: 3px solid var(--kv-accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 4px 0 28px; }
+    .insight-box p { font-size: 0.88rem !important; color: var(--kv-muted) !important; margin-bottom: 10px !important; line-height: 1.65 !important; }
+    .insight-box p:last-child { margin-bottom: 0 !important; }
+    .insight-box strong { color: var(--kv-text); }
+
+    /* ── Hero stat row (top-of-article visual hook) ── */
+    .hero-stat-row { display: flex; gap: 14px; margin: 8px 0 8px; }
+    .hero-stat-card { flex: 1; background: var(--kv-card); border: 1px solid var(--kv-border); border-radius: 12px; padding: 18px 16px; text-align: center; }
+    .hero-stat-mkt { font-size: 0.72rem; font-weight: 700; color: var(--kv-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .hero-stat-value { font-size: 2.1rem; font-weight: 800; line-height: 1.1; }
+    .hero-stat-value.pos { color: #22c55e; }
+    .hero-stat-value.neg { color: #ef4444; }
+    .hero-stat-vs { font-size: 0.82rem; color: var(--kv-muted); margin-top: 4px; }
+    .hero-stat-caption { text-align: center; font-size: 0.85rem; color: var(--kv-muted); margin: 2px 0 22px; font-style: italic; }
+    .hero-as-at { text-align: center; font-size: 0.72rem; font-weight: 700; color: var(--kv-muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 4px 0 10px; }
+    @media (max-width: 480px) { .hero-stat-row { flex-direction: column; } }
+
+    /* ── Chart image card ── */
+    .chart-card { background: var(--kv-card); border: 1px solid var(--kv-border); border-radius: 12px; padding: 16px; margin: 4px 0 20px; }
+    .chart-card img { display: block; width: 100%; height: auto; border-radius: 6px; }
+    .chart-caption { font-size: 0.78rem; color: var(--kv-muted); margin-top: 10px; line-height: 1.5; }
+
+    /* ── Mover table ── */
+    .mover-table-wrap { overflow-x: auto; margin: 12px 0 24px; border-radius: 10px; border: 1px solid var(--kv-border); }
+    .mover-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 480px; }
+    .mover-table th { background: var(--kv-card-2); padding: 8px 10px; text-align: left; font-weight: 600; color: var(--kv-muted); border-bottom: 2px solid var(--kv-border); }
+    .mover-table th:last-child, .mover-table td:last-child { text-align: right; }
+    .mover-table td { padding: 8px 10px; border-bottom: 1px solid var(--kv-border); color: var(--kv-muted); line-height: 1.4; }
+    .mover-table tr:last-child td { border-bottom: none; }
+    .mover-table td.tk { color: var(--kv-text); font-weight: 600; }
+    .mover-table td.ret { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+    .status-chip { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 1px 6px; border-radius: 999px; margin-left: 6px; vertical-align: middle; text-transform: uppercase; }
+    .status-holding { background: color-mix(in srgb, var(--kv-accent) 16%, var(--kv-card)); color: var(--kv-accent-h); }
+    html.dark .status-holding { color: var(--kv-accent); }
+
+    /* .comparison-table td / .mover-table td both set color: var(--kv-muted) at
+       equal specificity (one class + one element) and come later in source,
+       so bare .col-pos/.col-neg lose the cascade silently — qualify with the
+       element to win regardless of source order (see kashvector-lessons.md's
+       CSS-specificity entries for the general version of this trap). */
+    td.col-pos { color: #22c55e; }
+    td.col-neg { color: #ef4444; }
+
+    /* ── Formula / assumption block ── */
+    .formula-block { background: var(--kv-card); border: 1px solid var(--kv-border); border-radius: 8px; padding: 14px 18px; margin: 12px 0 16px; font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: 0.83rem; color: var(--kv-text); overflow-x: auto; line-height: 1.7; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Undervalued Stocks: 3-Month Report Card — ASX 200 & S&P 500, First 90 Days",
+    "datePublished": "2026-09-03",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/undervalued-stocks-3-month-report-card/",
+    "description": "Our first quarterly report card: real, untouched 3-month returns from our ASX 200 and S&P 500 undervalued-stock screens — +13.0% and +20.1% vs. +4.1% and +1.7% for the index. Best/worst picks, rebalancing, and fee impact.",
+    "image": "https://kashvector.com/articles/undervalued-stocks-3-month-report-card/og-card.png"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What exactly is being tracked in this performance review?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A hypothetical $10,000 paper portfolio, equally split across whatever 20 stocks each screen's DCF/DDM valuation model ranked most undervalued that week, since each screen's public launch (ASX 2 June 2026, S&P 500 4 June 2026). When a stock's margin of safety drops out of the qualifying range on a weekly refresh, it's replaced by the next-ranked stock — the same mechanical rule every week, no manual picking or overriding." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this a real fund, and can I invest in it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. KashVector does not manage money, hold an AFSL, or offer any investable product. This is a transparency exercise tracking what a mechanical DCF/DDM screen would have returned on paper, including an illustrative 0.5% fee comparison purely to show how a real fund's costs would eat into a return like this. It is not a recommendation to buy, sell, or hold any of the stocks named." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did the S&P 500 screen outperform the ASX screen by so much?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Over this specific 90-day window, yes — but that's one data point from one market cycle, not evidence the S&P 500 version of this screen is structurally better. The two markets have different sector mixes, and 90 days is far too short a sample to draw a durable conclusion. We'll keep publishing this update so the sample size grows." }
+      },
+      {
+        "@type": "Question",
+        "name": "Will you publish this again, or is this a one-off?",
+        "acceptedAnswer": { "@type": "Answer", "text": "This is Report Card #1 of an ongoing quarterly series. We're committing to publishing the same numbers again every three months on the same page series, regardless of whether the next quarter's results are better, worse, or the outperformance disappears entirely. A single good quarter proves very little on its own — a running log that includes the bad quarters is the actual point." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this article financial advice?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This article is general information only and reports the historical output of a mechanical valuation model. It does not constitute financial advice, and past performance is not an indicator of future results. Speak with a licensed financial adviser before making any investment decision." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-footer.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">Undervalued Stocks: 3-Month Report Card — Our First 90 Days, ASX 200 &amp; S&amp;P 500</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 3 September 2026 &nbsp;·&nbsp; 13 min read &nbsp;·&nbsp; Report Card #1 of an ongoing quarterly series</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <div class="hero-as-at">As at 3 September 2026</div>
+      <div class="hero-stat-row">
+        <div class="hero-stat-card">
+          <div class="hero-stat-mkt">ASX 200 screen</div>
+          <div class="hero-stat-value pos">+13.0%</div>
+          <div class="hero-stat-vs">vs. index +4.1%</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-mkt">S&amp;P 500 screen</div>
+          <div class="hero-stat-value pos">+20.1%</div>
+          <div class="hero-stat-vs">vs. index +1.7%</div>
+        </div>
+      </div>
+      <div class="hero-stat-caption">First 90 days, real and unedited. Here's exactly how we got there ↓</div>
+
+      <div class="chart-card">
+        <img src="chart-asx.png" alt="ASX undervalued screen portfolio value vs ASX 200 index, indexed to 0% at 4 June 2026, showing the portfolio pulling ahead of the index from early August">
+        <div class="chart-caption">Live chart: <a href="/dcf/asx-undervalued/">kashvector.com/dcf/asx-undervalued/</a> — both series indexed to 0% at the screen's 4 June 2026 launch.</div>
+      </div>
+
+      <div class="chart-card">
+        <img src="chart-sp500.png" alt="S&P 500 undervalued screen portfolio value vs S&P 500 index, indexed to 0% at 4 June 2026, showing the portfolio pulling well ahead of the index from late July">
+        <div class="chart-caption">Live chart: <a href="/dcf/sp500-undervalued/">kashvector.com/dcf/sp500-undervalued/</a> — both series indexed to 0% at the screen's 4 June 2026 launch.</div>
+      </div>
+
+      <div class="insight-box">
+        <p><strong>The two charts have a different shape.</strong> The ASX portfolio built its lead gradually and has tracked roughly 8–12 points above the index since early August. The S&amp;P 500 portfolio spent its first six weeks roughly flat-to-behind the index, then broke away sharply from late July — most of its entire 90-day lead was made in about five weeks, not smoothly across all twelve.</p>
+      </div>
+
+      <div class="article-summary">
+        <p>What this article covers:</p>
+        <ul>
+          <li>The real, unedited 90-day return of our ASX 200 and S&amp;P 500 "most undervalued" screens vs. their index</li>
+          <li>How weekly rebalancing actually works, and how much the list turns over</li>
+          <li>The single best and worst stock pick on each screen, and the names that have stuck around the longest</li>
+          <li>What a hypothetical 0.5% active-manager fee would have cost, and what's left after it</li>
+          <li>Why this is Report Card #1, not a one-off — and what to expect from #2 in three months</li>
+        </ul>
+      </div>
+
+      <p>Our <a href="/dcf/asx-undervalued/">Most Undervalued ASX 300</a> and <a href="/dcf/sp500-undervalued/">Most Undervalued S&amp;P 500</a> screens have now been running publicly, unedited, for three months. Every week they mechanically re-rank each market by DCF or DDM margin of safety and publish the top 20 — no manual curation, no discretionary overrides, no quietly dropping the ones that went badly. That makes them one of the few things on this site with an actual, checkable track record instead of a backtest.</p>
+
+      <p>This is that check. We pulled the real weekly snapshots — <a href="https://kashvector.com/dcf/asx-undervalued/rankings.json">rankings</a>, <a href="https://kashvector.com/dcf/asx-undervalued/sold.json">exits</a>, and the running <a href="https://kashvector.com/dcf/asx-undervalued/portfolio-history.json">paper-portfolio value</a> each screen has tracked since its own launch — and report exactly what they say, good and bad. ASX rankings went live first, on 2 June 2026; S&amp;P 500's rankings and both markets' $10,000 paper portfolios started together two days later, on 4 June, once there was a stable first snapshot to seed a starting value from. That two-day gap is the reason you'll see both "2 June" and "4 June" cited accurately at different points below — 2 June for how long a stock has been flagged, 4 June for the portfolio-value numbers. NIFTY 500 also crossed 90 days this week, and our other three screens (KOSPI, Nikkei, Europe) haven't yet.</p>
+
+      <h2>How the screens actually work</h2>
+
+      <p>Each week, every stock in the ASX 300 or S&amp;P 500 gets run through the same <a href="/dcf/">DCF valuation engine</a> (or a DDM for banks/insurers) that powers the live tool. Whatever ranks in the top 20 by margin of safety — capped at 80% to filter out data errors that would otherwise look implausibly cheap — gets published. A hypothetical $10,000 is split equally across those 20 names the first week; every week after, any name that drops out of the top 20 is "sold" at that week's price and replaced by whichever new name qualifies, with the freed-up capital reinvested equally across the current list — the full mechanics (why equal weight, why a stock's exit price is what it is, how dividends get credited) are in <a href="/articles/paper-portfolio-tracker/">The $10,000 Paper Portfolio</a>.</p>
+
+      <p>Two different "ASX" numbers show up in this article, deliberately: the screen evaluates the <strong>ASX 300</strong> (Australia's 300 largest listed companies, the actual stock-picking universe) each week, but we benchmark the resulting portfolio against the <strong>ASX 200</strong> (^AXJO) — the narrower, more widely tracked index most readers actually recognize as "the market." "ASX 200 screen" elsewhere in this article refers to that benchmark comparison, not a claim that only 200 stocks were eligible to be picked.</p>
+
+      <p>There's no judgment call anywhere in that loop — a stock's margin of safety this week is a number, and the number decides if it's still on the list. That's the whole point of tracking it: the model's picks are checkable against reality, not just a plausible-sounding story.</p>
+
+      <h2>The headline numbers</h2>
+
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th class="col-asx">ASX 200 screen</th>
+              <th class="col-sp500">S&amp;P 500 screen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Window</td><td>4 Jun – 28 Aug 2026 (85 days)</td><td>4 Jun – 29 Aug 2026 (86 days)</td></tr>
+            <tr><td>Starting value</td><td>$10,000</td><td>$10,000</td></tr>
+            <tr><td>Ending value</td><td>$11,303.50</td><td>$12,013.51</td></tr>
+            <tr><td>Portfolio return</td><td class="col-pos">+13.0%</td><td class="col-pos">+20.1%</td></tr>
+            <tr><td>Index return (ASX 200 / S&amp;P 500)</td><td>+4.1%</td><td>+1.7%</td></tr>
+            <tr class="row-highlight"><td>Return vs. index (alpha)</td><td class="col-pos">+9.0 pp</td><td class="col-pos">+18.5 pp</td></tr>
+            <tr><td>Dividends collected along the way</td><td>≈$115</td><td>≈$12</td></tr>
+            <tr><td>Distinct list appearances (stints)</td><td>60 (40 exited, 20 held)</td><td>86 (66 exited, 20 held)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Both screens beat their index over the window, and by a wide margin. Read that as one 90-day data point, not proof of a repeatable edge — a single quarter is nowhere near enough to separate genuine model skill from having launched into a period where cheap, unloved stocks happened to do well. We're publishing this precisely so that claim can be checked again next quarter, and the one after that, rather than taken on faith.</p>
+
+      <a class="article-cta" href="/evaluate/">
+        <span class="article-cta-label">Check any single stock the same way</span>
+        <span class="article-cta-text">Run the same DCF/DDM engine on any ticker → Combined Stock Evaluation</span>
+      </a>
+
+      <h2>Rebalancing: how much turnover is actually happening</h2>
+
+      <p>"Undervalued" is not a label a stock keeps once it's earned it — it's recalculated fresh every week from that week's price and financials, so a name can qualify one Saturday and be gone the next simply because the price moved or the fundamentals updated. Over 12 weekly refreshes, the ASX screen has cycled through <strong>60 distinct list appearances</strong> across a 20-slot list — on average, close to a third of the list turns over every single week. The S&amp;P 500 screen churns even faster: <strong>86 appearances</strong>, meaning more than a third of its 20 names change most weeks.</p>
+
+      <p>Some names cycle in and out repeatedly rather than leaving for good — <span class="mkt-tag mkt-asx">ASX</span> <strong>MGH.AX</strong> and <strong>BGA.AX</strong> have each been added and removed from the ASX list three times since June, and <span class="mkt-tag mkt-sp500">S&amp;P 500</span> <strong>ADBE</strong> has cycled through the S&amp;P 500 list three times too — its first stint (4–19 June) was actually the screen's second-worst pick of the entire quarter (see below), and its next two stints were both solidly positive. Same stock, same model, three different verdicts three months apart — which is really the honest way to read a screen like this: a snapshot of this week's numbers, not a standing opinion about the company.</p>
+
+      <h2>Best and worst picks</h2>
+
+      <p>Across every stock that has appeared on either list — whether it has since been sold or is still sitting in the current top 20 — here's what actually happened, ranked by return from the week it was first flagged undervalued to the week it left (or to now, if it's still on the list).</p>
+
+      <p><span class="mkt-tag mkt-asx">ASX 200 screen</span></p>
+      <div class="mover-table-wrap">
+        <table class="mover-table">
+          <thead><tr><th>Ticker</th><th>Held</th><th>Return</th></tr></thead>
+          <tbody>
+            <tr><td class="tk">VAU.AX</td><td>2 Jun → 7 Aug (66 days)</td><td class="ret col-pos">+32.7%</td></tr>
+            <tr><td class="tk">SDF.AX</td><td>2 Jun → 18 Jun (16 days)</td><td class="ret col-pos">+29.0%</td></tr>
+            <tr><td class="tk">NEM.AX</td><td>7 Aug → 28 Aug (21 days)</td><td class="ret col-pos">+19.6%</td></tr>
+            <tr><td class="tk">FMG.AX</td><td>2 Jun → 22 Aug (81 days)</td><td class="ret col-neg">−20.5%</td></tr>
+            <tr><td class="tk">WOR.AX</td><td>18 Jun → 28 Aug (71 days)</td><td class="ret col-neg">−19.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><span class="mkt-tag mkt-sp500">S&amp;P 500 screen</span></p>
+      <div class="mover-table-wrap">
+        <table class="mover-table">
+          <thead><tr><th>Ticker</th><th>Held</th><th>Return</th></tr></thead>
+          <tbody>
+            <tr><td class="tk">SNDK</td><td>7 Aug → 15 Aug (8 days)</td><td class="ret col-pos">+35.4%</td></tr>
+            <tr><td class="tk">CTSH</td><td>8 Jul → 1 Aug (24 days)</td><td class="ret col-pos">+26.0%</td></tr>
+            <tr><td class="tk">REGN</td><td>18 Jul → 22 Aug (35 days)</td><td class="ret col-pos">+23.3%</td></tr>
+            <tr><td class="tk">ADBE</td><td>4 Jun → 19 Jun (15 days)</td><td class="ret col-neg">−23.8%</td></tr>
+            <tr><td class="tk">FOXA</td><td>4 Jun → 19 Jun (15 days)</td><td class="ret col-neg">−18.7%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="insight-box">
+        <p><strong>The S&amp;P 500 screen's worst week was its first one.</strong> ADBE, FOXA, FOX, and ADSK were all part of the original 4 June cohort, and all four were cut two weeks later at double-digit losses — the screen's roughest patch by far, right at launch, before it went on its strongest run of the quarter. A screen judged only on its first fortnight would have looked broken; three months in, it doesn't.</p>
+      </div>
+
+      <h2>The names that have stuck around the longest</h2>
+
+      <p>Five ASX stocks have been flagged undervalued continuously since the screen's very first published list — the longest a name can possibly have stayed, given the screen is only 90 days old:</p>
+
+      <p><span class="mkt-tag mkt-asx">ASX 200 screen</span></p>
+      <div class="mover-table-wrap">
+        <table class="mover-table">
+          <thead><tr><th>Ticker</th><th>Company</th><th>Status</th><th>Return since 2 Jun</th></tr></thead>
+          <tbody>
+            <tr><td class="tk">LOV.AX <span class="status-chip status-holding">still held</span></td><td>Lovisa Holdings Limited</td><td>On list 87 days</td><td class="ret col-pos">+17.2%</td></tr>
+            <tr><td class="tk">TAH.AX</td><td>Tabcorp Holdings Limited</td><td>Exited 28 Aug</td><td class="ret col-pos">+13.6%</td></tr>
+            <tr><td class="tk">PRN.AX</td><td>Perenti Limited</td><td>Exited 28 Aug</td><td class="ret col-pos">+10.1%</td></tr>
+            <tr><td class="tk">SRG.AX <span class="status-chip status-holding">still held</span></td><td>SRG Global Limited</td><td>On list 87 days</td><td class="ret col-pos">+2.5%</td></tr>
+            <tr><td class="tk">QUB.AX <span class="status-chip status-holding">still held</span></td><td>Qube Holdings Limited</td><td>On list 87 days</td><td class="ret col-pos">+2.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>No S&amp;P 500 stock has managed the equivalent — its longest single stay is 64 days, reached by two names:</p>
+
+      <p><span class="mkt-tag mkt-sp500">S&amp;P 500 screen</span></p>
+      <div class="mover-table-wrap">
+        <table class="mover-table">
+          <thead><tr><th>Ticker</th><th>Company</th><th>Status</th><th>Return</th></tr></thead>
+          <tbody>
+            <tr><td class="tk">J</td><td>Jacobs Solutions Inc.</td><td>Exited 7 Aug (64 days)</td><td class="ret col-pos">+19.6%</td></tr>
+            <tr><td class="tk">BF-B</td><td>Brown-Forman Corporation</td><td>Exited 22 Aug (64 days)</td><td class="ret col-pos">+6.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>That gap (87 days vs. 64) is the same story as the turnover numbers above, from a different angle: the S&amp;P 500 screen's valuation gaps close faster than the ASX screen's do, on this one sample.</p>
+
+      <h2>What a real fund's fee would have cost</h2>
+
+      <p>None of this is a managed product — KashVector doesn't hold client money or charge anyone a fee. But it's a fair question: if a traditional active fund manager ran this exact mechanical strategy and charged a typical 0.5% p.a. management fee, what would an investor actually have kept? 0.5% is an annual rate, so for a ~90-day window it's pro-rated down to roughly a ninth of that — not $50 on $10,000, closer to $12.</p>
+
+      <div class="formula-block">Pro-rated fee = 0.5% × Starting value × (days held / 365)<br>Net value = Ending value − Pro-rated fee<br>Net return = (Net value − Starting value) / Starting value</div>
+
+      <div class="comparison-table-wrap">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th class="col-asx">ASX 200 screen</th>
+              <th class="col-sp500">S&amp;P 500 screen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Gross ending value</td><td>$11,303.50</td><td>$12,013.51</td></tr>
+            <tr><td>0.5% p.a. fee, pro-rated for 85/86 days</td><td>−$11.64</td><td>−$11.78</td></tr>
+            <tr class="row-highlight"><td>Net ending value</td><td>$11,291.86</td><td>$12,001.73</td></tr>
+            <tr><td>Gross return</td><td class="col-pos">+13.0%</td><td class="col-pos">+20.1%</td></tr>
+            <tr class="row-highlight"><td>Net return, after fee</td><td class="col-pos">+12.9%</td><td class="col-pos">+20.0%</td></tr>
+            <tr><td>Net return vs. index</td><td class="col-pos">+8.9 pp</td><td class="col-pos">+18.3 pp</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>At a realistic annual rate, a 0.5% fee barely dents a quarter like this one — about a tenth of a percentage point off the headline return either way. That's the honest number for the fee itself, but it's not the honest number for total cost: it still ignores entry/exit spreads, brokerage, and tax on the 60–86 rebalancing trades this quarter alone generated. A real fund replicating this exact turnover would carry meaningfully higher costs than the management fee alone suggests — the fee is the smallest line item here, not the whole story.</p>
+
+      <h2>What this isn't</h2>
+
+      <ul>
+        <li><strong>Not a real fund.</strong> No money is actually invested; this is a hypothetical, equally-weighted $10,000 tracked on paper against real market prices.</li>
+        <li><strong>Not a recommendation.</strong> Every number here is the mechanical output of a DCF/DDM model reacting to price and financials — not a judgment on any company's management, news, or prospects.</li>
+        <li><strong>Not a long enough track record to prove anything yet.</strong> 90 days is one market cycle. Report Card #2 lands in three months whether the numbers are better, worse, or the alpha disappears entirely — this is the first entry in a running log, not a final verdict.</li>
+        <li><strong>Not free of real-world friction.</strong> Real trading has spreads, brokerage, and tax that this simplified model doesn't fully capture — see the fee section above.</li>
+      </ul>
+
+      <p><strong>This is Report Card #1, not a one-off.</strong> The screens themselves don't stop — they keep re-ranking every week regardless of whether anyone's writing about them. We're committing to pulling these same numbers again every three months and publishing the next report card alongside this one, so the track record compounds instead of resetting. If the next report's numbers are worse — or the alpha evaporates entirely — that report gets published too, on the same page series, not quietly dropped. A single good quarter proves very little on its own; a running quarterly log that includes the bad quarters is the actual point.</p>
+
+      <a class="article-cta" href="/dcf/sp500-undervalued/">
+        <span class="article-cta-label">See this week's actual list</span>
+        <span class="article-cta-text">The current top 20, updated weekly → Most Undervalued S&amp;P 500</span>
+      </a>
+
+      <h2>Why only these two markets</h2>
+
+      <p>We run six of these screens, and NIFTY 500 crossed the same 90-day mark this week too — its portfolio tracking started 5 June 2026, a day after ASX and S&amp;P 500. It's still not in this article. Two different reasons rule out the other four screens, and they're not the same reason:</p>
+
+      <div class="mover-table-wrap">
+        <table class="mover-table">
+          <thead><tr><th>Market</th><th>Screen age (as of 3 Sep)</th><th>Qualified this week</th></tr></thead>
+          <tbody>
+            <tr><td class="tk">S&amp;P 500</td><td>91 days</td><td class="ret col-pos">66 of 20 needed</td></tr>
+            <tr><td class="tk">ASX 300</td><td>91 days</td><td class="ret col-pos">22 of 20 needed</td></tr>
+            <tr><td class="tk">NIFTY 500</td><td>90 days</td><td class="ret col-neg">14 of 20 needed</td></tr>
+            <tr><td class="tk">KOSPI 200</td><td>47 days</td><td class="ret col-neg">10 of 20 needed</td></tr>
+            <tr><td class="tk">Nikkei 225</td><td>46 days</td><td class="ret col-neg">14 of 20 needed</td></tr>
+            <tr><td class="tk">Europe 200</td><td>31 days</td><td class="ret col-neg">17 of 20 needed</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p><strong>KOSPI, Nikkei, and Europe are simply too young</strong> — they launched later (18 July, 19 July, and 3 August 2026 respectively) and haven't reached 90 days of history at all yet. That's a timing gap, not a data problem, and it closes on its own as the weeks pass.</p>
+
+      <p><strong>NIFTY is the more interesting case, because time isn't the excuse.</strong> It's exactly as old as ASX and S&amp;P 500, and it still qualifies only 14 stocks — same structural shortfall as the three younger screens, just for a market old enough that "give it more time" doesn't explain it. Every screen caps a stock's margin of safety at 80% before it can qualify (cheaper than that is treated as a probable data error, not a real bargain); once that filter runs, NIFTY — like KOSPI, Nikkei, and Europe — has never actually held a full 20-stock portfolio. That's a real, current read on how richly those four markets are priced relative to what our DCF/DDM models expect, not a screen malfunction. It's also exactly why we're not including a NIFTY portfolio-return number here: with only 14 of 20 slots ever filled, "$10,000 split across 20 names" was never literally true for it, so its return isn't comparable to ASX's and S&amp;P 500's on the same basis. A 500-stock universe having only 14 stocks that clear an 80%-capped DCF discount is itself a real, if less headline-friendly, result.</p>
+
+      <h2>Sources and methodology</h2>
+
+      <p><strong>Data:</strong> Each screen's own weekly <code>rankings.json</code>, <code>sold.json</code>, <code>first-seen.json</code>, and <code>portfolio-history.json</code> snapshots, generated automatically on every admin-console refresh since each screen's own launch (ASX 2 June 2026, S&amp;P 500 4 June 2026) and pulled directly for this article on 3 September 2026 — the same files that drive the live charts and the "still held" list on each screen page.</p>
+
+      <p><strong>Portfolio construction:</strong> $10,000 split equally across 20 names on the first snapshot; on each subsequent weekly refresh, any name dropping out of the qualifying top 20 is marked "sold" at that week's price and the proceeds are reinvested equally across the then-current 20-name list. Dividends are added to the running portfolio value as received.</p>
+
+      <p><strong>Best/worst/longest-tenure rankings</strong> include every stock that has appeared on either list, whether already exited or still currently held — for a currently-held stock, "return" is its unrealized gain from first-flagged price to the latest snapshot price, not a locked-in profit.</p>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. It reports the historical, mechanical output of a DCF/DDM valuation screen on a hypothetical paper portfolio — not a real fund, not investment advice, and not a recommendation to buy, sell, or hold any security named. Past performance, including the returns and the illustrative fee comparison shown here, is not an indicator of future results. The fee comparison is a simplified illustration and does not reflect the full cost structure of any real managed fund. Speak with a licensed financial adviser before making any investment decision.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>What exactly is being tracked in this performance review?</summary>
+          <p>A hypothetical $10,000 paper portfolio, equally split across whatever 20 stocks each screen's DCF/DDM valuation model ranked most undervalued that week, since each screen's public launch (ASX 2 June 2026, S&amp;P 500 4 June 2026). When a stock's margin of safety drops out of the qualifying range on a weekly refresh, it's replaced by the next-ranked stock — the same mechanical rule every week, no manual picking or overriding.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is this a real fund, and can I invest in it?</summary>
+          <p>No. KashVector does not manage money, hold an AFSL, or offer any investable product. This is a transparency exercise tracking what a mechanical DCF/DDM screen would have returned on paper, including an illustrative 0.5% fee comparison purely to show how a real fund's costs would eat into a return like this. It is not a recommendation to buy, sell, or hold any of the stocks named.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why did the S&amp;P 500 screen outperform the ASX screen by so much?</summary>
+          <p>Over this specific 90-day window, yes — but that's one data point from one market cycle, not evidence the S&amp;P 500 version of this screen is structurally better. The two markets have different sector mixes, and 90 days is far too short a sample to draw a durable conclusion. We'll keep publishing this update so the sample size grows.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Will you publish this again, or is this a one-off?</summary>
+          <p>This is Report Card #1 of an ongoing quarterly series. We're committing to publishing the same numbers again every three months on the same page series, regardless of whether the next quarter's results are better, worse, or the outperformance disappears entirely. A single good quarter proves very little on its own — a running log that includes the bad quarters is the actual point.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is this article financial advice?</summary>
+          <p>No. This article is general information only and reports the historical output of a mechanical valuation model. It does not constitute financial advice, and past performance is not an indicator of future results. Speak with a licensed financial adviser before making any investment decision.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+
+</body>
+</html>
