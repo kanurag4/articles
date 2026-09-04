@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>How Rising Bond Yields Are Quietly Repricing Every DCF Valuation — KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/bond-rates-and-stock-valuations/">
+  <meta property="og:title" content="How Rising Bond Yields Are Quietly Repricing Every DCF Valuation — KashVector">
+  <meta property="og:description" content="A global bond selloff is pushing 10-year yields to multi-year highs at the same time corporate earnings are the strongest in years. Here's the actual DCF math connecting bond rates to intrinsic value — with a real, computed before/after example.">
+  <meta property="og:url" content="https://kashvector.com/articles/bond-rates-and-stock-valuations/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="How rising bond yields reduce DCF intrinsic value — KashVector">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Rising Bond Yields Are Quietly Repricing Every DCF Valuation — KashVector">
+  <meta name="twitter:description" content="A global bond selloff is pushing 10-year yields to multi-year highs at the same time corporate earnings are the strongest in years. Here's the actual DCF math connecting bond rates to intrinsic value — with a real, computed before/after example.">
+  <meta name="twitter:image" content="https://kashvector.com/og-image.png">
+  <meta name="description" content="A global bond selloff is pushing 10-year yields to multi-year highs at the same time corporate earnings are the strongest in years. Here's the actual DCF math connecting bond rates to intrinsic value — with a real, computed before/after example.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <style>
+    .article-body a:not(.article-cta),
+    .article-body a:not(.article-cta):visited { color: #15803d; text-decoration: none; }
+    .article-body a:not(.article-cta):hover { color: #166534; text-decoration: underline; }
+    html.dark .article-body a:not(.article-cta),
+    html.dark .article-body a:not(.article-cta):visited { color: #34d399; }
+    html.dark .article-body a:not(.article-cta):hover { color: #6ee7b7; }
+
+    .hero-stat-row { display: flex; gap: 14px; margin: 8px 0 8px; }
+    .hero-stat-card { flex: 1; background: var(--kv-card); border: 1px solid var(--kv-border); border-radius: 12px; padding: 18px 16px; text-align: center; }
+    .hero-stat-mkt { font-size: 0.72rem; font-weight: 700; color: var(--kv-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .hero-stat-value { font-size: 1.7rem; font-weight: 800; line-height: 1.2; }
+    .hero-stat-value.neg { color: #ef4444; }
+    .hero-stat-vs { font-size: 0.82rem; color: var(--kv-muted); margin-top: 4px; }
+    .hero-stat-caption { text-align: center; font-size: 0.85rem; color: var(--kv-muted); margin: 2px 0 22px; font-style: italic; }
+    @media (max-width: 480px) { .hero-stat-row { flex-direction: column; } }
+
+    .insight-box { background: var(--kv-card); border: 1px solid var(--kv-border); border-left: 3px solid var(--kv-accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 4px 0 28px; }
+    .insight-box p { font-size: 0.88rem !important; color: var(--kv-muted) !important; margin-bottom: 10px !important; line-height: 1.65 !important; }
+    .insight-box p:last-child { margin-bottom: 0 !important; }
+    .insight-box strong { color: var(--kv-text); }
+
+    .formula-block { background: var(--kv-card); border: 1px solid var(--kv-border); border-radius: 8px; padding: 14px 18px; margin: 12px 0 16px; font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: 0.83rem; color: var(--kv-text); overflow-x: auto; line-height: 1.7; }
+
+    .mover-table-wrap { overflow-x: auto; margin: 12px 0 24px; border-radius: 10px; border: 1px solid var(--kv-border); }
+    .mover-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 480px; }
+    .mover-table th { background: var(--kv-card-2); padding: 8px 10px; text-align: left; font-weight: 600; color: var(--kv-muted); border-bottom: 2px solid var(--kv-border); }
+    .mover-table th:not(:first-child) { text-align: right; }
+    .mover-table td { padding: 8px 10px; border-bottom: 1px solid var(--kv-border); color: var(--kv-muted); line-height: 1.4; }
+    .mover-table tr:last-child td { border-bottom: none; }
+    .mover-table td.tk { color: var(--kv-text); font-weight: 600; }
+    .mover-table td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    td.col-pos { color: #22c55e; } td.col-neg { color: #ef4444; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How Rising Bond Yields Are Quietly Repricing Every DCF Valuation",
+    "datePublished": "2026-09-04",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/bond-rates-and-stock-valuations/",
+    "description": "A global bond selloff is pushing 10-year yields to multi-year highs at the same time corporate earnings are the strongest in years. Here's the actual DCF math connecting bond rates to intrinsic value — with a real, computed before/after example."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does a higher discount rate affect every company equally?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Discounting compounds over time, so cash flows further in the future lose more value from the same rate increase than cash flows arriving soon. A DCF's terminal value — the estimate of everything beyond the 5-year forecast — is usually the majority of a company's intrinsic value and sits furthest in the future, so it absorbs most of the impact. That structurally hits richly-priced growth companies harder than mature, cash-generative ones." }
+      },
+      {
+        "@type": "Question",
+        "name": "If earnings are strong right now, why would rates falling matter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They're two separate, independent inputs to the same formula. Stronger earnings raise the cash-flow side of a DCF (the numerator); a higher discount rate lowers the present-value side (the denominator). Both can be true and pulling in opposite directions at once — which is exactly the environment described in this article." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this article predicting where rates or stock prices go next?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. This article explains a mechanical relationship in the DCF formula and reports real, current numbers — it is not a forecast, a trade idea, or investment advice. Nothing here is a recommendation to buy, sell, or hold any security. Speak with a licensed financial adviser before making any investment decision." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-footer.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">How Rising Bond Yields Are Quietly Repricing Every DCF Valuation</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 4 September 2026 &nbsp;·&nbsp; 8 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <p>Government bond yields around the world have been climbing to levels not seen in years — what it costs each government to borrow money for a decade, and the closest thing markets have to a truly risk-free return. Germany's 10-year bond is at its highest yield since 2011, Japan's has been trading above 3% for the first time since the mid-1990s, the UK's touched a post-2008 high, and the US 10-year Treasury is near its highest since late 2023.</p>
+
+      <p>Two forces are driving it. First, inflation: an oil-price shock has reignited concerns that price pressure isn't as tamed as hoped, and investors demand a higher yield to hold a bond whose fixed payments could be eroded by future inflation. Second, government debt: budget deficits across most developed economies remain elevated, so governments have to issue more bonds to cover the gap — more supply competing for the same pool of buyers pushes prices down and yields up. On top of that, markets are increasingly pricing in central banks holding interest rates higher for longer than previously expected.</p>
+
+      <p>At the same time, S&amp;P 500 companies just posted their seventh straight quarter of double-digit earnings growth. Those two facts — rising rates and rising earnings — pull a DCF valuation in opposite directions at once. Here's the actual formula, a real before-and-after calculation, and what it means for reading any intrinsic-value number right now.</p>
+
+      <h2>The formula: where the bond rate actually enters</h2>
+
+      <p>Every DCF on KashVector forecasts free cash flow for five years, adds a terminal value for everything beyond that, and discounts both back to today's dollars using WACC (weighted average cost of capital). For a debt-free company — true of the example below — WACC collapses to just the cost of equity:</p>
+
+      <div class="formula-block">
+        Cost of equity&nbsp; =&nbsp; risk-free rate&nbsp; +&nbsp; (beta &times; equity risk premium)<br>
+        Intrinsic value&nbsp; =&nbsp; Σ&nbsp; [ FCF<sub>t</sub> / (1 + WACC)<sup>t</sup> ]&nbsp; +&nbsp; Terminal value / (1 + WACC)<sup>5</sup>
+      </div>
+
+      <p>The "risk-free rate" is a country's 10-year government bond yield — the floor every other return gets built on top of. Raise that floor, and the entire discount rate rises with it, dollar-for-dollar, before beta or the equity risk premium even come into it.</p>
+
+      <div class="insight-box">
+        <p><strong>Why this hits far-future cash flows hardest.</strong> Discounting compounds — a cash flow arriving next year loses very little value from a small rate increase, but terminal value (effectively everything beyond Year 5, usually the majority of a DCF's total) gets discounted over far more years and absorbs most of the damage. That's the structural reason rising rates hit richly-priced, long-duration growth stories harder than mature, cash-generative businesses — not a judgment about which is the "better" investment, just where the math lands.</p>
+      </div>
+
+      <h2>A real example: what a 0.16-point rate move actually does</h2>
+
+      <p>This week we refreshed our own DCF tool's risk-free-rate assumptions across six markets. Japan's had the largest gap: 2.20% to 2.36%, catching up to where its bond yield actually is. Here's what that alone does to a real, currently-published valuation — Bandai Namco Holdings (7832.T), real inputs (¥118.9B free cash flow, 0.60 beta, zero debt, ¥390.9B cash, 9.0% growth), run through the same engine that powers <a href="/dcf/">kashvector.com/dcf/</a>, with only the risk-free rate changed:</p>
+
+      <div class="hero-stat-row">
+        <div class="hero-stat-card">
+          <div class="hero-stat-mkt">WACC (discount rate)</div>
+          <div class="hero-stat-value">5.80% <span style="font-size:1rem; color:var(--kv-muted);">&rarr;</span> 5.96%</div>
+          <div class="hero-stat-vs">rf 2.20% &rarr; 2.36%, beta and ERP unchanged</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-mkt">Intrinsic value (Base case)</div>
+          <div class="hero-stat-value neg">¥6,358 <span style="font-size:1rem;">&rarr;</span> ¥6,160</div>
+          <div class="hero-stat-vs">&minus;3.1%, cash flows and growth held constant</div>
+        </div>
+      </div>
+      <div class="hero-stat-caption">Same company, same cash flows, same growth assumption — the only input that changed is the risk-free rate.</div>
+
+      <p>A 0.16-point move in a single input, nothing about the company itself, was worth roughly 3% of its computed intrinsic value — every other variable held still so the rate's effect alone is visible.</p>
+
+      <h2>This isn't just Japan</h2>
+
+      <p>The same refresh touched five other markets, consistently upward (one exception):</p>
+
+      <div class="mover-table-wrap">
+        <table class="mover-table">
+          <thead><tr><th>Market</th><th>Was</th><th>Now</th><th>Move</th></tr></thead>
+          <tbody>
+            <tr><td class="tk">Japan (10-yr govt bond)</td><td>2.20%</td><td>2.36%</td><td class="col-neg">+0.16pp</td></tr>
+            <tr><td class="tk">India (10-yr govt bond, spread-adjusted)</td><td>4.90%</td><td>5.09%</td><td class="col-neg">+0.19pp</td></tr>
+            <tr><td class="tk">Eurozone (German 10-yr govt bond)</td><td>3.20%</td><td>3.35%</td><td class="col-neg">+0.15pp</td></tr>
+            <tr><td class="tk">South Korea (10-yr govt bond, spread-adjusted)</td><td>3.90%</td><td>4.00%</td><td class="col-neg">+0.10pp</td></tr>
+            <tr><td class="tk">United Kingdom (10-yr govt bond)</td><td>5.00%</td><td>5.07%</td><td class="col-neg">+0.07pp</td></tr>
+            <tr><td class="tk">China (10-yr govt bond, spread-adjusted)</td><td>1.10%</td><td>1.08%</td><td class="col-pos">&minus;0.02pp</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Australia's rate had already been corrected a few days earlier — its 10-year bond broke above 5.2%, its highest level since 2011, part of the same broad move the opening paragraph described.</p>
+
+      <p><em>For India, Korea, China, and Japan, our DCF engine uses a "spread-adjusted" convention: the risk-free rate is the raw government bond yield minus that country's sovereign default spread, since the equity risk premium separately already prices in country risk. Only the raw yield was refreshed here; the underlying credit spreads were left at their existing (January 2026) values.</em></p>
+
+      <h2>The other half of the story: earnings are genuinely strong</h2>
+
+      <p>If rising rates were the only thing happening, you'd expect broad-based weakness. It hasn't shown up, because the other side of the DCF formula is moving too: S&amp;P 500 companies delivered adjusted earnings growth of roughly 31% year-over-year in Q2 2026 — well above the ~23% expected — the seventh straight quarter of double-digit profit growth, with revenue growth at its fastest pace since Q2 2022.</p>
+
+      <div class="insight-box">
+        <p><strong>Two independent forces, same formula, opposite directions.</strong> A DCF moves on two separate inputs: the cash flows it discounts (the numerator) and the rate it discounts them at (the denominator). Stronger earnings raise the numerator — bigger forecasted cash flows, a larger terminal value in dollar terms. A higher risk-free rate simultaneously shrinks the denominator's multiplier. Both are real and mechanical, and neither automatically wins — it depends on the specific company's cash-flow trajectory relative to how much its discount rate moved.</p>
+      </div>
+
+      <p>A run of unusually strong earnings is exactly the scenario our own growth assumption was recently changed to handle more carefully. Our DCF used to derive its base growth rate from just the latest year's revenue and earnings figures — reasonable in a normal year, but liable to extrapolate one exceptional quarter straight out to infinity in a year like this one. We now derive it from a company's multi-year financial history instead — typically the last several years of reported annuals where Yahoo has them — blending Damodaran's reinvestment-based method (retention ratio × return on equity) with a cross-check against the actual multi-year revenue and free-cash-flow trend, and using whichever is more conservative. A single standout year can still lift the multi-year average, but it can no longer dominate it the way it could under the old one-year method.</p>
+
+      <h2>What this means</h2>
+
+      <p>This isn't a call on where rates or markets go from here — a mechanical DCF model doesn't predict that. It does mean a DCF-implied intrinsic value right now is the net result of two real, opposing forces in motion, not a static read on a company: earnings that genuinely accelerated can still produce a lower intrinsic value than a few months ago, purely because the rate discounting those better cash flows also went up. The discount-rate assumption behind any DCF number deserves the same scrutiny as the cash-flow forecast driving it — see the current inputs behind any calculation on <a href="/dcf/">the DCF tool</a>, or the <a href="/glossary/wacc/">WACC glossary entry</a> for how the discount rate is built.</p>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. It explains a mechanical relationship in a discounted cash flow model and reports real, current data (bond yields, earnings growth, and a computed valuation example) — it is not a prediction of future interest rates, stock prices, or company performance, and not a recommendation to buy, sell, or hold any security named. All computed figures use KashVector's own DCF engine and real, currently-published inputs; past performance is not an indicator of future results. Speak with a licensed financial adviser before making any investment decision.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Does a higher discount rate affect every company equally?</summary>
+          <p>No. Discounting compounds over time, so cash flows further in the future lose more value from the same rate increase than cash flows arriving soon. A DCF's terminal value — the estimate of everything beyond the 5-year forecast — is usually the majority of a company's intrinsic value and sits furthest in the future, so it absorbs most of the impact. That structurally hits richly-priced growth companies harder than mature, cash-generative ones.</p>
+        </details>
+        <details class="faq-item">
+          <summary>If earnings are strong right now, why would rates falling matter?</summary>
+          <p>They're two separate, independent inputs to the same formula. Stronger earnings raise the cash-flow side of a DCF (the numerator); a higher discount rate lowers the present-value side (the denominator). Both can be true and pulling in opposite directions at once — which is exactly the environment described in this article.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is this article predicting where rates or stock prices go next?</summary>
+          <p>No. This article explains a mechanical relationship in the DCF formula and reports real, current numbers — it is not a forecast, a trade idea, or investment advice. Nothing here is a recommendation to buy, sell, or hold any security. Speak with a licensed financial adviser before making any investment decision.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+
+</body>
+</html>
