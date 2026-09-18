@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Cheap or Distressed? How the Undervalued Screens Work — and Why We Added a Solvency Check — KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/undervalued-screen-solvency-check/">
+  <meta property="og:title" content="Cheap or Distressed? How the Undervalued Screens Work — and Why We Added a Solvency Check — KashVector">
+  <meta property="og:description" content="The six rules a stock must clear to make KashVector's undervalued screens — and why we just added a Solvency Floor built on the Altman Z-Score.">
+  <meta property="og:url" content="https://kashvector.com/articles/undervalued-screen-solvency-check/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KashVector — free stock valuation tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cheap or Distressed? How the Undervalued Screens Work — and Why We Added a Solvency Check — KashVector">
+  <meta name="twitter:description" content="The six rules a stock must clear to make KashVector's undervalued screens — and why we just added a Solvency Floor built on the Altman Z-Score.">
+  <meta name="twitter:image" content="https://kashvector.com/og-image.png">
+  <meta name="description" content="The six rules a stock must clear to make KashVector's undervalued screens — and why we just added a Solvency Floor built on the Altman Z-Score.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <style>
+    /* High-contrast green for inline body links (default UA blue/visited-purple is hard to read).
+       Scoped to this article; excludes the .article-cta button blocks. */
+    .article-body a:not(.article-cta),
+    .article-body a:not(.article-cta):visited { color: #34d399; text-decoration: none; }
+    .article-body a:not(.article-cta):hover { color: #6ee7b7; text-decoration: underline; }
+    html:not(.dark) .article-body a:not(.article-cta),
+    html:not(.dark) .article-body a:not(.article-cta):visited { color: #15803d; }
+    html:not(.dark) .article-body a:not(.article-cta):hover { color: #166534; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Cheap or Distressed? How the Undervalued Screens Work — and Why We Added a Solvency Check",
+    "datePublished": "2026-09-19",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/undervalued-screen-solvency-check/",
+    "description": "The six rules a stock must clear to make KashVector's undervalued screens — and why we just added a Solvency Floor built on the Altman Z-Score."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why did the screening rules change?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Two fixes, made 17 September 2026. First, the margin-of-safety cap was raised from 80% to 100% — the old cap was excluding some genuinely undervalued stocks that just happened to sit slightly above the old threshold. Second, a Solvency Floor was added: an audit of the screens found 20-30% of top-ranked stocks scoring in the Altman Z-Score's Distress Zone despite looking undervalued. A stock can be cheap because it's genuinely mispriced, or cheap because the market has correctly priced in financial distress the valuation math doesn't see. The Solvency Floor now excludes the second case wherever an Altman Z-Score can be computed." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Altman Z-Score?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A bankruptcy-risk formula that combines five balance-sheet and earnings ratios into a single score. Below 1.81 is the Distress Zone, 1.81 to 2.99 is a Grey Zone, above 2.99 is a Safe Zone. It's a solvency check, not a valuation — it says nothing about whether a stock is cheap or expensive, only how financially sound it currently looks." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the Piotroski F-Score affect which stocks qualify for the screen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The Piotroski F-Score is shown alongside the Altman Z-Score in each screen's table as extra context — a 9-point checklist of whether a company's fundamentals improved year over year — but it is display-only. Only the Altman Z-Score's Solvency Floor actually removes a stock from the list." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens to banks, insurers, and REITs under the Solvency Floor?",
+        "acceptedAnswer": { "@type": "Answer", "text": "They're exempted, not penalised. The Altman Z-Score's ratios are built around industrial balance sheets and don't fit how banks, insurers, asset managers, or REITs are financed, so no score is computed for them at all. A missing score is treated as \"not applicable\", never as a fail — only a confirmed Distress Zone score removes a stock from the list." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the undervalued screen a buy list?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. It's a purely quantitative starting point for research, not advice. A stock can pass every rule here, including the Solvency Floor, and still face real problems the numbers don't capture. Always do your own research." }
+      },
+      {
+        "@type": "Question",
+        "name": "How often do the screens update, and which markets do they cover?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Roughly weekly, across all six KashVector undervalued screens: ASX 300, S&P 500, NIFTY 500, KOSPI 200, Nikkei 225, and Europe. Each page's \"as at\" date shows when that market's snapshot was last taken." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-footer.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">Cheap or Distressed? How the Undervalued Screens Work — and Why We Added a Solvency Check</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 19 September 2026 &nbsp;·&nbsp; 8 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <p>The <a href="/dcf/">Most Undervalued</a> screens rank nearly 1,900 stocks across six markets by how far a conservative valuation model says they should be trading above their current price. But "cheap" and "safe" are not the same claim. A stock can trade well below its estimated fair value for two very different reasons: the market has genuinely mispriced it, or the market has correctly priced in a real risk of financial distress that a pure valuation model never looks for. On 17 September 2026 we shipped a change built to tell those two apart — the screens' margin-of-safety cap moved from 80% to 100%, and a new <strong>Solvency Floor</strong> now excludes any stock with a confirmed Altman Z-Score in the bankruptcy-risk Distress Zone. This is what changed, why, and — in full — how the screen decides what makes the list.</p>
+
+      <div class="article-summary">
+        <p>The short version:</p>
+        <ul>
+          <li>A stock now has to clear <strong>six rules</strong>, not four — the same base-case valuation engine as before, plus a new Solvency Floor.</li>
+          <li>The margin-of-safety cap rose from <strong>80% to 100%</strong> — a wider band of genuinely undervalued stocks now qualifies.</li>
+          <li>The new <strong>Solvency Floor</strong> excludes any stock with a confirmed Altman Z-Score in the Distress Zone (below 1.81) — a bankruptcy-risk check, not a valuation.</li>
+          <li>Banks, insurers, asset managers, and REITs are <strong>exempted</strong> from the Solvency Floor — the Altman Z-Score's ratios don't fit their balance sheets.</li>
+          <li>It runs <strong>roughly weekly</strong>, across all six screens: ASX 300, S&amp;P 500, NIFTY 500, KOSPI 200, Nikkei 225, and Europe.</li>
+          <li>It remains a <strong>purely quantitative screen, not advice</strong> — a starting point for research.</li>
+        </ul>
+      </div>
+
+      <h2>The same engine, run across an entire market</h2>
+
+      <p>There's no separate model behind the screen. Each company is run through the same base-case calculation as the public <a href="/dcf/">DCF Valuation tool</a>: a five-year cash-flow projection, a terminal growth assumption, and a discount rate built from live market data. Banks and insurers, where discounted cash flow breaks down, are valued with a Dividend Discount Model instead — or, for lenders that retain most of their earnings rather than paying them out, an Excess Return Model. Because it's the same code path as the tool, the screen can never quietly disagree with what you'd see typing the ticker in yourself. (If you're new to the method itself, the companion guide — <a href="/articles/dcf-ddm-stock-valuation/">How to Value a Stock: DCF and the Dividend Discount Model</a> — covers the discount rate and assumptions in more depth than this piece does.)</p>
+
+      <h2>The six rules a stock must clear</h2>
+
+      <p>To appear on any of the six lists, a company has to pass every one of these, in order. Most of a given market fails at the very first rule.</p>
+
+      <ul>
+        <li><strong>Undervalued</strong> — the base-case intrinsic value sits above the current price. On a deliberately conservative base case, most large caps don't clear this, so it does the heavy lifting: it's the reason every list is short relative to the size of the market it's drawn from.</li>
+        <li><strong>Valuable by the model</strong> — the model produced a real number at all. Companies with no or negative free cash flow, net debt larger than the whole business, or banks/insurers that pay no dividend can't be valued this way and drop out here.</li>
+        <li><strong>Real cash flow</strong> — the free cash flow figure came from a reported number, or operating cash flow minus real capital expenditure — never a rough <em>OCF&nbsp;×&nbsp;0.8</em> proxy, which can manufacture a fake bargain out of thin data.</li>
+        <li><strong>Normalised for financials</strong> — for non-bank financial companies (exchanges, asset managers, payment networks), reported free cash flow tends to overstate real owner earnings, so the screen applies the same downward adjustment the DCF tool does before valuing them.</li>
+        <li><strong>Plausible margin</strong> — the gap between fair value and price is 100% or less. When the model says a stock is worth more than double its price, that usually reflects cash flow sitting at a cyclical or one-off peak — a miner or contractor at the top of its cycle — rather than a genuine discount.</li>
+        <li><strong>Solvency floor</strong> — the Altman Z-Score, where one can be computed, is above 1.81 and out of the Distress Zone. This is the newest rule, and the rest of this article is mostly about it.</li>
+      </ul>
+
+      <h2>Why the cap moved from 80% to 100%</h2>
+
+      <p>An 80% ceiling sounds like a reasonable line against cyclically-inflated valuations, but in practice it was also cutting off real, non-inflated bargains that simply landed on the wrong side of an arbitrary number. This week's live ASX 300 list makes the case concretely: its two most undervalued names are <strong>New Hope Corporation (NHC.AX)</strong> at an 86.0% margin of safety and <strong>Deterra Royalties (DRR.AX)</strong> at 84.9% — both of which the old 80% cap would have excluded outright. Neither appears here because the rule got looser for its own sake; they're here because the rule now more accurately separates "very undervalued" from "implausibly undervalued." The same story shows up in Korea: this week's top-ranked KOSPI stock, <strong>F&amp;F Co. (383220.KS)</strong>, sits at a 98.5% margin — a month ago it wouldn't have appeared on the list at all.</p>
+
+      <p>Raising the cap doesn't mean "anything goes." 100% is still a real ceiling, and it still does real work: this week alone, 15 ASX 300 stocks and 22 KOSPI 200 stocks were excluded for exceeding even the wider cap — margins so large they almost certainly reflect distorted, not discounted, cash flow.</p>
+
+      <h2>The Solvency Floor: why cheap isn't always safe</h2>
+
+      <p>The backstory: an internal audit of the screens found that <strong>20 to 30% of top-ranked stocks</strong> across the S&amp;P 500 and ASX lists were scoring in the Altman Z-Score's Distress Zone — a real bankruptcy-risk signal — despite being flagged as undervalued. That finding exposed a gap in what the screen had only ever really asked. "Is this stock cheap relative to its own projected cash flows?" and "Is this company financially sound?" are genuinely separate questions, and a five-year DCF projection has no mechanism for catching the second one — it happily extrapolates a distressed company's most recent cash flows forward as if the balance sheet underneath them weren't deteriorating.</p>
+
+      <p>The <a href="https://kashvector.com/glossary/altman-z-score/">Altman Z-Score</a> closes that gap. Developed by NYU professor Edward Altman in 1968, it combines five ratios — covering liquidity, profitability, leverage, solvency, and asset efficiency — into one weighted number, then bands the result: below 1.81 is the <strong>Distress Zone</strong>, 1.81 to 2.99 is a <strong>Grey Zone</strong>, above 2.99 is <strong>Safe</strong>. The new Solvency Floor rule is narrow and deliberate: it excludes a stock <em>only</em> when its Z-Score is a <strong>confirmed</strong> Distress Zone reading. A missing score — which is the case for banks, insurers, asset managers, and REITs, whose balance sheets the underlying ratios simply don't fit, or for any company without enough fiscal-year history to compute one — is treated as "not applicable," never as a fail. The floor is meant to catch a specific, measurable risk, not to penalise companies the formula was never built to score.</p>
+
+      <p>Each screen's table also shows a second, independent number: the <a href="https://kashvector.com/glossary/piotroski-f-score/">Piotroski F-Score</a>, a 9-point checklist of whether a company's profitability, leverage, and efficiency improved year over year. It's genuinely useful context sitting right next to the Z-Score column — but it is <strong>display-only</strong>. It doesn't gate the list. Stacking a second, overlapping quality filter directly on top of a valuation ranking risked making the screen harder to reason about for a marginal gain in strictness, so for now only the Altman Z-Score actually removes a stock.</p>
+
+      <h2>What changed in this week's real numbers</h2>
+
+      <p>Both changes shipped 17 September 2026 and were live for the first time on the following weekly refresh. Three markets' numbers, as published:</p>
+
+      <ul>
+        <li><strong>ASX 300</strong> (18 Sep 2026): 300 companies evaluated, <strong>22 qualified</strong> (20 shown, the display cap), 15 excluded for exceeding even the wider 100% margin cap, and <strong>4 excluded by the new Solvency Floor</strong> for a confirmed Distress Zone score.</li>
+        <li><strong>S&amp;P 500</strong> (18 Sep 2026): 502 companies evaluated, <strong>53 qualified</strong> (20 shown, the display cap), 31 excluded for exceeding even the wider 100% margin cap, and <strong>12 excluded by the new Solvency Floor</strong> for a confirmed Distress Zone score.</li>
+        <li><strong>KOSPI 200</strong> (18 Sep 2026): 200 companies evaluated, <strong>18 qualified and shown</strong>, 22 excluded over the cap, and <strong>4 excluded by the Solvency Floor</strong>.</li>
+      </ul>
+
+      <p>In all three markets, roughly one in five of the names that would otherwise have ranked among the most undervalued this week were carrying a confirmed distress signal. That's the floor doing real, measurable work — not a symbolic rule that rarely fires.</p>
+
+      <h2>What this isn't</h2>
+
+      <p>A Z-Score above 1.81 is not a guarantee. It's a snapshot of financial soundness across five ratios at a single point in time, built from historical financial data that may be delayed or incomplete — not a forecast, and not a claim that a company can't run into trouble tomorrow. The screens remain <strong>purely quantitative</strong> in every other respect too: they don't read news, assess management quality, weigh competitive position, or account for litigation or regulatory risk. A stock can clear all six rules, Solvency Floor included, and still be sitting on a problem the numbers simply haven't caught up to yet — which is exactly why this is a starting point for research, not a verdict.</p>
+
+      <p>The same six rules now run on all six Most Undervalued screens — the <a href="/dcf/asx-undervalued/">ASX 300</a>, the <a href="/dcf/sp500-undervalued/">S&amp;P 500</a>, the <a href="/dcf/nifty-undervalued/">NIFTY 500</a>, the <a href="/dcf/kospi-undervalued/">KOSPI 200</a>, the <a href="/dcf/nikkei-undervalued/">Nikkei 225</a>, and the <a href="/dcf/europe-undervalued/">Europe</a> screen — so you can see exactly how each week's list was built, whichever market you follow.</p>
+
+      <a class="article-cta" href="/dcf/sp500-undervalued/">
+        <span class="article-cta-label">Updated weekly · free</span>
+        <span class="article-cta-text">See this week's list → Most Undervalued S&amp;P 500</span>
+      </a>
+
+      <a class="article-cta" href="https://kashvector.com/glossary/altman-z-score/">
+        <span class="article-cta-label">Free glossary guide</span>
+        <span class="article-cta-text">The full Altman Z-Score formula, zones, and a worked example →</span>
+      </a>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. The Most Undervalued screens and the Solvency Check are automated, assumption-driven outputs produced from historical financial data that may be delayed or incomplete. They are not a recommendation to buy, sell, or hold any security, and both valuation models and the Altman Z-Score are highly sensitive to their inputs and can be wrong. Individual investment decisions depend on your financial situation, risk tolerance, timeline, and objectives. We recommend consulting a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Why did the screening rules change?</summary>
+          <p>Two fixes, made 17 September 2026. First, the margin-of-safety cap was raised from 80% to 100% — the old cap was excluding some genuinely undervalued stocks that just happened to sit slightly above the old threshold. Second, a Solvency Floor was added: an audit of the screens found 20-30% of top-ranked stocks scoring in the Altman Z-Score's Distress Zone despite looking undervalued. A stock can be cheap because it's genuinely mispriced, or cheap because the market has correctly priced in financial distress the valuation math doesn't see. The Solvency Floor now excludes the second case wherever an Altman Z-Score can be computed.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is the Altman Z-Score?</summary>
+          <p>A bankruptcy-risk formula that combines five balance-sheet and earnings ratios into a single score. Below 1.81 is the Distress Zone, 1.81 to 2.99 is a Grey Zone, above 2.99 is a Safe Zone. It's a solvency check, not a valuation — it says nothing about whether a stock is cheap or expensive, only how financially sound it currently looks.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does the Piotroski F-Score affect which stocks qualify for the screen?</summary>
+          <p>No. The Piotroski F-Score is shown alongside the Altman Z-Score in each screen's table as extra context — a 9-point checklist of whether a company's fundamentals improved year over year — but it is display-only. Only the Altman Z-Score's Solvency Floor actually removes a stock from the list.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What happens to banks, insurers, and REITs under the Solvency Floor?</summary>
+          <p>They're exempted, not penalised. The Altman Z-Score's ratios are built around industrial balance sheets and don't fit how banks, insurers, asset managers, or REITs are financed, so no score is computed for them at all. A missing score is treated as "not applicable", never as a fail — only a confirmed Distress Zone score removes a stock from the list.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is the undervalued screen a buy list?</summary>
+          <p>No. It's a purely quantitative starting point for research, not advice. A stock can pass every rule here, including the Solvency Floor, and still face real problems the numbers don't capture. Always do your own research.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How often do the screens update, and which markets do they cover?</summary>
+          <p>Roughly weekly, across all six KashVector undervalued screens: ASX 300, S&amp;P 500, NIFTY 500, KOSPI 200, Nikkei 225, and Europe. Each page's "as at" date shows when that market's snapshot was last taken.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>
