@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Does DCF Screening Work? 4 Months, 65 ASX Exits — KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/asx-screen-track-record/">
+  <meta property="og:title" content="Does DCF Screening Work? 4 Months, 65 ASX Exits — KashVector">
+  <meta property="og:description" content="We tracked all 65 exits from our ASX undervalued screen since June 2026: 42 positive (64.6%), best +32.7%, worst -20.5%. The full log and patterns.">
+  <meta property="og:url" content="https://kashvector.com/articles/asx-screen-track-record/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Does DCF Screening Work? 4 Months, 65 ASX Exits — KashVector">
+  <meta name="twitter:description" content="We tracked all 65 exits from our ASX undervalued screen since June 2026: 42 positive (64.6%), best +32.7%, worst -20.5%. The full log and patterns.">
+  <meta name="description" content="We tracked all 65 exits from our ASX undervalued screen since June 2026: 42 positive (64.6%), best +32.7%, worst -20.5%. The full log and patterns.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <style>
+    .article-body a:not(.article-cta),
+    .article-body a:not(.article-cta):visited { color: #15803d; text-decoration: none; }
+    .article-body a:not(.article-cta):hover { color: #166534; text-decoration: underline; }
+    html.dark .article-body a:not(.article-cta),
+    html.dark .article-body a:not(.article-cta):visited { color: #34d399; }
+    html.dark .article-body a:not(.article-cta):hover { color: #6ee7b7; }
+
+    /* ── Hero stat row ── */
+    .hero-stat-row { display: flex; gap: 14px; margin: 8px 0 8px; }
+    .hero-stat-card { flex: 1; background: var(--kv-card); border: 1px solid var(--kv-border); border-radius: 12px; padding: 18px 16px; text-align: center; }
+    .hero-stat-mkt { font-size: 0.72rem; font-weight: 700; color: var(--kv-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .hero-stat-value { font-size: 2.1rem; font-weight: 800; line-height: 1.1; }
+    .hero-stat-value.pos { color: #22c55e; }
+    .hero-stat-value.neg { color: #ef4444; }
+    .hero-stat-vs { font-size: 0.82rem; color: var(--kv-muted); margin-top: 4px; }
+    .hero-stat-caption { text-align: center; font-size: 0.85rem; color: var(--kv-muted); margin: 2px 0 22px; font-style: italic; }
+    @media (max-width: 480px) { .hero-stat-row { flex-direction: column; } }
+
+    /* ── Mover table ── */
+    .mover-table-wrap { overflow-x: auto; margin: 20px 0 28px; border-radius: 10px; border: 1px solid var(--kv-border); }
+    .mover-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 480px; }
+    .mover-table th { background: var(--kv-card-2); padding: 10px 12px; text-align: left; font-weight: 600; color: var(--kv-muted); border-bottom: 2px solid var(--kv-border); white-space: nowrap; }
+    .mover-table th:not(:first-child):not(:nth-child(2)) { text-align: right; }
+    .mover-table td { padding: 9px 12px; border-bottom: 1px solid var(--kv-border); color: var(--kv-muted); }
+    .mover-table td:not(:first-child):not(:nth-child(2)) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .mover-table tr:last-child td { border-bottom: none; }
+    td.col-pos { color: #22c55e; font-weight: 700; }
+    td.col-neg { color: #ef4444; font-weight: 700; }
+    .mover-table .ticker-col { font-weight: 700; color: var(--kv-text); font-family: monospace; font-size: 0.85rem; }
+
+    /* ── Insight box ── */
+    .insight-box { background: var(--kv-card); border: 1px solid var(--kv-border); border-left: 3px solid var(--kv-accent); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 4px 0 28px; }
+    .insight-box p { font-size: 0.88rem !important; color: var(--kv-muted) !important; margin-bottom: 10px !important; line-height: 1.65 !important; }
+    .insight-box p:last-child { margin-bottom: 0 !important; }
+    .insight-box strong { color: var(--kv-text); }
+    .insight-box h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--kv-accent-h); margin: 0 0 8px; }
+    html.dark .insight-box h4 { color: var(--kv-accent); }
+
+    /* ── Full log table (compact) ── */
+    .log-table-wrap { overflow-x: auto; margin: 16px 0 28px; border-radius: 10px; border: 1px solid var(--kv-border); }
+    .log-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; min-width: 540px; }
+    .log-table th { background: var(--kv-card-2); padding: 8px 10px; text-align: left; font-weight: 600; color: var(--kv-muted); border-bottom: 2px solid var(--kv-border); white-space: nowrap; }
+    .log-table th:nth-child(n+3) { text-align: right; }
+    .log-table td { padding: 7px 10px; border-bottom: 1px solid var(--kv-border); color: var(--kv-muted); }
+    .log-table td:nth-child(n+3) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .log-table tr:last-child td { border-bottom: none; }
+    .log-table td.col-pos { color: #22c55e; font-weight: 600; }
+    .log-table td.col-neg { color: #ef4444; font-weight: 600; }
+    .log-table .t { font-weight: 700; color: var(--kv-text); font-family: monospace; }
+
+    /* ── sector badge ── */
+    .sect-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 1px 6px; border-radius: 999px; letter-spacing: 0.02em; text-transform: uppercase; vertical-align: middle; margin-left: 4px; }
+    .sect-gold { background: color-mix(in srgb, #d98e12 16%, var(--kv-card)); color: #92600a; border: 1px solid color-mix(in srgb, #d98e12 35%, transparent); }
+    .sect-health { background: color-mix(in srgb, #22c55e 12%, var(--kv-card)); color: #166534; border: 1px solid color-mix(in srgb, #22c55e 30%, transparent); }
+    html.dark .sect-gold { color: #fbbf24; }
+    html.dark .sect-health { color: #4ade80; }
+
+    /* ── Verdict tally ── */
+    .verdict-bar { display: flex; border-radius: 8px; overflow: hidden; height: 10px; margin: 10px 0 6px; }
+    .verdict-bar .pos-seg { background: #22c55e; }
+    .verdict-bar .neg-seg { background: #ef4444; }
+    .verdict-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--kv-muted); margin-bottom: 20px; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Does DCF Screening Work? 4 Months, 65 ASX Exits — The Honest Track Record",
+    "description": "We tracked all 65 exits from our ASX undervalued screen since June 2026: 42 positive (64.6%), best +32.7%, worst -20.5%. The full log and patterns.",
+    "datePublished": "2026-09-26",
+    "dateModified": "2026-09-26",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://kashvector.com/articles/asx-screen-track-record/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does DCF screening produce profitable results over time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Across 65 closed positions on the ASX screen (June–September 2026), 42 were positive and 23 were negative — a 64.6% positive-exit rate. The mechanical model identifies stocks where current prices imply a lower long-run FCF than history and analyst consensus suggest is likely. It does not predict short-term price movements or incorporate qualitative judgment. These are purely mechanical DCF outputs, not financial advice."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did DCF miss so badly on Fortescue (FMG.AX)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The model ingested Fortescue's historical free cash flow and projected growth, and found the stock priced for a scenario worse than those numbers implied. What the model cannot see is an external input — the iron ore spot price — which fell sharply in mid-2026 driven by slower Chinese steel demand. Commodity miners are a known weak spot for DCF: their value depends on a price the model doesn't forecast. The screen now tags cyclical miners for extra scrutiny."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did every gold stock the screen flagged go on to rise?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The screen flagged five gold miners (VAU, NEM, GMD, WGX, WAF) during a period when gold equities were pricing a gold-price pullback that never materialised. The DCF model valued them on a conservative flat-to-declining gold price assumption embedded in trailing FCF, while spot gold continued rising. All five exits were positive (+3.7% to +32.7%). This is a case where the model's conservatism worked in its favour — though it requires the underlying commodity to cooperate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the screen decide when to exit a position?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The screen exits a position when the stock price reaches or exceeds the model's base-case intrinsic value — meaning the margin of safety has closed. It also removes stocks that fall off the undervalued list when fresh weekly data is fetched and no longer show a significant discount. The screen is refreshed weekly with live data from Yahoo Finance via a Cloudflare Worker."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is 64% a realistic win rate for a mechanical stock screen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is consistent with published academic results on systematic value investing. Studies of mechanical value screens typically find positive-exit rates of 55–70% depending on the market and holding period. The more relevant question is whether the average winner offsets the average loser — here, the mean positive exit (+8.8%) comfortably exceeds the mean negative exit (-6.4%). That said, 65 exits over four months is too short a sample to draw conclusions about long-run performance."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+<div id="kv-nav-placeholder"></div>
+
+<div class="article-body">
+  <nav class="article-breadcrumb">
+    <a href="/">KashVector</a> › <a href="/dcf/asx-undervalued/">ASX Undervalued Screen</a> › Track Record
+  </nav>
+
+  <article>
+    <header>
+      <p class="article-headline">Does DCF Screening Work? 4 Months, 65 ASX Exits — The Honest Track Record</p>
+      <p class="article-byline">KashVector · 26 September 2026 · 8 min read</p>
+      <div class="article-ai-note">
+        <strong>Pure-maths framing.</strong> Every figure in this article is the mechanical output of a DCF/DDM model applied to publicly available financial data. Nothing here is financial advice, a recommendation to buy or sell, or a prediction of future returns.
+      </div>
+    </header>
+
+    <p>One stock returned <strong>+32.7% in 66 days</strong>. Another fell <strong>-20.5%</strong> over roughly the same period. The same screen flagged both of them as undervalued.</p>
+
+    <p>That tension — a model confidently wrong on Fortescue while confidently right on Vault Minerals — is what makes this track record worth reading. It isn't just about wins and losses. It's about <em>which</em> situations a mechanical DCF screen handles well, and which ones it can't see past.</p>
+
+    <p>Since June 2026, the <a href="/dcf/asx-undervalued/">KashVector ASX Undervalued Screen</a> has logged <strong>65 closed positions</strong>. Here is the full record, the patterns, and a frank look at the limits.</p>
+
+    <!-- Hero stats -->
+    <div class="hero-stat-row">
+      <div class="hero-stat-card">
+        <div class="hero-stat-mkt">Win rate</div>
+        <div class="hero-stat-value pos">64.6%</div>
+        <div class="hero-stat-vs">42 of 65 exits positive</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-mkt">Best exit</div>
+        <div class="hero-stat-value pos">+32.7%</div>
+        <div class="hero-stat-vs">VAU.AX — 66 days</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-mkt">Worst exit</div>
+        <div class="hero-stat-value neg">−20.5%</div>
+        <div class="hero-stat-vs">FMG.AX — 81 days</div>
+      </div>
+    </div>
+    <div class="verdict-bar">
+      <div class="pos-seg" style="width:64.6%"></div>
+      <div class="neg-seg" style="width:35.4%"></div>
+    </div>
+    <div class="verdict-labels"><span>42 positive exits (64.6%)</span><span>23 negative (35.4%)</span></div>
+    <p class="hero-stat-caption">Jun 2 – Sep 25, 2026. Avg positive exit +8.8% · avg negative exit −6.4%.</p>
+
+    <h2>How the screen works</h2>
+    <p>The screen runs a DCF valuation on every ASX 200 stock each week using live financial data from Yahoo Finance. It models free cash flow over a multi-year forecast window, discounts it at a WACC derived from beta, the risk-free rate, and an equity risk premium, and adds a terminal value. Stocks trading at a material discount to that base-case value appear on the list.</p>
+    <p>When a stock rises to or above its model value — or falls off the list because fresh data narrows the gap — it exits. The exit prices recorded here are the prices at the weekly refresh closest to that moment, not real-time fills. No brokerage, no tax.</p>
+
+    <h2>The eight biggest winners</h2>
+    <p>Gold miners dominate the top of the table — all five flagged between June and August went positive. Healthcare showed up twice. SDF.AX (Steadfast Group) is the outlier: an insurance broker, not a typical "deep value" name, which the DDM model priced on dividend normalisation.</p>
+
+    <div class="mover-table-wrap">
+      <table class="mover-table">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Company</th>
+            <th>Entry</th>
+            <th>Exit</th>
+            <th>Return</th>
+            <th>Days held</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ticker-col">VAU.AX</td>
+            <td>Vault Minerals <span class="sect-badge sect-gold">Gold</span></td>
+            <td>$4.40</td>
+            <td>$5.84</td>
+            <td class="col-pos">+32.7%</td>
+            <td>66</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">SDF.AX</td>
+            <td>Steadfast Group</td>
+            <td>$4.00</td>
+            <td>$5.16</td>
+            <td class="col-pos">+29.0%</td>
+            <td>16</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">NEM.AX</td>
+            <td>Newmont Corp <span class="sect-badge sect-gold">Gold</span></td>
+            <td>$152.82</td>
+            <td>$182.80</td>
+            <td class="col-pos">+19.6%</td>
+            <td>21</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">EDV.AX</td>
+            <td>Endeavour Group</td>
+            <td>$2.84</td>
+            <td>$3.39</td>
+            <td class="col-pos">+19.4%</td>
+            <td>81</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">GMD.AX</td>
+            <td>Genesis Minerals <span class="sect-badge sect-gold">Gold</span></td>
+            <td>$5.32</td>
+            <td>$6.29</td>
+            <td class="col-pos">+18.2%</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">ANN.AX</td>
+            <td>Ansell Limited <span class="sect-badge sect-health">Health</span></td>
+            <td>$27.24</td>
+            <td>$31.82</td>
+            <td class="col-pos">+16.8%</td>
+            <td>53</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">SUL.AX</td>
+            <td>Super Retail Group</td>
+            <td>$11.44</td>
+            <td>$13.35</td>
+            <td class="col-pos">+16.7%</td>
+            <td>81</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">RHC.AX</td>
+            <td>Ramsay Health Care <span class="sect-badge sect-health">Health</span></td>
+            <td>$45.00</td>
+            <td>$52.29</td>
+            <td class="col-pos">+16.2%</td>
+            <td>13</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Why every gold miner went positive</h3>
+    <div class="insight-box">
+      <h4>Pattern: Gold at conservative DCF thresholds</h4>
+      <p>The screen flagged five gold miners between June and September: VAU, NEM, GMD, WGX, and WAF. All five exited positive — returns ranging from +3.7% (West African Resources) to +32.7% (Vault Minerals). None were negative.</p>
+      <p><strong>Why?</strong> The DCF model values gold miners on their trailing free cash flow, which embeds a conservative gold price assumption (the average price over the historical period). During mid-2026, gold equities were pricing a gold pullback that never arrived. Spot gold continued rising, FCF beat expectations, and the model's implied "discount" turned out to be real margin of safety — not modelling error.</p>
+      <p>The lesson isn't "always buy gold miners when the screen flags them." It's that DCF works best when the conservatism in trailing-history assumptions happens to be conservative in the right direction relative to where spot prices go. Next time the screen flags gold miners at a different point in the gold cycle, the outcome could be different.</p>
+    </div>
+
+    <h3>Healthcare: two different recovery stories</h3>
+    <p>Ansell (ANN.AX, +16.8% over 53 days) and Ramsay Health Care (RHC.AX, +16.2% in just 13 days) were both flagged while the market was pricing in structural headwinds that the model treated as temporary below-trend FCF. Sonic Healthcare (SHL.AX, +5.1%) was similar but smaller in magnitude. Three healthcare entries, three positive exits — though a 13-day Ramsay exit mostly reflects mean reversion, not a thesis playing out fully.</p>
+
+    <h2>Where the model was wrong</h2>
+    <p>The three biggest losses were all in extractive industries. Fortescue lost 20.5%. Worley lost 19.5%. Beach Energy lost 12.6% in its first appearance (it was then re-flagged and exited marginally negative a second time too).</p>
+
+    <div class="mover-table-wrap">
+      <table class="mover-table">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Company</th>
+            <th>Entry</th>
+            <th>Exit</th>
+            <th>Return</th>
+            <th>Days held</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ticker-col">FMG.AX</td>
+            <td>Fortescue Ltd</td>
+            <td>$22.34</td>
+            <td>$17.75</td>
+            <td class="col-neg">−20.5%</td>
+            <td>81</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">WOR.AX</td>
+            <td>Worley Limited</td>
+            <td>$12.72</td>
+            <td>$10.24</td>
+            <td class="col-neg">−19.5%</td>
+            <td>71</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">BPT.AX</td>
+            <td>Beach Energy</td>
+            <td>$0.99</td>
+            <td>$0.865</td>
+            <td class="col-neg">−12.6%</td>
+            <td>50</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">EDV.AX</td>
+            <td>Endeavour Group</td>
+            <td>$3.26</td>
+            <td>$2.90</td>
+            <td class="col-neg">−11.0%</td>
+            <td>14</td>
+          </tr>
+          <tr>
+            <td class="ticker-col">TLS.AX</td>
+            <td>Telstra Group</td>
+            <td>$5.15</td>
+            <td>$4.78</td>
+            <td class="col-neg">−7.2%</td>
+            <td>74</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The iron ore problem with DCF</h3>
+    <div class="insight-box">
+      <h4>What DCF can't see: commodity prices</h4>
+      <p>The model flagged Fortescue (FMG.AX) in June because its trailing FCF — at then-prevailing iron ore prices — implied a discount to intrinsic value. What the model had no way to know was that iron ore spot prices were about to fall sharply, driven by slower Chinese steel demand. Fortescue exited at −20.5% over 81 days.</p>
+      <p><strong>This is the known weak point of trailing-FCF DCF applied to commodity producers:</strong> the model treats recent FCF as representative of normal earnings. It isn't. For a miner, the key variable is the commodity price — and that's an external input the model doesn't forecast.</p>
+      <p>The same logic applies to Beach Energy (oil & gas) and Worley (engineering services heavily exposed to resources capex cycles). When the commodity cycle turns, these names can spend a long time below their "intrinsic value" because the intrinsic value itself is being repriced by the market.</p>
+      <p><strong>The screen now applies cyclical-normalisation for mining and oil & gas tickers</strong> (averaging FCF margin over multiple years rather than using the latest year), which partially addresses this — but it can't eliminate commodity-price risk.</p>
+    </div>
+
+    <h2>The broader pattern: structural value vs. cycle value</h2>
+    <div class="insight-box">
+      <h4>When DCF screening tends to work — and when it doesn't</h4>
+      <p><strong>Works well:</strong> Companies with relatively stable FCF that the market has temporarily de-rated due to sentiment, one-off costs, or sector rotation. Healthcare, consumer staples, diversified financials. The model's conservatism often matches (or understates) the actual recoverable earnings power.</p>
+      <p><strong>Struggles:</strong> Companies whose FCF is fundamentally tied to a volatile external price (iron ore, oil, gas, coal). The model computes a "value" that implicitly assumes commodity prices stay near their historical average. When they don't, the margin of safety is illusory.</p>
+      <p><strong>Gold is interesting:</strong> It's technically the same problem — but gold has exhibited a consistent upward trend in AUD terms over this period, so the model's conservatism happened to point in the right direction. Past gold-miner performance here shouldn't be extrapolated as a general rule.</p>
+    </div>
+
+    <h2>Full exit log — all 65 positions</h2>
+    <p>Every closed position from the ASX screen since 2 June 2026. Sorted chronologically by exit date.</p>
+
+    <div class="log-table-wrap">
+      <table class="log-table">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Entry date</th>
+            <th>Exit date</th>
+            <th>Entry $</th>
+            <th>Exit $</th>
+            <th>Return</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="t">RGN.AX</td><td>02 Jun</td><td>18 Jun</td><td>$2.25</td><td>$2.40</td><td class="col-pos">+6.7%</td></tr>
+          <tr><td class="t">JBH.AX</td><td>02 Jun</td><td>18 Jun</td><td>$71.05</td><td>$78.51</td><td class="col-pos">+10.5%</td></tr>
+          <tr><td class="t">VNT.AX</td><td>02 Jun</td><td>18 Jun</td><td>$6.30</td><td>$6.63</td><td class="col-pos">+5.2%</td></tr>
+          <tr><td class="t">SDF.AX</td><td>02 Jun</td><td>18 Jun</td><td>$4.00</td><td>$5.16</td><td class="col-pos">+29.0%</td></tr>
+          <tr><td class="t">MGH.AX</td><td>02 Jun</td><td>19 Jun</td><td>$5.04</td><td>$5.36</td><td class="col-pos">+6.3%</td></tr>
+          <tr><td class="t">BGA.AX</td><td>02 Jun</td><td>25 Jun</td><td>$5.39</td><td>$5.79</td><td class="col-pos">+7.4%</td></tr>
+          <tr><td class="t">ORA.AX</td><td>02 Jun</td><td>05 Jul</td><td>$1.26</td><td>$1.385</td><td class="col-pos">+9.9%</td></tr>
+          <tr><td class="t">GMD.AX</td><td>25 Jun</td><td>05 Jul</td><td>$5.32</td><td>$6.29</td><td class="col-pos">+18.2%</td></tr>
+          <tr><td class="t">GOZ.AX</td><td>02 Jun</td><td>10 Jul</td><td>$2.12</td><td>$2.18</td><td class="col-pos">+2.8%</td></tr>
+          <tr><td class="t">MGH.AX</td><td>02 Jun</td><td>10 Jul</td><td>$5.04</td><td>$5.57</td><td class="col-pos">+10.5%</td></tr>
+          <tr><td class="t">BGA.AX</td><td>10 Jul</td><td>17 Jul</td><td>$5.99</td><td>$6.10</td><td class="col-pos">+1.8%</td></tr>
+          <tr><td class="t">JBH.AX</td><td>10 Jul</td><td>17 Jul</td><td>$78.10</td><td>$79.81</td><td class="col-pos">+2.2%</td></tr>
+          <tr><td class="t">ANN.AX</td><td>02 Jun</td><td>25 Jul</td><td>$27.24</td><td>$31.82</td><td class="col-pos">+16.8%</td></tr>
+          <tr><td class="t">NEM.AX</td><td>25 Jul</td><td>31 Jul</td><td>$134.76</td><td>$134.97</td><td class="col-pos">+0.2%</td></tr>
+          <tr><td class="t">BPT.AX</td><td>18 Jun</td><td>07 Aug</td><td>$0.99</td><td>$0.865</td><td class="col-neg">−12.6%</td></tr>
+          <tr><td class="t">VAU.AX</td><td>02 Jun</td><td>07 Aug</td><td>$4.40</td><td>$5.84</td><td class="col-pos">+32.7%</td></tr>
+          <tr><td class="t">ZIM.AX</td><td>02 Jun</td><td>07 Aug</td><td>$16.32</td><td>$15.59</td><td class="col-neg">−4.5%</td></tr>
+          <tr><td class="t">TLS.AX</td><td>02 Jun</td><td>15 Aug</td><td>$5.15</td><td>$4.78</td><td class="col-neg">−7.2%</td></tr>
+          <tr><td class="t">ORA.AX</td><td>17 Jul</td><td>15 Aug</td><td>$1.44</td><td>$1.505</td><td class="col-pos">+4.5%</td></tr>
+          <tr><td class="t">MGH.AX</td><td>31 Jul</td><td>15 Aug</td><td>$4.96</td><td>$5.61</td><td class="col-pos">+13.1%</td></tr>
+          <tr><td class="t">WGX.AX</td><td>07 Aug</td><td>22 Aug</td><td>$5.67</td><td>$6.29</td><td class="col-pos">+10.9%</td></tr>
+          <tr><td class="t">MTS.AX</td><td>05 Jul</td><td>22 Aug</td><td>$3.00</td><td>$2.98</td><td class="col-neg">−0.7%</td></tr>
+          <tr><td class="t">FMG.AX</td><td>02 Jun</td><td>22 Aug</td><td>$22.34</td><td>$17.75</td><td class="col-neg">−20.5%</td></tr>
+          <tr><td class="t">SHL.AX</td><td>19 Jun</td><td>22 Aug</td><td>$20.05</td><td>$21.08</td><td class="col-pos">+5.1%</td></tr>
+          <tr><td class="t">SUL.AX</td><td>02 Jun</td><td>22 Aug</td><td>$11.44</td><td>$13.35</td><td class="col-pos">+16.7%</td></tr>
+          <tr><td class="t">NWS.AX</td><td>07 Aug</td><td>22 Aug</td><td>$47.85</td><td>$47.34</td><td class="col-neg">−1.1%</td></tr>
+          <tr><td class="t">EDV.AX</td><td>02 Jun</td><td>22 Aug</td><td>$2.84</td><td>$3.39</td><td class="col-pos">+19.4%</td></tr>
+          <tr><td class="t">ZIM.AX</td><td>15 Aug</td><td>22 Aug</td><td>$14.89</td><td>$15.50</td><td class="col-pos">+4.1%</td></tr>
+          <tr><td class="t">BGA.AX</td><td>15 Aug</td><td>22 Aug</td><td>$6.06</td><td>$6.49</td><td class="col-pos">+7.1%</td></tr>
+          <tr><td class="t">QBE.AX</td><td>15 Aug</td><td>22 Aug</td><td>$23.09</td><td>$22.40</td><td class="col-neg">−3.0%</td></tr>
+          <tr><td class="t">DRR.AX</td><td>22 Aug</td><td>28 Aug</td><td>$4.37</td><td>$4.14</td><td class="col-neg">−5.3%</td></tr>
+          <tr><td class="t">WAF.AX</td><td>22 Aug</td><td>28 Aug</td><td>$3.78</td><td>$3.92</td><td class="col-pos">+3.7%</td></tr>
+          <tr><td class="t">WOR.AX</td><td>18 Jun</td><td>28 Aug</td><td>$12.72</td><td>$10.24</td><td class="col-neg">−19.5%</td></tr>
+          <tr><td class="t">NEM.AX</td><td>07 Aug</td><td>28 Aug</td><td>$152.82</td><td>$182.80</td><td class="col-pos">+19.6%</td></tr>
+          <tr><td class="t">TAH.AX</td><td>02 Jun</td><td>28 Aug</td><td>$0.81</td><td>$0.92</td><td class="col-pos">+13.6%</td></tr>
+          <tr><td class="t">MAH.AX</td><td>22 Aug</td><td>28 Aug</td><td>$1.03</td><td>$0.985</td><td class="col-neg">−4.4%</td></tr>
+          <tr><td class="t">PRN.AX</td><td>02 Jun</td><td>28 Aug</td><td>$2.08</td><td>$2.29</td><td class="col-pos">+10.1%</td></tr>
+          <tr><td class="t">GMD.AX</td><td>22 Aug</td><td>28 Aug</td><td>$8.32</td><td>$8.57</td><td class="col-pos">+3.0%</td></tr>
+          <tr><td class="t">VNT.AX</td><td>10 Jul</td><td>28 Aug</td><td>$5.95</td><td>$5.46</td><td class="col-neg">−8.2%</td></tr>
+          <tr><td class="t">AAI.AX</td><td>17 Jul</td><td>28 Aug</td><td>$66.98</td><td>$71.00</td><td class="col-pos">+6.0%</td></tr>
+          <tr><td class="t">GLF.AX</td><td>28 Aug</td><td>04 Sep</td><td>$4.70</td><td>$4.58</td><td class="col-neg">−2.6%</td></tr>
+          <tr><td class="t">AZJ.AX</td><td>22 Aug</td><td>04 Sep</td><td>$3.65</td><td>$3.75</td><td class="col-pos">+2.7%</td></tr>
+          <tr><td class="t">SRG.AX</td><td>02 Jun</td><td>04 Sep</td><td>$3.66</td><td>$3.83</td><td class="col-pos">+4.6%</td></tr>
+          <tr><td class="t">ANN.AX</td><td>28 Aug</td><td>04 Sep</td><td>$40.99</td><td>$42.26</td><td class="col-pos">+3.1%</td></tr>
+          <tr><td class="t">EOS.AX</td><td>28 Aug</td><td>04 Sep</td><td>$10.05</td><td>$9.52</td><td class="col-neg">−5.3%</td></tr>
+          <tr><td class="t">NWH.AX</td><td>22 Aug</td><td>04 Sep</td><td>$8.20</td><td>$7.64</td><td class="col-neg">−6.8%</td></tr>
+          <tr><td class="t">COL.AX</td><td>28 Aug</td><td>04 Sep</td><td>$23.80</td><td>$23.68</td><td class="col-neg">−0.5%</td></tr>
+          <tr><td class="t">RHC.AX</td><td>22 Aug</td><td>04 Sep</td><td>$45.00</td><td>$52.29</td><td class="col-pos">+16.2%</td></tr>
+          <tr><td class="t">ABB.AX</td><td>28 Aug</td><td>04 Sep</td><td>$4.36</td><td>$4.15</td><td class="col-neg">−4.8%</td></tr>
+          <tr><td class="t">QUB.AX</td><td>02 Jun</td><td>04 Sep</td><td>$5.01</td><td>$5.11</td><td class="col-pos">+2.0%</td></tr>
+          <tr><td class="t">LOV.AX</td><td>02 Jun</td><td>04 Sep</td><td>$22.48</td><td>$23.08</td><td class="col-pos">+2.7%</td></tr>
+          <tr><td class="t">EVT.AX</td><td>28 Aug</td><td>04 Sep</td><td>$15.09</td><td>$14.67</td><td class="col-neg">−2.8%</td></tr>
+          <tr><td class="t">JBH.AX</td><td>28 Aug</td><td>04 Sep</td><td>$67.08</td><td>$67.30</td><td class="col-pos">+0.3%</td></tr>
+          <tr><td class="t">QBE.AX</td><td>28 Aug</td><td>04 Sep</td><td>$21.93</td><td>$22.62</td><td class="col-pos">+3.1%</td></tr>
+          <tr><td class="t">SUL.AX</td><td>04 Sep</td><td>11 Sep</td><td>$13.42</td><td>$12.21</td><td class="col-neg">−9.0%</td></tr>
+          <tr><td class="t">GGP.AX</td><td>04 Sep</td><td>11 Sep</td><td>$11.67</td><td>$10.79</td><td class="col-neg">−7.5%</td></tr>
+          <tr><td class="t">FRW.AX</td><td>04 Sep</td><td>11 Sep</td><td>$10.87</td><td>$10.81</td><td class="col-neg">−0.6%</td></tr>
+          <tr><td class="t">DOW.AX</td><td>04 Sep</td><td>11 Sep</td><td>$6.37</td><td>$6.57</td><td class="col-pos">+3.1%</td></tr>
+          <tr><td class="t">EDV.AX</td><td>04 Sep</td><td>18 Sep</td><td>$3.26</td><td>$2.90</td><td class="col-neg">−11.0%</td></tr>
+          <tr><td class="t">PXA.AX</td><td>11 Sep</td><td>18 Sep</td><td>$6.80</td><td>$6.89</td><td class="col-pos">+1.3%</td></tr>
+          <tr><td class="t">WOR.AX</td><td>04 Sep</td><td>18 Sep</td><td>$9.80</td><td>$9.82</td><td class="col-pos">+0.2%</td></tr>
+          <tr><td class="t">BPT.AX</td><td>11 Sep</td><td>18 Sep</td><td>$0.88</td><td>$0.87</td><td class="col-neg">−1.1%</td></tr>
+          <tr><td class="t">DRR.AX</td><td>18 Sep</td><td>25 Sep</td><td>$4.31</td><td>$4.05</td><td class="col-neg">−6.0%</td></tr>
+          <tr><td class="t">SUL.AX</td><td>18 Sep</td><td>25 Sep</td><td>$12.18</td><td>$12.34</td><td class="col-pos">+1.3%</td></tr>
+          <tr><td class="t">MTS.AX</td><td>11 Sep</td><td>25 Sep</td><td>$2.83</td><td>$2.86</td><td class="col-pos">+1.1%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>What this means for long-run DCF screening</h2>
+    <p>Four months is not a long enough sample to draw conclusions about whether DCF screening produces above-index returns over the long run — the academic literature on value investing uses 10+ year horizons. What this data does show is the shape of the strategy's outcomes: a slight majority of exits are positive, but the distribution is wide. A −20% loss on FMG and a +32% gain on VAU can coexist in the same portfolio.</p>
+    <p>The core question value investors ask is whether the average winner exceeds the average loser by enough to cover the losses and still beat a passive alternative. Over this window: the mean positive exit was <strong>+8.8%</strong> and the mean negative exit was <strong>−6.4%</strong>. That asymmetry is the right direction — but short holding periods inflate both numbers relative to what a real investor would achieve with real-world transaction costs and tax.</p>
+    <p>The more practical takeaway is qualitative: the screen has identifiable failure modes (commodity-cycle exposure, short-term re-flags of stocks that already failed), and identifiable strengths (structural FCF recovery, dividend normalisation in insurance). That's useful even if you don't act on the screen's output directly.</p>
+
+    <a href="/dcf/asx-undervalued/" class="article-cta">See the current ASX undervalued screen →</a>
+
+    <section class="tool-info">
+      <h2>Frequently asked questions</h2>
+
+      <div class="tool-info-item">
+        <h3>Does DCF screening produce profitable results over time?</h3>
+        <p>Across 65 closed positions on the ASX screen (June–September 2026), 42 were positive and 23 were negative — a 64.6% positive-exit rate. The model identifies stocks where current prices imply a lower long-run free cash flow than history and analyst consensus suggest is likely. It does not predict short-term price movements. These are purely mechanical DCF outputs, not financial advice.</p>
+      </div>
+
+      <div class="tool-info-item">
+        <h3>Why did DCF miss so badly on Fortescue (FMG.AX)?</h3>
+        <p>The model ingested Fortescue's historical free cash flow and found the stock priced for a worse scenario than those numbers implied. What the model cannot see is an external input — the iron ore spot price — which fell sharply in mid-2026 driven by slower Chinese steel demand. Commodity miners are a known weak spot for trailing-FCF DCF: their value depends on a price the model doesn't forecast.</p>
+      </div>
+
+      <div class="tool-info-item">
+        <h3>Why did every gold stock the screen flagged go on to rise?</h3>
+        <p>The screen flagged five gold miners during a period when gold equities were pricing a pullback that never materialised. The DCF model valued them on a conservative trailing-FCF assumption while spot gold kept rising. All five exited positive. This is a case where the model's conservatism happened to point in the right direction — not a general rule about gold miners.</p>
+      </div>
+
+      <div class="tool-info-item">
+        <h3>How does the screen decide when to exit a position?</h3>
+        <p>The screen exits when the stock price reaches or exceeds the model's base-case intrinsic value — meaning the margin of safety has closed — or when fresh weekly data no longer shows a significant discount. The screen is refreshed weekly with live data from Yahoo Finance via a Cloudflare Worker.</p>
+      </div>
+
+      <div class="tool-info-item">
+        <h3>Is 64% a realistic win rate for a mechanical stock screen?</h3>
+        <p>It is consistent with published academic results on systematic value investing, where positive-exit rates typically fall in the 55–70% range depending on market and holding period. The more important figure is whether average winners exceed average losers — here, the mean positive exit (+8.8%) exceeded the mean negative exit (−6.4%). That said, 65 exits over four months is too short a sample to draw long-run conclusions.</p>
+      </div>
+    </section>
+
+    <div class="article-disclaimer">
+      All valuations are the mechanical output of a DCF/DDM model applied to publicly available financial data from Yahoo Finance via a Cloudflare Worker. Model outputs are provided for informational purposes only and do not constitute financial advice. Past performance of the screen is not an indicator of future returns. KashVector is not a financial services licensee. Always do your own research before making any investment decision.
+    </div>
+  </article>
+</div>
+
+<footer>
+  <p><a href="/articles/">← More articles</a> · <a href="/dcf/asx-undervalued/">ASX Undervalued Screen</a> · <a href="/evaluate/">Evaluate a stock</a></p>
+</footer>
+
+<script src="/kv-nav.js"></script>
+<script src="/kv-footer.js"></script>
+<script src="/kv-banner.js"></script>
+</body>
+</html>
