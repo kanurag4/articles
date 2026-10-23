@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Rent vs Buy in Australia: Which Is Better? | KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/rent-vs-buy-australia/">
+  <meta property="og:title" content="Rent vs Buy in Australia: Which Is Better? | KashVector">
+  <meta property="og:description" content="Is it better to rent or buy a home in Australia? Is renting dead money? Buying vs renting and investing, in round numbers, with a calculator to adjust.">
+  <meta property="og:url" content="https://kashvector.com/articles/rent-vs-buy-australia/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KashVector — free stock valuation tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rent vs Buy in Australia: Which Is Better? | KashVector">
+  <meta name="twitter:description" content="Is it better to rent or buy a home in Australia? Is renting dead money? Buying vs renting and investing, in round numbers, with a calculator to adjust.">
+  <meta name="twitter:image" content="https://kashvector.com/og-image.png">
+  <meta name="description" content="Is it better to rent or buy a home in Australia? Is renting dead money? Buying vs renting and investing, in round numbers, with a calculator to adjust.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <style>
+    /* Interactive rent-vs-buy widget. No `display` on .rvb-widget itself: it starts
+       `hidden` and the script unhides it only once the calculator engine has loaded. */
+    .rvb-widget { border: 1px solid var(--kv-border); border-radius: 12px; background: var(--kv-card); padding: 18px 18px 14px; margin: 24px 0; }
+    .rvb-widget h3 { font-size: 1.05rem; font-weight: 700; color: var(--kv-primary); margin: 0 0 6px; }
+    .rvb-intro { font-size: 0.88rem; color: var(--kv-muted); margin: 0 0 14px; line-height: 1.5; }
+    .rvb-sliders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; margin-bottom: 18px; }
+    .rvb-slider { display: block; min-width: 0; cursor: pointer; }
+    .rvb-slider-head { display: flex; justify-content: space-between; gap: 8px; font-size: 0.85rem; color: var(--kv-text); margin-bottom: 4px; }
+    .rvb-slider-head output { font-weight: 700; color: var(--kv-primary); font-variant-numeric: tabular-nums; }
+    .rvb-slider input[type="range"] { width: 100%; min-height: 44px; margin: 0; accent-color: var(--kv-accent); cursor: pointer; }
+    .rvb-results { border-top: 1px solid var(--kv-border); padding-top: 14px; }
+    .rvb-bar-row { display: grid; grid-template-columns: 56px minmax(0, 1fr) 92px; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.88rem; }
+    .rvb-bar-label { font-weight: 600; color: var(--kv-text); }
+    .rvb-bar-track { height: 16px; background: var(--kv-card-2); border-radius: 8px; overflow: hidden; }
+    .rvb-bar { display: block; height: 100%; width: 0; border-radius: 8px; transition: width 0.2s ease; }
+    .rvb-bar-buy { background: var(--kv-primary); }
+    .rvb-bar-rent { background: var(--kv-accent); }
+    .rvb-bar-value { text-align: right; font-weight: 700; color: var(--kv-text); font-variant-numeric: tabular-nums; }
+    .rvb-verdict { font-size: 1rem; font-weight: 700; color: var(--kv-text); margin: 12px 0 4px; }
+    .rvb-detail { font-size: 0.85rem; color: var(--kv-muted); margin: 0; line-height: 1.5; }
+    .rvb-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 14px; font-size: 0.8rem; color: var(--kv-muted); }
+    .rvb-reset { font: inherit; font-size: 0.8rem; color: var(--kv-primary); background: transparent; border: 1px solid var(--kv-border); border-radius: 999px; padding: 8px 14px; min-height: 36px; cursor: pointer; }
+    .rvb-reset:hover { border-color: var(--kv-primary); }
+    @media (max-width: 640px) {
+      .rvb-widget { padding: 14px; }
+      .rvb-sliders { grid-template-columns: minmax(0, 1fr); }
+      .rvb-bar-row { grid-template-columns: 48px minmax(0, 1fr) 84px; gap: 8px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Rent vs Buy in Australia: Is It Better to Rent or Buy a Home?",
+    "datePublished": "2026-10-24",
+    "dateModified": "2026-10-24",
+    "image": "https://kashvector.com/og-image.png",
+    "mainEntityOfPage": "https://kashvector.com/articles/rent-vs-buy-australia/",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/rent-vs-buy-australia/",
+    "description": "Is it better to rent or buy a home in Australia? Is renting dead money? Buying vs renting and investing, in round numbers, with a calculator to adjust."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is it better to rent or buy a home in Australia?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It depends on how long you stay, how fast house prices grow compared with share returns, and how high the rent is compared with the cost of owning. In our example of an $800,000 home in New South Wales, buying came out about $111,000 ahead after ten years, but only if house prices grew 6% a year; at 5% it was roughly even, and a renter who invested the difference was ahead for the first three years. Buying also only wins against a renter who actually invests the money they save." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is renting dead money?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily. Rent buys you somewhere to live, just as a home owner's interest, rates, insurance and maintenance do; none of those build wealth either. Renting only falls behind if the renter spends the money they save by not owning, instead of investing it." }
+      },
+      {
+        "@type": "Question",
+        "name": "How long do you need to stay for buying to beat renting?",
+        "acceptedAnswer": { "@type": "Answer", "text": "In our example, about four years. Buying costs a lot up front (stamp duty) and again when you sell (agent and legal fees), so a buyer who sells within the first few years usually ends up behind a renter who invested the same money. The exact break-even depends on house price growth, share returns and the rent." }
+      },
+      {
+        "@type": "Question",
+        "name": "What matters most in the rent vs buy decision?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Three things: how fast house prices grow compared with the return on the renter's investments, how high the rent is compared with the cost of owning, and how long you stay. Small changes in house price growth move the answer by tens of thousands of dollars over ten years." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you pay capital gains tax when you sell your home in Australia?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Generally no. The home you live in (your main residence) is exempt from capital gains tax, and the 2026 Budget did not change that. A renter's shares are not exempt: shares bought after 12 May 2026 lose the 50% CGT discount and are taxed on their inflation-adjusted gain instead, at a minimum rate of 30%." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is rent-vesting?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Rent-vesting means renting the home you live in while owning a different property as an investment, often somewhere cheaper. It is a third option alongside buying and renting. Our Rent vs Buy calculator models it too, including the 2026 Budget's limits on negative gearing for established investment properties." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-footer.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">Rent vs Buy in Australia: Is It Better to Rent or Buy a Home?</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 24 October 2026 &nbsp;·&nbsp; 10 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <p>"Renting is dead money." Almost every Australian has heard it. But is it true? Owning a home costs money that never comes back too: interest, council rates, insurance, repairs and stamp duty. The real question isn't "rent or own". It's <strong>which choice leaves you with more money in ten years' time?</strong></p>
+
+      <p>In this article we follow two people with exactly the same savings and the same monthly budget. One buys a home. The other rents a similar home and invests everything they don't spend on rent. We keep the numbers round, and every figure comes from our free <a href="/rent-vs-buy/">Rent vs Buy calculator</a>, so you can check it yourself.</p>
+
+      <div class="article-summary">
+        <p>What you'll learn:</p>
+        <ul>
+          <li><strong>What buying really costs</strong> — not just the mortgage</li>
+          <li><strong>"Rent and invest the difference"</strong> — the fair way to compare the two</li>
+          <li><strong>Who's ahead, and when</strong> — after 1, 4 and 10 years</li>
+          <li><strong>What decides the winner</strong> — house prices vs shares, the rent, and how long you stay</li>
+          <li><strong>The 2026 Budget</strong> — what changed for the renter's investments, and what didn't for the home owner</li>
+        </ul>
+      </div>
+
+      <h2>The setup: same savings, same budget</h2>
+
+      <p>Meet two friends, the <strong>Buyer</strong> and the <strong>Renter</strong>. Each has:</p>
+
+      <ul>
+        <li><strong>$200,000 saved</strong></li>
+        <li>An income of <strong>$120,000 a year</strong></li>
+        <li>The same budget for housing each month: whatever owning a home would cost</li>
+      </ul>
+
+      <p>The Buyer purchases an <strong>$800,000 home</strong> in New South Wales. The Renter rents a similar home for <strong>$2,500 a month</strong>. That last rule about the budget is what makes the comparison fair. Owning costs more each month than renting, so the Renter takes the money they save and <strong>invests it in shares</strong> every month, instead of spending it.</p>
+
+      <h2>What buying a home really costs</h2>
+
+      <p>First, the money that goes out on day one:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:460px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Savings</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$200,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">− Stamp duty (a state tax on buying property)</td><td style="padding:6px 8px; text-align:right; font-weight:600;">−$31,200</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Deposit</strong></td><td style="padding:6px 8px; text-align:right; font-weight:600;">$168,800</td></tr>
+          <tr><td style="padding:6px 8px;"><strong>Home loan</strong> ($800,000 − deposit)</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$631,200</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p><strong>Stamp duty</strong> is money that's simply gone: it doesn't buy any part of the house. Here it uses a simplified 3.9% of the price. The loan is about 79% of the home's value, just under the 80% line where most banks add <strong>lenders mortgage insurance</strong> (an extra fee that protects the bank, not you).</p>
+
+      <p>Then the money that goes out every month, in the first year:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:460px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Loan repayment (6% interest, 30 years)</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$3,784</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Council rates, insurance and repairs (about 1.5% of the home's value a year)</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$1,060</td></tr>
+          <tr><td style="padding:6px 8px;"><strong>Cost of owning, per month</strong></td><td style="padding:6px 8px; text-align:right; font-weight:600;">about $4,840</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Only part of that loan repayment builds wealth. In the first year, most of the $3,784 is <strong>interest</strong> (the bank's fee for lending you the money). Only about $630 a month actually pays down the loan. The interest, the rates, the insurance and the repairs are the home owner's version of "dead money".</p>
+
+      <p>And there's one more cost at the end. When the Buyer eventually sells, agent and legal fees take about <strong>2.5%</strong> of the sale price.</p>
+
+      <h2>Renting and investing the difference</h2>
+
+      <p>The Renter's first year is simple:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:460px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Invested on day one (no stamp duty to pay)</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$200,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Monthly budget (same as the Buyer)</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$4,840</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">− Rent</td><td style="padding:6px 8px; text-align:right; font-weight:600;">−$2,500</td></tr>
+          <tr><td style="padding:6px 8px;"><strong>Invested every month</strong></td><td style="padding:6px 8px; text-align:right; font-weight:600; color:var(--kv-pass,#22c55e);">about $2,340</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Rent goes up every year (to about $3,260 a month by year 10), but so do the Buyer's rates, insurance and repair bills, which grow with the home's value. The two rise at almost the same pace, so the amount the Renter invests stays close to <strong>$2,300 a month</strong> for all ten years. That adds up to about <strong>$278,000</strong> invested on top of the first $200,000.</p>
+
+      <h2>The assumptions</h2>
+
+      <p>Any comparison like this depends on guesses about the future. Here are ours, which are also the calculator's starting values:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:460px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">House prices grow</td><td style="padding:6px 8px; text-align:right; font-weight:600;">6% a year</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Shares return (growth plus dividends)</td><td style="padding:6px 8px; text-align:right; font-weight:600;">8% a year</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Rent rises</td><td style="padding:6px 8px; text-align:right; font-weight:600;">3% a year</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Home loan interest rate</td><td style="padding:6px 8px; text-align:right; font-weight:600;">6%</td></tr>
+          <tr><td style="padding:6px 8px;">Inflation</td><td style="padding:6px 8px; text-align:right; font-weight:600;">2% a year</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Treat these as a starting point, not a forecast. We'll see shortly how much the answer moves when they change.</p>
+
+      <h2>Renting vs buying after 10 years: who's ahead?</h2>
+
+      <p>To compare fairly, we imagine both friends cash out at the end. The Buyer sells the home and repays the loan. The Renter sells the shares and pays the tax on their gains. (This is just a way of keeping score. In real life the Renter could keep the shares, or sell them gradually over several years, and pay less tax.)</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;"><th style="padding:6px 8px;">The Buyer</th><th style="padding:6px 8px; text-align:right;"></th><th style="padding:6px 8px;">The Renter</th><th style="padding:6px 8px; text-align:right;"></th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Home value</td><td style="padding:6px 8px; text-align:right;">$1,433,000</td><td style="padding:6px 8px;">Share portfolio</td><td style="padding:6px 8px; text-align:right;">$835,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">− Loan still owed</td><td style="padding:6px 8px; text-align:right;">−$532,000</td><td style="padding:6px 8px;">− Capital gains tax</td><td style="padding:6px 8px; text-align:right;">−$81,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">− Selling costs</td><td style="padding:6px 8px; text-align:right;">−$36,000</td><td style="padding:6px 8px;"></td><td style="padding:6px 8px;"></td></tr>
+          <tr><td style="padding:6px 8px;"><strong>Wealth</strong></td><td style="padding:6px 8px; text-align:right; font-weight:600; color:var(--kv-pass,#22c55e);">$865,000</td><td style="padding:6px 8px;"><strong>Wealth</strong></td><td style="padding:6px 8px; text-align:right; font-weight:600;">$754,000</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>With these assumptions, <strong>the Buyer ends up about $111,000 ahead</strong>. Notice the Buyer pays no tax on the home's gain: the home you live in, your <strong>main residence</strong>, is exempt from capital gains tax. The Renter's shares aren't.</p>
+
+      <p>Why does buying win here? Look at the loan. The Buyer borrowed $631,200, so the house growing at 6% is growing on <em>$800,000</em>, not just on the Buyer's own money. Borrowing to own a growing asset magnifies the gains. And a home loan is unusually cheap, long-term borrowing: no one would lend the Renter $631,200 at a home-loan rate to buy shares.</p>
+
+      <p><strong>It magnifies the losses just as much.</strong> If house prices fell 10% in the first year, the home would lose $80,000 of value, and all of that loss comes out of the Buyer's $168,800 deposit: almost half of it gone, while the full loan is still owed. And if prices simply went nowhere for ten years, the Buyer would finish with about <strong>$248,000</strong> against the Renter's <strong>$694,000</strong>. Share markets fall too, often harder and faster than house prices. The difference is that the Renter hasn't borrowed to buy them, and by investing a little every month they buy at a mix of high and low prices rather than all at once. The Buyer's money is tied up in one property, with a loan that has to be repaid whatever happens to its price.</p>
+
+      <h2>But it depends on how long you stay</h2>
+
+      <p>Here's the same comparison if both friends cashed out earlier:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:520px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;"><th style="padding:6px 8px;">Cash out after</th><th style="padding:6px 8px;">Buyer</th><th style="padding:6px 8px;">Renter</th><th style="padding:6px 8px;">Who's ahead</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">1 year</td><td style="padding:6px 8px;">$203,000</td><td style="padding:6px 8px;">$240,000</td><td style="padding:6px 8px; font-weight:600;">Renter by $37,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">2 years</td><td style="padding:6px 8px;">$261,000</td><td style="padding:6px 8px;">$284,000</td><td style="padding:6px 8px; font-weight:600;">Renter by $23,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">3 years</td><td style="padding:6px 8px;">$322,000</td><td style="padding:6px 8px;">$330,000</td><td style="padding:6px 8px; font-weight:600;">Renter by $8,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">4 years</td><td style="padding:6px 8px;">$387,000</td><td style="padding:6px 8px;">$379,000</td><td style="padding:6px 8px; font-weight:600;">Buyer by $8,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">5 years</td><td style="padding:6px 8px;">$455,000</td><td style="padding:6px 8px;">$431,000</td><td style="padding:6px 8px; font-weight:600;">Buyer by $24,000</td></tr>
+          <tr><td style="padding:6px 8px;">10 years</td><td style="padding:6px 8px;">$865,000</td><td style="padding:6px 8px;">$754,000</td><td style="padding:6px 8px; font-weight:600;">Buyer by $111,000</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>For the first three years the Renter is ahead. The reason is the two one-off costs that only the Buyer pays: <strong>$31,200 of stamp duty on the way in</strong> and <strong>2.5% selling costs on the way out</strong>. It takes a few years of house price growth to earn those back. In this example, buying only pulls ahead after about <strong>four years</strong>. If you might move for work, or your family might outgrow the home, that matters.</p>
+
+      <h2>What really decides the winner</h2>
+
+      <p>The biggest single input is <strong>how fast house prices grow compared with shares</strong>. Here's the 10-year result as both change, with everything else the same:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;"><th style="padding:6px 8px;">House prices grow…</th><th style="padding:6px 8px;">Shares return 6%</th><th style="padding:6px 8px;">Shares return 8%</th><th style="padding:6px 8px;">Shares return 10%</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">4% a year</td><td style="padding:6px 8px; color:var(--kv-fail,#ef4444); font-weight:600;">Renter +$35,000</td><td style="padding:6px 8px; color:var(--kv-fail,#ef4444); font-weight:600;">Renter +$109,000</td><td style="padding:6px 8px; color:var(--kv-fail,#ef4444); font-weight:600;">Renter +$195,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">5% a year</td><td style="padding:6px 8px; color:var(--kv-pass,#22c55e); font-weight:600;">Buyer +$70,000</td><td style="padding:6px 8px; font-weight:600;">About even</td><td style="padding:6px 8px; color:var(--kv-fail,#ef4444); font-weight:600;">Renter +$90,000</td></tr>
+          <tr><td style="padding:6px 8px;">6% a year</td><td style="padding:6px 8px; color:var(--kv-pass,#22c55e); font-weight:600;">Buyer +$186,000</td><td style="padding:6px 8px; color:var(--kv-pass,#22c55e); font-weight:600;">Buyer +$111,000</td><td style="padding:6px 8px; color:var(--kv-pass,#22c55e); font-weight:600;">Buyer +$24,000</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>One percentage point of house price growth, from 6% to 5%, turns a $111,000 win for the Buyer into a dead heat. Nobody knows what house prices or shares will do over the next ten years, so the honest answer to "rent or buy?" is a range, not a single number.</p>
+
+      <p>Three other things move the result a lot:</p>
+
+      <ul>
+        <li><strong>The rent.</strong> At $2,000 a month instead of $2,500, the Renter invests more and finishes only about $18,000 behind. At $3,000 a month, they finish about $204,000 behind. A home that rents cheaply compared with its price favours renting.</li>
+        <li><strong>First home buyer concessions.</strong> Every state cuts stamp duty for first home buyers. In New South Wales, a first home buyer currently pays no stamp duty at all on a home up to $800,000. Without the $31,200 bill, the Buyer is ahead from the second year, and finishes ten years later about <strong>$168,000</strong> ahead instead of $111,000. Check your own state's rules: the thresholds and amounts differ, and they change.</li>
+        <li><strong>The interest rate, in a surprising direction.</strong> A higher mortgage rate makes owning more expensive each month, which means the Renter has <em>more</em> to invest. At 7% interest instead of 6%, the gap shrinks from $111,000 to about $29,000.</li>
+      </ul>
+
+      <section class="rvb-widget" id="rvb-widget" hidden aria-labelledby="rvb-title">
+        <h3 id="rvb-title">Try it: change the assumptions</h3>
+        <p class="rvb-intro">Same two friends: $200,000 saved, an $800,000 home in New South Wales, $2,500 a month rent. Move the sliders and see who comes out ahead.</p>
+
+        <div class="rvb-sliders">
+          <label class="rvb-slider">
+            <span class="rvb-slider-head"><span>Home loan interest rate</span><output id="rvb-rate-out">6.0%</output></span>
+            <input type="range" id="rvb-rate" min="3" max="9" step="0.25" value="6">
+          </label>
+          <label class="rvb-slider">
+            <span class="rvb-slider-head"><span>House prices grow each year</span><output id="rvb-house-out">6.0%</output></span>
+            <input type="range" id="rvb-house" min="0" max="9" step="0.5" value="6">
+          </label>
+          <label class="rvb-slider">
+            <span class="rvb-slider-head"><span>Shares return each year</span><output id="rvb-shares-out">8.0%</output></span>
+            <input type="range" id="rvb-shares" min="3" max="12" step="0.5" value="8">
+          </label>
+          <label class="rvb-slider">
+            <span class="rvb-slider-head"><span>Years before cashing out</span><output id="rvb-years-out">10</output></span>
+            <input type="range" id="rvb-years" min="1" max="25" step="1" value="10">
+          </label>
+        </div>
+
+        <div class="rvb-results" aria-live="polite">
+          <div class="rvb-bar-row">
+            <span class="rvb-bar-label">Buyer</span>
+            <span class="rvb-bar-track"><span class="rvb-bar rvb-bar-buy" id="rvb-bar-buy"></span></span>
+            <span class="rvb-bar-value" id="rvb-buy">$865,000</span>
+          </div>
+          <div class="rvb-bar-row">
+            <span class="rvb-bar-label">Renter</span>
+            <span class="rvb-bar-track"><span class="rvb-bar rvb-bar-rent" id="rvb-bar-rent"></span></span>
+            <span class="rvb-bar-value" id="rvb-rent">$754,000</span>
+          </div>
+          <p class="rvb-verdict" id="rvb-verdict">Buyer ahead by $111,000</p>
+          <p class="rvb-detail" id="rvb-detail"></p>
+        </div>
+
+        <div class="rvb-foot">
+          <button type="button" class="rvb-reset" id="rvb-reset">Reset to the article's numbers</button>
+          <span>Inflation is held at 2%. Want to change the rent, price or your state? <a href="/rent-vs-buy/">Open the full calculator</a>.</span>
+        </div>
+      </section>
+
+      <h2>The catch: the Renter has to actually invest</h2>
+
+      <p>Everything above assumes the Renter puts about $2,340 into shares every single month for ten years. That takes real discipline. A mortgage forces you to save: the bank takes the repayment whether you feel like it or not. Nobody forces a renter to invest the difference.</p>
+
+      <p>What if the Renter invests the first $200,000 but spends the monthly difference instead? After ten years, they'd have about <strong>$372,000</strong> after tax, less than half the Buyer's $865,000. <strong>That's where "renting is dead money" comes from.</strong> Rent isn't the problem. Spending the savings is.</p>
+
+      <h2>What the 2026 Budget changed</h2>
+
+      <p>The May 2026 Federal Budget changed how investments are taxed, and it matters for the Renter:</p>
+
+      <ul>
+        <li><strong>The home owner: no change.</strong> Your main residence is still exempt from capital gains tax (tax on the profit when you sell something for more than you paid).</li>
+        <li><strong>The Renter's shares: taxed differently.</strong> Shares bought after 12 May 2026 no longer get the 50% capital gains tax discount. Instead, the price you paid is first increased by inflation, and only the gain above that is taxed, at a minimum rate of 30%. In our example, that's the $81,000 tax bill on the Renter's portfolio.</li>
+        <li><strong>Negative gearing limits</strong> apply to investment properties, not to the home you live in, so they don't affect this comparison. They do matter for a third option, <strong>rent-vesting</strong>: renting where you live while owning an investment property somewhere else. Our calculator models that too.</li>
+      </ul>
+
+      <p style="font-size:0.85rem; color:var(--kv-muted);">A few simplifications to know about: the calculator taxes the Renter's shares only when they're sold at the end, and ignores the yearly tax on dividends, which flatters the Renter slightly. For Australian shares the effect is small, because most Australian dividends come with <strong>franking credits</strong>: a credit for the 30% tax the company has already paid on its profits. At a 32% tax rate, that credit covers almost all of the tax on those dividends. Overseas shares carry no franking credits, so for them the effect is bigger. Stamp duty uses a simplified flat rate per state, and the main example uses full stamp duty, not a first home buyer concession. Neither friend's income or job changes, and nobody moves house in between.</p>
+
+      <h2>What the numbers can't tell you</h2>
+
+      <p>Money isn't the only thing that matters here. Owning gives you security: no landlord can ask you to leave, and you can paint the walls or renovate the kitchen. Renting gives you flexibility: you can move for a job, a relationship or a better school without paying stamp duty again. Both are worth something, and only you can decide how much.</p>
+
+      <h2>Three things to remember</h2>
+
+      <ol style="padding-left:20px; margin-bottom:16px;">
+        <li style="font-size:0.95rem; line-height:1.7; margin-bottom:10px;"><strong>Compare like with like.</strong> The fair comparison is the same savings and the same monthly budget, with the Renter investing everything the Buyer would have spent on owning.</li>
+        <li style="font-size:0.95rem; line-height:1.7; margin-bottom:10px;"><strong>Time matters.</strong> Stamp duty and selling costs mean buying usually needs several years to pull ahead. In our example, about four.</li>
+        <li style="font-size:0.95rem; line-height:1.7; margin-bottom:10px;"><strong>The assumptions decide the answer.</strong> One percentage point of house price growth can swing the result by over $100,000. Try a few different futures, not just one.</li>
+      </ol>
+
+      <a class="article-cta" href="/rent-vs-buy/">
+        <span class="article-cta-label">Try it yourself</span>
+        <span class="article-cta-text">Put in your own savings, home price, rent and state, and compare buying, renting and rent-vesting</span>
+      </a>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial, tax or credit advice. It is an educational illustration of how the rent-versus-buy comparison works, using invented round numbers; it does not recommend renting or buying for any particular person. The results depend entirely on the assumptions used, which are not forecasts. Tax rules are summarised from the 2026-27 Federal Budget measures as legislated and may change; stamp duty and lenders mortgage insurance are simplified estimates. Individual decisions depend on your financial situation, goals and circumstances. We recommend consulting a licensed financial adviser, and a tax professional, before making decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>Is it better to rent or buy a home in Australia?</summary>
+          <p>It depends on how long you stay, how fast house prices grow compared with share returns, and how high the rent is compared with the cost of owning. In our example of an $800,000 home in New South Wales, buying came out about $111,000 ahead after ten years, but only if house prices grew 6% a year; at 5% it was roughly even, and a renter who invested the difference was ahead for the first three years. Buying also only wins against a renter who actually invests the money they save.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is renting dead money?</summary>
+          <p>Not necessarily. Rent buys you somewhere to live, just as a home owner's interest, rates, insurance and maintenance do; none of those build wealth either. Renting only falls behind if the renter spends the money they save by not owning, instead of investing it.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How long do you need to stay for buying to beat renting?</summary>
+          <p>In our example, about four years. Buying costs a lot up front (stamp duty) and again when you sell (agent and legal fees), so a buyer who sells within the first few years usually ends up behind a renter who invested the same money. The exact break-even depends on house price growth, share returns and the rent.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What matters most in the rent vs buy decision?</summary>
+          <p>Three things: how fast house prices grow compared with the return on the renter's investments, how high the rent is compared with the cost of owning, and how long you stay. Small changes in house price growth move the answer by tens of thousands of dollars over ten years.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do you pay capital gains tax when you sell your home in Australia?</summary>
+          <p>Generally no. The home you live in (your main residence) is exempt from capital gains tax, and the 2026 Budget did not change that. A renter's shares are not exempt: shares bought after 12 May 2026 lose the 50% CGT discount and are taxed on their inflation-adjusted gain instead, at a minimum rate of 30%.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is rent-vesting?</summary>
+          <p>Rent-vesting means renting the home you live in while owning a different property as an investment, often somewhere cheaper. It is a third option alongside buying and renting. Our Rent vs Buy calculator models it too, including the 2026 Budget's limits on negative gearing for established investment properties.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+
+  <!-- The Rent vs Buy calculator's own engine, so the widget's numbers always match /rent-vs-buy/. -->
+  <script src="/rent-vs-buy/calc/tax.js"></script>
+  <script src="/rent-vs-buy/calc/amortization.js"></script>
+  <script src="/rent-vs-buy/calc/lmi.js"></script>
+  <script src="/rent-vs-buy/calc/loan.js"></script>
+  <script src="/rent-vs-buy/calc/cgt.js"></script>
+  <script src="/rent-vs-buy/calc/scenarios.js"></script>
+  <script>
+  (function () {
+    // The article's example. Everything not on a slider stays fixed.
+    var FIXED = {
+      initialCapital: 200000, income: 120000, purchasePrice: 800000, stampDutyRate: 0.039,
+      ownCostsPct: 0.01, maintenancePct: 0.005, sellingCostsPct: 0.025, loanTerm: 30,
+      monthlyRent: 2500, rentGrowthRate: 0.03, inflationRate: 0.02,
+    };
+    var DEFAULTS = { rate: 6, house: 6, shares: 8, years: 10 };
+
+    var widget = document.getElementById('rvb-widget');
+    if (!widget || typeof runBuyScenario !== 'function' || typeof runRentScenario !== 'function' ||
+        typeof marginalRate !== 'function') return; // engine missing: the article reads fine without the widget
+
+    var ids = ['rate', 'house', 'shares', 'years'];
+    var inputs = {}, outputs = {};
+    ids.forEach(function (k) {
+      inputs[k] = document.getElementById('rvb-' + k);
+      outputs[k] = document.getElementById('rvb-' + k + '-out');
+    });
+
+    // Net wealth for both friends if they cash out after `years`, at the given assumptions.
+    function outcome(a, years) {
+      var buyRows = runBuyScenario({
+        initialCapital: FIXED.initialCapital, purchasePrice: FIXED.purchasePrice,
+        growthRate: a.house / 100, stampDuty: FIXED.purchasePrice * FIXED.stampDutyRate,
+        annualCostsPct: FIXED.ownCostsPct, maintenancePct: FIXED.maintenancePct,
+        sellingCostsPct: FIXED.sellingCostsPct, interestRate: a.rate / 100,
+        loanTerm: FIXED.loanTerm, interestOnly: false, years: years,
+      });
+      var rentRows = runRentScenario({
+        initialCapital: FIXED.initialCapital, monthlyRent: FIXED.monthlyRent,
+        rentGrowthRate: FIXED.rentGrowthRate, investmentReturn: a.shares / 100,
+        marginalTaxRate: marginalRate(FIXED.income), years: years,
+        buyMonthlyOutflows: buyRows.map(function (r) { return r.monthlyOutflow; }),
+        sharesAcquired: 'post-budget', inflationRate: FIXED.inflationRate,
+      });
+      return {
+        buy: buyRows[years - 1].netWealth,
+        rent: rentRows[years - 1].netWealth,
+        ownMonthly: buyRows[0].monthlyOutflow,
+      };
+    }
+
+    function money(v) {
+      var r = Math.round(v / 1000) * 1000;
+      return (r < 0 ? '−$' : '$') + Math.abs(r).toLocaleString('en-AU');
+    }
+
+    function monthly(v) {
+      return '$' + (Math.round(v / 10) * 10).toLocaleString('en-AU');
+    }
+
+    function read() {
+      return {
+        rate: parseFloat(inputs.rate.value), house: parseFloat(inputs.house.value),
+        shares: parseFloat(inputs.shares.value), years: parseInt(inputs.years.value, 10),
+      };
+    }
+
+    function render() {
+      var a = read();
+      outputs.rate.textContent = a.rate.toFixed(2).replace(/0$/, '') + '%';
+      outputs.house.textContent = a.house.toFixed(1) + '%';
+      outputs.shares.textContent = a.shares.toFixed(1) + '%';
+      outputs.years.textContent = String(a.years);
+
+      var o = outcome(a, a.years);
+      var max = Math.max(o.buy, o.rent, 1);
+      document.getElementById('rvb-buy').textContent = money(o.buy);
+      document.getElementById('rvb-rent').textContent = money(o.rent);
+      document.getElementById('rvb-bar-buy').style.width = (Math.max(0, o.buy) / max * 100) + '%';
+      document.getElementById('rvb-bar-rent').style.width = (Math.max(0, o.rent) / max * 100) + '%';
+
+      var gap = o.buy - o.rent;
+      var verdict = document.getElementById('rvb-verdict');
+      verdict.textContent = Math.abs(gap) < 5000 ? 'About even'
+        : (gap > 0 ? 'Buyer ahead by ' : 'Renter ahead by ') + money(Math.abs(gap));
+
+      // First year in which buying is ahead, if it happens within 30 years.
+      var breakEven = null;
+      for (var y = 1; y <= 30; y++) {
+        var t = outcome(a, y);
+        if (t.buy > t.rent) { breakEven = y; break; }
+      }
+      var invest = o.ownMonthly - FIXED.monthlyRent;
+      var detail = 'Owning costs about ' + monthly(o.ownMonthly) + ' a month in year one, so the Renter invests about ' +
+        monthly(invest) + ' a month. ';
+      detail += breakEven === null ? 'With these numbers, buying doesn\'t pull ahead within 30 years.'
+        : breakEven === 1 ? 'With these numbers, buying is ahead from the first year.'
+        : 'With these numbers, buying pulls ahead after ' + breakEven + ' years.';
+      document.getElementById('rvb-detail').textContent = detail;
+    }
+
+    ids.forEach(function (k) { inputs[k].addEventListener('input', render); });
+    document.getElementById('rvb-reset').addEventListener('click', function () {
+      ids.forEach(function (k) { inputs[k].value = DEFAULTS[k]; });
+      render();
+    });
+
+    widget.hidden = false;
+    render();
+  })();
+  </script>
+</body>
+</html>
