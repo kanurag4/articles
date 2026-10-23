@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>Discounted Cash Flow Explained for Beginners | KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/discounted-cash-flow-for-beginners/">
+  <meta property="og:title" content="Discounted Cash Flow Explained for Beginners | KashVector">
+  <meta property="og:description" content="Profit isn't cash. Free cash flow and discounted cash flow (DCF) explained with a coffee shop, round numbers, and real figures from Toyota and Ferrari.">
+  <meta property="og:url" content="https://kashvector.com/articles/discounted-cash-flow-for-beginners/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KashVector — free stock valuation tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Discounted Cash Flow Explained for Beginners | KashVector">
+  <meta name="twitter:description" content="Profit isn't cash. Free cash flow and discounted cash flow (DCF) explained with a coffee shop, round numbers, and real figures from Toyota and Ferrari.">
+  <meta name="twitter:image" content="https://kashvector.com/og-image.png">
+  <meta name="description" content="Profit isn't cash. Free cash flow and discounted cash flow (DCF) explained with a coffee shop, round numbers, and real figures from Toyota and Ferrari.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Is a Business Really Worth? Discounted Cash Flow for Beginners",
+    "datePublished": "2026-10-24",
+    "dateModified": "2026-10-24",
+    "image": "https://kashvector.com/og-image.png",
+    "mainEntityOfPage": "https://kashvector.com/articles/discounted-cash-flow-for-beginners/",
+    "isPartOf": { "@type": "CreativeWorkSeries", "name": "Stock Market Basics" },
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/discounted-cash-flow-for-beginners/",
+    "description": "Profit isn't cash. Free cash flow and discounted cash flow (DCF) explained with a coffee shop, round numbers, and real figures from Toyota and Ferrari."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is free cash flow in simple terms?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Free cash flow is the cash a business has left over after paying its running costs and paying for the equipment, buildings and other things it needs to keep going and grow. It is the money the owners could actually take out of the business without harming it." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is free cash flow different from profit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Profit only counts the year's running costs, such as wages, rent and ingredients. Money spent buying equipment or buildings is not counted as a cost straight away, because the business now owns something in return; the accounts spread that cost over the years the equipment lasts. So in a year when a business spends heavily on new equipment, its free cash flow can be far lower than its profit, or even negative." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a discounted cash flow (DCF) valuation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A DCF estimates what a business is worth today by adding up all the free cash flow it is expected to produce in future, after shrinking each future amount to what it is worth today. Money received later is worth less than money received now, so cash expected further in the future is shrunk more." }
+      },
+      {
+        "@type": "Question",
+        "name": "What discount rate should a beginner use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The discount rate is the yearly return you would want for taking on the risk of owning the business. Riskier businesses get a higher rate. Professional analysts work it out from government bond rates and how risky the company's shares are, a figure called WACC. Small changes in the rate move the answer a lot, so it is worth trying a few different rates." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is terminal value in a DCF?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A DCF usually forecasts cash flow year by year for about five years, then uses a single shortcut figure for all the years after that. That figure is the terminal value. It often makes up more than half of the final answer, which is why the assumptions behind it matter so much." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-footer.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">What Is a Business Really Worth? Discounted Cash Flow for Beginners</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 24 October 2026 &nbsp;·&nbsp; 13 min read &nbsp;·&nbsp; <em>Stock Market Basics — Part 3</em></div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <nav class="article-series" aria-label="Stock Market Basics series" style="border:1px solid var(--kv-border); border-radius:8px; padding:10px 14px; margin:16px 0; font-size:0.88rem; line-height:1.6;"><strong>Stock Market Basics series:</strong> <a href="/articles/what-is-a-stock/">Part 1: Basics of Stock Investing</a> &nbsp;·&nbsp; <a href="/articles/book-value-vs-market-cap/">Part 2: What Is a Company Actually Worth?</a> &nbsp;·&nbsp; <strong>Part 3: Discounted Cash Flow for Beginners</strong> (you are here)</nav>
+
+      <p>This is Part 3 of our <strong>Stock Market Basics</strong> series. In <a href="/articles/book-value-vs-market-cap/">Part 2</a>, a stranger offered <strong>$2,000 a share</strong> for our coffee shop: double what the shop owns, and ten times its yearly profit. We said the buyer was paying for <em>future profits</em>, and promised to turn those future profits into a single "what is it really worth?" number.</p>
+
+      <p>That's what this article does. By the end, you'll be able to work out what the coffee shop is worth with nothing more than a calculator, and you'll know whether the $2,000 offer is generous or not.</p>
+
+      <div class="article-summary">
+        <p>What you'll learn:</p>
+        <ul>
+          <li><strong>Free cash flow</strong> — the cash an owner can actually take out, and why it isn't the same as profit</li>
+          <li><strong>Why money later is worth less than money now</strong> — and how to "discount" it</li>
+          <li><strong>Discounted cash flow (DCF)</strong> — adding it all up into one number, step by step</li>
+          <li><strong>Two futures for the coffee shop</strong> — and which one the $2,000 offer is betting on</li>
+          <li><strong>A real-world example</strong> — why Toyota's big profits turn into very little spare cash</li>
+        </ul>
+      </div>
+
+      <h2>Step 1: Profit is not the same as cash</h2>
+
+      <p>Here's where we left the coffee shop at the end of Part 2:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:460px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Profit (earnings) each year</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$20,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Cash in the bank</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$40,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Bank loan</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$30,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Number of shares</td><td style="padding:6px 8px; text-align:right; font-weight:600;">100</td></tr>
+          <tr><td style="padding:6px 8px;">Price offered per share</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$2,000</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>The shop made $20,000 of profit. So can the five owners take $20,000 out of the business every year? Not quite.</p>
+
+      <p>Remember how profit is worked out: <strong>revenue − costs</strong>, where the costs are the year's running costs, like beans, milk, wages, rent and power. But a coffee shop also has to <strong>buy things that last</strong>. The grinder wears out and needs replacing. The fridge breaks. The chairs get shabby. Every year, the shop spends about <strong>$5,000</strong> on equipment like this.</p>
+
+      <p>That $5,000 isn't counted as a cost in the year's profit. Why? Because the shop gets something back that it <em>owns</em>: a new grinder is an asset, just like the espresso machines in Part 2. Instead, the accounts spread its cost over the years it lasts, a slice at a time. That slice is the <strong>depreciation</strong> you met in Part 2.</p>
+
+      <p>But the cash is gone from the bank account the day the grinder is bought. So the money the owners can actually take out is smaller than the profit:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:460px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Profit</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$20,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">− Cash spent on equipment</td><td style="padding:6px 8px; text-align:right; font-weight:600;">−$5,000</td></tr>
+          <tr><td style="padding:6px 8px;"><strong>Free cash flow</strong></td><td style="padding:6px 8px; text-align:right; font-weight:600; color:var(--kv-pass,#22c55e);">$15,000</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="article-summary">
+        <p><strong>Free cash flow = the cash a business has left after paying its running costs AND paying for the equipment it needs to keep going.</strong></p>
+        <p>It's the money the owners could take out without harming the business.</p>
+      </div>
+
+      <p>Free cash flow is often shortened to <strong>FCF</strong>. Money spent on long-lasting things like equipment, buildings and machines is called <strong>capital expenditure</strong>, or <strong>capex</strong>.</p>
+
+      <p style="font-size:0.85rem; color:var(--kv-muted);">A small simplification: real accounts work out free cash flow as "cash coming in from running the business − capex". That handles a few extra details, such as customers who haven't paid yet and the depreciation slices from earlier years. For our shop, "profit − equipment spending" gives the same idea with round numbers.</p>
+
+      <p>Why does this matter so much? Because <strong>the owners can't spend profit. They can only spend cash.</strong> A business that reports big profits but has to pour all of it straight back into equipment hands its owners very little. We'll see a famous real example of this at the end.</p>
+
+      <h2>Step 2: Why money later is worth less than money now</h2>
+
+      <p>Would you rather have <strong>$100 today</strong> or <strong>$100 in a year's time</strong>?</p>
+
+      <p>Today, of course. If you have it today, you could invest it. Suppose you could earn 10% a year somewhere else. Then $100 today becomes $110 in a year. So $110 a year from now is only worth the same as <strong>$100 today</strong>.</p>
+
+      <p>Flip that around and you can work out what any future amount is worth today. You divide it by 1.10 once for every year you have to wait:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:500px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;"><th style="padding:6px 8px;">$15,000 received in…</th><th style="padding:6px 8px;">Divide by</th><th style="padding:6px 8px;">Worth today</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">1 year</td><td style="padding:6px 8px;">1.10</td><td style="padding:6px 8px; font-weight:600;">$13,636</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">2 years</td><td style="padding:6px 8px;">1.10 × 1.10 = 1.21</td><td style="padding:6px 8px; font-weight:600;">$12,397</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">3 years</td><td style="padding:6px 8px;">1.331</td><td style="padding:6px 8px; font-weight:600;">$11,270</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">4 years</td><td style="padding:6px 8px;">1.4641</td><td style="padding:6px 8px; font-weight:600;">$10,245</td></tr>
+          <tr><td style="padding:6px 8px;">5 years</td><td style="padding:6px 8px;">1.61051</td><td style="padding:6px 8px; font-weight:600;">$9,314</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Shrinking a future amount down to today's value like this is called <strong>discounting</strong>, and the 10% is the <strong>discount rate</strong>. The further away the cash, the less it's worth today.</p>
+
+      <p><strong>Where does the 10% come from?</strong> It's the yearly return you'd want for the risk of owning this business. A bank savings account might pay 4% with almost no risk. A small coffee shop could lose customers, or a rival could open next door, so you'd want more than that to make the risk worth it. The riskier the business, the higher the discount rate. Professional analysts work this figure out from government bond rates and how risky a company's shares are; their version is called <a href="/glossary/wacc/">WACC</a>. For our shop, 10% is a sensible round number.</p>
+
+      <h2>Step 3: Add up all the future cash</h2>
+
+      <p>Now we have everything we need. A <strong>discounted cash flow</strong> valuation, or <strong>DCF</strong>, is just this:</p>
+
+      <div class="article-summary">
+        <p><strong>A business is worth all the free cash flow it will produce in future, with each year's cash discounted back to today.</strong></p>
+      </div>
+
+      <p>There's one problem. A business doesn't stop after five years. The coffee shop could keep going for decades. We can't write out a hundred rows, so we use a shortcut for everything after year 5.</p>
+
+      <p>If the shop keeps producing $15,000 a year forever, with no growth, then the value of all those future years (measured at the end of year 5) is simply:</p>
+
+      <div class="article-summary">
+        <p><strong>Cash per year ÷ discount rate</strong> = $15,000 ÷ 0.10 = <strong>$150,000</strong></p>
+      </div>
+
+      <p>That figure is called the <a href="/glossary/terminal-value/">terminal value</a>. ("Terminal" just means "end", as in the end of our five-year forecast, not the end of the business.) It's measured at the end of year 5, so we discount it back five years too, the same as the year-5 cash: $150,000 ÷ 1.61051 = <strong>$93,138</strong>.</p>
+
+      <p style="font-size:0.85rem; color:var(--kv-muted);">Why does dividing by 0.10 work? Think of it backwards: $150,000 sitting in an investment earning 10% a year pays out $15,000 a year, forever. So a never-ending $15,000 a year is worth the same as $150,000 in one lump. If the cash is expected to grow a little each year, analysts subtract that <a href="/glossary/terminal-growth-rate/">growth rate</a> from the discount rate first: <strong>cash next year ÷ (discount rate − growth rate)</strong>. For example, $15,000 growing 2% a year: $15,300 ÷ (0.10 − 0.02) = $191,250.</p>
+
+      <h2>Step 4: From the whole business to one share</h2>
+
+      <p>Let's put it all together for the shop as it is today, with no changes planned:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:500px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Years 1–5: $15,000 a year, discounted (the five figures above)</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$56,862</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Year 6 onwards: terminal value, discounted</td><td style="padding:6px 8px; text-align:right; font-weight:600;">$93,138</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Value of the business</strong></td><td style="padding:6px 8px; text-align:right; font-weight:600;">$150,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">+ Cash in the bank</td><td style="padding:6px 8px; text-align:right; font-weight:600;">+$40,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">− Bank loan</td><td style="padding:6px 8px; text-align:right; font-weight:600;">−$30,000</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Value for the shareholders</strong></td><td style="padding:6px 8px; text-align:right; font-weight:600;">$160,000</td></tr>
+          <tr><td style="padding:6px 8px;"><strong>Value per share</strong> ($160,000 ÷ 100)</td><td style="padding:6px 8px; text-align:right; font-weight:600; color:var(--kv-pass,#22c55e);">$1,600</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Why add the cash and take away the loan? The future cash flow belongs to the business as a whole. But the loan has to be paid back before the owners get anything, and the cash already in the bank is theirs on top. It's the same "what it owns minus what it owes" idea as book value in Part 2.</p>
+
+      <p>That $1,600 is the coffee shop's <a href="/glossary/intrinsic-value/">intrinsic value</a> per share: what it's worth to an owner, based on the cash it will produce. And the stranger offered <strong>$2,000</strong>. If nothing about the shop ever changes, the buyer is paying $400 a share too much.</p>
+
+      <p>So is the buyer making a mistake? Not necessarily. Remember the empty space next door.</p>
+
+      <h2>Step 5: Two futures for the coffee shop</h2>
+
+      <p>In Part 2, the landlord offered the shop the empty space next door for a second counter, which would double profit to $40,000 a year. Let's run a DCF on that future too. This time there's a catch, and it's exactly the "profit isn't cash" lesson from Step 1:</p>
+
+      <ul>
+        <li><strong>Year 1:</strong> the shop still earns its $20,000 profit, but it spends $35,000 on equipment: $30,000 to fit out the second counter, plus the usual $5,000. Free cash flow is <strong>−$15,000</strong>, meaning the shop draws $15,000 out of the $40,000 already in its bank account to pay for the expansion. It makes a profit but <em>loses</em> cash that year, and nothing is wrong: it has the money to cover it.</li>
+        <li><strong>Years 2–5:</strong> profit doubles to $40,000. Two counters wear out twice as much equipment, so spending is $10,000 a year. Free cash flow is <strong>$30,000</strong>.</li>
+        <li><strong>After year 5:</strong> $30,000 a year forever. Terminal value = $30,000 ÷ 0.10 = <strong>$300,000</strong>.</li>
+      </ul>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;"><th style="padding:6px 8px;"></th><th style="padding:6px 8px;">Free cash flow</th><th style="padding:6px 8px;">Divide by</th><th style="padding:6px 8px;">Worth today</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Year 1</td><td style="padding:6px 8px;">−$15,000</td><td style="padding:6px 8px;">1.10</td><td style="padding:6px 8px; font-weight:600; color:var(--kv-fail,#ef4444);">−$13,636</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Year 2</td><td style="padding:6px 8px;">$30,000</td><td style="padding:6px 8px;">1.21</td><td style="padding:6px 8px; font-weight:600;">$24,793</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Year 3</td><td style="padding:6px 8px;">$30,000</td><td style="padding:6px 8px;">1.331</td><td style="padding:6px 8px; font-weight:600;">$22,539</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Year 4</td><td style="padding:6px 8px;">$30,000</td><td style="padding:6px 8px;">1.4641</td><td style="padding:6px 8px; font-weight:600;">$20,490</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Year 5</td><td style="padding:6px 8px;">$30,000</td><td style="padding:6px 8px;">1.61051</td><td style="padding:6px 8px; font-weight:600;">$18,628</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Terminal value</td><td style="padding:6px 8px;">$300,000</td><td style="padding:6px 8px;">1.61051</td><td style="padding:6px 8px; font-weight:600;">$186,276</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Value of the business</strong></td><td style="padding:6px 8px;"></td><td style="padding:6px 8px;"></td><td style="padding:6px 8px; font-weight:600;">$259,090</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">+ Cash − loan</td><td style="padding:6px 8px;"></td><td style="padding:6px 8px;"></td><td style="padding:6px 8px; font-weight:600;">+$10,000</td></tr>
+          <tr><td style="padding:6px 8px;"><strong>Value per share</strong> ($269,090 ÷ 100)</td><td style="padding:6px 8px;"></td><td style="padding:6px 8px;"></td><td style="padding:6px 8px; font-weight:600; color:var(--kv-pass,#22c55e);">$2,691</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Now put the two answers side by side:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:500px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;"><th style="padding:6px 8px;">Future</th><th style="padding:6px 8px;">Value per share</th><th style="padding:6px 8px;">vs $2,000 offer</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">One counter, nothing changes</td><td style="padding:6px 8px; font-weight:600;">$1,600</td><td style="padding:6px 8px; color:var(--kv-fail,#ef4444); font-weight:600;">Paying $400 too much</td></tr>
+          <tr><td style="padding:6px 8px;">Second counter opens</td><td style="padding:6px 8px; font-weight:600;">$2,691</td><td style="padding:6px 8px; color:var(--kv-pass,#22c55e); font-weight:600;">Getting $691 of value free</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>The $2,000 offer sits right between them. In fact, if you thought there was a <strong>50/50 chance</strong> the second counter goes ahead, the average of the two values is about <strong>$2,145</strong>, close to what the stranger offered. In other words, the buyer is paying for a decent chance that the shop grows, not a certainty.</p>
+
+      <p>This is the same lesson as Part 2, now with a number attached: <strong>a share price is a bet on one particular future.</strong> A DCF lets you see which future the price is betting on, and decide whether you believe it.</p>
+
+      <h2>A warning: small changes, big differences</h2>
+
+      <p>A DCF looks precise, but every number in it is a guess about the future. Watch what happens to the "nothing changes" value if we only change the discount rate:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; max-width:460px; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;"><th style="padding:6px 8px;">Discount rate</th><th style="padding:6px 8px;">Value per share</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">8% (a safer business)</td><td style="padding:6px 8px; font-weight:600;">$1,975</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">10%</td><td style="padding:6px 8px; font-weight:600;">$1,600</td></tr>
+          <tr><td style="padding:6px 8px;">12% (a riskier business)</td><td style="padding:6px 8px; font-weight:600;">$1,350</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>Moving the rate by just two percentage points either way moves the answer by over $300 a share. Notice too how much of the value comes from the terminal value, the "year 6 onwards" shortcut: $93,138 of the $150,000 in the first DCF, and $186,276 of $259,090 in the second. Most of what a business is worth comes from years far in the future, which are the hardest to predict.</p>
+
+      <p>That's why careful investors never trust a single DCF number. They try a few sensible assumptions, like a <strong>bear case</strong> (things go badly), a <strong>base case</strong> and a <strong>bull case</strong> (things go well), and look at the range. A DCF doesn't tell you what will happen. It tells you <strong>what you'd have to believe</strong> to justify a price.</p>
+
+      <h2>Real companies: Toyota vs Ferrari again</h2>
+
+      <p>In Part 2, Toyota earned about 13 times as much profit as Ferrari, yet the stock market valued it at only about 3 times as much. We promised to come back to that. Here's the same pair, this time comparing profit with free cash flow:</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.88rem; margin:8px 0;">
+        <thead><tr style="border-bottom:1px solid var(--kv-border); text-align:left;"><th style="padding:6px 8px;"></th><th style="padding:6px 8px;">Toyota</th><th style="padding:6px 8px;">Ferrari</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;">Profit (earnings)</td><td style="padding:6px 8px;">$24.4 billion</td><td style="padding:6px 8px;">$1.8 billion</td></tr>
+          <tr style="border-bottom:1px solid var(--kv-border);"><td style="padding:6px 8px;"><strong>Free cash flow</strong></td><td style="padding:6px 8px; font-weight:600;">$1.1 billion</td><td style="padding:6px 8px; font-weight:600;">$1.6 billion</td></tr>
+          <tr><td style="padding:6px 8px;"><strong>Free cash flow for every $1 of profit</strong></td><td style="padding:6px 8px; font-weight:600; color:var(--kv-fail,#ef4444);">about 5 cents</td><td style="padding:6px 8px; font-weight:600; color:var(--kv-pass,#22c55e);">about 88 cents</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p style="font-size:0.8rem; color:var(--kv-muted);">Figures from each company's latest full financial year (Toyota: year to 31 March 2026; Ferrari: calendar 2025), from Yahoo Finance via KashVector's data service, converted to US dollars at the same 17 October 2026 exchange rates as Part 2 (¥158 and €0.89 per US dollar). Free cash flow is the companies' cash from running the business minus capex, the full version of the formula from Step 1.</p>
+
+      <p>Look at the free cash flow row. <strong>Last year, Ferrari produced <em>more</em> free cash flow than Toyota</strong>, from a profit 13 times smaller.</p>
+
+      <p>Toyota is like the coffee shop in the year it builds its second counter, except it's like that almost every year. Last year it spent about <strong>$33 billion</strong> on long-lasting things, more than its entire profit. To stay competitive it keeps spending enormous sums on factories, new models, electric and hybrid technology, and on its car-finance business, which buys cars to lease out to customers. Over its last four financial years, Toyota reported about <strong>¥16 trillion</strong> of profit (roughly $100 billion), while its free cash flow over the same four years added up to about <strong>minus ¥3 trillion</strong>. The profit was real, but almost none of it was left over as cash for the owners.</p>
+
+      <p>Ferrari builds a small number of cars, doesn't need giant new factories to grow, and keeps most of its profit as cash.</p>
+
+      <p>A DCF values a company on its <em>free cash flow</em>, not its profit. That goes a long way to explaining why the market pays so much less for each dollar of Toyota's profit than for each dollar of Ferrari's. It's not the whole story, since investors also look at expected growth and risk, but it's a big part of it.</p>
+
+      <p>None of this makes either company a better or worse investment. Toyota's heavy spending today may produce more cash in future, just as the second counter did for the coffee shop. Whether it will is exactly the kind of question a DCF makes you ask.</p>
+
+      <h2>Three things to remember</h2>
+
+      <ol style="padding-left:20px; margin-bottom:16px;">
+        <li style="font-size:0.95rem; line-height:1.7; margin-bottom:10px;"><strong>Owners can't spend profit, only cash.</strong> Free cash flow is what's left after paying for the equipment a business needs. It can be much lower than profit, or even negative, when a business is investing heavily.</li>
+        <li style="font-size:0.95rem; line-height:1.7; margin-bottom:10px;"><strong>Money later is worth less than money now.</strong> A DCF discounts each future year's cash back to today, then adds it all up, plus a terminal value for the years beyond the forecast.</li>
+        <li style="font-size:0.95rem; line-height:1.7; margin-bottom:10px;"><strong>A DCF shows what a price is betting on.</strong> Small changes in the assumptions move the answer a lot, so look at a range of futures, not one number.</li>
+      </ol>
+
+      <h2>What's next</h2>
+
+      <p>You've now built a DCF by hand. Real companies work exactly the same way, just with bigger numbers and more careful estimates of growth and risk. Our free <a href="/dcf/">DCF Valuation tool</a> does all the steps in this article automatically for any listed company: it pulls the real free cash flow, works out a discount rate from bond rates and the company's risk, and shows you a bear, base and bull case. You can also put two companies side by side, to see how their free cash flow and valuations compare.</p>
+
+      <a class="article-cta" href="/evaluate/?ticker=TM&amp;vs=RACE">
+        <span class="article-cta-label">Try it yourself</span>
+        <span class="article-cta-text">Compare Toyota and Ferrari side by side: bear, base and bull values for both</span>
+      </a>
+
+      <p>New to the series? Start with <a href="/articles/what-is-a-stock/">Part 1: Basics of Stock Investing</a>, then <a href="/articles/book-value-vs-market-cap/">Part 2: What Is a Company Actually Worth?</a></p>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. It is intended as an educational introduction to how businesses are valued and does not recommend any particular investment, including the companies used as examples. The coffee-shop figures are invented for illustration. Real-company figures are approximate and were correct at the date of writing; they will change. A discounted cash flow is a mechanical calculation that depends entirely on its assumptions; it is not a forecast. Individual investment decisions depend on your financial situation, risk tolerance, timeline, and objectives. We recommend consulting a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>What is free cash flow in simple terms?</summary>
+          <p>Free cash flow is the cash a business has left over after paying its running costs and paying for the equipment, buildings and other things it needs to keep going and grow. It is the money the owners could actually take out of the business without harming it.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Why is free cash flow different from profit?</summary>
+          <p>Profit only counts the year's running costs, such as wages, rent and ingredients. Money spent buying equipment or buildings is not counted as a cost straight away, because the business now owns something in return; the accounts spread that cost over the years the equipment lasts. So in a year when a business spends heavily on new equipment, its free cash flow can be far lower than its profit, or even negative.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is a discounted cash flow (DCF) valuation?</summary>
+          <p>A DCF estimates what a business is worth today by adding up all the free cash flow it is expected to produce in future, after shrinking each future amount to what it is worth today. Money received later is worth less than money received now, so cash expected further in the future is shrunk more.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What discount rate should a beginner use?</summary>
+          <p>The discount rate is the yearly return you would want for taking on the risk of owning the business. Riskier businesses get a higher rate. Professional analysts work it out from government bond rates and how risky the company's shares are, a figure called WACC. Small changes in the rate move the answer a lot, so it is worth trying a few different rates.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What is terminal value in a DCF?</summary>
+          <p>A DCF usually forecasts cash flow year by year for about five years, then uses a single shortcut figure for all the years after that. That figure is the terminal value. It often makes up more than half of the final answer, which is why the assumptions behind it matter so much.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>
