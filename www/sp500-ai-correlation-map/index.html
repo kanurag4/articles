@@ -77,6 +77,11 @@
       },
       {
         "@type": "Question",
+        "name": "Is 50 to 60% of the S&P 500 linked to AI?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Not on this measure. Technology, communication services, industrials and utilities together are about 55% of the index's value, which is likely where the 50 to 60% figure comes from. But only about half of that, 28.6% of the index, is in companies whose shares actually move with AI stocks. Counting every sector, about 37% of the index's value is AI-linked: high, but well short of 50 to 60%." }
+      },
+      {
+        "@type": "Question",
         "name": "What is AI sector correlation?",
         "acceptedAnswer": { "@type": "Answer", "text": "It measures how closely a stock's daily price moves line up with a basket of AI stocks, after removing the part of every move that simply comes from the whole market going up or down. A score near 1 means the stock tends to rise and fall with AI stocks; near 0 means no real link. It describes the past year only and is not a prediction." }
       },
@@ -113,18 +118,21 @@
       </div>
 
       <h1 class="article-headline">How AI-Heavy Is the S&amp;P 500? I Mapped All 500 Companies</h1>
-      <div class="article-byline">KashVector &nbsp;·&nbsp; 6 November 2026 &nbsp;·&nbsp; 9 min read</div>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 6 November 2026 &nbsp;·&nbsp; 11 min read</div>
       <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
 
       <p>I've been listening to a lot of experts lately, and they keep saying the same thing: the S&amp;P 500 is now basically one big AI bet. Buy the index, they say, and you're really buying Nvidia and friends.</p>
 
-      <p>It sounds right. It also sounds like the kind of thing everyone repeats without checking. So I decided to dig deeper and measure it, company by company, for all 500.</p>
+      <p>And the argument usually goes further than the tech companies. AI isn't just software and chips, the thinking goes. It's also the industrial companies building the power and cooling equipment for data centres, and the utilities selling those data centres their electricity. Add all of that up and, so the story goes, something like <strong>50 to 60% of the index</strong> is really riding on AI now.</p>
+
+      <p>It sounds right. It also sounds like the kind of thing everyone repeats without checking. So I decided to dig deeper and measure it, company by company, for all 500. Is that 50–60% true or false?</p>
 
       <div class="article-summary">
         <p>What's in here:</p>
         <ul>
           <li><strong>How I measured "AI-ness"</strong>: two AI funds, and why I blended them into one score</li>
           <li><strong>Three charts</strong>: every company on one line, every sector side by side, and where the money sits</li>
+          <li><strong>Where the 50–60% figure comes from</strong>, and how much of it actually moves with AI</li>
           <li><strong>The answer</strong>, which depends on whether you count companies or dollars</li>
           <li><strong>Where our own undervalued screen sits</strong> on the same map</li>
         </ul>
@@ -221,15 +229,40 @@
 
       <p>By number of companies, the answer barely changes: somewhere between 17% and 19% whichever way you measure it. By value it swings from about 31% to 44%, and most of that swing is Microsoft deciding which side of the line it's on.</p>
 
-      <h2>So, is the S&amp;P 500 mostly AI?</h2>
+      <h2>Where does "50–60%" come from?</h2>
+
+      <p>I think I found it. Take the sectors people usually put in the AI story (technology, communication services, industrials and utilities) and add up their size. They really are about <strong>55% of the S&amp;P 500's value</strong>. That's the number you hear.</p>
+
+      <p>The catch is that being in one of those sectors isn't the same as moving with AI. Here's what each one actually contributes once you only count the companies that do:</p>
+
+      <div style="overflow-x:auto;">
+      <table class="aimap-table">
+        <thead><tr><th>Sector</th><th class="num">Share of index value</th><th class="num">Of which moves with AI</th><th class="num">AI-heavy companies</th></tr></thead>
+        <tbody>
+          <tr><td>Technology</td><td class="num">36.3%</td><td class="num">20.9%</td><td class="num">49 of 85</td></tr>
+          <tr><td>Communication Services</td><td class="num">9.2%</td><td class="num">5.1%</td><td class="num">3 of 20</td></tr>
+          <tr><td>Industrials</td><td class="num">7.4%</td><td class="num">2.3%</td><td class="num">20 of 75</td></tr>
+          <tr><td>Utilities</td><td class="num">2.0%</td><td class="num">0.2%</td><td class="num">3 of 31</td></tr>
+          <tr><td><strong>The "AI sectors" together</strong></td><td class="num"><strong>55.0%</strong></td><td class="num"><strong>28.6%</strong></td><td class="num"><strong>75 of 211</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>About half of that 55% genuinely moves with AI. The rest is just sitting in the same sector. The utilities story surprised me most: only <strong>3 of 31 utilities</strong> are AI-heavy (Vistra, Constellation Energy and NRG, the power generators selling to data centres), and together they're 0.2% of the index. The other 28 utilities move nothing like AI stocks. Industrials are similar: the data-centre power names are very AI-heavy, but they're a third of the sector's value, not all of it.</p>
+
+      <p>The rest of the 37% comes from outside those four sectors, mostly Amazon and Tesla, which sit in consumer cyclical.</p>
+
+      <h2>So, is it 50–60%? False.</h2>
 
       <p>Here's where I landed:</p>
 
       <ul>
         <li><strong>The typical company? No.</strong> Four out of five S&amp;P 500 companies don't move with AI stocks in any meaningful way.</li>
-        <li><strong>The typical dollar in an index fund? About a third of it</strong> (roughly $25 trillion of the index's $68 trillion) sits in companies that move closely with AI. That's a lot of eggs in one basket, but it isn't "most".</li>
+        <li><strong>The typical dollar in an index fund? About a third of it</strong> (roughly $25 trillion of the index's $68 trillion) sits in companies that move closely with AI.</li>
         <li><strong>AI exposure is narrow.</strong> It's chips, hardware, the power supply chain and a handful of giant platforms. It isn't spread across the economy.</li>
       </ul>
+
+      <p><strong>37% of the index linked to AI is high.</strong> That's a lot of eggs in one basket, and five companies hold more than half of them. But it isn't the 50–60% we keep hearing in the media. That figure comes from counting whole sectors, and a sector label isn't the same as moving with AI. Even measured only against the broad AI fund, the most generous of my three definitions, it comes to 44%.</p>
 
       <h2>Where our undervalued screen sits</h2>
 
@@ -272,6 +305,10 @@
         <details class="faq-item">
           <summary>How much of the S&amp;P 500 is AI-heavy?</summary>
           <p>By number of companies, not much: 92 of the 498 companies I could measure (18.5%) moved closely with AI stocks over the year to 2 November 2026. By size it is a different story: those 92 companies make up about 37% of the S&amp;P 500's total market value (roughly $25 trillion of about $68 trillion), because they include Nvidia, Amazon, Alphabet, Broadcom and Tesla.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is 50 to 60% of the S&amp;P 500 linked to AI?</summary>
+          <p>Not on this measure. Technology, communication services, industrials and utilities together are about 55% of the index's value, which is likely where the 50 to 60% figure comes from. But only about half of that, 28.6% of the index, is in companies whose shares actually move with AI stocks. Counting every sector, about 37% of the index's value is AI-linked: high, but well short of 50 to 60%.</p>
         </details>
         <details class="faq-item">
           <summary>What is AI sector correlation?</summary>
