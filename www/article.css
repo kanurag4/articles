@@ -340,3 +340,11 @@ footer a:hover { color: var(--kv-accent); }
   .article-headline { font-size: 1.3rem; }
   input, select, textarea { font-size: 16px; }
 }
+
+/* ── Text links in dark mode ── */
+/* No colour rule existed, so links fell back to the browser's default dark blue (#0000EE), unreadable on the dark
+   background. Dark mode only: light mode keeps its existing look. */
+html.dark .article-body a:not(.article-cta),
+html.dark .tool-info a { color: var(--kv-primary); }
+html.dark .article-body a:not(.article-cta):hover,
+html.dark .tool-info a:hover { color: var(--kv-accent); }
