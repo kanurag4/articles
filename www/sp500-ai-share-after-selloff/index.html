@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="/kv-theme.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>AI Stocks Fell 16%. What's Left of the 37%? | KashVector</title>
+  <link rel="canonical" href="https://kashvector.com/articles/sp500-ai-share-after-selloff/">
+  <meta property="og:title" content="AI Stocks Fell 16%. What's Left of the 37%? | KashVector">
+  <meta property="og:description" content="We re-priced our S&amp;P 500 AI map after the sell-off. AI-heavy stocks fell 16% and their share of the index slid from 37% to 34%. Nvidia did most of it.">
+  <meta property="og:url" content="https://kashvector.com/articles/sp500-ai-share-after-selloff/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KashVector">
+  <meta property="og:image" content="https://kashvector.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="KashVector — free stock valuation tools">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Stocks Fell 16%. What's Left of the 37%? | KashVector">
+  <meta name="twitter:description" content="We re-priced our S&amp;P 500 AI map after the sell-off. AI-heavy stocks fell 16% and their share of the index slid from 37% to 34%. Nvidia did most of it.">
+  <meta name="twitter:image" content="https://kashvector.com/og-image.png">
+  <meta name="description" content="We re-priced our S&amp;P 500 AI map after the sell-off. AI-heavy stocks fell 16% and their share of the index slid from 37% to 34%. Nvidia did most of it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/brand.css">
+  <link rel="stylesheet" href="../article.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <style>
+    .aifu-chart { background:#ffffff; border:1px solid var(--kv-border); border-radius:10px; padding:10px; margin:14px 0 6px; overflow-x:auto; }
+    .aifu-chart svg { min-width:600px; display:block; }
+    .aifu-chart svg text { font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
+    .aifu-chart svg .gl { font-size:13px; fill:#16202b; }
+    .aifu-chart svg .gs { font-size:11px; fill:#64748b; }
+    .aifu-chart svg .vl { font-size:13px; font-weight:700; fill:#16202b; }
+    .aifu-chart svg .tk { font-size:11px; fill:#64748b; }
+    .aifu-chart svg path { cursor:default; }
+    .aifu-chart svg path:hover { opacity:0.85; }
+    .aifu-caption { font-size:0.85rem; color:var(--kv-muted); margin:0 0 18px; }
+    .aifu-legend { display:flex; flex-wrap:wrap; gap:4px 14px; font-size:0.8rem; color:var(--kv-muted); margin:6px 0 0; }
+    .aifu-legend i { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:4px; vertical-align:-1px; }
+    .aifu-table { width:100%; border-collapse:collapse; font-size:0.88rem; margin:8px 0; }
+    .aifu-table th, .aifu-table td { padding:6px 8px; border-bottom:1px solid var(--kv-border); text-align:left; }
+    .aifu-table td.num, .aifu-table th.num { text-align:right; white-space:nowrap; }
+    .aifu-table tr.aifu-sum td { font-weight:700; }
+    .aifu-keys-row { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px 22px; margin:4px 0 12px; }
+    @media (max-width:560px) { .aifu-keys-row { grid-template-columns:1fr; } }
+    .aifu-keys-row div { display:flex; flex-direction:column; gap:2px; min-width:0; }
+    .aifu-keys-num { font-size:1.9rem; font-weight:700; color:var(--kv-primary); line-height:1.1; font-variant-numeric:tabular-nums; }
+    .aifu-keys-row span:last-child { font-size:0.92rem; color:var(--kv-text); }
+    .article-summary p.aifu-keys-foot { font-size:0.82rem; font-weight:400; margin:0; }
+    .aifu-keys-foot a { color:var(--kv-primary); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI Stocks Fell 16% in Under Three Weeks. What's Left of the S&P 500's 37%?",
+    "datePublished": "2026-11-22",
+    "dateModified": "2026-11-22",
+    "image": "https://kashvector.com/og-image.png",
+    "mainEntityOfPage": "https://kashvector.com/articles/sp500-ai-share-after-selloff/",
+    "author": { "@type": "Organization", "name": "KashVector" },
+    "publisher": { "@type": "Organization", "name": "KashVector", "url": "https://kashvector.com" },
+    "url": "https://kashvector.com/articles/sp500-ai-share-after-selloff/",
+    "description": "We re-priced our S&P 500 AI map after the sell-off. AI-heavy stocks fell 16% and their share of the index slid from 37% to 34%. Nvidia did most of it."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much of the S&P 500 is AI-heavy after the November 2026 sell-off?",
+        "acceptedAnswer": { "@type": "Answer", "text": "About 34%. The 92 companies whose shares moved closely with AI stocks held 37.0% of the S&P 500's value at the close on 2 November 2026. By the close on 20 November they had fallen 15.9% as a group and held 33.9%, about $21.3 trillion of $62.8 trillion." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much of the fall was Nvidia?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nearly half. Nvidia fell 37.9%, from $202.08 to $125.53, which cut about $1.87 trillion from its value. That is 47% of everything the AI-heavy group lost and a third of the whole index's fall. Leave Nvidia out and the other 91 AI-heavy companies went from 29.7% of the index to 29.0%." }
+      },
+      {
+        "@type": "Question",
+        "name": "How did S&P 500 companies with no link to AI do in the sell-off?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Better, but most still fell. The 139 companies with no real link to AI fell 4.4% by value, and the 225 with a negative link fell 2.7%. In the negative group 39% of companies rose, against 3% of the AI-heavy ones. The whole index fell 8.3%." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a negative AI correlation mean a stock rises when AI stocks fall?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. It means the stock tended to lag on AI stocks' good days, after removing the whole market's move. In this sell-off it meant the group fell least, not that it went up: 61% of the negative-correlation companies still ended lower." }
+      },
+      {
+        "@type": "Question",
+        "name": "Did you recalculate the AI scores?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Every company stays in the group it was in on 2 November 2026, and only the share prices change. Re-scoring would mix two things, companies changing groups and prices falling, and the question here is how the same companies moved." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div id="kv-nav-placeholder" style="height:41px"></div>
+  <script src="/kv-nav.js"></script>
+  <script src="/kv-footer.js"></script>
+  <script src="/kv-banner.js"></script>
+
+  <main>
+    <article class="article-body">
+
+      <div class="article-breadcrumb">
+        <a href="/articles/">← Articles</a>
+      </div>
+
+      <h1 class="article-headline">AI Stocks Fell 16% in Under Three Weeks. What's Left of the S&amp;P 500's 37%?</h1>
+      <div class="article-byline">KashVector &nbsp;·&nbsp; 22 November 2026 &nbsp;·&nbsp; 9 min read</div>
+      <p class="article-ai-note"><strong>A note on authorship:</strong> The research, analysis, and opinions in this article are the author's own. Claude (Anthropic's AI) assisted with drafting and editing the prose.</p>
+
+      <p>Three weeks ago we <a href="/articles/sp500-ai-correlation-map/">mapped all 500 companies in the S&amp;P 500</a> by how closely their shares move with AI stocks. The answer was that 92 companies, under a fifth of the index, moved closely with AI, but because they include the giants they held <strong>37% of the index's value</strong>.</p>
+
+      <p>Since then AI stocks have had a rough run. A chip-stock fund we used for that map, SMH, is down 21%. So we went back to the same map and asked a simple question: <strong>how much of that 37% is left, and how did everything else do?</strong></p>
+
+      <p>We kept every company in the group it was in on 2 November and only moved the share prices to Friday's close, 20 November. No new scores. Same companies, new prices.</p>
+
+      <div class="article-summary">
+        <p>Key numbers</p>
+        <div class="aifu-keys-row">
+          <div><span class="aifu-keys-num">37% → 34%</span><span>AI-heavy companies' share of the S&amp;P 500's value, 2 Nov to 20 Nov 2026</span></div>
+          <div><span class="aifu-keys-num">−15.9%</span><span>how far those 92 companies fell, against −3.8% for the other 405</span></div>
+        </div>
+        <p class="aifu-keys-foot">Closing prices, 2 November to 20 November 2026. Groups as published in our 2 November map. <strong>Free to share:</strong> you're welcome to use these figures with a link to this article. <a href="ai-map-three-weeks-later.csv" download>Download every company's figures (CSV)</a></p>
+      </div>
+
+      <div class="article-summary">
+        <p>What's in here:</p>
+        <ul>
+          <li><strong>How each group did</strong>, from the most AI-linked companies to the ones that move against AI</li>
+          <li><strong>Why most of the drop is one company</strong></li>
+          <li><strong>Not every AI stock fell</strong>, and not every non-AI stock held up</li>
+          <li><strong>Sector by sector</strong>: AI-heavy companies against their neighbours</li>
+        </ul>
+      </div>
+
+      <h2>A quick reminder of the groups</h2>
+
+      <p>The first article gave every company a score between −1 and +1 for how closely its daily share price moved with a mix of two AI funds over the past year, after taking out the whole market's move. Then it sorted them into five groups:</p>
+
+      <ul>
+        <li><strong>High</strong> (0.40 and up) and <strong>Moderate</strong> (0.20 to 0.40). Together these are the <strong>AI-heavy</strong> companies.</li>
+        <li><strong>Low</strong> (0.05 to 0.20): a weak link. Microsoft and Meta sit here.</li>
+        <li><strong>None</strong>: no real link. Apple sits here.</li>
+        <li><strong>Negative</strong>: on AI's good days, these tended to lag. Think consumer staples, health care, and many banks and insurers.</li>
+      </ul>
+
+      <p>The question for this article is whether those groups behaved the way their scores suggested when AI stocks fell.</p>
+
+      <h2>How each group did</h2>
+
+      <p>Short answer: yes, in order. The more a group was tied to AI, the harder it fell.</p>
+
+      <div class="aifu-chart"><svg viewBox="0 0 760 330" width="100%" role="img" aria-label="Change in value by AI group, 2 to 20 November 2026: High minus 22.2%, Moderate minus 5.0%, Low minus 5.9%, None minus 4.4%, Negative minus 2.7%, whole S&amp;P 500 minus 8.3%" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e2e8f0" stroke-width="1"><line x1="230" y1="20" x2="230" y2="296"/><line x1="350" y1="20" x2="350" y2="296"/><line x1="470" y1="20" x2="470" y2="296"/><line x1="590" y1="20" x2="590" y2="296"/><line x1="710" y1="20" x2="710" y2="296"/></g>
+        <line x1="830" y1="20" x2="830" y2="296" stroke="#94a3b8" stroke-width="1.5"/>
+        <g class="tk" text-anchor="middle"><text x="230" y="314">−25%</text><text x="350" y="314">−20%</text><text x="470" y="314">−15%</text><text x="590" y="314">−10%</text><text x="710" y="314">−5%</text><text x="830" y="314">0%</text></g>
+        <text x="12" y="44" class="gl">High</text><text x="12" y="58" class="gs">55 companies</text>
+        <path d="M830,30 H301.2 Q297.2,30 297.2,34 V56 Q297.2,60 301.2,60 H830 Z" fill="#c2410c"><title>High: −22.2% ($15.95T → $12.41T)</title></path>
+        <text x="291" y="50" text-anchor="end" class="vl">−22.2%</text>
+        <text x="12" y="88" class="gl">Moderate</text><text x="12" y="102" class="gs">37 companies</text>
+        <path d="M830,74 H714 Q710,74 710,78 V100 Q710,104 714,104 H830 Z" fill="#c2410c"><title>Moderate: −5.0% ($9.33T → $8.85T)</title></path>
+        <text x="704" y="94" text-anchor="end" class="vl">−5.0%</text>
+        <text x="12" y="132" class="gl">Low</text><text x="12" y="146" class="gs">41 companies</text>
+        <path d="M830,118 H692.4 Q688.4,118 688.4,122 V144 Q688.4,148 692.4,148 H830 Z" fill="#2563eb"><title>Low: −5.9% ($7.51T → $7.07T)</title></path>
+        <text x="682" y="138" text-anchor="end" class="vl">−5.9%</text>
+        <text x="12" y="176" class="gl">None</text><text x="12" y="190" class="gs">139 companies</text>
+        <path d="M830,162 H728.4 Q724.4,162 724.4,166 V188 Q724.4,192 728.4,192 H830 Z" fill="#2563eb"><title>None: −4.4% ($14.27T → $13.64T)</title></path>
+        <text x="718" y="182" text-anchor="end" class="vl">−4.4%</text>
+        <text x="12" y="220" class="gl">Negative</text><text x="12" y="234" class="gs">225 companies</text>
+        <path d="M830,206 H769.2 Q765.2,206 765.2,210 V232 Q765.2,236 769.2,236 H830 Z" fill="#2563eb"><title>Negative: −2.7% ($21.35T → $20.77T)</title></path>
+        <text x="759" y="226" text-anchor="end" class="vl">−2.7%</text>
+        <line x1="12" y1="250" x2="830" y2="250" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="12" y="276" class="gl">Whole S&amp;P 500</text><text x="12" y="290" class="gs">497 companies</text>
+        <path d="M830,262 H634.8 Q630.8,262 630.8,266 V288 Q630.8,292 634.8,292 H830 Z" fill="#94a3b8"><title>Whole S&amp;P 500: −8.3% ($68.41T → $62.75T)</title></path>
+        <text x="624" y="282" text-anchor="end" class="vl">−8.3%</text>
+      </svg>
+      <div class="aifu-legend"><span><i style="background:#c2410c"></i>AI-heavy (High and Moderate)</span><span><i style="background:#2563eb"></i>Not AI-heavy</span><span><i style="background:#94a3b8"></i>Whole index</span></div>
+      </div>
+      <p class="aifu-caption">Change in each group's total market value, closing prices 2 November to 20 November 2026. Groups as on 2 November.</p>
+
+      <p>The High group lost more than a fifth of its value in under three weeks. The Negative group lost under 3%. Moderate and Low fell about the same, around 5–6%, so the line between them isn't sharp.</p>
+
+      <p>Here's what that did to each group's slice of the index:</p>
+
+      <div style="overflow-x:auto;">
+      <table class="aifu-table">
+        <thead><tr><th>Group</th><th class="num">Companies</th><th class="num">Share of index, 2 Nov</th><th class="num">Share, 20 Nov</th><th class="num">Value change</th><th class="num">Typical company</th><th class="num">Companies that rose</th></tr></thead>
+        <tbody>
+          <tr><td>High</td><td class="num">55</td><td class="num">23.3%</td><td class="num">19.8%</td><td class="num">−$3.5T (−22.2%)</td><td class="num">−15.0%</td><td class="num">1 of 55</td></tr>
+          <tr><td>Moderate</td><td class="num">37</td><td class="num">13.6%</td><td class="num">14.1%</td><td class="num">−$0.5T (−5.0%)</td><td class="num">−8.2%</td><td class="num">2 of 37</td></tr>
+          <tr class="aifu-sum"><td>AI-heavy</td><td class="num">92</td><td class="num">37.0%</td><td class="num">33.9%</td><td class="num">−$4.0T (−15.9%)</td><td class="num">−12.7%</td><td class="num">3 of 92</td></tr>
+          <tr><td>Low</td><td class="num">41</td><td class="num">11.0%</td><td class="num">11.3%</td><td class="num">−$0.4T (−5.9%)</td><td class="num">−7.2%</td><td class="num">4 of 41</td></tr>
+          <tr><td>None</td><td class="num">139</td><td class="num">20.9%</td><td class="num">21.7%</td><td class="num">−$0.6T (−4.4%)</td><td class="num">−5.1%</td><td class="num">20 of 139</td></tr>
+          <tr><td>Negative</td><td class="num">225</td><td class="num">31.2%</td><td class="num">33.1%</td><td class="num">−$0.6T (−2.7%)</td><td class="num">−1.3%</td><td class="num">88 of 225</td></tr>
+          <tr class="aifu-sum"><td>Whole S&amp;P 500</td><td class="num">497</td><td class="num">100%</td><td class="num">100%</td><td class="num">−$5.7T (−8.3%)</td><td class="num">−4.9%</td><td class="num">115 of 497</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>"Typical company" is the median: half the group did better, half did worse. "Value change" weights each company by its size, so big companies count for more.</p>
+
+      <p>So the answer to our question: <strong>the AI-heavy slice went from 37.0% to 33.9%</strong>. The Negative group, the companies that move least like AI, grew from 31.2% to 33.1%, and is now nearly as big a slice of the index as the AI-heavy companies.</p>
+
+      <p>And the AI-heavy companies did most of the damage. Of the $5.7 trillion the index lost, <strong>$4.0 trillion, about 70%, came from those 92 companies</strong>. The other 405 lost $1.65 trillion between them, a fall of 3.8%.</p>
+
+      <h2>Most of the drop is one company</h2>
+
+      <p>Look at the High row again. That −22% isn't 55 companies each falling 22%. The typical High company fell 15%. The difference is size, and one company in particular.</p>
+
+      <p><strong>Nvidia fell 37.9%</strong>, from $202.08 at the close on 2 November to $125.53 on 20 November, including a 14% drop on the last day alone. That took about <strong>$1.87 trillion</strong> off its value, which is:</p>
+
+      <ul>
+        <li>nearly <strong>half</strong> (47%) of everything the AI-heavy group lost;</li>
+        <li>a <strong>third</strong> of the whole S&amp;P 500's fall;</li>
+        <li>enough to shrink Nvidia from 7.2% of the index to 4.9%.</li>
+      </ul>
+
+      <p>Take Nvidia out and the picture changes a lot. The other 91 AI-heavy companies fell 10.5%, and their share of the index barely moved: <strong>29.7% before, 29.0% after</strong>. In other words, most of the slide from 37% to 34% is Nvidia's own drop, not the whole AI group shrinking. The index without Nvidia fell 6.0%, not 8.3%.</p>
+
+      <p>The giants we pointed out last time, Nvidia, Amazon, Alphabet, Broadcom and Tesla, went from $14.1 trillion to $11.8 trillion together, from 20.6% of the index to 18.7%.</p>
+
+      <h2>Not every AI stock fell, and not every non-AI stock held up</h2>
+
+      <p>Inside the AI-heavy group the spread was wide. The hardest hit were memory, chips and the hardware around them:</p>
+
+      <div style="overflow-x:auto;">
+      <table class="aifu-table">
+        <thead><tr><th>Biggest falls, AI-heavy</th><th class="num">Price change</th></tr></thead>
+        <tbody>
+          <tr><td><strong>SNDK</strong> Sandisk</td><td class="num">−41.0%</td></tr>
+          <tr><td><strong>NVDA</strong> Nvidia</td><td class="num">−37.9%</td></tr>
+          <tr><td><strong>LITE</strong> Lumentum</td><td class="num">−32.7%</td></tr>
+          <tr><td><strong>DELL</strong> Dell Technologies</td><td class="num">−29.2%</td></tr>
+          <tr><td><strong>SMCI</strong> Super Micro Computer</td><td class="num">−28.9%</td></tr>
+          <tr><td><strong>MU</strong> Micron Technology</td><td class="num">−28.7%</td></tr>
+          <tr><td><strong>BE</strong> Bloom Energy</td><td class="num">−27.4%</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>But a few AI-heavy names went the other way, or nearly. <strong>AppLovin rose 52%</strong>. <strong>Amazon was flat</strong> (+0.5%). Alphabet fell about 5% and Broadcom 5.5%, far less than the group.</p>
+
+      <p>The data-centre power companies, the industrials and utilities that made the AI story feel so broad, fell too. The 23 AI-heavy companies in those two sectors were down 14.2% together: Bloom Energy −27%, Vertiv −26%, GE Vernova −19%, Eaton −15%, Vistra −14%.</p>
+
+      <p>Outside the AI-heavy group, the biggest dollar falls came from companies just below our line or far from it: <strong>Microsoft</strong> (Low, −4.5%, about $168 billion) and <strong>Meta</strong> (Low, −7.6%, $119 billion), then JPMorgan (−8.8%) and ExxonMobil (−10.9%), about $80 billion each.</p>
+
+      <p>And some of the best performers were as un-AI as it gets. In the Negative group, Clorox rose 16.5%, Tyson Foods 14.1% and Hormel 9.6%. Costco rose 5.9%, Procter &amp; Gamble 3.5% and Berkshire Hathaway 2.5%. In the None group, <strong>Apple rose 1.3%</strong>, which made it the single biggest dollar gainer in the index, about $62 billion.</p>
+
+      <h2>Sector by sector: AI-heavy companies against their neighbours</h2>
+
+      <p>One more way to check that this was an AI move and not just a bad few weeks for some sectors: compare AI-heavy companies with the other companies in the <em>same</em> sector.</p>
+
+      <div style="overflow-x:auto;">
+      <table class="aifu-table">
+        <thead><tr><th>Sector</th><th class="num">AI-heavy companies</th><th class="num">The rest of the sector</th><th class="num">Whole sector</th></tr></thead>
+        <tbody>
+          <tr><td>Technology</td><td class="num">−22.6%</td><td class="num">−2.7%</td><td class="num">−14.2%</td></tr>
+          <tr><td>Basic Materials</td><td class="num">−19.0%</td><td class="num">−6.9%</td><td class="num">−9.3%</td></tr>
+          <tr><td>Energy</td><td class="num">−15.5%</td><td class="num">−10.2%</td><td class="num">−10.4%</td></tr>
+          <tr><td>Industrials</td><td class="num">−14.7%</td><td class="num">−5.5%</td><td class="num">−8.4%</td></tr>
+          <tr><td>Financial Services</td><td class="num">−11.7%</td><td class="num">−4.2%</td><td class="num">−5.1%</td></tr>
+          <tr><td>Utilities</td><td class="num">−9.6%</td><td class="num">−1.7%</td><td class="num">−2.6%</td></tr>
+          <tr><td>Real Estate</td><td class="num">−5.8%</td><td class="num">−2.1%</td><td class="num">−2.8%</td></tr>
+          <tr><td>Consumer Cyclical</td><td class="num">−5.1%</td><td class="num">−4.0%</td><td class="num">−4.7%</td></tr>
+          <tr><td>Communication Services</td><td class="num">−3.7%</td><td class="num">−4.0%</td><td class="num">−3.9%</td></tr>
+          <tr><td>Healthcare</td><td class="num">none</td><td class="num">−4.1%</td><td class="num">−4.1%</td></tr>
+          <tr><td>Consumer Defensive</td><td class="num">none</td><td class="num">−0.1%</td><td class="num">−0.1%</td></tr>
+        </tbody>
+      </table>
+      </div>
+
+      <p>In eight of the nine sectors that have AI-heavy companies, those companies fell further than their neighbours. Technology is the starkest: AI-heavy tech fell 22.6%, the rest of tech only 2.7%. The one exception is communication services, where Alphabet held up.</p>
+
+      <p>It wasn't only AI, though. Energy fell about 10% whichever way you slice it, AI-linked or not. Some of the index's fall had nothing to do with AI.</p>
+
+      <h2>What this does and doesn't tell you</h2>
+
+      <ul>
+        <li><strong>The scores did what they said.</strong> Companies that moved with AI over the past year moved with it on the way down too, roughly in order of how closely.</li>
+        <li><strong>"Negative" didn't mean "went up".</strong> As we said last time, a negative score means a company tended to lag on AI's good days. On AI's bad days it meant falling <em>least</em>: 61% of the Negative group still ended lower.</li>
+        <li><strong>Concentration cuts both ways.</strong> Last time we said five companies hold more than half of the AI-heavy value. That's exactly why one company's fall moved the whole index.</li>
+        <li><strong>Three weeks is a very short time.</strong> This describes how prices moved between two dates. It's not a forecast, and it says nothing about whether any company is a good or bad investment now.</li>
+      </ul>
+
+      <h2>How we did it</h2>
+
+      <ul>
+        <li><strong>Groups:</strong> exactly as published in our <a href="/articles/sp500-ai-correlation-map/">2 November map</a>. Nothing was re-scored.</li>
+        <li><strong>Prices:</strong> closing prices on 2 November and 20 November 2026, not adjusted for dividends. Most come from our own price store; 27 companies whose latest close was missing there came from Yahoo Finance, both dates from the same source.</li>
+        <li><strong>Value:</strong> each company's market value on 3 November, the same figure as the first article, moved by its share-price change. The number of shares is held fixed.</li>
+        <li><strong>Companies:</strong> 497 of the 498 with a score. Kenvue (KVUE, Negative group, about $37 billion) last traded on 30 October, so it has no price to compare and is left out. That's why the AI-heavy share starts at 37.0% here, against 36.9% in the first article.</li>
+        <li><strong>A check:</strong> our 497 companies together fell 8.3%. The S&amp;P 500 index itself fell 8.4% over the same two closes (7,541.40 to 6,910.39), so the method lines up with the real index. The two AI funds behind the scores fell too: AIQ 13.7%, SMH 21.3%. The equal-weight S&amp;P 500 fund, RSP, fell 5.7%.</li>
+      </ul>
+
+      <div class="article-cta">
+        <p class="article-cta-label">Check any stock yourself</p>
+        <p class="article-cta-text">Type any ticker into our <a href="/evaluate/">free stock evaluation</a> to see its AI sector and AI hardware correlation, alongside its valuation and financial health.</p>
+      </div>
+
+      <div class="article-disclaimer">
+        This article is general information only and does not constitute financial advice. It describes how share prices moved over a past period and does not recommend any particular investment, including any company named or shown. Correlation groups are statistical descriptions of historical price movements, not predictions. All figures were correct at the date of writing and will change. Individual investment decisions depend on your financial situation, risk tolerance, timeline, and objectives. We recommend consulting a licensed financial adviser before making investment decisions.
+      </div>
+
+    </article>
+
+    <section class="tool-info">
+      <div>
+        <h2>Frequently asked questions</h2>
+        <details class="faq-item">
+          <summary>How much of the S&amp;P 500 is AI-heavy after the November 2026 sell-off?</summary>
+          <p>About 34%. The 92 companies whose shares moved closely with AI stocks held 37.0% of the S&amp;P 500's value at the close on 2 November 2026. By the close on 20 November they had fallen 15.9% as a group and held 33.9%, about $21.3 trillion of $62.8 trillion.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How much of the fall was Nvidia?</summary>
+          <p>Nearly half. Nvidia fell 37.9%, from $202.08 to $125.53, which cut about $1.87 trillion from its value. That is 47% of everything the AI-heavy group lost and a third of the whole index's fall. Leave Nvidia out and the other 91 AI-heavy companies went from 29.7% of the index to 29.0%.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How did S&amp;P 500 companies with no link to AI do in the sell-off?</summary>
+          <p>Better, but most still fell. The 139 companies with no real link to AI fell 4.4% by value, and the 225 with a negative link fell 2.7%. In the negative group 39% of companies rose, against 3% of the AI-heavy ones. The whole index fell 8.3%.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does a negative AI correlation mean a stock rises when AI stocks fall?</summary>
+          <p>No. It means the stock tended to lag on AI stocks' good days, after removing the whole market's move. In this sell-off it meant the group fell least, not that it went up: 61% of the negative-correlation companies still ended lower.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Did you recalculate the AI scores?</summary>
+          <p>No. Every company stays in the group it was in on 2 November 2026, and only the share prices change. Re-scoring would mix two things, companies changing groups and prices falling, and the question here is how the same companies moved.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/">← All KashVector tools</a>
+    &nbsp;·&nbsp;
+    <a href="/articles/">Articles</a>
+    &nbsp;·&nbsp;
+    <a href="/privacy-site.html">Privacy</a>
+  </footer>
+</body>
+</html>

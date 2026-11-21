@@ -1,0 +1,12 @@
+sector,companies,median_ai_score,ai_heavy_share_by_count_pct,ai_heavy_share_by_value_pct,as_of,source
+Technology,85,0.27,58,58,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
+Industrials,75,-0.03,27,32,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
+Energy,21,-0.09,5,2,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
+Basic Materials,19,-0.14,16,20,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
+Consumer Cyclical,54,-0.15,4,61,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
+Communication Services,20,-0.21,15,56,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
+Financial Services,70,-0.21,11,12,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
+Healthcare,59,-0.22,0,0,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
+Utilities,31,-0.31,10,11,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
+Real Estate,29,-0.38,10,17,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
+Consumer Defensive,34,-0.43,0,0,2026-11-02,https://kashvector.com/articles/sp500-ai-correlation-map/
